@@ -20,7 +20,7 @@ const ProblemSolution = () => {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {cards.map((c, i) => (
-            <div key={i} className="text-center p-8 rounded-3xl shadow-soft bg-card space-y-4 transition-transform duration-200 hover:scale-[1.02]">
+            <div key={i} className="text-center p-8 rounded-3xl shadow-soft bg-card border-luxury space-y-4 transition-all duration-300 hover:scale-[1.01]">
               <div className="w-14 h-14 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center">
                 <c.icon size={28} className="text-primary" />
               </div>

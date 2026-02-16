@@ -6,7 +6,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/80 border-b-[0.5px] border-border/20">
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
         <span className="font-serif-display text-2xl font-bold tracking-tight text-foreground">
           Stela
@@ -14,7 +14,7 @@ const Navbar = () => {
 
         {/* Desktop */}
         <Button
-          className="hidden md:inline-flex rounded-full bg-primary text-primary-foreground hover:bg-primary/85 transition-transform duration-200 hover:scale-105 px-6"
+          className="hidden md:inline-flex rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 px-6"
         >
           Créer un Mémorial
         </Button>

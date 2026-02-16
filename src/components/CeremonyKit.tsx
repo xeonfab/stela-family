@@ -11,7 +11,7 @@ const CeremonyKit = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section ref={ref} className="py-24 lg:py-32 bg-ceremony">
+    <section ref={ref} className="py-24 lg:py-32 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-secondary via-background to-background">
       <div className={`container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         {/* Text */}
         <div className="flex-1 space-y-8">
@@ -37,8 +37,12 @@ const CeremonyKit = () => {
             <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-px h-12 bg-muted-foreground/30 rotate-[-15deg] origin-top" />
             <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-px h-12 bg-muted-foreground/30 rotate-[15deg] origin-top" />
 
+            {/* Back paper stack */}
+            <div className="absolute -left-2 -top-2 w-64 h-80 bg-card/60 rounded-2xl border-luxury rotate-[-2deg]" />
+            <div className="absolute -left-1 -top-1 w-64 h-80 bg-card/80 rounded-2xl border-luxury rotate-[-1deg]" />
+
             {/* Main card */}
-            <div className="w-64 h-80 bg-card rounded-2xl shadow-soft border border-border p-6 flex flex-col items-center justify-center text-center space-y-4">
+            <div className="relative w-64 h-80 bg-card rounded-2xl shadow-soft border-luxury p-6 flex flex-col items-center justify-center text-center space-y-4">
               <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
                 <span className="font-serif-display text-primary text-3xl font-bold">S</span>
               </div>
@@ -51,7 +55,7 @@ const CeremonyKit = () => {
             </div>
 
             {/* Small card beside */}
-            <div className="absolute -right-16 bottom-4 w-28 h-40 bg-card rounded-xl shadow-soft border border-border p-3 flex flex-col items-center justify-center text-center rotate-3">
+            <div className="absolute -right-16 bottom-4 w-28 h-40 bg-card rounded-xl shadow-soft border-luxury p-3 flex flex-col items-center justify-center text-center rotate-3">
               <p className="font-serif-display text-xs font-semibold text-foreground mb-1">Programme</p>
               <div className="w-full space-y-1">
                 <div className="h-1 bg-muted rounded-full" />

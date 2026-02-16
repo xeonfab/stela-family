@@ -78,10 +78,26 @@
   }
 
   .shadow-soft {
-    box-shadow: 0 8px 30px rgb(0 0 0 / 0.04);
+    box-shadow: 0 20px 50px rgb(0 0 0 / 0.05);
   }
 
   .shadow-gold {
-    box-shadow: 0 8px 30px hsl(43 56% 52% / 0.15);
+    box-shadow: 0 0 30px -5px rgba(212, 175, 55, 0.2);
+  }
+
+  .shadow-golden-glow {
+    box-shadow: 0 30px 60px -15px rgba(212, 175, 55, 0.15);
+  }
+
+  .border-luxury {
+    border-width: 0.5px;
+    border-color: hsl(30 10% 88% / 0.5);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(to bottom right, #D4AF37, #997B1B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
