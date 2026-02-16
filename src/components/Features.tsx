@@ -19,7 +19,7 @@ const Features = () => {
 
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto auto-rows-[200px]">
           {/* Card A — Mur de Souvenirs (2 cols) */}
-          <div className="md:col-span-2 row-span-2 rounded-3xl shadow-soft bg-card p-8 flex flex-col justify-between overflow-hidden relative">
+          <div className="md:col-span-2 row-span-2 rounded-3xl shadow-soft border-luxury bg-card p-8 flex flex-col justify-between overflow-hidden relative transition-all duration-300 hover:scale-[1.01]">
             <div>
               <h3 className="font-serif-display text-2xl font-semibold text-foreground mb-2">Le Mur de Souvenirs Vivant</h3>
               <p className="text-muted-foreground">Photos, vidéos et messages réunis dans une mosaïque interactive.</p>
@@ -33,13 +33,13 @@ const Features = () => {
                 "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=190&fit=crop",
                 "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=200&h=170&fit=crop&sat=-100",
               ].map((src, i) => (
-                <img key={i} src={src} alt="" className="w-full h-auto rounded-xl mb-2 break-inside-avoid object-cover" loading="lazy" />
+                <img key={i} src={src} alt="" className="w-full h-auto rounded-2xl mb-2 break-inside-avoid object-cover" loading="lazy" />
               ))}
             </div>
           </div>
 
           {/* Card B — Timeline (1 col, tall) */}
-          <div className="row-span-2 rounded-3xl shadow-soft bg-card p-8 flex flex-col">
+          <div className="row-span-2 rounded-3xl shadow-soft border-luxury bg-card p-8 flex flex-col transition-all duration-300 hover:scale-[1.01]">
             <h3 className="font-serif-display text-xl font-semibold text-foreground mb-6">La Timeline Interactive</h3>
             <div className="flex-1 relative pl-8">
               <div className="absolute left-3 top-0 bottom-0 w-px bg-primary/30" />
@@ -54,7 +54,7 @@ const Features = () => {
           </div>
 
           {/* Card C — Bio IA (wide, bottom) */}
-          <div className="md:col-span-3 rounded-3xl shadow-soft bg-card p-8 flex items-center gap-6">
+          <div className="md:col-span-3 rounded-3xl shadow-soft border-luxury bg-card p-8 flex items-center gap-6 transition-all duration-300 hover:scale-[1.01]">
             <div className="w-14 h-14 shrink-0 rounded-2xl bg-primary/10 flex items-center justify-center">
               <Sparkles size={28} className="text-primary" />
             </div>

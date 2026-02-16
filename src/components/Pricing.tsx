@@ -15,10 +15,10 @@ const Pricing = () => {
   return (
     <section ref={ref} className="py-24 lg:py-32">
       <div className={`container mx-auto px-6 flex justify-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <div className="w-full max-w-md rounded-3xl bg-card border-2 border-primary shadow-gold p-10 text-center space-y-8">
+        <div className="w-full max-w-md rounded-3xl bg-card border-[0.5px] border-primary/50 shadow-gold p-10 text-center space-y-8">
           <p className="text-muted-foreground font-sans-body uppercase tracking-widest text-sm">Paiement unique</p>
           <div>
-            <span className="font-serif-display text-6xl font-bold text-foreground">49€</span>
+            <span className="font-serif-display text-6xl font-bold text-gradient-gold">49€</span>
           </div>
           <p className="text-muted-foreground">Valable 25 ans. Sans abonnement.</p>
 
@@ -31,7 +31,7 @@ const Pricing = () => {
             ))}
           </ul>
 
-          <Button className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/85 transition-transform duration-200 hover:scale-105 py-6 text-base shadow-gold">
+          <Button className="w-full rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 py-6 text-base shadow-gold">
             Créer le Mémorial
           </Button>
 
