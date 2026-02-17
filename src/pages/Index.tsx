@@ -1,8 +1,9 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProblemSolution from "@/components/ProblemSolution";
-import Features from "@/components/Features";
-import CeremonyKit from "@/components/CeremonyKit";
+import FeatureMemoryWall from "@/components/FeatureMemoryWall";
+import FeatureTimeline from "@/components/FeatureTimeline";
+import FeatureCeremonyKit from "@/components/FeatureCeremonyKit";
 import Privacy from "@/components/Privacy";
 import Pricing from "@/components/Pricing";
 import Footer from "@/components/Footer";
@@ -14,8 +15,9 @@ const Index = () => {
       <main>
         <HeroSection />
         <ProblemSolution />
-        <Features />
-        <CeremonyKit />
+        <FeatureMemoryWall />
+        <FeatureTimeline />
+        <FeatureCeremonyKit />
         <Privacy />
         <Pricing />
       </main>
