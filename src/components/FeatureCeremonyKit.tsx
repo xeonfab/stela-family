@@ -1,10 +1,12 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Frame, Ticket, Share2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const FeatureCeremonyKit = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section ref={ref} className="py-24 lg:py-32 bg-ceremony">
+    <section ref={ref} className="py-32 lg:py-48 bg-background">
       <div className={`container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         {/* Visual — Stationery Mockup */}
         <div className={`flex-1 flex justify-center transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}>
@@ -52,17 +54,52 @@ const FeatureCeremonyKit = () => {
         </div>
 
         {/* Text */}
-        <div className={`flex-1 space-y-6 text-center lg:text-left transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}>
-          <p className="text-primary font-sans-body uppercase tracking-[0.2em] text-sm font-semibold">Prêt à Imprimer</p>
-          <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight">
-            L'élégance jusque dans la <em className="not-italic font-serif-display italic text-primary">cérémonie.</em>
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
-            Nous vous fournissons tout le nécessaire pour connecter les invités le jour J. Téléchargez, imprimez, posez. Le QR Code permet à chacun de contribuer sans installer d'application.
-          </p>
-          <a href="#" className="inline-flex items-center text-primary font-medium hover:underline underline-offset-4 transition-all text-sm">
-            Voir ce qui est inclus dans le kit →
-          </a>
+        <div className={`flex-1 space-y-8 text-left transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}>
+          <div className="space-y-4">
+            <p className="text-primary font-sans-body uppercase tracking-[0.2em] text-sm font-semibold">Prêt à Imprimer</p>
+            <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight">
+              L'élégance jusque dans la <em className="not-italic font-serif-display italic text-primary">cérémonie.</em>
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">
+              Un kit complet, prêt à imprimer, pour connecter vos invités sans effort le jour J.
+            </p>
+          </div>
+
+          <ul className="space-y-6">
+            <li className="flex items-start gap-4">
+              <div className="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center mt-1">
+                <Frame size={20} className="text-primary" />
+              </div>
+              <div>
+                <h3 className="font-serif-display text-lg font-semibold text-foreground">Le Smart Chevalet (PDF A4)</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">Design raffiné avec QR Code. À poser sur le cercueil ou à l'entrée pour l'accueil.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-4">
+              <div className="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center mt-1">
+                <Ticket size={20} className="text-primary" />
+              </div>
+              <div>
+                <h3 className="font-serif-display text-lg font-semibold text-foreground">L'Insert de Programme</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">Format carte discret à glisser dans les livrets de messe ou à distribuer.</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-4">
+              <div className="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center mt-1">
+                <Share2 size={20} className="text-primary" />
+              </div>
+              <div>
+                <h3 className="font-serif-display text-lg font-semibold text-foreground">L'Annonce Digitale</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">Visuel digne et pré-rempli pour prévenir les proches (WhatsApp/SMS).</p>
+              </div>
+            </li>
+          </ul>
+
+          <div className="pt-4">
+            <Badge variant="outline" className="border-primary/30 text-primary px-4 py-1.5 font-medium bg-primary/5 hover:bg-primary/5 transition-none rounded-full">
+              ✨ Inclus sans supplément dans l'offre à 49€
+            </Badge>
+          </div>
         </div>
       </div>
     </section>
