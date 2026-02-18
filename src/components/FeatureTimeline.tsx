@@ -21,8 +21,8 @@ const FeatureTimeline = () => {
         >
           <p className="text-primary font-sans-body uppercase tracking-[0.2em] text-sm font-semibold">Fil d'Ariane</p>
           <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight">
-            De sa naissance à aujourd'hui : le roman de sa vie.{" "}
-            <em className="not-italic font-serif-display italic text-primary">clarté.</em>
+            De sa naissance à aujourd'hui :{" "}
+            <em className="not-italic font-serif-display italic text-primary">le roman de sa vie.</em>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
             Mettez de l'ordre dans le chaos des souvenirs. Notre interface organise automatiquement les moments clés
