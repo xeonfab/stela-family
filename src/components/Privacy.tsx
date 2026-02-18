@@ -6,18 +6,18 @@ import { Button } from "@/components/ui/button";
 const features = [
 {
   icon: ShieldCheck,
-  title: "Le Sas de Modération",
-  description: "Activez l'approbation préalable. Aucun souvenir n'apparaît publiquement sans votre validation."
+  title: "Le Regard Bienveillant",
+  description: "La sérénité avant tout. Vous pouvez choisir de valider chaque souvenir avant qu'il n'apparaisse. Écartez les maladresses pour ne garder que la beauté de l'hommage."
 },
 {
   icon: Lock,
-  title: "La Question Secrète",
-  description: "Protégez l'accès au mémorial par une question intime (ex\u00a0: «\u00a0Quel était le surnom de son chien\u00a0?\u00a0») connue seuls des vrais proches."
+  title: "Le Code du Cœur",
+  description: "Oubliez les mots de passe complexes. Une simple question intime (ex\u00a0: «\u00a0Quel était le nom de son chien\u00a0?\u00a0») suffit pour laisser entrer les proches et garder la porte fermée aux inconnus."
 },
 {
   icon: EyeOff,
-  title: "Confidentialité Garantie",
-  description: "Vos données ne sont jamais vendues. Pas de publicité, pas de tracking. Un sanctuaire inviolable."
+  title: "Un Jardin Secret",
+  description: "Votre deuil ne regarde que vous. Ici, aucune publicité, aucun algorithme, aucune revente de données. C'est un coffre-fort émotionnel, scellé et respecté."
 }];
 
 
@@ -39,12 +39,12 @@ const Privacy = () => {
                 Sérénité Totale
               </span>
               <h2 className="font-serif-display text-3xl lg:text-5xl font-bold text-foreground leading-tight">
-                Le Gardien du Temple,{" "}
-                <em className="italic">c'est&nbsp;vous.</em>
+                Un sanctuaire privé, réservé à{" "}
+                <em className="italic">ceux qui l'aimaient.</em>
               </h2>
               <p className="mt-4 text-muted-foreground font-sans-body text-base lg:text-lg leading-relaxed max-w-lg">
-                Contrairement aux réseaux sociaux, ici, vous êtes chez vous.
-                Stela vous offre un contrôle absolu sur qui accède et qui publie.
+                Loin du tumulte et du bruit des réseaux sociaux, Stela est un havre de paix.
+                Vous détenez les clés de cet espace&nbsp;: vous décidez qui peut entrer et quels souvenirs y fleurissent.
               </p>
             </div>
 
@@ -112,7 +112,7 @@ const Privacy = () => {
                     size="sm"
                     className="flex-1 rounded-xl bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground font-sans-body text-xs gap-1.5">
 
-                    <Check className="h-3.5 w-3.5" /> Approuver
+                    <Check className="h-3.5 w-3.5" /> Accueillir ce souvenir
                   </Button>
                   <Button
                     variant="ghost"
