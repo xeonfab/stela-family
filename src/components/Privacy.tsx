@@ -10,7 +10,7 @@ const features = [
   },
   {
     icon: Lock,
-    title: "Accès simplifié : Une simple question intime (ex: "Le nom de son chien ?") remplace les mots de passe complexes pour la famille.",
+    title: "Accès simplifié : Une simple question intime (ex\u00a0: \u00abLe nom de son chien\u00a0?\u00bb) remplace les mots de passe complexes pour la famille.",
   },
   {
     icon: EyeOff,
@@ -49,9 +49,6 @@ const Privacy = () => {
                   </span>
                   <div>
                     <h3 className="font-sans-body text-sm font-semibold text-foreground">{f.title}</h3>
-                    <p className="font-sans-body text-sm text-muted-foreground leading-relaxed mt-0.5">
-                      {f.description}
-                    </p>
                   </div>
                 </li>
               ))}
