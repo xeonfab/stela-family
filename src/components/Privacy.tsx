@@ -4,34 +4,33 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
 const features = [
-  {
-    icon: ShieldCheck,
-    title: "Le Sas de Modération",
-    description: "Activez l'approbation préalable. Aucun souvenir n'apparaît publiquement sans votre validation.",
-  },
-  {
-    icon: Lock,
-    title: "La Question Secrète",
-    description:
-      "Protégez l'accès au mémorial par une question intime (ex\u00a0: «\u00a0Quel était le surnom de son chien\u00a0?\u00a0») connue seuls des vrais proches.",
-  },
-  {
-    icon: EyeOff,
-    title: "Confidentialité Garantie",
-    description: "Vos données ne sont jamais vendues. Pas de publicité, pas de tracking. Un sanctuaire inviolable.",
-  },
-];
+{
+  icon: ShieldCheck,
+  title: "Le Sas de Modération",
+  description: "Activez l'approbation préalable. Aucun souvenir n'apparaît publiquement sans votre validation."
+},
+{
+  icon: Lock,
+  title: "La Question Secrète",
+  description: "Protégez l'accès au mémorial par une question intime (ex\u00a0: «\u00a0Quel était le surnom de son chien\u00a0?\u00a0») connue seuls des vrais proches."
+},
+{
+  icon: EyeOff,
+  title: "Confidentialité Garantie",
+  description: "Vos données ne sont jamais vendues. Pas de publicité, pas de tracking. Un sanctuaire inviolable."
+}];
+
 
 const Privacy = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
     <section ref={ref} className="py-24 lg:py-32 bg-ceremony">
-      <div
-        className={`container mx-auto px-6 transition-all duration-700 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
+      <div className="py-[92px]">
+
+
+
+
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left — Text */}
           <div className="space-y-8">
@@ -40,28 +39,31 @@ const Privacy = () => {
                 Sérénité Totale
               </span>
               <h2 className="font-serif-display text-3xl lg:text-5xl font-bold text-foreground leading-tight">
-                Un sanctuaire privé, réservé à ceux qui l'aimaient.
+                Le Gardien du Temple,{" "}
+                <em className="italic">c'est&nbsp;vous.</em>
               </h2>
               <p className="mt-4 text-muted-foreground font-sans-body text-base lg:text-lg leading-relaxed max-w-lg">
-                Contrairement aux réseaux sociaux, ici, vous êtes chez vous. Stela vous offre un contrôle absolu sur qui
-                accède et qui publie.
+                Contrairement aux réseaux sociaux, ici, vous êtes chez vous.
+                Stela vous offre un contrôle absolu sur qui accède et qui publie.
               </p>
             </div>
 
             <ul className="space-y-6">
-              {features.map((f) => (
-                <li key={f.title} className="flex gap-4 items-start">
+              {features.map((f) =>
+              <li key={f.title} className="flex gap-4 items-start">
                   <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10">
                     <f.icon className="h-4 w-4 text-primary" />
                   </span>
                   <div>
-                    <h3 className="font-sans-body text-sm font-semibold text-foreground">{f.title}</h3>
+                    <h3 className="font-sans-body text-sm font-semibold text-foreground">
+                      {f.title}
+                    </h3>
                     <p className="font-sans-body text-sm text-muted-foreground leading-relaxed mt-0.5">
                       {f.description}
                     </p>
                   </div>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
 
@@ -77,7 +79,9 @@ const Privacy = () => {
               <div className="rounded-3xl backdrop-blur-xl bg-background/70 border-luxury shadow-golden-glow p-6 space-y-5">
                 {/* Card header */}
                 <div className="flex items-center justify-between">
-                  <h4 className="font-sans-body text-sm font-semibold text-foreground">Approbation en attente</h4>
+                  <h4 className="font-sans-body text-sm font-semibold text-foreground">
+                    Approbation en attente
+                  </h4>
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary font-sans-body">
                     1
                   </span>
@@ -94,7 +98,9 @@ const Privacy = () => {
                     <p className="font-sans-body text-sm font-medium text-foreground truncate">
                       Sophie a partagé une photo
                     </p>
-                    <p className="font-sans-body text-xs text-muted-foreground">Il y a 2 minutes</p>
+                    <p className="font-sans-body text-xs text-muted-foreground">
+                      Il y a 2 minutes
+                    </p>
                   </div>
                   {/* Blurry thumbnail */}
                   <div className="h-10 w-10 rounded-lg bg-primary/10 blur-[2px] shrink-0" />
@@ -104,15 +110,15 @@ const Privacy = () => {
                 <div className="flex gap-3">
                   <Button
                     size="sm"
-                    className="flex-1 rounded-xl bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground font-sans-body text-xs gap-1.5"
-                  >
+                    className="flex-1 rounded-xl bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground font-sans-body text-xs gap-1.5">
+
                     <Check className="h-3.5 w-3.5" /> Approuver
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="flex-1 rounded-xl font-sans-body text-xs text-muted-foreground gap-1.5"
-                  >
+                    className="flex-1 rounded-xl font-sans-body text-xs text-muted-foreground gap-1.5">
+
                     <X className="h-3.5 w-3.5" /> Masquer
                   </Button>
                 </div>
@@ -121,8 +127,8 @@ const Privacy = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default Privacy;
