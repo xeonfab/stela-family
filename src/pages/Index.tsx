@@ -6,6 +6,7 @@ import FeatureTimeline from "@/components/FeatureTimeline";
 import FeatureCeremonyKit from "@/components/FeatureCeremonyKit";
 import Privacy from "@/components/Privacy";
 import Pricing from "@/components/Pricing";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -20,6 +21,7 @@ const Index = () => {
         <FeatureCeremonyKit />
         <Privacy />
         <Pricing />
+        <FAQ />
       </main>
       <Footer />
     </div>
