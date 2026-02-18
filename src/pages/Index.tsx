@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 
 import FeatureMemoryWall from "@/components/FeatureMemoryWall";
 import FeatureTimeline from "@/components/FeatureTimeline";
+import FeatureAIBiography from "@/components/FeatureAIBiography";
 import FeatureCeremonyKit from "@/components/FeatureCeremonyKit";
 import Privacy from "@/components/Privacy";
 import Pricing from "@/components/Pricing";
@@ -18,6 +19,7 @@ const Index = () => {
         
         <FeatureMemoryWall />
         <FeatureTimeline />
+        <FeatureAIBiography />
         <FeatureCeremonyKit />
         <Privacy />
         <Pricing />
