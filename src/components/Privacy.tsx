@@ -12,7 +12,8 @@ const features = [
   {
     icon: Lock,
     title: "La Question Secrète",
-    description: "Protégez l'accès au mémorial par une question intime (ex\u00a0: «\u00a0Quel était le surnom de son chien\u00a0?\u00a0») connue seuls des vrais proches.",
+    description:
+      "Protégez l'accès au mémorial par une question intime (ex\u00a0: «\u00a0Quel était le surnom de son chien\u00a0?\u00a0») connue seuls des vrais proches.",
   },
   {
     icon: EyeOff,
@@ -39,12 +40,11 @@ const Privacy = () => {
                 Sérénité Totale
               </span>
               <h2 className="font-serif-display text-3xl lg:text-5xl font-bold text-foreground leading-tight">
-                Le Gardien du Temple,{" "}
-                <em className="italic">c'est&nbsp;vous.</em>
+                Un sanctuaire privé, réservé à ceux qui l'aimaient.
               </h2>
               <p className="mt-4 text-muted-foreground font-sans-body text-base lg:text-lg leading-relaxed max-w-lg">
-                Contrairement aux réseaux sociaux, ici, vous êtes chez vous.
-                Stela vous offre un contrôle absolu sur qui accède et qui publie.
+                Contrairement aux réseaux sociaux, ici, vous êtes chez vous. Stela vous offre un contrôle absolu sur qui
+                accède et qui publie.
               </p>
             </div>
 
@@ -55,9 +55,7 @@ const Privacy = () => {
                     <f.icon className="h-4 w-4 text-primary" />
                   </span>
                   <div>
-                    <h3 className="font-sans-body text-sm font-semibold text-foreground">
-                      {f.title}
-                    </h3>
+                    <h3 className="font-sans-body text-sm font-semibold text-foreground">{f.title}</h3>
                     <p className="font-sans-body text-sm text-muted-foreground leading-relaxed mt-0.5">
                       {f.description}
                     </p>
@@ -79,9 +77,7 @@ const Privacy = () => {
               <div className="rounded-3xl backdrop-blur-xl bg-background/70 border-luxury shadow-golden-glow p-6 space-y-5">
                 {/* Card header */}
                 <div className="flex items-center justify-between">
-                  <h4 className="font-sans-body text-sm font-semibold text-foreground">
-                    Approbation en attente
-                  </h4>
+                  <h4 className="font-sans-body text-sm font-semibold text-foreground">Approbation en attente</h4>
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary font-sans-body">
                     1
                   </span>
@@ -98,9 +94,7 @@ const Privacy = () => {
                     <p className="font-sans-body text-sm font-medium text-foreground truncate">
                       Sophie a partagé une photo
                     </p>
-                    <p className="font-sans-body text-xs text-muted-foreground">
-                      Il y a 2 minutes
-                    </p>
+                    <p className="font-sans-body text-xs text-muted-foreground">Il y a 2 minutes</p>
                   </div>
                   {/* Blurry thumbnail */}
                   <div className="h-10 w-10 rounded-lg bg-primary/10 blur-[2px] shrink-0" />
