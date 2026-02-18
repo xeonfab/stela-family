@@ -26,7 +26,7 @@ const Privacy = () => {
 
   return (
     <section ref={ref} className="py-24 lg:py-32 bg-ceremony">
-      <div className="py-[92px]">
+      <div className="py-[92px] px-[128px]">
 
 
 
