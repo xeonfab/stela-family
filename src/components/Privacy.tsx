@@ -6,8 +6,7 @@ import { Button } from "@/components/ui/button";
 const features = [
   {
     icon: ShieldCheck,
-    description:
-      "Modération totale :** Vous validez chaque message ou photo avant publication. Zéro mauvaise surprise.",
+    title: "Modération totale : Vous validez chaque message ou photo avant publication. Zéro mauvaise surprise.",
   },
   {
     icon: Lock,
@@ -40,8 +39,8 @@ const Privacy = () => {
                 Un sanctuaire privé, réservé à <em className="italic">ceux qui l'aimaient.</em>
               </h2>
               <p className="mt-4 text-muted-foreground font-sans-body text-base lg:text-lg leading-relaxed max-w-lg">
-                Loin du bruit des réseaux sociaux. Ici, vous détenez les clés : vous décidez qui entre et ce qui est
-                partagé.
+                Loin du tumulte et du bruit des réseaux sociaux, Stela est un havre de paix. Vous détenez les clés de
+                cet espace&nbsp;: vous décidez qui peut entrer et quels souvenirs y fleurissent.
               </p>
             </div>
 
