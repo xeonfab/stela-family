@@ -16,11 +16,11 @@ const FeatureCeremonyKit = () => {
             Prêt à Imprimer
           </p>
           <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight">
-            Un hommage digne et partagé{" "}
-            <em className="not-italic font-serif-display italic text-primary">le jour J.</em>
+            Une présence lumineuse et partagée lors de{" "}
+            <em className="not-italic font-serif-display italic text-primary">l'adieu.</em>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Un kit complet, prêt à imprimer, pour connecter vos invités sans effort le jour J.
+            Le Kit Cérémonie complet, prêt à imprimer, pour inviter chaque proche à se connecter et prolonger l'hommage.
           </p>
         </div>
 
