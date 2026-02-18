@@ -6,13 +6,18 @@ const FeatureCeremonyKit = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section ref={ref} className="py-32 bg-background lg:py-[92px]">
-      <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+    <section ref={ref} className="py-32 lg:py-48 bg-background">
+      <div
+        className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      >
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
-          <p className="text-primary font-sans-body uppercase tracking-[0.2em] text-sm font-semibold">Prêt à Imprimer</p>
+          <p className="text-primary font-sans-body uppercase tracking-[0.2em] text-sm font-semibold">
+            Prêt à Imprimer
+          </p>
           <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight">
-            L'élégance jusque dans la <em className="not-italic font-serif-display italic text-primary">cérémonie.</em>
+            Un hommage digne et partagé{" "}
+            <em className="not-italic font-serif-display italic text-primary">le jour J.</em>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
             Un kit complet, prêt à imprimer, pour connecter vos invités sans effort le jour J.
@@ -22,7 +27,9 @@ const FeatureCeremonyKit = () => {
         {/* 3 Visual Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-12">
           {/* Smart Chevalet */}
-          <div className={`transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          <div
+            className={`transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          >
             <div className="relative flex flex-col items-center">
               {/* Visual mockup */}
               <div className="relative mb-8">
@@ -37,9 +44,12 @@ const FeatureCeremonyKit = () => {
                   <p className="text-muted-foreground text-[10px] leading-relaxed">Scannez le QR code</p>
                   <div className="w-14 h-14 bg-foreground/5 rounded-lg border-luxury flex items-center justify-center">
                     <div className="grid grid-cols-3 gap-0.5 w-8 h-8">
-                      {[...Array(9)].map((_, i) =>
-                      <div key={i} className={`rounded-sm ${i % 3 === 0 || i === 4 ? "bg-foreground/60" : "bg-foreground/20"}`} />
-                      )}
+                      {[...Array(9)].map((_, i) => (
+                        <div
+                          key={i}
+                          className={`rounded-sm ${i % 3 === 0 || i === 4 ? "bg-foreground/60" : "bg-foreground/20"}`}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -50,13 +60,17 @@ const FeatureCeremonyKit = () => {
                   <Frame size={20} className="text-primary" />
                 </div>
                 <h3 className="font-serif-display text-lg font-semibold text-foreground">Le Smart Chevalet (PDF A4)</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">Design raffiné avec QR Code. À poser sur le cercueil ou à l'entrée pour l'accueil.</p>
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">
+                  Design raffiné avec QR Code. À poser sur le cercueil ou à l'entrée pour l'accueil.
+                </p>
               </div>
             </div>
           </div>
 
           {/* Insert de Programme */}
-          <div className={`transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          <div
+            className={`transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          >
             <div className="relative flex flex-col items-center">
               {/* Visual mockup */}
               <div className="relative mb-8">
@@ -75,9 +89,12 @@ const FeatureCeremonyKit = () => {
                   </div>
                   <div className="mt-4 w-8 h-8 bg-foreground/5 rounded border-luxury flex items-center justify-center">
                     <div className="grid grid-cols-2 gap-0.5 w-4 h-4">
-                      {[...Array(4)].map((_, i) =>
-                      <div key={i} className={`rounded-sm ${i % 2 === 0 ? "bg-foreground/50" : "bg-foreground/20"}`} />
-                      )}
+                      {[...Array(4)].map((_, i) => (
+                        <div
+                          key={i}
+                          className={`rounded-sm ${i % 2 === 0 ? "bg-foreground/50" : "bg-foreground/20"}`}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -88,13 +105,17 @@ const FeatureCeremonyKit = () => {
                   <Ticket size={20} className="text-primary" />
                 </div>
                 <h3 className="font-serif-display text-lg font-semibold text-foreground">L'Insert de Programme</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">Format carte discret à glisser dans les livrets de messe ou à distribuer.</p>
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">
+                  Format carte discret à glisser dans les livrets de messe ou à distribuer.
+                </p>
               </div>
             </div>
           </div>
 
           {/* Annonce Digitale */}
-          <div className={`transition-all duration-700 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          <div
+            className={`transition-all duration-700 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          >
             <div className="relative flex flex-col items-center">
               {/* Visual mockup */}
               <div className="relative mb-8">
@@ -127,7 +148,9 @@ const FeatureCeremonyKit = () => {
                   <Share2 size={20} className="text-primary" />
                 </div>
                 <h3 className="font-serif-display text-lg font-semibold text-foreground">L'Annonce Digitale</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">Visuel digne et pré-rempli pour prévenir les proches (WhatsApp/SMS).</p>
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">
+                  Visuel digne et pré-rempli pour prévenir les proches (WhatsApp/SMS).
+                </p>
               </div>
             </div>
           </div>
@@ -135,13 +158,16 @@ const FeatureCeremonyKit = () => {
 
         {/* Badge */}
         <div className="text-center">
-          <Badge variant="outline" className="border-primary/30 text-primary px-4 py-1.5 font-medium bg-primary/5 hover:bg-primary/5 transition-none rounded-full">
+          <Badge
+            variant="outline"
+            className="border-primary/30 text-primary px-4 py-1.5 font-medium bg-primary/5 hover:bg-primary/5 transition-none rounded-full"
+          >
             ✨ Inclus sans supplément dans l'offre à 49€
           </Badge>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 };
 
 export default FeatureCeremonyKit;
