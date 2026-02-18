@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import ProblemSolution from "@/components/ProblemSolution";
+
 import FeatureMemoryWall from "@/components/FeatureMemoryWall";
 import FeatureTimeline from "@/components/FeatureTimeline";
 import FeatureCeremonyKit from "@/components/FeatureCeremonyKit";
@@ -14,7 +14,7 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <ProblemSolution />
+        
         <FeatureMemoryWall />
         <FeatureTimeline />
         <FeatureCeremonyKit />
