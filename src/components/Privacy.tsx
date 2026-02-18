@@ -4,26 +4,26 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
 const features = [
-  {
-    icon: ShieldCheck,
-    title: "Modération totale : Vous validez chaque message ou photo avant publication. Zéro mauvaise surprise.",
-  },
-  {
-    icon: Lock,
-    title: "Accès simplifié : Une simple question intime (ex\u00a0: \u00abLe nom de son chien\u00a0?\u00bb) remplace les mots de passe complexes pour la famille.",
-  },
-  {
-    icon: EyeOff,
-    title: "Vie privée absolue : Pas de publicité, pas de Google, pas de revente de données. Ce qui est à vous reste à vous.",
-    
-  },
-];
+{
+  icon: ShieldCheck,
+  title: "Modération totale : Vous validez chaque message ou photo avant publication. Zéro mauvaise surprise."
+},
+{
+  icon: Lock,
+  title: "Accès simplifié : Une simple question intime (ex\u00a0: \u00abLe nom de son chien\u00a0?\u00bb) remplace les mots de passe complexes pour la famille."
+},
+{
+  icon: EyeOff,
+  title: "Vie privée absolue : Pas de publicité, pas de Google, pas de revente de données. Ce qui est à vous reste à vous."
+
+}];
+
 
 const Privacy = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section ref={ref} className="py-24 lg:py-32 bg-ceremony">
+    <section ref={ref} className="py-24 bg-ceremony lg:py-[48px]">
       <div className="py-[92px] px-[128px]">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left — Text */}
@@ -42,8 +42,8 @@ const Privacy = () => {
             </div>
 
             <ul className="space-y-6">
-              {features.map((f) => (
-                <li key={f.title} className="flex gap-4 items-start">
+              {features.map((f) =>
+              <li key={f.title} className="flex gap-4 items-start">
                   <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10">
                     <f.icon className="h-4 w-4 text-primary" />
                   </span>
@@ -51,7 +51,7 @@ const Privacy = () => {
                     <h3 className="font-sans-body text-sm font-semibold text-foreground">{f.title}</h3>
                   </div>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
 
@@ -94,15 +94,15 @@ const Privacy = () => {
                 <div className="flex gap-3">
                   <Button
                     size="sm"
-                    className="flex-1 rounded-xl bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground font-sans-body text-xs gap-1.5"
-                  >
+                    className="flex-1 rounded-xl bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground font-sans-body text-xs gap-1.5">
+
                     <Check className="h-3.5 w-3.5" /> Accueillir ce souvenir
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="flex-1 rounded-xl font-sans-body text-xs text-muted-foreground gap-1.5"
-                  >
+                    className="flex-1 rounded-xl font-sans-body text-xs text-muted-foreground gap-1.5">
+
                     <X className="h-3.5 w-3.5" /> Masquer
                   </Button>
                 </div>
@@ -111,8 +111,8 @@ const Privacy = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default Privacy;

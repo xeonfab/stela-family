@@ -6,10 +6,10 @@ const FeatureCeremonyKit = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section ref={ref} className="py-32 lg:py-48 bg-background">
+    <section ref={ref} className="py-32 bg-background lg:py-[72px]">
       <div
-        className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      >
+        className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
           <p className="text-primary font-sans-body uppercase tracking-[0.2em] text-sm font-semibold">
@@ -28,8 +28,8 @@ const FeatureCeremonyKit = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-12">
           {/* Smart Chevalet */}
           <div
-            className={`transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-          >
+            className={`transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+
             <div className="relative flex flex-col items-center">
               {/* Visual mockup */}
               <div className="relative mb-8">
@@ -44,12 +44,12 @@ const FeatureCeremonyKit = () => {
                   <p className="text-muted-foreground text-[10px] leading-relaxed">Scannez le QR code</p>
                   <div className="w-14 h-14 bg-foreground/5 rounded-lg border-luxury flex items-center justify-center">
                     <div className="grid grid-cols-3 gap-0.5 w-8 h-8">
-                      {[...Array(9)].map((_, i) => (
-                        <div
-                          key={i}
-                          className={`rounded-sm ${i % 3 === 0 || i === 4 ? "bg-foreground/60" : "bg-foreground/20"}`}
-                        />
-                      ))}
+                      {[...Array(9)].map((_, i) =>
+                      <div
+                        key={i}
+                        className={`rounded-sm ${i % 3 === 0 || i === 4 ? "bg-foreground/60" : "bg-foreground/20"}`} />
+
+                      )}
                     </div>
                   </div>
                 </div>
@@ -72,8 +72,8 @@ const FeatureCeremonyKit = () => {
 
           {/* Insert de Programme */}
           <div
-            className={`transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-          >
+            className={`transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+
             <div className="relative flex flex-col items-center">
               {/* Visual mockup */}
               <div className="relative mb-8">
@@ -92,12 +92,12 @@ const FeatureCeremonyKit = () => {
                   </div>
                   <div className="mt-4 w-8 h-8 bg-foreground/5 rounded border-luxury flex items-center justify-center">
                     <div className="grid grid-cols-2 gap-0.5 w-4 h-4">
-                      {[...Array(4)].map((_, i) => (
-                        <div
-                          key={i}
-                          className={`rounded-sm ${i % 2 === 0 ? "bg-foreground/50" : "bg-foreground/20"}`}
-                        />
-                      ))}
+                      {[...Array(4)].map((_, i) =>
+                      <div
+                        key={i}
+                        className={`rounded-sm ${i % 2 === 0 ? "bg-foreground/50" : "bg-foreground/20"}`} />
+
+                      )}
                     </div>
                   </div>
                 </div>
@@ -120,8 +120,8 @@ const FeatureCeremonyKit = () => {
 
           {/* Annonce Digitale */}
           <div
-            className={`transition-all duration-700 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-          >
+            className={`transition-all duration-700 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+
             <div className="relative flex flex-col items-center">
               {/* Visual mockup */}
               <div className="relative mb-8">
@@ -169,14 +169,14 @@ const FeatureCeremonyKit = () => {
         <div className="text-center">
           <Badge
             variant="outline"
-            className="border-primary/30 text-primary px-4 py-1.5 font-medium bg-primary/5 hover:bg-primary/5 transition-none rounded-full"
-          >
+            className="border-primary/30 text-primary px-4 py-1.5 font-medium bg-primary/5 hover:bg-primary/5 transition-none rounded-full">
+
             ✨ Inclus sans supplément dans l'offre à 49€
           </Badge>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default FeatureCeremonyKit;
