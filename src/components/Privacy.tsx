@@ -10,15 +10,12 @@ const features = [
   },
   {
     icon: Lock,
-    title: "Le Code du Cœur",
-    description:
-      "Oubliez les mots de passe complexes. Une simple question intime (ex\u00a0: «\u00a0Quel était le nom de son chien\u00a0?\u00a0») suffit pour laisser entrer les proches et garder la porte fermée aux inconnus.",
+    title: "Accès simplifié : Une simple question intime (ex: "Le nom de son chien ?") remplace les mots de passe complexes pour la famille.",
   },
   {
     icon: EyeOff,
-    title: "Un Jardin Secret",
-    description:
-      "Votre deuil ne regarde que vous. Ici, aucune publicité, aucun algorithme, aucune revente de données. C'est un coffre-fort émotionnel, scellé et respecté.",
+    title: "Vie privée absolue : Pas de publicité, pas de Google, pas de revente de données. Ce qui est à vous reste à vous.",
+    
   },
 ];
 
