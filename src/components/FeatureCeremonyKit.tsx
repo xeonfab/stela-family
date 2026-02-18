@@ -59,9 +59,12 @@ const FeatureCeremonyKit = () => {
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
                   <Frame size={20} className="text-primary" />
                 </div>
-                <h3 className="font-serif-display text-lg font-semibold text-foreground">Le Smart Chevalet (PDF A4)</h3>
+                <h3 className="font-serif-display text-lg font-semibold text-foreground">
+                  Pour accueillir et guider les proches.
+                </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">
-                  Design raffiné avec QR Code. À poser sur le cercueil ou à l'entrée pour l'accueil.
+                  Posé à l'entrée de l'église ou du funérarium, ce chevalet élégant (format A4) présente son visage et
+                  le QR code, invitant chacun à flasher pour découvrir son mémorial.
                 </p>
               </div>
             </div>
@@ -104,9 +107,12 @@ const FeatureCeremonyKit = () => {
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
                   <Ticket size={20} className="text-primary" />
                 </div>
-                <h3 className="font-serif-display text-lg font-semibold text-foreground">L'Insert de Programme</h3>
+                <h3 className="font-serif-display text-lg font-semibold text-foreground">
+                  À glisser dans le livret ou la poche.
+                </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">
-                  Format carte discret à glisser dans les livrets de messe ou à distribuer.
+                  Des cartes au format discret et raffiné, à distribuer avec les livrets de messe. Un lien tangible que
+                  les invités peuvent emporter chez eux pour déposer leurs souvenirs plus tard, au calme.
                 </p>
               </div>
             </div>
@@ -147,9 +153,12 @@ const FeatureCeremonyKit = () => {
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
                   <Share2 size={20} className="text-primary" />
                 </div>
-                <h3 className="font-serif-display text-lg font-semibold text-foreground">L'Annonce Digitale</h3>
+                <h3 className="font-serif-display text-lg font-semibold text-foreground">
+                  Pour ceux qui sont loin (WhatsApp & SMS).
+                </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">
-                  Visuel digne et pré-rempli pour prévenir les proches (WhatsApp/SMS).
+                  Un visuel digne et prêt-à-partager pour prévenir la famille et les amis par message. L'image contient
+                  toutes les informations et le lien direct, sans que vous ayez à chercher vos mots.
                 </p>
               </div>
             </div>
