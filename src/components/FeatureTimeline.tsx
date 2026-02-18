@@ -12,20 +12,28 @@ const FeatureTimeline = () => {
 
   return (
     <section ref={ref} className="py-24 lg:py-32">
-      <div className={`container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div
+        className={`container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      >
         {/* Text */}
-        <div className={`flex-1 space-y-6 text-center lg:text-left transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}>
+        <div
+          className={`flex-1 space-y-6 text-center lg:text-left transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}
+        >
           <p className="text-primary font-sans-body uppercase tracking-[0.2em] text-sm font-semibold">Fil d'Ariane</p>
           <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight">
-            Le fil de sa vie, retissé avec <em className="not-italic font-serif-display italic text-primary">clarté.</em>
+            De sa naissance à aujourd'hui : le roman de sa vie.{" "}
+            <em className="not-italic font-serif-display italic text-primary">clarté.</em>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
-            Mettez de l'ordre dans le chaos des souvenirs. Notre interface organise automatiquement les moments clés chronologiquement. De sa naissance à ses plus grands accomplissements.
+            Mettez de l'ordre dans le chaos des souvenirs. Notre interface organise automatiquement les moments clés
+            chronologiquement. De sa naissance à ses plus grands accomplissements.
           </p>
         </div>
 
         {/* Visual — Timeline mockup */}
-        <div className={`flex-1 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}>
+        <div
+          className={`flex-1 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}
+        >
           <div className="rounded-3xl shadow-golden-glow border-luxury bg-card p-8 lg:p-10 max-w-md mx-auto">
             <p className="font-serif-display text-lg font-semibold text-foreground mb-8">Biographie</p>
             <div className="relative pl-8">
