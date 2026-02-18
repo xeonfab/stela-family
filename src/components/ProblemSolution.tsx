@@ -10,24 +10,23 @@ const cards = [
 const ProblemSolution = () => {
   const { ref, isVisible } = useScrollReveal();
 
-  return;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  return (
+    <section ref={ref} className={`py-24 lg:py-32 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {cards.map(({ icon: Icon, title, text }) => (
+            <div key={title} className="text-center space-y-4">
+              <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                <Icon className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default ProblemSolution;
