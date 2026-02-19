@@ -1,22 +1,19 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { ShieldCheck, Lock, EyeOff, Check, X } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { ShieldCheck, Lock, EyeOff } from "lucide-react";
+import holdingOldPhoto from "@/assets/holding-old-photo.jpg";
 
 const features = [
   {
     icon: ShieldCheck,
-    title: "Modération totale : Vous validez chaque message ou photo avant publication. Zéro mauvaise surprise.",
+    title: "Modération simplifiée : Vous validez chaque message ou photo avant sa publication.",
   },
   {
     icon: Lock,
-    title:
-      "Accès simplifié : Une simple question intime (ex\u00a0: \u00abLe nom de son chien\u00a0?\u00bb) remplace les mots de passe complexes pour la famille.",
+    title: "Accès intime : Une simple question personnelle remplace les mots de passe complexes.",
   },
   {
     icon: EyeOff,
-    title:
-      "Vie privée absolue : Pas de publicité, pas de Google, pas de revente de données. Ce qui est à vous reste à vous.",
+    title: "Vie privée garantie : Pas de publicité, pas de Google, pas de revente de données.",
   },
 ];
 
@@ -33,12 +30,12 @@ const Privacy = () => {
               <span className="text-primary font-sans-body text-xs font-semibold uppercase tracking-[0.25em] mb-4 block">
                 Sérénité Totale
               </span>
-              <h3 className="font-serif-display text-3xl lg:text-5xl font-bold text-foreground leading-tight">
+              <h2 className="font-serif-display text-3xl lg:text-5xl font-bold text-foreground leading-tight">
                 Un sanctuaire privé, réservé à <em className="italic">ceux qui l'aimaient.</em>
-              </h3>
+              </h2>
               <p className="mt-4 text-muted-foreground font-sans-body text-base lg:text-lg leading-relaxed max-w-lg">
-                Loin du tumulte et du bruit des réseaux sociaux, Stela est un havre de paix. Vous détenez les clés de
-                cet espace&nbsp;: vous décidez qui peut entrer et quels souvenirs y fleurissent.
+                Un espace sécurisé, loin du bruit des réseaux sociaux, où vous gardez le contrôle absolu sur les
+                souvenirs partagés.
               </p>
             </div>
 
@@ -56,59 +53,13 @@ const Privacy = () => {
             </ul>
           </div>
 
-          {/* Right — Moderation card mockup */}
-          <div className="relative flex items-center justify-center">
-            {/* Background shield glow */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.06]">
-              <ShieldCheck className="h-72 w-72 text-primary" strokeWidth={0.7} />
-            </div>
-
-            {/* Floating moderation card */}
-            <div className="relative w-full max-w-sm animate-float">
-              <div className="rounded-3xl backdrop-blur-xl bg-background/70 border-luxury shadow-golden-glow p-6 space-y-5">
-                {/* Card header */}
-                <div className="flex items-center justify-between">
-                  <h4 className="font-sans-body text-sm font-semibold text-foreground">Approbation en attente</h4>
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary font-sans-body">
-                    1
-                  </span>
-                </div>
-
-                {/* Pending item */}
-                <div className="flex items-center gap-3">
-                  <Avatar className="h-9 w-9">
-                    <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold font-sans-body">
-                      S
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-sans-body text-sm font-medium text-foreground truncate">
-                      Sophie a partagé une photo
-                    </p>
-                    <p className="font-sans-body text-xs text-muted-foreground">Il y a 2 minutes</p>
-                  </div>
-                  {/* Blurry thumbnail */}
-                  <div className="h-10 w-10 rounded-lg bg-primary/10 blur-[2px] shrink-0" />
-                </div>
-
-                {/* Action buttons */}
-                <div className="flex gap-3">
-                  <Button
-                    size="sm"
-                    className="flex-1 rounded-xl bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground font-sans-body text-xs gap-1.5"
-                  >
-                    <Check className="h-3.5 w-3.5" /> Accueillir ce souvenir
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="flex-1 rounded-xl font-sans-body text-xs text-muted-foreground gap-1.5"
-                  >
-                    <X className="h-3.5 w-3.5" /> Masquer
-                  </Button>
-                </div>
-              </div>
-            </div>
+          {/* Right — Photo */}
+          <div className="flex items-center justify-center">
+            <img
+              src={holdingOldPhoto}
+              alt="Personne tenant une vieille photo de famille"
+              className="w-full h-auto rounded-3xl object-cover shadow-golden-glow"
+            />
           </div>
         </div>
       </div>
