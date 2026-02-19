@@ -64,7 +64,7 @@ const FeatureMemoryWall = () => {
                   <step.icon size={26} className="text-primary" />
                 </div>
                 {/* Step number — gold circle overlapping top-left */}
-                <span className="absolute -top-2 -left-2 z-20 w-7 h-7 rounded-full bg-primary text-primary-foreground font-serif-display text-xs font-bold flex items-center justify-center shadow-soft">
+                <span className="absolute -top-2 -left-2 z-20 w-7 h-7 rounded-full bg-primary text-primary-foreground font-serif-display font-bold flex items-center justify-center shadow-soft text-2xl text-center pb-[6px]">
                   {i + 1}
                 </span>
               </div>
