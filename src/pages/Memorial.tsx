@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/jean-claude-portrait.jpg";
 
@@ -85,8 +85,9 @@ const Memorial = () => {
 
       {/* ─── Top bar ─── */}
       <header className="py-4 px-6 flex items-center justify-between">
-        <Link to="/" className="font-serif text-lg tracking-wide text-stone-400 hover:text-stone-600 transition-colors">
-          Stela
+        <Link to="/" className="flex items-center gap-2 text-sm text-stone-400 hover:text-stone-600 transition-colors">
+          <ArrowLeft size={18} />
+          <span>Retour</span>
         </Link>
       </header>
 
