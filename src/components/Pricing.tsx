@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Check, Shield } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-const features = ["Mur Multimédia (Audio/Vidéo)", "Timeline Biographie", "Kit Cérémonie (PDF)", "Hébergement 25 Ans"];
+const features = ["Espace de recueillement illimité (Photos, Vidéos, Audios)", "Récit de vie interactif & Assistant de rédaction IA", "Affiches et QR Codes pour la cérémonie (Prêt-à-imprimer)", "Sanctuaire 100% privé (Zéro publicité, données protégées)"];
 
 const Pricing = () => {
   const { ref, isVisible } = useScrollReveal();
@@ -17,7 +17,7 @@ const Pricing = () => {
           <div>
             <span className="font-serif-display text-6xl font-bold text-gradient-gold">79€</span>
           </div>
-          <p className="text-muted-foreground">Valable 25 ans. Sans abonnement.</p>
+          <p className="text-muted-foreground">Un seul versement pour 25 ans de sérénité. Aucun abonnement.</p>
 
           <ul className="space-y-3 text-left mx-auto max-w-xs">
             {features.map((f, i) => (
@@ -34,7 +34,7 @@ const Pricing = () => {
 
           <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm">
             <Shield size={16} />
-            <span>Garantie Satisfait ou Remboursé 30 jours</span>
+            <span>Prenez le temps de l'essayer. Garantie intégrale 30 jours.</span>
           </div>
         </div>
       </div>
