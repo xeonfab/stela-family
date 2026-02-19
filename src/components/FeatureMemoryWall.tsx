@@ -47,17 +47,28 @@ const FeatureMemoryWall = () => {
           Transformez le chagrin en partage. Stela n'est pas un outil, c'est le lieu où son histoire continue de s'écrire.
         </p>
 
-        {/* 3 Steps */}
-        <div className="grid md:grid-cols-3 gap-10 lg:gap-14 mt-16 lg:mt-20">
+        {/* 3 Steps with connecting line */}
+        <div className="relative grid md:grid-cols-3 gap-10 lg:gap-14 mt-16 lg:mt-20">
+          {/* Connecting dashed line behind icons */}
+          <div className="hidden md:block absolute top-7 left-[16.67%] right-[16.67%] border-t border-dashed border-primary/20 pointer-events-none" />
+
           {steps.map((step, i) =>
           <div
             key={i}
-            className={`flex flex-col items-center text-center space-y-5 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`relative flex flex-col items-center text-center space-y-5 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             style={{ transitionDelay: `${200 + i * 150}ms` }}>
 
-              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
-                <step.icon size={26} className="text-primary" />
+              {/* Icon box with step number badge */}
+              <div className="relative">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center relative z-10">
+                  <step.icon size={26} className="text-primary" />
+                </div>
+                {/* Step number — gold circle overlapping top-left */}
+                <span className="absolute -top-2 -left-2 z-20 w-7 h-7 rounded-full bg-primary text-primary-foreground font-serif-display text-xs font-bold flex items-center justify-center shadow-soft">
+                  {i + 1}
+                </span>
               </div>
+
               <h3 className="font-serif-display text-xl font-semibold text-foreground">
                 {step.title}
               </h3>
