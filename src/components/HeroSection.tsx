@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Star, Image, AlignLeft, Mic, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => (
   <section className="pt-28 pb-20 lg:pb-32 lg:pt-36 overflow-hidden">
@@ -17,8 +18,8 @@ const HeroSection = () => (
           <Button className="rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 px-8 py-6 text-base shadow-gold">
             Créer le Mémorial (49€)
           </Button>
-          <Button variant="outline" className="rounded-full border-muted-foreground/30 text-foreground px-8 py-6 text-base hover:bg-secondary transition-transform duration-200 hover:scale-105">
-            Voir un exemple
+          <Button variant="outline" className="rounded-full border-muted-foreground/30 text-foreground px-8 py-6 text-base hover:bg-secondary transition-transform duration-200 hover:scale-105" asChild>
+            <Link to="/memorial">Voir un exemple</Link>
           </Button>
         </div>
         <div className="flex items-center gap-2 justify-center lg:justify-start text-muted-foreground text-sm">
