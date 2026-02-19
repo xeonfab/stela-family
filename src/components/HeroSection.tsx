@@ -45,103 +45,82 @@ const HeroSection = () => (
         </div>
       </div>
 
-      {/* Right — Jean-Claude Sanctuary Mockup */}
+      {/* Right — Human-centered portrait composition */}
       <div className="flex-1 flex justify-center">
         <div className="relative" style={{ perspective: "1200px" }}>
-          {/* Shadow card behind for depth */}
-          <div
-            className="absolute inset-2 bg-muted/40 rounded-3xl blur-sm"
-            style={{ transform: "rotateY(-4deg) rotateX(4deg) translateZ(-20px)" }}
-          />
-
-          {/* Main card */}
-          <div
-            className="relative w-[320px] sm:w-[400px] lg:w-[460px] bg-background/90 backdrop-blur-xl rounded-3xl border border-border/30 shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.25)] overflow-hidden"
-            style={{ transform: "rotateY(-4deg) rotateX(4deg)" }}
-          >
-            {/* Profile header */}
-            <div className="pt-8 pb-4 px-6 text-center space-y-2.5">
-              <div className="w-20 h-20 mx-auto rounded-full border-2 border-primary/30 overflow-hidden shadow-golden-glow">
-                <img src={jeanClaudePortrait} alt="Jean-Claude Dubois" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <h3 className="font-serif-display text-xl font-bold text-foreground">Jean-Claude Dubois</h3>
-              <p className="text-[11px] tracking-[0.2em] text-muted-foreground">1948 — 2024</p>
-              <p className="text-[10px] text-muted-foreground/80 italic font-serif-display leading-relaxed max-w-[260px] mx-auto">
+          {/* Main portrait */}
+          <div className="relative z-0">
+            <div className="w-[300px] sm:w-[360px] lg:w-[420px] rounded-3xl overflow-hidden shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.25)] border border-border/30">
+              <img
+                src={jeanClaudePortrait}
+                alt="Jean-Claude Dubois"
+                className="w-full aspect-[3/4] object-cover"
+                loading="lazy"
+              />
+            </div>
+            {/* Name & dates below portrait */}
+            <div className="text-center mt-5 space-y-1.5">
+              <h3 className="font-serif-display text-2xl lg:text-3xl font-bold text-foreground">Jean-Claude Dubois</h3>
+              <p className="text-xs tracking-[0.25em] text-muted-foreground">1948 — 2024</p>
+              <p className="text-sm text-muted-foreground/80 italic font-serif-display leading-relaxed max-w-[340px] mx-auto mt-2">
                 « Il cultivait son jardin comme il cultivait ses amitiés : avec patience, lumière et amour. »
               </p>
             </div>
+          </div>
 
-            {/* Tabs */}
-            <div className="flex justify-center gap-1 px-4 pb-3">
-              <div className="px-3 py-1.5 text-[9px] font-semibold text-primary border-b-2 border-primary">Le Mur des Souvenirs</div>
-              <div className="px-3 py-1.5 text-[9px] text-muted-foreground">Sa Biographie</div>
-              <div className="px-3 py-1.5 text-[9px] text-muted-foreground">Le Roman de sa Vie</div>
-            </div>
-
-            {/* Mini masonry grid */}
-            <div className="px-4 pb-5 grid grid-cols-2 gap-2.5">
-              {/* Card 1 — Photo */}
-              <div className="rounded-xl overflow-hidden border border-border/30 bg-background shadow-sm">
-                <img
-                  src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=300&h=200&fit=crop"
-                  alt="Jardin de roses"
-                  className="w-full h-24 object-cover"
-                  loading="lazy"
-                />
-                <div className="p-2">
-                  <p className="text-[8px] text-muted-foreground leading-relaxed line-clamp-2">
-                    Chaque rose plantée ici porte ton souvenir...
-                  </p>
-                  <div className="flex items-center justify-between mt-1.5">
-                    <span className="text-[7px] font-medium text-foreground">Marie</span>
-                    <div className="flex items-center gap-0.5 text-primary">
-                      <Heart size={7} className="fill-primary" />
-                      <span className="text-[7px]">34</span>
-                    </div>
-                  </div>
+          {/* Floating card — Garden photo */}
+          <div
+            className="absolute -left-10 top-16 w-36 bg-background/90 backdrop-blur-md rounded-xl border border-border/40 overflow-hidden shadow-golden-glow animate-float z-10"
+            style={{ transform: "rotateY(-3deg) rotateX(2deg)" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=300&h=200&fit=crop"
+              alt="Jardin de roses"
+              className="w-full h-20 object-cover"
+              loading="lazy"
+            />
+            <div className="p-2">
+              <p className="text-[7px] text-muted-foreground line-clamp-2">Chaque rose plantée ici porte ton souvenir...</p>
+              <div className="flex items-center justify-between mt-1">
+                <span className="text-[7px] font-medium text-foreground">Marie</span>
+                <div className="flex items-center gap-0.5 text-primary">
+                  <Heart size={7} className="fill-primary" />
+                  <span className="text-[7px]">34</span>
                 </div>
-              </div>
-
-              {/* Card 2 — Audio */}
-              <div className="rounded-xl border border-primary/20 bg-primary/5 p-2.5 flex flex-col justify-between shadow-sm">
-                <div className="flex items-center gap-1.5 mb-2">
-                  <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-                    <Play size={8} className="text-primary-foreground ml-0.5" />
-                  </div>
-                  <span className="text-[8px] font-medium text-foreground">Souvenir vocal de Léo</span>
-                </div>
-                <AudioWaveform />
-                <span className="text-[7px] text-muted-foreground mt-1.5">1:24</span>
-              </div>
-
-              {/* Card 3 — Quote (spans full width) */}
-              <div className="col-span-2 rounded-xl border border-border/30 bg-background p-3 shadow-sm text-center">
-                <Quote size={12} className="text-primary/40 mx-auto mb-1" />
-                <p className="text-[9px] text-foreground italic font-serif-display leading-relaxed">
-                  « Allez, on ouvre une bonne bouteille ! » — Ta phrase fétiche qui résonnera toujours.
-                </p>
-                <p className="text-[7px] font-medium text-muted-foreground mt-1.5">Michel</p>
               </div>
             </div>
           </div>
 
-          {/* Floating card — Noël */}
+          {/* Floating card — Audio */}
           <div
-            className="absolute -left-6 bottom-20 w-40 bg-background/90 backdrop-blur-md rounded-xl border border-border/40 p-2.5 shadow-golden-glow animate-float z-10"
-            style={{ transform: "rotateY(-3deg) rotateX(2deg)" }}
+            className="absolute -right-8 top-10 w-40 bg-background/90 backdrop-blur-md rounded-xl border border-primary/20 bg-primary/5 p-2.5 shadow-golden-glow animate-float z-10"
+            style={{ animationDelay: "1.5s", transform: "rotateY(3deg) rotateX(-2deg)" }}
           >
-            <div className="flex items-center gap-1.5">
-              <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center">
-                <Play size={7} className="text-primary ml-0.5" />
+            <div className="flex items-center gap-1.5 mb-2">
+              <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                <Play size={8} className="text-primary-foreground ml-0.5" />
               </div>
-              <span className="text-[8px] font-medium text-foreground">Noël 2018</span>
+              <span className="text-[8px] font-medium text-foreground">Souvenir vocal de Léo</span>
             </div>
-            <p className="text-[7px] text-muted-foreground mt-1">Son solo de saxo légendaire</p>
+            <AudioWaveform />
+            <span className="text-[7px] text-muted-foreground mt-1.5">1:24</span>
+          </div>
+
+          {/* Floating card — Quote */}
+          <div
+            className="absolute -left-6 bottom-24 w-44 bg-background/90 backdrop-blur-md rounded-xl border border-border/40 p-3 shadow-golden-glow animate-float z-10"
+            style={{ animationDelay: "3s", transform: "rotateY(-2deg) rotateX(1deg)" }}
+          >
+            <Quote size={10} className="text-primary/40 mb-1" />
+            <p className="text-[8px] text-foreground italic font-serif-display leading-relaxed">
+              « Allez, on ouvre une bonne bouteille ! »
+            </p>
+            <p className="text-[7px] font-medium text-muted-foreground mt-1">Michel</p>
           </div>
 
           {/* Floating card — Counter */}
           <div
-            className="absolute -right-4 top-28 w-32 bg-background/90 backdrop-blur-md rounded-xl border border-border/40 p-2.5 shadow-golden-glow animate-float z-10"
+            className="absolute -right-4 bottom-32 w-28 bg-background/90 backdrop-blur-md rounded-xl border border-border/40 p-2.5 shadow-golden-glow animate-float z-10"
             style={{ animationDelay: "2s", transform: "rotateY(3deg) rotateX(-2deg)" }}
           >
             <p className="text-xl font-bold text-primary font-serif-display text-center">127</p>
