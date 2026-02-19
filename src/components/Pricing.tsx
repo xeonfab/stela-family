@@ -2,23 +2,20 @@ import { Button } from "@/components/ui/button";
 import { Check, Shield } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-const features = [
-  "Mur Multimédia (Audio/Vidéo)",
-  "Timeline Biographie",
-  "Kit Cérémonie (PDF)",
-  "Hébergement 25 Ans",
-];
+const features = ["Mur Multimédia (Audio/Vidéo)", "Timeline Biographie", "Kit Cérémonie (PDF)", "Hébergement 25 Ans"];
 
 const Pricing = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
     <section ref={ref} className="py-24 lg:py-32">
-      <div className={`container mx-auto px-6 flex justify-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div
+        className={`container mx-auto px-6 flex justify-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      >
         <div className="relative w-full max-w-md rounded-3xl bg-card border-[0.5px] border-primary/50 shadow-golden-glow p-10 text-center space-y-8">
           <p className="text-muted-foreground font-sans-body uppercase tracking-widest text-sm">Paiement unique</p>
           <div>
-            <span className="font-serif-display text-6xl font-bold text-gradient-gold">49€</span>
+            <span className="font-serif-display text-6xl font-bold text-gradient-gold">79€</span>
           </div>
           <p className="text-muted-foreground">Valable 25 ans. Sans abonnement.</p>
 
