@@ -37,21 +37,33 @@ const memories = [
 
 /* ─── Timeline Data ─── */
 const timeline = [
-  { year: "1948", title: "Naissance en Auvergne", desc: "Un matin de printemps, au cœur des volcans endormis, une vie commence." },
-  { year: "1972", title: "La rencontre avec Marie", desc: "Un regard croisé dans une librairie de Clermont-Ferrand. Le coup de foudre fut immédiat." },
-  { year: "1985", title: "Premier poste de professeur", desc: "Il entre dans sa classe d'histoire pour la première fois. Des centaines d'élèves suivront." },
-  { year: "2010", title: "La retraite et le jardin parfait", desc: "Enfin le temps de cultiver ses roses, ses amitiés et le bonheur simple d'être grand-père." },
+  {
+    year: "1948",
+    title: "Naissance en Auvergne",
+    desc: "Un matin de printemps, au cœur des volcans endormis, une vie commence.",
+  },
+  {
+    year: "1972",
+    title: "La rencontre avec Marie",
+    desc: "Un regard croisé dans une librairie de Clermont-Ferrand. Le coup de foudre fut immédiat.",
+  },
+  {
+    year: "1985",
+    title: "Premier poste de professeur",
+    desc: "Il entre dans sa classe d'histoire pour la première fois. Des centaines d'élèves suivront.",
+  },
+  {
+    year: "2010",
+    title: "La retraite et le jardin parfait",
+    desc: "Enfin le temps de cultiver ses roses, ses amitiés et le bonheur simple d'être grand-père.",
+  },
 ];
 
 /* ─── Audio Waveform SVG ─── */
 const AudioWaveform = () => (
   <div className="flex items-end gap-[2px] h-8">
     {[3, 5, 8, 4, 7, 10, 6, 3, 8, 5, 9, 4, 7, 3, 6, 8, 5, 3, 7, 4, 9, 6, 3, 5, 8].map((h, i) => (
-      <div
-        key={i}
-        className="w-[3px] rounded-full bg-amber-600/40"
-        style={{ height: `${h * 3}px` }}
-      />
+      <div key={i} className="w-[3px] rounded-full bg-amber-600/40" style={{ height: `${h * 3}px` }} />
     ))}
   </div>
 );
@@ -82,20 +94,14 @@ const Memorial = () => {
       <section className="pt-8 pb-12 px-6 text-center">
         {/* Portrait */}
         <div className="mx-auto w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-[3px] border-amber-600/20 shadow-[0_0_60px_-10px_rgba(212,175,55,0.2)] mb-8">
-          <img
-            src={portraitImg}
-            alt="Jean-Claude Dubois"
-            className="w-full h-full object-cover"
-          />
+          <img src={portraitImg} alt="Jean-Claude Dubois" className="w-full h-full object-cover" />
         </div>
 
         {/* Name & Dates */}
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 mb-3">
           Jean-Claude Dubois
         </h1>
-        <p className="text-sm tracking-[0.3em] uppercase text-stone-400 mb-8">
-          1948 — 2024
-        </p>
+        <p className="text-sm tracking-[0.3em] uppercase text-stone-400 mb-8">1948 — 2024</p>
 
         {/* Epitaph */}
         <p className="font-serif italic text-lg md:text-xl text-stone-500 max-w-xl mx-auto leading-relaxed">
@@ -112,19 +118,19 @@ const Memorial = () => {
                 value="souvenirs"
                 className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors"
               >
-                Le Mur des Souvenirs
+                Souvenirs
               </TabsTrigger>
               <TabsTrigger
                 value="biographie"
                 className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors"
               >
-                Sa Biographie
+                Biographie
               </TabsTrigger>
               <TabsTrigger
                 value="timeline"
                 className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors"
               >
-                Le Roman de sa Vie
+                Roman de sa Vie
               </TabsTrigger>
             </TabsList>
           </div>
@@ -143,9 +149,7 @@ const Memorial = () => {
                   loading="lazy"
                 />
                 <div className="p-5 space-y-3">
-                  <p className="text-stone-600 text-sm leading-relaxed">
-                    {memories[0].text}
-                  </p>
+                  <p className="text-stone-600 text-sm leading-relaxed">{memories[0].text}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-stone-400">— {memories[0].author}</span>
                     <div className="flex items-center gap-1 text-amber-600">
@@ -180,9 +184,7 @@ const Memorial = () => {
               {/* Quote Card */}
               <div className="break-inside-avoid bg-white rounded-2xl p-8 shadow-sm border border-stone-100 text-center">
                 <Quote size={24} className="mx-auto text-amber-600/30 mb-4" />
-                <p className="font-serif text-lg text-stone-800 leading-relaxed italic mb-4">
-                  {memories[2].text}
-                </p>
+                <p className="font-serif text-lg text-stone-800 leading-relaxed italic mb-4">{memories[2].text}</p>
                 <div className="flex items-center justify-center gap-3">
                   <span className="text-xs text-stone-400">— {memories[2].author}</span>
                   <div className="flex items-center gap-1 text-amber-600">
@@ -195,12 +197,7 @@ const Memorial = () => {
               {/* Video Card */}
               <div className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100">
                 <div className="relative">
-                  <img
-                    src={memories[3].image}
-                    alt="Noël 2018"
-                    className="w-full h-48 object-cover"
-                    loading="lazy"
-                  />
+                  <img src={memories[3].image} alt="Noël 2018" className="w-full h-48 object-cover" loading="lazy" />
                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                     <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-lg">
                       <Play size={22} className="text-stone-800 ml-0.5" />
@@ -231,22 +228,18 @@ const Memorial = () => {
           <div className="max-w-2xl mx-auto px-6 py-16">
             <article className="prose prose-stone prose-lg max-w-none">
               <p className="text-stone-600 leading-[1.9] text-lg first-letter:text-6xl first-letter:font-serif first-letter:font-bold first-letter:text-amber-700 first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                Jean-Claude était un homme de terre et d'esprit. Professeur d'histoire
-                passionné, il a éveillé la curiosité de centaines d'élèves au fil de
-                ses trente années d'enseignement. Son regard pétillant et sa voix grave
-                captivaient son auditoire dès les premières minutes.
+                Jean-Claude était un homme de terre et d'esprit. Professeur d'histoire passionné, il a éveillé la
+                curiosité de centaines d'élèves au fil de ses trente années d'enseignement. Son regard pétillant et sa
+                voix grave captivaient son auditoire dès les premières minutes.
               </p>
               <p className="text-stone-600 leading-[1.9] text-lg mt-6">
-                Mais c'est dans son jardin, entouré de ses rosiers et de ses
-                petits-enfants, qu'il trouvait sa véritable paix. Chaque dimanche, la
-                famille se réunissait autour de sa grande table en bois pour partager
-                un repas qui durait des heures — ponctué de rires, de débats passionnés
-                et de bouteilles soigneusement choisies.
+                Mais c'est dans son jardin, entouré de ses rosiers et de ses petits-enfants, qu'il trouvait sa véritable
+                paix. Chaque dimanche, la famille se réunissait autour de sa grande table en bois pour partager un repas
+                qui durait des heures — ponctué de rires, de débats passionnés et de bouteilles soigneusement choisies.
               </p>
               <p className="text-stone-600 leading-[1.9] text-lg mt-6">
-                Un épicurien au rire tonitruant, un conteur intarissable, un grand-père
-                extraordinaire. Il laisse derrière lui un jardin en fleur et des cœurs
-                à jamais marqués par sa lumière.
+                Un épicurien au rire tonitruant, un conteur intarissable, un grand-père extraordinaire. Il laisse
+                derrière lui un jardin en fleur et des cœurs à jamais marqués par sa lumière.
               </p>
             </article>
           </div>
@@ -263,29 +256,21 @@ const Memorial = () => {
                 <div
                   key={i}
                   className={`relative flex items-start mb-16 last:mb-0 ${
-                    i % 2 === 0
-                      ? "md:flex-row"
-                      : "md:flex-row-reverse"
+                    i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
                   {/* Gold dot */}
                   <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-amber-600 border-[3px] border-[#FAF9F6] shadow-sm -translate-x-1.5 mt-1.5 z-10" />
 
                   {/* Content */}
-                  <div className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${
-                    i % 2 === 0
-                      ? "md:pr-8 md:text-right"
-                      : "md:pl-8 md:text-left"
-                  }`}>
-                    <span className="text-xs tracking-[0.2em] uppercase text-amber-600 font-medium">
-                      {event.year}
-                    </span>
-                    <h3 className="font-serif text-xl font-semibold text-stone-900 mt-1 mb-2">
-                      {event.title}
-                    </h3>
-                    <p className="text-sm text-stone-500 leading-relaxed">
-                      {event.desc}
-                    </p>
+                  <div
+                    className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${
+                      i % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8 md:text-left"
+                    }`}
+                  >
+                    <span className="text-xs tracking-[0.2em] uppercase text-amber-600 font-medium">{event.year}</span>
+                    <h3 className="font-serif text-xl font-semibold text-stone-900 mt-1 mb-2">{event.title}</h3>
+                    <p className="text-sm text-stone-500 leading-relaxed">{event.desc}</p>
                   </div>
                 </div>
               ))}
