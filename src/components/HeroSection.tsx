@@ -1,6 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Star, Image, AlignLeft, Mic, Heart } from "lucide-react";
+import { Star, Play, Heart, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
+import jeanClaudePortrait from "@/assets/jean-claude-portrait.jpg";
+
+const AudioWaveform = () => (
+  <svg viewBox="0 0 60 24" className="w-full h-5" preserveAspectRatio="none">
+    {[3,7,12,8,16,10,14,6,18,9,13,5,11,15,7,12,8,16,10,6].map((h, i) => (
+      <rect key={i} x={i * 3} y={12 - h / 2} width="2" rx="1" height={h} className="fill-primary/60" />
+    ))}
+  </svg>
+);
 
 const HeroSection = () => (
   <section className="pt-28 pb-20 lg:pb-32 lg:pt-36 overflow-hidden">
@@ -36,151 +45,107 @@ const HeroSection = () => (
         </div>
       </div>
 
-      {/* Right — Biography Dashboard Mockup */}
+      {/* Right — Jean-Claude Sanctuary Mockup */}
       <div className="flex-1 flex justify-center">
         <div className="relative" style={{ perspective: "1200px" }}>
-          {/* Main browser frame */}
+          {/* Shadow card behind for depth */}
           <div
-            className="relative w-[340px] sm:w-[420px] lg:w-[480px] bg-background/80 backdrop-blur-xl rounded-2xl border border-border/50 shadow-[0_25px_80px_-15px_hsl(var(--primary)/0.25)] overflow-hidden"
-            style={{ transform: "rotateY(-5deg) rotateX(5deg)" }}
+            className="absolute inset-2 bg-muted/40 rounded-3xl blur-sm"
+            style={{ transform: "rotateY(-4deg) rotateX(4deg) translateZ(-20px)" }}
+          />
+
+          {/* Main card */}
+          <div
+            className="relative w-[320px] sm:w-[400px] lg:w-[460px] bg-background/90 backdrop-blur-xl rounded-3xl border border-border/30 shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.25)] overflow-hidden"
+            style={{ transform: "rotateY(-4deg) rotateX(4deg)" }}
           >
-            {/* Browser top bar */}
-            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border/30 bg-background/60">
-              <div className="flex gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-destructive/50" />
-                <div className="w-2.5 h-2.5 rounded-full bg-primary/50" />
-                <div className="w-2.5 h-2.5 rounded-full bg-accent/50" />
+            {/* Profile header */}
+            <div className="pt-8 pb-4 px-6 text-center space-y-2.5">
+              <div className="w-20 h-20 mx-auto rounded-full border-2 border-primary/30 overflow-hidden shadow-golden-glow">
+                <img src={jeanClaudePortrait} alt="Jean-Claude Dubois" className="w-full h-full object-cover" loading="lazy" />
               </div>
-              <div className="flex-1 mx-4">
-                <div className="bg-muted/50 rounded-md px-3 py-1 text-[10px] text-muted-foreground text-center">
-                  stela.memorial/arthur-rimbaud
-                </div>
-              </div>
+              <h3 className="font-serif-display text-xl font-bold text-foreground">Jean-Claude Dubois</h3>
+              <p className="text-[11px] tracking-[0.2em] text-muted-foreground">1948 — 2024</p>
+              <p className="text-[10px] text-muted-foreground/80 italic font-serif-display leading-relaxed max-w-[260px] mx-auto">
+                « Il cultivait son jardin comme il cultivait ses amitiés : avec patience, lumière et amour. »
+              </p>
             </div>
 
-            {/* Dashboard content */}
-            <div className="p-5 space-y-4">
-              {/* Profile header */}
-              <div className="text-center space-y-2">
-                <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-muted to-muted/60 border-2 border-primary/20 overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=face"
-                    alt="Portrait"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 className="font-serif-display text-lg font-bold text-foreground">Arthur Rimbaud</h3>
-                <p className="text-xs text-muted-foreground">1854 — 1891</p>
-                <p className="text-[11px] text-muted-foreground/80 italic">
-                  "I is another. If brass wakes up a trumpet, it is not its fault."
-                </p>
-                <p className="text-[10px] text-muted-foreground/60">Poet, Visionary, Revolutionary</p>
-              </div>
+            {/* Tabs */}
+            <div className="flex justify-center gap-1 px-4 pb-3">
+              <div className="px-3 py-1.5 text-[9px] font-semibold text-primary border-b-2 border-primary">Le Mur des Souvenirs</div>
+              <div className="px-3 py-1.5 text-[9px] text-muted-foreground">Sa Biographie</div>
+              <div className="px-3 py-1.5 text-[9px] text-muted-foreground">Le Roman de sa Vie</div>
+            </div>
 
-              {/* Tabs */}
-              <div className="flex justify-center gap-1">
-                <div className="px-4 py-1.5 text-[10px] text-muted-foreground rounded-full">Timeline</div>
-                <div className="px-4 py-1.5 text-[10px] font-medium text-foreground bg-muted/50 rounded-full">
-                  Tributes
-                </div>
-              </div>
-
-              {/* Filter pills */}
-              <div className="flex justify-center gap-1.5 flex-wrap">
-                <span className="px-3 py-1 text-[9px] font-medium bg-primary text-primary-foreground rounded-full">
-                  All
-                </span>
-                <span className="px-3 py-1 text-[9px] text-muted-foreground bg-muted/40 rounded-full flex items-center gap-1">
-                  <Image size={8} /> Photos
-                </span>
-                <span className="px-3 py-1 text-[9px] text-muted-foreground bg-muted/40 rounded-full flex items-center gap-1">
-                  <AlignLeft size={8} /> Stories
-                </span>
-                <span className="px-3 py-1 text-[9px] text-muted-foreground bg-muted/40 rounded-full flex items-center gap-1">
-                  <Mic size={8} /> Voices
-                </span>
-              </div>
-
-              {/* Content grid */}
-              <div className="grid grid-cols-3 gap-2">
-                {/* Photo card */}
-                <div className="col-span-1 rounded-xl overflow-hidden border border-border/30 bg-background">
-                  <img
-                    src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=200&h=160&fit=crop"
-                    alt="Trip to Rome"
-                    className="w-full h-20 object-cover"
-                    loading="lazy"
-                  />
-                  <div className="p-1.5">
-                    <p className="text-[8px] text-muted-foreground">Trip to Rome, 2018</p>
-                    <div className="flex items-center gap-0.5 mt-1 text-primary">
-                      <Heart size={7} className="fill-primary" />
-                      <span className="text-[7px]">24</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Story card */}
-                <div className="col-span-1 rounded-xl border border-border/30 bg-background p-2 flex flex-col justify-between">
-                  <p className="text-[7px] text-muted-foreground leading-relaxed line-clamp-5">
-                    Chaque année, à son anniversaire, je visite Charleville et je laisse des fleurs devant sa maison
-                    d'enfance...
+            {/* Mini masonry grid */}
+            <div className="px-4 pb-5 grid grid-cols-2 gap-2.5">
+              {/* Card 1 — Photo */}
+              <div className="rounded-xl overflow-hidden border border-border/30 bg-background shadow-sm">
+                <img
+                  src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=300&h=200&fit=crop"
+                  alt="Jardin de roses"
+                  className="w-full h-24 object-cover"
+                  loading="lazy"
+                />
+                <div className="p-2">
+                  <p className="text-[8px] text-muted-foreground leading-relaxed line-clamp-2">
+                    Chaque rose plantée ici porte ton souvenir...
                   </p>
-                  <div className="mt-1.5">
-                    <p className="text-[7px] font-medium text-foreground">Claire R.</p>
+                  <div className="flex items-center justify-between mt-1.5">
+                    <span className="text-[7px] font-medium text-foreground">Marie</span>
                     <div className="flex items-center gap-0.5 text-primary">
                       <Heart size={7} className="fill-primary" />
-                      <span className="text-[7px]">27</span>
+                      <span className="text-[7px]">34</span>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Quote card */}
-                <div className="col-span-1 rounded-xl border border-border/30 bg-primary/5 p-2 flex flex-col justify-between">
-                  <p className="text-[8px] text-foreground italic font-serif-display leading-snug">
-                    « On n'est pas sérieux, quand on a dix-sept ans. »
-                  </p>
-                  <div className="flex items-center gap-0.5 mt-1 text-primary">
-                    <Heart size={7} className="fill-primary" />
-                    <span className="text-[7px]">28</span>
+              {/* Card 2 — Audio */}
+              <div className="rounded-xl border border-primary/20 bg-primary/5 p-2.5 flex flex-col justify-between shadow-sm">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                    <Play size={8} className="text-primary-foreground ml-0.5" />
                   </div>
+                  <span className="text-[8px] font-medium text-foreground">Souvenir vocal de Léo</span>
                 </div>
+                <AudioWaveform />
+                <span className="text-[7px] text-muted-foreground mt-1.5">1:24</span>
+              </div>
+
+              {/* Card 3 — Quote (spans full width) */}
+              <div className="col-span-2 rounded-xl border border-border/30 bg-background p-3 shadow-sm text-center">
+                <Quote size={12} className="text-primary/40 mx-auto mb-1" />
+                <p className="text-[9px] text-foreground italic font-serif-display leading-relaxed">
+                  « Allez, on ouvre une bonne bouteille ! » — Ta phrase fétiche qui résonnera toujours.
+                </p>
+                <p className="text-[7px] font-medium text-muted-foreground mt-1.5">Michel</p>
               </div>
             </div>
           </div>
 
-          {/* Floating card 1 — Quote */}
+          {/* Floating card — Noël */}
           <div
-            className="absolute -left-8 bottom-16 w-44 bg-background/90 backdrop-blur-md rounded-xl border border-border/40 p-3 shadow-golden-glow animate-float z-10"
+            className="absolute -left-6 bottom-20 w-40 bg-background/90 backdrop-blur-md rounded-xl border border-border/40 p-2.5 shadow-golden-glow animate-float z-10"
             style={{ transform: "rotateY(-3deg) rotateX(2deg)" }}
           >
-            <p className="text-[10px] text-foreground italic font-serif-display leading-snug">
-              « Je est un autre » — des mots qui ont changé le monde.
-            </p>
-            <div className="flex items-center justify-between mt-2">
-              <span className="text-[8px] text-muted-foreground">1 month ago</span>
-              <div className="flex items-center gap-0.5 text-primary">
-                <Heart size={8} className="fill-primary" />
-                <span className="text-[8px]">39</span>
+            <div className="flex items-center gap-1.5">
+              <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center">
+                <Play size={7} className="text-primary ml-0.5" />
               </div>
+              <span className="text-[8px] font-medium text-foreground">Noël 2018</span>
             </div>
+            <p className="text-[7px] text-muted-foreground mt-1">Son solo de saxo légendaire</p>
           </div>
 
-          {/* Floating card 2 — Story snippet */}
+          {/* Floating card — Counter */}
           <div
-            className="absolute -right-6 top-24 w-40 bg-background/90 backdrop-blur-md rounded-xl border border-border/40 p-3 shadow-golden-glow animate-float z-10"
+            className="absolute -right-4 top-28 w-32 bg-background/90 backdrop-blur-md rounded-xl border border-border/40 p-2.5 shadow-golden-glow animate-float z-10"
             style={{ animationDelay: "2s", transform: "rotateY(3deg) rotateX(-2deg)" }}
           >
-            <p className="text-[9px] text-muted-foreground leading-relaxed line-clamp-3">
-              J'ai grandi en lisant ses Illuminations. Chaque poème était une fenêtre ouverte sur des mondes
-              impossibles...
-            </p>
-            <p className="text-[8px] font-medium text-foreground mt-1.5">Michel L.</p>
-            <div className="flex items-center gap-0.5 text-primary mt-0.5">
-              <Heart size={8} className="fill-primary" />
-              <span className="text-[8px]">41</span>
-            </div>
+            <p className="text-xl font-bold text-primary font-serif-display text-center">127</p>
+            <p className="text-[8px] text-muted-foreground text-center">souvenirs partagés</p>
           </div>
         </div>
       </div>
