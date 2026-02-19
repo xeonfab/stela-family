@@ -4,20 +4,19 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
 const features = [
-{
-  icon: ShieldCheck,
-  title: "Modération totale : Vous validez chaque message ou photo avant publication. Zéro mauvaise surprise."
-},
-{
-  icon: Lock,
-  title: "Accès simplifié : Une simple question intime (ex\u00a0: \u00abLe nom de son chien\u00a0?\u00bb) remplace les mots de passe complexes pour la famille."
-},
-{
-  icon: EyeOff,
-  title: "Vie privée absolue : Pas de publicité, pas de Google, pas de revente de données. Ce qui est à vous reste à vous."
-
-}];
-
+  {
+    icon: ShieldCheck,
+    title: "Modération simplifiée : Vous validez chaque message ou photo avant sa publication.",
+  },
+  {
+    icon: Lock,
+    title: "Accès intime : Une simple question personnelle remplace les mots de passe complexes.",
+  },
+  {
+    icon: EyeOff,
+    title: "Vie privée garantie : Pas de publicité, pas de Google, pas de revente de données.",
+  },
+];
 
 const Privacy = () => {
   const { ref, isVisible } = useScrollReveal();
@@ -36,14 +35,14 @@ const Privacy = () => {
                 Un sanctuaire privé, réservé à <em className="italic">ceux qui l'aimaient.</em>
               </h2>
               <p className="mt-4 text-muted-foreground font-sans-body text-base lg:text-lg leading-relaxed max-w-lg">
-                Loin du tumulte et du bruit des réseaux sociaux, Stela est un havre de paix. Vous détenez les clés de
-                cet espace&nbsp;: vous décidez qui peut entrer et quels souvenirs y fleurissent.
+                Un espace sécurisé, loin du bruit des réseaux sociaux, où vous gardez le contrôle absolu sur les
+                souvenirs partagés.
               </p>
             </div>
 
             <ul className="space-y-6">
-              {features.map((f) =>
-              <li key={f.title} className="flex gap-4 items-start">
+              {features.map((f) => (
+                <li key={f.title} className="flex gap-4 items-start">
                   <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10">
                     <f.icon className="h-4 w-4 text-primary" />
                   </span>
@@ -51,7 +50,7 @@ const Privacy = () => {
                     <h3 className="font-sans-body text-sm font-semibold text-foreground">{f.title}</h3>
                   </div>
                 </li>
-              )}
+              ))}
             </ul>
           </div>
 
@@ -94,15 +93,15 @@ const Privacy = () => {
                 <div className="flex gap-3">
                   <Button
                     size="sm"
-                    className="flex-1 rounded-xl bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground font-sans-body text-xs gap-1.5">
-
+                    className="flex-1 rounded-xl bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground font-sans-body text-xs gap-1.5"
+                  >
                     <Check className="h-3.5 w-3.5" /> Accueillir ce souvenir
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="flex-1 rounded-xl font-sans-body text-xs text-muted-foreground gap-1.5">
-
+                    className="flex-1 rounded-xl font-sans-body text-xs text-muted-foreground gap-1.5"
+                  >
                     <X className="h-3.5 w-3.5" /> Masquer
                   </Button>
                 </div>
@@ -111,8 +110,8 @@ const Privacy = () => {
           </div>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 };
 
 export default Privacy;
