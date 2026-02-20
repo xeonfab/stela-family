@@ -4,6 +4,7 @@ import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft,
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/jean-claude-portrait.jpg";
 import couplePhoto from "@/assets/couple-70s.jpg";
+import AddMemoryModal from "@/components/AddMemoryModal";
 
 /* ─── Memory Card Data ─── */
 const memories = [
@@ -92,6 +93,7 @@ const AudioWaveform = () => (
 
 const Memorial = () => {
   const [activeTab, setActiveTab] = useState("souvenirs");
+  const [memoryModalOpen, setMemoryModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#FAF9F6]">
@@ -340,11 +342,16 @@ const Memorial = () => {
 
       {/* ─── Floating CTA ─── */}
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
-        <button className="flex items-center gap-2.5 px-8 py-4 bg-amber-600 text-white rounded-full shadow-[0_8px_30px_-4px_rgba(217,119,6,0.5)] hover:bg-amber-700 hover:shadow-[0_12px_40px_-4px_rgba(217,119,6,0.6)] transition-all duration-300 hover:scale-105 font-medium text-sm">
+        <button
+          onClick={() => setMemoryModalOpen(true)}
+          className="flex items-center gap-2.5 px-8 py-4 bg-amber-600 text-white rounded-full shadow-[0_8px_30px_-4px_rgba(217,119,6,0.5)] hover:bg-amber-700 hover:shadow-[0_12px_40px_-4px_rgba(217,119,6,0.6)] transition-all duration-300 hover:scale-105 font-medium text-sm"
+        >
           <Feather size={16} />
           Déposer un souvenir
         </button>
       </div>
+
+      <AddMemoryModal open={memoryModalOpen} onOpenChange={setMemoryModalOpen} />
 
       {/* Bottom spacer for FAB */}
       <div className="h-24" />
