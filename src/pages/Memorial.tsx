@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/jean-claude-portrait.jpg";
+import couplePhoto from "@/assets/couple-70s.jpg";
 
 /* ─── Memory Card Data ─── */
 const memories = [
@@ -36,23 +37,44 @@ const memories = [
 ];
 
 /* ─── Timeline Data ─── */
-const timeline = [
+type TimelineEntry =
+  | { type: "standard"; year: string; title: string; desc: string }
+  | { type: "photo"; year: string; title: string; desc: string; photo: string; caption: string }
+  | { type: "audio"; year: string; title: string; desc: string; attribution: string; quote: string; duration: string; current: string };
+
+const timeline: TimelineEntry[] = [
   {
+    type: "standard",
     year: "1948",
     title: "Naissance en Auvergne",
     desc: "Un matin de printemps, au cœur des volcans endormis, une vie commence.",
   },
   {
+    type: "photo",
     year: "1972",
     title: "La rencontre avec Marie",
     desc: "Un regard croisé dans une librairie de Clermont-Ferrand. Le coup de foudre fut immédiat.",
+    photo: couplePhoto,
+    caption: "Photo d'époque, été 1972.",
   },
   {
+    type: "standard",
     year: "1985",
     title: "Premier poste de professeur",
     desc: "Il entre dans sa classe d'histoire pour la première fois. Des centaines d'élèves suivront.",
   },
   {
+    type: "audio",
+    year: "1998",
+    title: "Une anecdote de Michel",
+    desc: "",
+    attribution: "Souvenir partagé par Michel R., ami et collègue.",
+    quote: "\"Je n'oublierai jamais son discours pour mon départ en retraite. Il avait fait rire et pleurer toute la salle. Sacré Jean-Claude.\"",
+    duration: "1:30",
+    current: "0:45",
+  },
+  {
+    type: "standard",
     year: "2010",
     title: "La retraite et le jardin parfait",
     desc: "Enfin le temps de cultiver ses roses, ses amitiés et le bonheur simple d'être grand-père.",
@@ -260,18 +282,54 @@ const Memorial = () => {
                     i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
-                  {/* Gold dot */}
-                  <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-amber-600 border-[3px] border-[#FAF9F6] shadow-sm -translate-x-1.5 mt-1.5 z-10" />
+                  {/* Dot / Icon */}
+                  {event.type === "audio" ? (
+                    <div className="absolute left-4 md:left-1/2 w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center -translate-x-3 mt-0.5 z-10">
+                      <MessageCircle size={13} className="text-amber-600" />
+                    </div>
+                  ) : (
+                    <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-amber-600 border-[3px] border-[#FAF9F6] shadow-sm -translate-x-1.5 mt-1.5 z-10" />
+                  )}
 
                   {/* Content */}
                   <div
                     className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${
                       i % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8 md:text-left"
-                    }`}
+                    } ${event.type === "audio" ? "bg-amber-50/50 rounded-2xl p-5" : ""}`}
                   >
                     <span className="text-xs tracking-[0.2em] uppercase text-amber-600 font-medium">{event.year}</span>
                     <h3 className="font-serif text-xl font-semibold text-stone-900 mt-1 mb-2">{event.title}</h3>
-                    <p className="text-sm text-stone-500 leading-relaxed">{event.desc}</p>
+                    {event.desc && <p className="text-sm text-stone-500 leading-relaxed">{event.desc}</p>}
+
+                    {/* Photo attachment */}
+                    {event.type === "photo" && (
+                      <div className="mt-4">
+                        <img
+                          src={event.photo}
+                          alt={event.caption}
+                          className="rounded-xl shadow-md w-full object-cover max-h-56"
+                          loading="lazy"
+                        />
+                        <p className="text-xs text-stone-400 italic mt-2">{event.caption}</p>
+                      </div>
+                    )}
+
+                    {/* Audio anecdote */}
+                    {event.type === "audio" && (
+                      <div className="mt-3 space-y-3">
+                        <p className="text-xs text-stone-400">{event.attribution}</p>
+                        <div className={`flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-stone-100 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
+                          <button className="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center shrink-0 hover:bg-amber-700 transition-colors">
+                            <Play size={14} className="text-white ml-0.5" fill="currentColor" />
+                          </button>
+                          <AudioWaveform />
+                          <span className="text-xs text-stone-400 font-mono shrink-0">
+                            {event.current} / {event.duration}
+                          </span>
+                        </div>
+                        <p className="text-sm text-stone-600 italic leading-relaxed">{event.quote}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
