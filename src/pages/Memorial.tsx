@@ -278,7 +278,7 @@ const Memorial = () => {
               {timeline.map((event, i) => (
                 <div
                   key={i}
-                  className={`relative flex items-start mb-16 last:mb-0 ${
+                  className={`relative flex items-start mb-8 last:mb-0 ${
                     i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
