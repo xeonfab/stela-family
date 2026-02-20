@@ -35,6 +35,73 @@ const memories = [
     author: "Famille Dubois",
     hearts: 41,
   },
+  // ─── 10 New Memory Cards ───
+  {
+    type: "quote" as const,
+    text: "« Merci Monsieur Dubois pour vos cours d'histoire passionnants. Vous m'avez donné le goût d'apprendre. »",
+    author: "Thomas, ancien élève",
+    hearts: 12,
+  },
+  {
+    type: "photo" as const,
+    image: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=600&h=400&fit=crop",
+    text: "Ton premier concert au caveau. Inoubliable.",
+    author: "Marc",
+    hearts: 28,
+  },
+  {
+    type: "audio" as const,
+    title: "La chanson que tu m'as apprise",
+    duration: "2:12",
+    author: "Emma (Petite-fille)",
+    hearts: 45,
+  },
+  {
+    type: "quote" as const,
+    text: "« Ta recette de bœuf bourguignon restera un secret bien gardé, mais nos fous rires en cuisine, je ne les oublierai jamais. »",
+    author: "Sophie",
+    hearts: 31,
+  },
+  {
+    type: "photo" as const,
+    image: "https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=600&h=400&fit=crop",
+    text: "La première rose de la saison a éclos aujourd'hui. Je sais que tu veilles sur elle.",
+    author: "Marie",
+    hearts: 89,
+  },
+  {
+    type: "video" as const,
+    image: "https://images.unsplash.com/photo-1529543544282-ea69407b3656?w=600&h=400&fit=crop",
+    title: "Anniversaire surprise 2022",
+    author: "Famille Dubois",
+    hearts: 56,
+  },
+  {
+    type: "quote" as const,
+    text: "« Un collègue en or, toujours prêt à dépanner avec le sourire. Tu vas nous manquer au lycée. »",
+    author: "Claire et Paul",
+    hearts: 19,
+  },
+  {
+    type: "photo" as const,
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop",
+    text: "Notre dernière randonnée au Puy de Dôme.",
+    author: "Michel",
+    hearts: 37,
+  },
+  {
+    type: "audio" as const,
+    title: "Souvenir de notre voyage en Italie",
+    duration: "1:47",
+    author: "Antoine",
+    hearts: 22,
+  },
+  {
+    type: "quote" as const,
+    text: "« Je garde précieusement le livre que tu m'as offert. Tes annotations dans la marge sont de vrais trésors. »",
+    author: "Lucie",
+    hearts: 14,
+  },
 ];
 
 /* ─── Timeline Data ─── */
@@ -165,85 +232,101 @@ const Memorial = () => {
         <TabsContent value="souvenirs" className="mt-0">
           <div className="max-w-5xl mx-auto px-6 py-12">
             <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-              {/* Photo + Text Card */}
-              <div className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100">
-                <img
-                  src={memories[0].image}
-                  alt="Roses du jardin"
-                  className="w-full h-52 object-cover"
-                  loading="lazy"
-                />
-                <div className="p-5 space-y-3">
-                  <p className="text-stone-600 text-sm leading-relaxed">{memories[0].text}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-stone-400">— {memories[0].author}</span>
-                    <div className="flex items-center gap-1 text-amber-600">
-                      <Heart size={14} className="fill-amber-600" />
-                      <span className="text-xs">{memories[0].hearts}</span>
+              {memories.map((memory, idx) => {
+                if (memory.type === "photo") {
+                  return (
+                    <div key={idx} className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100">
+                      <img
+                        src={memory.image}
+                        alt={memory.text}
+                        className="w-full h-52 object-cover"
+                        loading="lazy"
+                      />
+                      <div className="p-5 space-y-3">
+                        <p className="text-stone-600 text-sm leading-relaxed">{memory.text}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-stone-400">— {memory.author}</span>
+                          <div className="flex items-center gap-1 text-amber-600">
+                            <Heart size={14} className="fill-amber-600" />
+                            <span className="text-xs">{memory.hearts}</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  );
+                }
 
-              {/* Audio Card */}
-              <div className="break-inside-avoid bg-amber-50/50 rounded-2xl p-5 shadow-sm border border-amber-100/50 space-y-4">
-                <div className="flex items-center gap-3">
-                  <button className="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center shadow-md hover:bg-amber-700 transition-colors">
-                    <Play size={16} className="ml-0.5" />
-                  </button>
-                  <div>
-                    <p className="text-sm font-medium text-stone-800">{memories[1].title}</p>
-                    <p className="text-xs text-stone-400">{memories[1].duration}</p>
-                  </div>
-                </div>
-                <AudioWaveform />
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-stone-400">— {memories[1].author}</span>
-                  <div className="flex items-center gap-1 text-amber-600">
-                    <Heart size={14} className="fill-amber-600" />
-                    <span className="text-xs">{memories[1].hearts}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quote Card */}
-              <div className="break-inside-avoid bg-white rounded-2xl p-8 shadow-sm border border-stone-100 text-center">
-                <Quote size={24} className="mx-auto text-amber-600/30 mb-4" />
-                <p className="font-serif text-lg text-stone-800 leading-relaxed italic mb-4">{memories[2].text}</p>
-                <div className="flex items-center justify-center gap-3">
-                  <span className="text-xs text-stone-400">— {memories[2].author}</span>
-                  <div className="flex items-center gap-1 text-amber-600">
-                    <Heart size={14} className="fill-amber-600" />
-                    <span className="text-xs">{memories[2].hearts}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Video Card */}
-              <div className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100">
-                <div className="relative">
-                  <img src={memories[3].image} alt="Noël 2018" className="w-full h-48 object-cover" loading="lazy" />
-                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-lg">
-                      <Play size={22} className="text-stone-800 ml-0.5" />
+                if (memory.type === "audio") {
+                  return (
+                    <div key={idx} className="break-inside-avoid bg-amber-50/50 rounded-2xl p-5 shadow-sm border border-amber-100/50 space-y-4">
+                      <div className="flex items-center gap-3">
+                        <button className="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center shadow-md hover:bg-amber-700 transition-colors">
+                          <Play size={16} className="ml-0.5" />
+                        </button>
+                        <div>
+                          <p className="text-sm font-medium text-stone-800">{memory.title}</p>
+                          <p className="text-xs text-stone-400">{memory.duration}</p>
+                        </div>
+                      </div>
+                      <AudioWaveform />
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-stone-400">— {memory.author}</span>
+                        <div className="flex items-center gap-1 text-amber-600">
+                          <Heart size={14} className="fill-amber-600" />
+                          <span className="text-xs">{memory.hearts}</span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="p-5 space-y-2">
-                  <div className="flex items-center gap-2 text-stone-400 text-xs">
-                    <Music size={12} />
-                    <span>Vidéo</span>
-                  </div>
-                  <p className="text-sm font-medium text-stone-800">{memories[3].title}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-stone-400">— {memories[3].author}</span>
-                    <div className="flex items-center gap-1 text-amber-600">
-                      <Heart size={14} className="fill-amber-600" />
-                      <span className="text-xs">{memories[3].hearts}</span>
+                  );
+                }
+
+                if (memory.type === "quote") {
+                  return (
+                    <div key={idx} className="break-inside-avoid bg-white rounded-2xl p-8 shadow-sm border border-stone-100 text-center">
+                      <Quote size={24} className="mx-auto text-amber-600/30 mb-4" />
+                      <p className="font-serif text-lg text-stone-800 leading-relaxed italic mb-4">{memory.text}</p>
+                      <div className="flex items-center justify-center gap-3">
+                        <span className="text-xs text-stone-400">— {memory.author}</span>
+                        <div className="flex items-center gap-1 text-amber-600">
+                          <Heart size={14} className="fill-amber-600" />
+                          <span className="text-xs">{memory.hearts}</span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  );
+                }
+
+                if (memory.type === "video") {
+                  return (
+                    <div key={idx} className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100">
+                      <div className="relative">
+                        <img src={memory.image} alt={memory.title} className="w-full h-48 object-cover" loading="lazy" />
+                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                          <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-lg">
+                            <Play size={22} className="text-stone-800 ml-0.5" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-5 space-y-2">
+                        <div className="flex items-center gap-2 text-stone-400 text-xs">
+                          <Music size={12} />
+                          <span>Vidéo</span>
+                        </div>
+                        <p className="text-sm font-medium text-stone-800">{memory.title}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-stone-400">— {memory.author}</span>
+                          <div className="flex items-center gap-1 text-amber-600">
+                            <Heart size={14} className="fill-amber-600" />
+                            <span className="text-xs">{memory.hearts}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return null;
+              })}
             </div>
           </div>
         </TabsContent>
