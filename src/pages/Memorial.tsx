@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, Flame } from "lucide-react";
+import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/jean-claude-portrait.jpg";
 import couplePhoto from "@/assets/couple-70s.jpg";
@@ -158,6 +159,48 @@ const AudioWaveform = () => (
   </div>
 );
 
+const FlameRitual = () => {
+  const [isLit, setIsLit] = useState(false);
+  const [litCount, setLitCount] = useState(12);
+
+  const handleLight = () => {
+    if (isLit) return;
+    setIsLit(true);
+    setLitCount((c) => c + 1);
+    toast("Votre lumière a été déposée avec douceur.", {
+      style: {
+        background: "#FAF9F6",
+        border: "1px solid rgba(212,175,55,0.2)",
+        color: "#57534e",
+        fontFamily: "Inter, sans-serif",
+        fontSize: "0.875rem",
+      },
+    });
+  };
+
+  return (
+    <div className="flex flex-row items-center justify-center gap-3 mt-6 mb-8">
+      <button
+        onClick={handleLight}
+        className="focus:outline-none"
+        aria-label="Allumer une flamme"
+      >
+        <Flame
+          size={28}
+          className={`transition-all duration-700 ${
+            isLit
+              ? "text-amber-500 drop-shadow-[0_0_12px_rgba(245,158,11,0.6)]"
+              : "text-stone-300 hover:text-amber-200"
+          }`}
+        />
+      </button>
+      <span className="text-sm text-stone-500">
+        {litCount} proches veillent sur cette flamme.
+      </span>
+    </div>
+  );
+};
+
 const Memorial = () => {
   const [activeTab, setActiveTab] = useState("souvenirs");
   const [memoryModalOpen, setMemoryModalOpen] = useState(false);
@@ -199,6 +242,9 @@ const Memorial = () => {
         <p className="font-serif italic text-lg md:text-xl text-stone-500 max-w-xl mx-auto leading-relaxed">
           « Il cultivait son jardin comme il cultivait ses amitiés&nbsp;: avec patience, lumière et amour. »
         </p>
+
+        {/* ─── Memorial Flame Ritual ─── */}
+        <FlameRitual />
       </section>
 
       {/* ─── Sticky Tabs ─── */}
