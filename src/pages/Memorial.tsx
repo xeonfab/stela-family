@@ -187,10 +187,12 @@ const FlameRitual = () => {
       >
         <Flame
           size={28}
+          fill={isLit ? "currentColor" : "transparent"}
+          strokeWidth={isLit ? 1.5 : 1.5}
           className={`transition-all duration-700 ${
             isLit
-              ? "text-amber-500 drop-shadow-[0_0_12px_rgba(245,158,11,0.6)]"
-              : "text-stone-300 hover:text-amber-200"
+              ? "text-amber-500 fill-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,0.6)] animate-flame-pulse"
+              : "text-amber-300 fill-transparent hover:text-amber-400"
           }`}
         />
       </button>
