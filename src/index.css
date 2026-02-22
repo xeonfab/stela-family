@@ -94,6 +94,21 @@
     border-color: hsl(30 10% 88% / 0.5);
   }
 
+  @keyframes flame-pulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.4));
+      transform: scale(1);
+    }
+    50% {
+      filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.8));
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-flame-pulse {
+    animation: flame-pulse 3s ease-in-out infinite;
+  }
+
   .text-gradient-gold {
     background: linear-gradient(to bottom right, #D4AF37, #997B1B);
     -webkit-background-clip: text;
