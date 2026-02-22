@@ -6,7 +6,7 @@ import {
   DialogPortal,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Camera, Mic, Video, CalendarDays, X, Plus } from "lucide-react";
+import { Camera, Mic, Video, CalendarDays, X, Sparkles, Upload } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 interface AddMemoryModalProps {
@@ -14,31 +14,35 @@ interface AddMemoryModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
+type MediaType = "photo" | "audio" | "video" | null;
+
 const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  const [attachedMedia, setAttachedMedia] = useState<string[]>([]);
+  const [selectedMedia, setSelectedMedia] = useState<MediaType>(null);
 
   const handleClose = (val: boolean) => {
     if (!val) {
       setText("");
       setTitle("");
       setDate("");
-      setAttachedMedia([]);
+      setSelectedMedia(null);
     }
     onOpenChange(val);
   };
 
-  const simulateAttach = (type: string) => {
-    setAttachedMedia((prev) => [...prev, type]);
-  };
+  const mediaOptions: { type: MediaType; icon: typeof Camera; label: string }[] = [
+    { type: "photo", icon: Camera, label: "Photos" },
+    { type: "audio", icon: Mic, label: "Vocal" },
+    { type: "video", icon: Video, label: "Vidéo" },
+  ];
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogPortal>
         <DialogOverlay className="bg-black/30 backdrop-blur-sm" />
-        <DialogContent className="sm:max-w-xl w-[calc(100%-2rem)] rounded-3xl border-0 shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white/95 backdrop-blur-xl overflow-hidden">
+        <DialogContent className="sm:max-w-xl w-[calc(100%-2rem)] rounded-2xl border-0 shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white overflow-hidden">
           {/* Header */}
           <div className="relative px-8 pt-8 pb-2">
             <button
@@ -54,59 +58,66 @@ const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
 
           {/* Canvas */}
           <div className="px-8 pt-4 pb-6 space-y-5">
-            {/* Auto-expanding textarea */}
-            <div className="relative">
-              <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Une anecdote, un souvenir marquant, ce qui vous manque le plus..."
-                rows={4}
-                className="w-full resize-none bg-stone-50/60 rounded-2xl px-5 py-4 text-[0.94rem] text-stone-700 leading-relaxed placeholder:text-stone-300 focus:outline-none focus:bg-stone-50 transition-colors border-0 ring-0 focus:ring-0 min-h-[120px]"
-                style={{ fieldSizing: "content" } as React.CSSProperties}
-              />
+            {/* AI Assistant trigger */}
+            <div className="flex justify-end">
+              <button className="flex items-center gap-1.5 text-[11px] text-stone-400 hover:text-amber-600 transition-colors font-medium tracking-wide group">
+                <Sparkles size={13} strokeWidth={1.5} className="group-hover:text-amber-500 transition-colors" />
+                Trouver les mots...
+              </button>
             </div>
 
-            {/* Attached media thumbnails */}
-            {attachedMedia.length > 0 && (
-              <div className="flex gap-2.5 flex-wrap">
-                {attachedMedia.map((type, i) => (
-                  <div
-                    key={i}
-                    className="w-16 h-16 rounded-xl bg-stone-100 border border-stone-150 flex items-center justify-center text-stone-400"
+            {/* Auto-expanding textarea */}
+            <textarea
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Une anecdote, un éclat de rire, ce qui vous manque le plus..."
+              rows={4}
+              className="w-full resize-none bg-stone-50/60 rounded-2xl px-5 py-4 text-[0.94rem] text-stone-700 leading-relaxed placeholder:text-stone-300 focus:outline-none focus:bg-stone-50 transition-colors border-0 ring-0 focus:ring-0 min-h-[120px]"
+              style={{ fieldSizing: "content" } as React.CSSProperties}
+            />
+
+            {/* Media type selector — mutually exclusive pills */}
+            <div className="flex items-center gap-2">
+              {mediaOptions.map(({ type, icon: Icon, label }) => {
+                const active = selectedMedia === type;
+                return (
+                  <button
+                    key={type}
+                    onClick={() => setSelectedMedia(active ? null : type)}
+                    className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium transition-all border ${
+                      active
+                        ? "border-amber-400/60 bg-amber-50 text-amber-700"
+                        : "border-stone-150 bg-white text-stone-400 hover:border-stone-200 hover:text-stone-500"
+                    }`}
                   >
-                    {type === "photo" && <Camera size={18} strokeWidth={1.5} />}
-                    {type === "audio" && <Mic size={18} strokeWidth={1.5} />}
-                    {type === "video" && <Video size={18} strokeWidth={1.5} />}
-                  </div>
-                ))}
+                    <Icon size={14} strokeWidth={1.5} />
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Contextual media area */}
+            {selectedMedia === "photo" && (
+              <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-stone-300 bg-stone-50/30">
+                <Upload size={20} strokeWidth={1.5} />
+                <span className="text-xs font-medium">Ajouter jusqu'à 4 photos</span>
               </div>
             )}
-
-            {/* Media attachment bar */}
-            <div className="flex items-center gap-1 py-1">
-              <button
-                onClick={() => simulateAttach("photo")}
-                className="group flex items-center gap-1.5 px-3 py-2 rounded-xl text-stone-400 hover:text-amber-600 hover:bg-amber-50/50 transition-all text-xs font-medium"
-              >
-                <Camera size={16} strokeWidth={1.5} />
-                <span className="hidden sm:inline">Photos</span>
-                <Plus size={12} strokeWidth={2} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-              </button>
-              <button
-                onClick={() => simulateAttach("audio")}
-                className="group flex items-center gap-1.5 px-3 py-2 rounded-xl text-stone-400 hover:text-amber-600 hover:bg-amber-50/50 transition-all text-xs font-medium"
-              >
-                <Mic size={16} strokeWidth={1.5} />
-                <span className="hidden sm:inline">Vocal</span>
-              </button>
-              <button
-                onClick={() => simulateAttach("video")}
-                className="group flex items-center gap-1.5 px-3 py-2 rounded-xl text-stone-400 hover:text-amber-600 hover:bg-amber-50/50 transition-all text-xs font-medium"
-              >
-                <Video size={16} strokeWidth={1.5} />
-                <span className="hidden sm:inline">Vidéo</span>
-              </button>
-            </div>
+            {selectedMedia === "audio" && (
+              <div className="flex flex-col items-center gap-3 py-4">
+                <button className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-md shadow-amber-500/20 hover:scale-105 transition-transform">
+                  <Mic size={22} strokeWidth={1.5} className="text-white" />
+                </button>
+                <span className="text-xs text-stone-400 font-medium">Appuyez pour parler</span>
+              </div>
+            )}
+            {selectedMedia === "video" && (
+              <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-stone-300 bg-stone-50/30">
+                <Video size={20} strokeWidth={1.5} />
+                <span className="text-xs font-medium">Ajouter une vidéo</span>
+              </div>
+            )}
 
             {/* Separator */}
             <div className="h-px bg-stone-100" />
@@ -116,16 +127,16 @@ const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
               <Input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Titre du souvenir (optionnel) — ex: L'été à Dinard..."
-                className="border-0 bg-stone-50/50 rounded-xl text-sm text-stone-600 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:bg-stone-50 h-11 px-4"
+                placeholder="Titre (ex: L'été 1998...)"
+                className="border-0 border-b border-stone-100 rounded-none bg-transparent text-sm text-stone-600 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-stone-300 h-11 px-1"
               />
               <div className="relative">
-                <CalendarDays size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-300" />
+                <CalendarDays size={15} className="absolute left-1 top-1/2 -translate-y-1/2 text-stone-300" />
                 <Input
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  placeholder="Date ou année du souvenir (optionnel)"
-                  className="border-0 bg-stone-50/50 rounded-xl text-sm text-stone-600 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:bg-stone-50 h-11 pl-10 pr-4"
+                  placeholder="Date de ce souvenir"
+                  className="border-0 border-b border-stone-100 rounded-none bg-transparent text-sm text-stone-600 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-stone-300 h-11 pl-7 pr-1"
                 />
               </div>
             </div>
