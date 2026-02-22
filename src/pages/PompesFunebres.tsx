@@ -123,7 +123,7 @@ const ValueProposition = () => {
                 <item.icon size={26} className="text-primary" />
               </div>
               <h3 className="font-serif-display text-xl font-semibold text-foreground">{item.title}</h3>
-              <p className="text-muted-foreground leading-relaxed max-w-sm mx-auto">{item.text}</p>
+              <p className="text-[#2C2C2C] leading-relaxed max-w-sm mx-auto">{item.text}</p>
             </div>
           ))}
         </div>
@@ -164,49 +164,37 @@ const CeremonyKitSection = () => {
 const Partnership = () => {
   const { ref, isVisible } = useScrollReveal();
 
-  const cards = [
-    {
-      title: "L'Inclusion Premium",
-      badge: "Recommandé",
-      text: "Vous achetez nos mémoriaux à un tarif de gros exclusif (ex: 40€). Vous l'incluez d'office dans vos devis 'Prestige' pour augmenter votre marge et la satisfaction famille.",
-    },
-    {
-      title: "L'Apporteur d'Affaires",
-      badge: null,
-      text: "Vous présentez le service via notre plaquette. Si la famille l'active, nous vous reversons une commission directe. Zéro avance de frais.",
-    },
-  ];
+  const card = {
+    title: "L'Inclusion Premium",
+    badge: "Recommandé",
+    text: "Vous achetez nos mémoriaux à un tarif de gros exclusif (ex: 40€). Vous l'incluez d'office dans vos devis 'Prestige' pour augmenter votre marge et la satisfaction famille.",
+  };
 
   return (
     <section ref={ref} className="py-28 bg-[hsl(30_6%_12%)] text-[hsl(0_0%_96%)]">
       <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
           <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
-            Un partenariat flexible, adapté à votre comptabilité.
+            La marge silencieuse&nbsp;: un modèle pensé pour votre sérénité.
           </h2>
           <p className="text-[hsl(30_6%_70%)] text-lg leading-relaxed">
-            Que vous souhaitiez créer un nouveau relai de croissance ou simplement offrir le plus beau des cadeaux, nous avons le modèle qu'il vous faut.
+            Augmentez la valeur de vos devis et modernisez votre image, sans modifier votre métier.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          {cards.map((card, i) => (
-            <div
-              key={i}
-              className={`rounded-2xl border border-primary/30 bg-[hsl(30_6%_16%)] p-8 space-y-3 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-              style={{ transitionDelay: `${(i + 1) * 200}ms` }}
-            >
-              <div className="flex items-center gap-3">
-                <h3 className="font-serif-display text-xl font-semibold">{card.title}</h3>
-                {card.badge && (
-                  <span className="text-xs font-sans-body font-medium bg-primary/20 text-primary px-2.5 py-0.5 rounded-full">
-                    {card.badge}
-                  </span>
-                )}
-              </div>
-              <p className="text-[hsl(30_6%_70%)] leading-relaxed">{card.text}</p>
+        <div className="max-w-lg mx-auto">
+          <div
+            className={`rounded-2xl border border-primary/30 bg-[hsl(30_6%_16%)] p-8 space-y-3 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+            style={{ transitionDelay: "200ms" }}
+          >
+            <div className="flex items-center gap-3">
+              <h3 className="font-serif-display text-xl font-semibold">{card.title}</h3>
+              <span className="text-xs font-sans-body font-medium bg-primary/20 text-primary px-2.5 py-0.5 rounded-full">
+                {card.badge}
+              </span>
             </div>
-          ))}
+            <p className="text-[hsl(30_6%_70%)] leading-relaxed">{card.text}</p>
+          </div>
         </div>
       </div>
     </section>
