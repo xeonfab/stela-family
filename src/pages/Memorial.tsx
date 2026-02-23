@@ -35,7 +35,7 @@ const memories = [
   },
   {
     type: "video" as const,
-    image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&h=400&fit=crop",
+    image: jcTrumpet,
     title: "Noël 2018 — Son solo de saxo",
     author: "Famille Dubois",
     hearts: 41,
@@ -69,14 +69,14 @@ const memories = [
   },
   {
     type: "photo" as const,
-    image: "https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=600&h=400&fit=crop",
+    image: jcGardening,
     text: "La première rose de la saison a éclos aujourd'hui. Je sais que tu veilles sur elle.",
     author: "Marie",
     hearts: 89,
   },
   {
     type: "video" as const,
-    image: "https://images.unsplash.com/photo-1529543544282-ea69407b3656?w=600&h=400&fit=crop",
+    image: couplePhoto,
     title: "Anniversaire surprise 2022",
     author: "Famille Dubois",
     hearts: 56,
