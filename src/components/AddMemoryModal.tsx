@@ -15,12 +15,20 @@ interface AddMemoryModalProps {
 }
 
 type MediaType = "photo" | "audio" | "video" | null;
+type ModalView = "canvas" | "maieutic" | "loading";
+
+const DUMMY_AI_TEXT =
+  "Je revois encore ses lunettes glissant sur le bout de son nez, dans la lumière de 6h du matin, une tasse de café noir à la main. C'est dans ces instants calmes qu'il aimait nous rappeler qu'on 'a le temps de se presser'. Ce temps, aujourd'hui, est devenu notre plus précieux héritage.";
 
 const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [selectedMedia, setSelectedMedia] = useState<MediaType>(null);
+  const [view, setView] = useState<ModalView>("canvas");
+  const [maieutic1, setMaieutic1] = useState("");
+  const [maieutic2, setMaieutic2] = useState("");
+  const [maieutic3, setMaieutic3] = useState("");
 
   const handleClose = (val: boolean) => {
     if (!val) {
@@ -28,8 +36,20 @@ const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
       setTitle("");
       setDate("");
       setSelectedMedia(null);
+      setView("canvas");
+      setMaieutic1("");
+      setMaieutic2("");
+      setMaieutic3("");
     }
     onOpenChange(val);
+  };
+
+  const handleTisser = () => {
+    setView("loading");
+    setTimeout(() => {
+      setText(DUMMY_AI_TEXT);
+      setView("canvas");
+    }, 2500);
   };
 
   const mediaOptions: { type: MediaType; icon: typeof Camera; label: string }[] = [
@@ -58,97 +78,157 @@ const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
 
           {/* Canvas */}
           <div className="px-8 pt-4 pb-6 space-y-5">
-            {/* AI Assistant trigger */}
-            <div className="flex justify-end">
-              <button className="flex items-center gap-1.5 text-[11px] text-stone-400 hover:text-amber-600 transition-colors font-medium tracking-wide group">
-                <Sparkles size={13} strokeWidth={1.5} className="group-hover:text-amber-500 transition-colors" />
-                Trouver les mots...
-              </button>
-            </div>
 
-            {/* Auto-expanding textarea */}
-            <textarea
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder="Une anecdote, un éclat de rire, ce qui vous manque le plus..."
-              rows={4}
-              className="w-full resize-none bg-stone-50/60 rounded-2xl px-5 py-4 text-[0.94rem] text-stone-700 leading-relaxed placeholder:text-stone-300 focus:outline-none focus:bg-stone-50 transition-colors border-0 ring-0 focus:ring-0 min-h-[120px]"
-              style={{ fieldSizing: "content" } as React.CSSProperties}
-            />
+            {/* === LOADING VIEW === */}
+            {view === "loading" && (
+              <div className="flex flex-col items-center justify-center py-16 gap-4 animate-in fade-in duration-300">
+                <Sparkles size={28} strokeWidth={1.5} className="text-[#D4AF37] animate-pulse" />
+                <p className="text-sm text-stone-400 font-serif italic tracking-wide">
+                  La plume rassemble vos souvenirs...
+                </p>
+              </div>
+            )}
 
-            {/* Media type selector — mutually exclusive pills */}
-            <div className="flex items-center gap-2">
-              {mediaOptions.map(({ type, icon: Icon, label }) => {
-                const active = selectedMedia === type;
-                return (
+            {/* === MAIEUTIC FORM VIEW === */}
+            {view === "maieutic" && (
+              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300 space-y-5">
+                <div className="rounded-xl border border-[#D4AF37]/20 bg-amber-50/30 p-5 space-y-4">
+                  {[
+                    { n: "1", label: "Le détail inoubliable", placeholder: "Un objet, un vêtement, une manie...", value: maieutic1, set: setMaieutic1 },
+                    { n: "2", label: "L'empreinte sensorielle", placeholder: "Un lieu, une odeur, une musique...", value: maieutic2, set: setMaieutic2 },
+                    { n: "3", label: "Son plus bel héritage", placeholder: "Une phrase qu'il répétait souvent...", value: maieutic3, set: setMaieutic3 },
+                  ].map((f) => (
+                    <div key={f.n} className="space-y-1.5">
+                      <label className="text-xs font-serif text-stone-500 tracking-wide">
+                        {f.n}. {f.label}
+                      </label>
+                      <Input
+                        value={f.value}
+                        onChange={(e) => f.set(e.target.value)}
+                        placeholder={f.placeholder}
+                        className="border-0 border-b border-stone-200 rounded-none bg-transparent text-sm text-stone-700 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-[#D4AF37]/50 h-10 px-1"
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex gap-3">
                   <button
-                    key={type}
-                    onClick={() => setSelectedMedia(active ? null : type)}
-                    className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium transition-all border ${
-                      active
-                        ? "border-amber-400/60 bg-amber-50 text-amber-700"
-                        : "border-stone-150 bg-white text-stone-400 hover:border-stone-200 hover:text-stone-500"
-                    }`}
+                    onClick={() => setView("canvas")}
+                    className="px-4 py-2.5 rounded-xl text-xs font-medium text-stone-400 hover:text-stone-600 transition-colors"
                   >
-                    <Icon size={14} strokeWidth={1.5} />
-                    {label}
+                    Retour
                   </button>
-                );
-              })}
-            </div>
-
-            {/* Contextual media area */}
-            {selectedMedia === "photo" && (
-              <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-stone-300 bg-stone-50/30">
-                <Upload size={20} strokeWidth={1.5} />
-                <span className="text-xs font-medium">Ajouter jusqu'à 4 photos</span>
-              </div>
-            )}
-            {selectedMedia === "audio" && (
-              <div className="flex flex-col items-center gap-3 py-4">
-                <button className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-md shadow-amber-500/20 hover:scale-105 transition-transform">
-                  <Mic size={22} strokeWidth={1.5} className="text-white" />
-                </button>
-                <span className="text-xs text-stone-400 font-medium">Appuyez pour parler</span>
-              </div>
-            )}
-            {selectedMedia === "video" && (
-              <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-stone-300 bg-stone-50/30">
-                <Video size={20} strokeWidth={1.5} />
-                <span className="text-xs font-medium">Ajouter une vidéo</span>
+                  <button
+                    onClick={handleTisser}
+                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-[#D4AF37]/40 text-[#D4AF37] font-medium text-sm hover:bg-amber-50 transition-colors"
+                  >
+                    <Sparkles size={14} strokeWidth={1.5} />
+                    Tisser ce souvenir
+                  </button>
+                </div>
               </div>
             )}
 
-            {/* Separator */}
-            <div className="h-px bg-stone-100" />
+            {/* === DEFAULT CANVAS VIEW === */}
+            {view === "canvas" && (
+              <div className="animate-in fade-in duration-300 space-y-5">
+                {/* AI Assistant trigger */}
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => setView("maieutic")}
+                    className="flex items-center gap-1.5 text-[11px] text-stone-400 hover:text-amber-600 transition-colors font-medium tracking-wide group"
+                  >
+                    <Sparkles size={13} strokeWidth={1.5} className="group-hover:text-amber-500 transition-colors" />
+                    Trouver les mots...
+                  </button>
+                </div>
 
-            {/* Timeline metadata fields */}
-            <div className="space-y-3">
-              <Input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Titre (ex: L'été 1998...)"
-                className="border-0 border-b border-stone-100 rounded-none bg-transparent text-sm text-stone-600 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-stone-300 h-11 px-1"
-              />
-              <div className="relative">
-                <CalendarDays size={15} className="absolute left-1 top-1/2 -translate-y-1/2 text-stone-300" />
-                <Input
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  placeholder="Date de ce souvenir"
-                  className="border-0 border-b border-stone-100 rounded-none bg-transparent text-sm text-stone-600 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-stone-300 h-11 pl-7 pr-1"
+                {/* Auto-expanding textarea */}
+                <textarea
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                  placeholder="Une anecdote, un éclat de rire, ce qui vous manque le plus..."
+                  rows={4}
+                  className="w-full resize-none bg-stone-50/60 rounded-2xl px-5 py-4 text-[0.94rem] text-stone-700 leading-relaxed placeholder:text-stone-300 focus:outline-none focus:bg-stone-50 transition-colors border-0 ring-0 focus:ring-0 min-h-[120px]"
+                  style={{ fieldSizing: "content" } as React.CSSProperties}
                 />
+
+                {/* Media type selector — mutually exclusive pills */}
+                <div className="flex items-center gap-2">
+                  {mediaOptions.map(({ type, icon: Icon, label }) => {
+                    const active = selectedMedia === type;
+                    return (
+                      <button
+                        key={type}
+                        onClick={() => setSelectedMedia(active ? null : type)}
+                        className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium transition-all border ${
+                          active
+                            ? "border-amber-400/60 bg-amber-50 text-amber-700"
+                            : "border-stone-150 bg-white text-stone-400 hover:border-stone-200 hover:text-stone-500"
+                        }`}
+                      >
+                        <Icon size={14} strokeWidth={1.5} />
+                        {label}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Contextual media area */}
+                {selectedMedia === "photo" && (
+                  <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-stone-300 bg-stone-50/30">
+                    <Upload size={20} strokeWidth={1.5} />
+                    <span className="text-xs font-medium">Ajouter jusqu'à 4 photos</span>
+                  </div>
+                )}
+                {selectedMedia === "audio" && (
+                  <div className="flex flex-col items-center gap-3 py-4">
+                    <button className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-md shadow-amber-500/20 hover:scale-105 transition-transform">
+                      <Mic size={22} strokeWidth={1.5} className="text-white" />
+                    </button>
+                    <span className="text-xs text-stone-400 font-medium">Appuyez pour parler</span>
+                  </div>
+                )}
+                {selectedMedia === "video" && (
+                  <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-stone-300 bg-stone-50/30">
+                    <Video size={20} strokeWidth={1.5} />
+                    <span className="text-xs font-medium">Ajouter une vidéo</span>
+                  </div>
+                )}
+
+                {/* Separator */}
+                <div className="h-px bg-stone-100" />
+
+                {/* Timeline metadata fields */}
+                <div className="space-y-3">
+                  <Input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Titre (ex: L'été 1998...)"
+                    className="border-0 border-b border-stone-100 rounded-none bg-transparent text-sm text-stone-600 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-stone-300 h-11 px-1"
+                  />
+                  <div className="relative">
+                    <CalendarDays size={15} className="absolute left-1 top-1/2 -translate-y-1/2 text-stone-300" />
+                    <Input
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      placeholder="Date de ce souvenir"
+                      className="border-0 border-b border-stone-100 rounded-none bg-transparent text-sm text-stone-600 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-stone-300 h-11 pl-7 pr-1"
+                    />
+                  </div>
+                </div>
+
+                {/* Submit */}
+                <button className="w-full py-3.5 rounded-xl bg-[#D4AF37] text-white font-medium text-sm hover:bg-[#C4A030] transition-colors shadow-md shadow-[#D4AF37]/20 tracking-wide">
+                  Déposer dans le sanctuaire
+                </button>
+
+                <p className="text-[11px] text-stone-300 text-center leading-relaxed">
+                  Votre souvenir sera soumis à l'approbation de la famille.
+                </p>
               </div>
-            </div>
-
-            {/* Submit */}
-            <button className="w-full py-3.5 rounded-xl bg-[#D4AF37] text-white font-medium text-sm hover:bg-[#C4A030] transition-colors shadow-md shadow-[#D4AF37]/20 tracking-wide">
-              Déposer dans le sanctuaire
-            </button>
-
-            <p className="text-[11px] text-stone-300 text-center leading-relaxed">
-              Votre souvenir sera soumis à l'approbation de la famille.
-            </p>
+            )}
           </div>
         </DialogContent>
       </DialogPortal>
