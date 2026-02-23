@@ -8,6 +8,7 @@ import Memorial from "./pages/Memorial";
 import Officiants from "./pages/Officiants";
 import PompesFunebres from "./pages/PompesFunebres";
 import Acces from "./pages/Acces";
+import MemorialAdmin from "./pages/MemorialAdmin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/officiants" element={<Officiants />} />
           <Route path="/pompe-funebre" element={<PompesFunebres />} />
           <Route path="/acces" element={<Acces />} />
+          <Route path="/memorial-admin" element={<MemorialAdmin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
