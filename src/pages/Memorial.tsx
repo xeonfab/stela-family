@@ -214,14 +214,14 @@ const FlameRitual = () => {
         <span className={`text-sm font-medium transition-all duration-700 ${
           isLit ? "text-amber-800" : "text-stone-600"
         }`}>
-          {isLit ? `Vous et ${litCount} proches veillez` : "Allumer la flamme"}
+          {isLit ? `Vous veillez avec ${litCount} proches` : "Allumer la flamme"}
         </span>
       </button>
       <p className={`text-xs transition-all duration-700 text-center max-w-[280px] ${
         isLit ? "italic text-stone-400" : "text-stone-400"
       }`}>
         {isLit
-          ? "Votre flamme brillera pendant 7 jours. Revenez l'entretenir."
+          ? "Cette flamme brillera 7 jours. Revenez la raviver."
           : `${litCount} proches veillent sur ce sanctuaire.`}
       </p>
     </div>
