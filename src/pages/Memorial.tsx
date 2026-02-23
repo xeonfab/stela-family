@@ -4,15 +4,18 @@ import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft,
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
-import portraitImg from "@/assets/jean-claude-portrait.jpg";
-import couplePhoto from "@/assets/couple-70s.jpg";
+import portraitImg from "@/assets/jean-claude-portrait-new.jpg";
+import couplePhoto from "@/assets/jc-couple-70s.jpg";
+import jcGardening from "@/assets/jc-gardening.jpg";
+import jcTrumpet from "@/assets/jc-trumpet.jpg";
+import jcHiking from "@/assets/jc-hiking.jpg";
 import AddMemoryModal from "@/components/AddMemoryModal";
 
 /* ─── Memory Card Data ─── */
 const memories = [
   {
     type: "photo" as const,
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600&h=400&fit=crop",
+    image: jcGardening,
     text: "Chaque rose plantée ici porte ton souvenir. Tu me manques au quotidien.",
     author: "Marie",
     hearts: 34,
@@ -46,7 +49,7 @@ const memories = [
   },
   {
     type: "photo" as const,
-    image: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=600&h=400&fit=crop",
+    image: jcTrumpet,
     text: "Ton premier concert au caveau. Inoubliable.",
     author: "Marc",
     hearts: 28,
@@ -86,7 +89,7 @@ const memories = [
   },
   {
     type: "photo" as const,
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop",
+    image: jcHiking,
     text: "Notre dernière randonnée au Puy de Dôme.",
     author: "Michel",
     hearts: 37,

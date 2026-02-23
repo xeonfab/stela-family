@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Star, Play, Heart, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
-import jeanClaudePortrait from "@/assets/jean-claude-portrait.jpg";
+import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
+import jcGardening from "@/assets/jc-gardening.jpg";
 
 const AudioWaveform = () =>
 <svg viewBox="0 0 60 24" className="w-full h-5" preserveAspectRatio="none">
@@ -74,8 +75,8 @@ const HeroSection = () =>
           style={{ transform: "rotateY(-3deg) rotateX(2deg)" }}>
 
             <img
-            src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=300&h=200&fit=crop"
-            alt="Jardin de roses"
+            src={jcGardening}
+            alt="Jean-Claude dans son jardin de roses"
             className="w-full h-20 object-cover"
             loading="lazy" />
 
