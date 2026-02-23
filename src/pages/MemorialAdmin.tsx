@@ -293,7 +293,7 @@ const ClampedText = ({ text, onReadMore }: { text: string; onReadMore: () => voi
 const EditableField = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
   <div className={`relative group/edit inline-block ${className}`}>
     {children}
-    <div className="absolute -right-7 top-1/2 -translate-y-1/2 opacity-0 group-hover/edit:opacity-100 transition-opacity duration-300">
+    <div className="absolute -right-7 top-1/2 -translate-y-1/2 opacity-70 group-hover/edit:opacity-100 transition-opacity duration-300">
       <div className="w-6 h-6 rounded-full bg-white shadow-sm border border-stone-200 flex items-center justify-center">
         <Pencil size={11} className="text-[#D4AF37]" />
       </div>
@@ -338,7 +338,7 @@ const PendingCardWrapper = ({ children, onApprove, onKeepPrivate }: { children: 
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); handleAction(onKeepPrivate); }}
-              className="flex items-center gap-1.5 px-4 py-2 text-xs text-stone-400 hover:text-stone-600 transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2 text-xs text-stone-400 hover:text-stone-600 transition-colors border border-stone-200 rounded-full bg-transparent"
             >
               <Lock size={12} />
               Garder intime
@@ -512,7 +512,7 @@ const MemorialAdmin = () => {
   return (
     <div className="min-h-screen bg-[#FAF9F6]">
       {/* ─── Subtle grain overlay ─── */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[60]">
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[1]">
         <svg width="100%" height="100%">
           <filter id="grain-admin">
             <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" />
@@ -631,16 +631,7 @@ const MemorialAdmin = () => {
         </TabsContent>
       </Tabs>
 
-      {/* ─── Floating CTA ─── */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
-        <button
-          onClick={() => setMemoryModalOpen(true)}
-          className="flex items-center gap-2.5 px-8 py-4 bg-amber-600 text-white rounded-full shadow-[0_8px_30px_-4px_rgba(217,119,6,0.5)] hover:bg-amber-700 hover:shadow-[0_12px_40px_-4px_rgba(217,119,6,0.6)] transition-all duration-300 hover:scale-105 font-medium text-sm"
-        >
-          <Feather size={16} />
-          Déposer un souvenir
-        </button>
-      </div>
+      {/* FAB hidden on admin — moderation is the priority */}
 
       <MemoryDetailModal memory={selectedMemory} open={memoryDetailOpen} onOpenChange={setMemoryDetailOpen} />
       <AddMemoryModal open={memoryModalOpen} onOpenChange={setMemoryModalOpen} />
