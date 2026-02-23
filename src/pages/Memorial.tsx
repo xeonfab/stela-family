@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, Flame } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, Flame, X } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/jean-claude-portrait.jpg";
@@ -215,6 +216,146 @@ const FlameRitual = () => {
   );
 };
 
+/* ─── Timeline "Theater Mode" Detail ─── */
+const TimelineDetailModal = ({ event, open, onOpenChange }: { event: TimelineEntry | null; open: boolean; onOpenChange: (v: boolean) => void }) => {
+  if (!event) return null;
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-lg bg-[#FAF9F6] border-stone-200 rounded-2xl p-0 overflow-hidden">
+        <DialogTitle className="sr-only">{event.title}</DialogTitle>
+
+        {event.type === "photo" && (
+          <img src={event.photo} alt={event.caption} className="w-full h-56 object-cover" />
+        )}
+
+        <div className="p-8 space-y-4">
+          <span className="text-xs tracking-[0.2em] uppercase text-amber-600 font-medium">{event.year}</span>
+          <h3 className="font-serif text-2xl font-semibold text-stone-900">{event.title}</h3>
+          {event.desc && <p className="text-stone-600 leading-relaxed">{event.desc}</p>}
+
+          {event.type === "photo" && (
+            <p className="text-xs text-stone-400 italic">{event.caption}</p>
+          )}
+
+          {event.type === "audio" && (
+            <div className="space-y-3">
+              <p className="text-xs text-stone-400">{event.attribution}</p>
+              <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-stone-100">
+                <button className="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center shrink-0 hover:bg-amber-700 transition-colors">
+                  <Play size={14} className="text-white ml-0.5" fill="currentColor" />
+                </button>
+                <AudioWaveform />
+                <span className="text-xs text-stone-400 font-mono shrink-0">{event.current} / {event.duration}</span>
+              </div>
+              <p className="text-stone-600 italic leading-relaxed">{event.quote}</p>
+            </div>
+          )}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+/* ─── Truncated Text with "Lire la suite" ─── */
+const ClampedText = ({ text, onReadMore }: { text: string; onReadMore: () => void }) => {
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const [isClamped, setIsClamped] = useState(false);
+
+  useEffect(() => {
+    const el = textRef.current;
+    if (el) setIsClamped(el.scrollHeight > el.clientHeight);
+  }, [text]);
+
+  return (
+    <>
+      <p ref={textRef} className="text-sm text-stone-500 leading-relaxed line-clamp-3">{text}</p>
+      {isClamped && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onReadMore(); }}
+          className="text-xs italic text-amber-600 hover:text-amber-700 transition-colors mt-1 font-serif"
+        >
+          Lire la suite
+        </button>
+      )}
+    </>
+  );
+};
+
+/* ─── Timeline Tab ─── */
+const TimelineTab = () => {
+  const [selectedEvent, setSelectedEvent] = useState<TimelineEntry | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openDetail = (ev: TimelineEntry) => {
+    setSelectedEvent(ev);
+    setModalOpen(true);
+  };
+
+  return (
+    <div className="max-w-2xl mx-auto px-6 py-12">
+      <div className="relative">
+        {/* Vertical line */}
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-stone-200 md:-translate-x-px" />
+
+        {timeline.map((event, i) => (
+          <div
+            key={i}
+            className={`relative flex items-start mb-4 last:mb-0 ${
+              i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+            }`}
+          >
+            {/* Dot / Icon */}
+            {event.type === "audio" ? (
+              <div className="absolute left-4 md:left-1/2 w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center -translate-x-3 mt-0.5 z-10">
+                <MessageCircle size={13} className="text-amber-600" />
+              </div>
+            ) : (
+              <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-amber-600 border-[3px] border-[#FAF9F6] shadow-sm -translate-x-1.5 mt-1.5 z-10" />
+            )}
+
+            {/* Content */}
+            <div
+              onClick={() => openDetail(event)}
+              className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] cursor-pointer group ${
+                i % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8 md:text-left"
+              } ${event.type === "audio" ? "bg-amber-50/50 rounded-2xl p-4" : ""}`}
+            >
+              <span className="text-xs tracking-[0.2em] uppercase text-amber-600 font-medium">{event.year}</span>
+              <h3 className="font-serif text-lg font-semibold text-stone-900 mt-0.5 mb-1 group-hover:text-amber-700 transition-colors">{event.title}</h3>
+              {event.desc && <ClampedText text={event.desc} onReadMore={() => openDetail(event)} />}
+
+              {/* Photo thumbnail */}
+              {event.type === "photo" && (
+                <div className="mt-3">
+                  <img src={event.photo} alt={event.caption} className="rounded-xl shadow-md w-full object-cover max-h-44" loading="lazy" />
+                  <p className="text-xs text-stone-400 italic mt-1.5">{event.caption}</p>
+                </div>
+              )}
+
+              {/* Audio preview */}
+              {event.type === "audio" && (
+                <div className="mt-2 space-y-2">
+                  <p className="text-xs text-stone-400">{event.attribution}</p>
+                  <div className={`flex items-center gap-3 bg-white rounded-xl px-3 py-2.5 shadow-sm border border-stone-100 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
+                    <button className="w-7 h-7 rounded-full bg-amber-600 flex items-center justify-center shrink-0 hover:bg-amber-700 transition-colors" onClick={(e) => e.stopPropagation()}>
+                      <Play size={12} className="text-white ml-0.5" fill="currentColor" />
+                    </button>
+                    <AudioWaveform />
+                    <span className="text-xs text-stone-400 font-mono shrink-0">{event.current} / {event.duration}</span>
+                  </div>
+                  <p className="text-sm text-stone-600 italic leading-relaxed line-clamp-3">{event.quote}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <TimelineDetailModal event={selectedEvent} open={modalOpen} onOpenChange={setModalOpen} />
+    </div>
+  );
+};
+
 const Memorial = () => {
   const [activeTab, setActiveTab] = useState("souvenirs");
   const [memoryModalOpen, setMemoryModalOpen] = useState(false);
@@ -415,71 +556,7 @@ const Memorial = () => {
 
         {/* ─── TAB 3: Timeline ─── */}
         <TabsContent value="timeline" className="mt-0">
-          <div className="max-w-2xl mx-auto px-6 py-16">
-            <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-stone-200 md:-translate-x-px" />
-
-              {timeline.map((event, i) => (
-                <div
-                  key={i}
-                  className={`relative flex items-start mb-8 last:mb-0 ${
-                    i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
-                >
-                  {/* Dot / Icon */}
-                  {event.type === "audio" ? (
-                    <div className="absolute left-4 md:left-1/2 w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center -translate-x-3 mt-0.5 z-10">
-                      <MessageCircle size={13} className="text-amber-600" />
-                    </div>
-                  ) : (
-                    <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-amber-600 border-[3px] border-[#FAF9F6] shadow-sm -translate-x-1.5 mt-1.5 z-10" />
-                  )}
-
-                  {/* Content */}
-                  <div
-                    className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${
-                      i % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8 md:text-left"
-                    } ${event.type === "audio" ? "bg-amber-50/50 rounded-2xl p-5" : ""}`}
-                  >
-                    <span className="text-xs tracking-[0.2em] uppercase text-amber-600 font-medium">{event.year}</span>
-                    <h3 className="font-serif text-xl font-semibold text-stone-900 mt-1 mb-2">{event.title}</h3>
-                    {event.desc && <p className="text-sm text-stone-500 leading-relaxed">{event.desc}</p>}
-
-                    {/* Photo attachment */}
-                    {event.type === "photo" && (
-                      <div className="mt-4">
-                        <img
-                          src={event.photo}
-                          alt={event.caption}
-                          className="rounded-xl shadow-md w-full object-cover max-h-56"
-                          loading="lazy"
-                        />
-                        <p className="text-xs text-stone-400 italic mt-2">{event.caption}</p>
-                      </div>
-                    )}
-
-                    {/* Audio anecdote */}
-                    {event.type === "audio" && (
-                      <div className="mt-3 space-y-3">
-                        <p className="text-xs text-stone-400">{event.attribution}</p>
-                        <div className={`flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-stone-100 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                          <button className="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center shrink-0 hover:bg-amber-700 transition-colors">
-                            <Play size={14} className="text-white ml-0.5" fill="currentColor" />
-                          </button>
-                          <AudioWaveform />
-                          <span className="text-xs text-stone-400 font-mono shrink-0">
-                            {event.current} / {event.duration}
-                          </span>
-                        </div>
-                        <p className="text-sm text-stone-600 italic leading-relaxed">{event.quote}</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <TimelineTab />
         </TabsContent>
       </Tabs>
 
