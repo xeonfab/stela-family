@@ -12,6 +12,15 @@ import jcHiking from "@/assets/jc-hiking.jpg";
 import AddMemoryModal from "@/components/AddMemoryModal";
 
 /* ─── Memory Card Data ─── */
+type Memory = {
+  type: "photo" | "audio" | "quote" | "video";
+  image?: string;
+  text?: string;
+  title?: string;
+  duration?: string;
+  author: string;
+  hearts: number;
+};
 const memories = [
   {
     type: "photo" as const,
@@ -259,7 +268,68 @@ const TimelineDetailModal = ({ event, open, onOpenChange }: { event: TimelineEnt
   );
 };
 
-/* ─── Truncated Text with "Lire la suite" ─── */
+/* ─── Memory Wall "Theater Mode" Detail ─── */
+const MemoryDetailModal = ({ memory, open, onOpenChange }: { memory: Memory | null; open: boolean; onOpenChange: (v: boolean) => void }) => {
+  if (!memory) return null;
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-lg bg-[#FAF9F6] border-stone-200 rounded-2xl p-0 overflow-hidden">
+        <DialogTitle className="sr-only">{memory.title || memory.author}</DialogTitle>
+
+        {(memory.type === "photo" || memory.type === "video") && memory.image && (
+          <div className="relative">
+            <img src={memory.image} alt={memory.title || memory.text || ""} className="w-full max-h-72 object-cover" />
+            {memory.type === "video" && (
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-lg">
+                  <Play size={26} className="text-stone-800 ml-0.5" />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="p-8 space-y-4">
+          {memory.type === "quote" && (
+            <Quote size={28} className="mx-auto text-amber-600/30" />
+          )}
+
+          {memory.title && (
+            <h3 className="font-serif text-xl font-semibold text-stone-900">{memory.title}</h3>
+          )}
+
+          {memory.text && (
+            <p className={`text-stone-600 leading-relaxed ${memory.type === "quote" ? "font-serif text-lg italic text-center" : ""}`}>
+              {memory.text}
+            </p>
+          )}
+
+          {memory.type === "audio" && (
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-stone-100">
+                <button className="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center shrink-0 hover:bg-amber-700 transition-colors">
+                  <Play size={16} className="text-white ml-0.5" fill="currentColor" />
+                </button>
+                <AudioWaveform />
+                <span className="text-xs text-stone-400 font-mono shrink-0">{memory.duration}</span>
+              </div>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between pt-2 border-t border-stone-100">
+            <span className="text-sm text-stone-400">— {memory.author}</span>
+            <div className="flex items-center gap-1.5 text-amber-600">
+              <Heart size={16} className="fill-amber-600" />
+              <span className="text-sm font-medium">{memory.hearts}</span>
+            </div>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+
 const ClampedText = ({ text, onReadMore }: { text: string; onReadMore: () => void }) => {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [isClamped, setIsClamped] = useState(false);
@@ -362,6 +432,13 @@ const TimelineTab = () => {
 const Memorial = () => {
   const [activeTab, setActiveTab] = useState("souvenirs");
   const [memoryModalOpen, setMemoryModalOpen] = useState(false);
+  const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
+  const [memoryDetailOpen, setMemoryDetailOpen] = useState(false);
+
+  const openMemoryDetail = (memory: Memory) => {
+    setSelectedMemory(memory);
+    setMemoryDetailOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-[#FAF9F6]">
@@ -439,7 +516,7 @@ const Memorial = () => {
               {memories.map((memory, idx) => {
                 if (memory.type === "photo") {
                   return (
-                    <div key={idx} className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100">
+                    <div key={idx} onClick={() => openMemoryDetail(memory)} className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 cursor-pointer group hover:shadow-md transition-shadow">
                       <img
                         src={memory.image}
                         alt={memory.text}
@@ -447,7 +524,7 @@ const Memorial = () => {
                         loading="lazy"
                       />
                       <div className="p-5 space-y-3">
-                        <p className="text-stone-600 text-sm leading-relaxed">{memory.text}</p>
+                        <p className="text-stone-600 text-sm leading-relaxed line-clamp-3">{memory.text}</p>
                         <div className="flex items-center justify-between">
                           <span className="text-xs text-stone-400">— {memory.author}</span>
                           <div className="flex items-center gap-1 text-amber-600">
@@ -462,9 +539,9 @@ const Memorial = () => {
 
                 if (memory.type === "audio") {
                   return (
-                    <div key={idx} className="break-inside-avoid bg-amber-50/50 rounded-2xl p-5 shadow-sm border border-amber-100/50 space-y-4">
+                    <div key={idx} onClick={() => openMemoryDetail(memory)} className="break-inside-avoid bg-amber-50/50 rounded-2xl p-5 shadow-sm border border-amber-100/50 space-y-4 cursor-pointer group hover:shadow-md transition-shadow">
                       <div className="flex items-center gap-3">
-                        <button className="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center shadow-md hover:bg-amber-700 transition-colors">
+                        <button className="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center shadow-md hover:bg-amber-700 transition-colors" onClick={(e) => e.stopPropagation()}>
                           <Play size={16} className="ml-0.5" />
                         </button>
                         <div>
@@ -486,9 +563,9 @@ const Memorial = () => {
 
                 if (memory.type === "quote") {
                   return (
-                    <div key={idx} className="break-inside-avoid bg-white rounded-2xl p-8 shadow-sm border border-stone-100 text-center">
+                    <div key={idx} onClick={() => openMemoryDetail(memory)} className="break-inside-avoid bg-white rounded-2xl p-8 shadow-sm border border-stone-100 text-center cursor-pointer group hover:shadow-md transition-shadow">
                       <Quote size={24} className="mx-auto text-amber-600/30 mb-4" />
-                      <p className="font-serif text-lg text-stone-800 leading-relaxed italic mb-4">{memory.text}</p>
+                      <p className="font-serif text-lg text-stone-800 leading-relaxed italic mb-4 line-clamp-3">{memory.text}</p>
                       <div className="flex items-center justify-center gap-3">
                         <span className="text-xs text-stone-400">— {memory.author}</span>
                         <div className="flex items-center gap-1 text-amber-600">
@@ -502,7 +579,7 @@ const Memorial = () => {
 
                 if (memory.type === "video") {
                   return (
-                    <div key={idx} className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100">
+                    <div key={idx} onClick={() => openMemoryDetail(memory)} className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 cursor-pointer group hover:shadow-md transition-shadow">
                       <div className="relative">
                         <img src={memory.image} alt={memory.title} className="w-full h-48 object-cover" loading="lazy" />
                         <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
@@ -574,6 +651,7 @@ const Memorial = () => {
         </button>
       </div>
 
+      <MemoryDetailModal memory={selectedMemory} open={memoryDetailOpen} onOpenChange={setMemoryDetailOpen} />
       <AddMemoryModal open={memoryModalOpen} onOpenChange={setMemoryModalOpen} />
 
       {/* Bottom spacer for FAB */}
