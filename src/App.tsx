@@ -9,6 +9,7 @@ import Officiants from "./pages/Officiants";
 import PompesFunebres from "./pages/PompesFunebres";
 import Acces from "./pages/Acces";
 import MemorialAdmin from "./pages/MemorialAdmin";
+import InvitationPrivee from "./pages/InvitationPrivee";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/pompe-funebre" element={<PompesFunebres />} />
           <Route path="/acces" element={<Acces />} />
           <Route path="/memorial-admin" element={<MemorialAdmin />} />
+          <Route path="/invitation-privee" element={<InvitationPrivee />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
