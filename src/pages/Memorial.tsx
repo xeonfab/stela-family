@@ -161,12 +161,11 @@ const AudioWaveform = () => (
 
 const FlameRitual = () => {
   const [isLit, setIsLit] = useState(false);
-  const [litCount, setLitCount] = useState(12);
+  const [litCount] = useState(12);
 
   const handleLight = () => {
     if (isLit) return;
     setIsLit(true);
-    setLitCount((c) => c + 1);
     toast("Votre lumière a été déposée avec douceur.", {
       style: {
         background: "#FAF9F6",
@@ -179,26 +178,39 @@ const FlameRitual = () => {
   };
 
   return (
-    <div className="flex flex-row items-center justify-center gap-3 mt-6 mb-8">
+    <div className="flex flex-col items-center mt-6 mb-8 gap-2.5">
       <button
         onClick={handleLight}
-        className="focus:outline-none"
+        className={`flex items-center gap-2.5 px-6 py-2.5 rounded-full transition-all duration-700 ease-in-out focus:outline-none ${
+          isLit
+            ? "bg-amber-50 border border-[#D4AF37]/40 shadow-[0_0_20px_-5px_rgba(212,175,55,0.15)]"
+            : "bg-white border border-stone-200 hover:border-stone-300 shadow-sm"
+        }`}
         aria-label="Allumer une flamme"
       >
         <Flame
-          size={28}
-          fill={isLit ? "currentColor" : "transparent"}
-          strokeWidth={isLit ? 1.5 : 1.5}
+          size={20}
+          fill={isLit ? "currentColor" : "currentColor"}
+          strokeWidth={1.5}
           className={`transition-all duration-700 ${
             isLit
-              ? "text-amber-500 fill-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,0.6)] animate-flame-pulse"
-              : "text-amber-300 fill-transparent hover:text-amber-400"
+              ? "text-amber-500 fill-amber-500 drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]"
+              : "text-amber-400 fill-amber-400 animate-flame-pulse"
           }`}
         />
+        <span className={`text-sm font-medium transition-all duration-700 ${
+          isLit ? "text-amber-800" : "text-stone-600"
+        }`}>
+          {isLit ? `Vous et ${litCount} proches veillez` : "Allumer la flamme"}
+        </span>
       </button>
-      <span className="text-sm text-stone-500">
-        {litCount} proches veillent sur cette flamme.
-      </span>
+      <p className={`text-xs transition-all duration-700 text-center max-w-[280px] ${
+        isLit ? "italic text-stone-400" : "text-stone-400"
+      }`}>
+        {isLit
+          ? "Votre flamme brillera pendant 7 jours. Revenez l'entretenir."
+          : `${litCount} proches veillent sur ce sanctuaire.`}
+      </p>
     </div>
   );
 };
