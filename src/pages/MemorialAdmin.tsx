@@ -174,14 +174,14 @@ const FlameRitual = () => {
 
   return (
     <div className="flex flex-col items-center mt-6 mb-8 gap-2.5">
-      <button onClick={handleLight} className={`flex items-center gap-2.5 px-6 py-2.5 rounded-full transition-all duration-700 ease-in-out focus:outline-none ${isLit ? "bg-amber-50 border border-[#D4AF37]/40 shadow-[0_0_20px_-5px_rgba(212,175,55,0.15)]" : "bg-white border border-stone-200 hover:border-stone-300 shadow-sm"}`} aria-label="Allumer une flamme">
+      <button onClick={handleLight} className={`flex items-center gap-2.5 px-6 py-2.5 rounded-full transition-all duration-700 ease-in-out focus:outline-none ${isLit ? "bg-amber-50 border border-[#D4AF37]/40 shadow-[0_0_20px_-5px_rgba(212,175,55,0.15)]" : "bg-white border border-stone-200 hover:border-stone-300 shadow-sm"}`} aria-label="Allumer une bougie">
         <Flame size={20} fill="currentColor" strokeWidth={1.5} className={`transition-all duration-700 ${isLit ? "text-amber-500 fill-amber-500 drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]" : "text-amber-400 fill-amber-400 animate-flame-pulse"}`} />
         <span className={`text-sm font-medium transition-all duration-700 ${isLit ? "text-amber-800" : "text-stone-600"}`}>
-          {isLit ? `Vous veillez avec ${litCount} proches` : "Allumer la flamme"}
+          {isLit ? `Vous veillez avec ${litCount} proches` : "Allumer une bougie"}
         </span>
       </button>
       <p className={`text-xs transition-all duration-700 text-center max-w-[280px] ${isLit ? "italic text-stone-400" : "text-stone-400"}`}>
-        {isLit ? "Cette flamme brillera 7 jours. Revenez la raviver." : `${litCount} proches veillent sur ce sanctuaire.`}
+        {isLit ? "Cette bougie brillera 7 jours. Revenez la raviver." : `${litCount} proches veillent sur ce sanctuaire.`}
       </p>
     </div>
   );
