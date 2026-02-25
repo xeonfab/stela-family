@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -6,12 +6,14 @@ import {
   DialogPortal,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Camera, Mic, Video, CalendarDays, X, Sparkles, Upload } from "lucide-react";
+import { Camera, Mic, Video, CalendarDays, X, Sparkles, Upload, BookOpen } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 
 interface AddMemoryModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  isAdmin?: boolean;
 }
 
 type MediaType = "photo" | "audio" | "video" | null;
@@ -20,7 +22,7 @@ type ModalView = "canvas" | "maieutic" | "loading";
 const DUMMY_AI_TEXT =
   "Je revois encore ses lunettes glissant sur le bout de son nez, dans la lumière de 6h du matin, une tasse de café noir à la main. C'est dans ces instants calmes qu'il aimait nous rappeler qu'on 'a le temps de se presser'. Ce temps, aujourd'hui, est devenu notre plus précieux héritage.";
 
-const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
+const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalProps) => {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
@@ -29,6 +31,9 @@ const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
   const [maieutic1, setMaieutic1] = useState("");
   const [maieutic2, setMaieutic2] = useState("");
   const [maieutic3, setMaieutic3] = useState("");
+  const [pinToTimeline, setPinToTimeline] = useState(false);
+  const [chapterTitle, setChapterTitle] = useState("");
+  const [chapterDate, setChapterDate] = useState("");
 
   const handleClose = (val: boolean) => {
     if (!val) {
@@ -40,6 +45,9 @@ const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
       setMaieutic1("");
       setMaieutic2("");
       setMaieutic3("");
+      setPinToTimeline(false);
+      setChapterTitle("");
+      setChapterDate("");
     }
     onOpenChange(val);
   };
@@ -62,7 +70,7 @@ const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogPortal>
         <DialogOverlay className="bg-black/30 backdrop-blur-sm" />
-        <DialogContent className="sm:max-w-xl w-[calc(100%-2rem)] rounded-2xl border-0 shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white overflow-hidden">
+        <DialogContent className="sm:max-w-xl w-[calc(100%-2rem)] rounded-2xl border-0 shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white overflow-hidden max-h-[90vh] overflow-y-auto">
           {/* Header */}
           <div className="relative px-8 pt-8 pb-2">
             <button
@@ -154,7 +162,7 @@ const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
                   style={{ fieldSizing: "content" } as React.CSSProperties}
                 />
 
-                {/* Media type selector — mutually exclusive pills */}
+                {/* Media type selector */}
                 <div className="flex items-center gap-2">
                   {mediaOptions.map(({ type, icon: Icon, label }) => {
                     const active = selectedMedia === type;
@@ -219,13 +227,56 @@ const AddMemoryModal = ({ open, onOpenChange }: AddMemoryModalProps) => {
                   </div>
                 </div>
 
+                {/* ─── Admin: Pin to Timeline ─── */}
+                {isAdmin && (
+                  <div className="space-y-4">
+                    <div className="h-px bg-stone-100" />
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <BookOpen size={14} className="text-[#D4AF37]" />
+                        <span className="text-sm text-stone-600 font-medium">Épingler dans le Roman de sa Vie</span>
+                      </div>
+                      <Switch
+                        checked={pinToTimeline}
+                        onCheckedChange={setPinToTimeline}
+                        className="data-[state=checked]:bg-[#D4AF37]"
+                      />
+                    </div>
+
+                    {pinToTimeline && (
+                      <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-200 rounded-xl border border-[#D4AF37]/20 bg-amber-50/20 p-4">
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-medium text-stone-500 tracking-wide">Date de l'événement *</label>
+                          <Input
+                            value={chapterDate}
+                            onChange={(e) => setChapterDate(e.target.value)}
+                            placeholder="Ex: 1998"
+                            className="border-0 border-b border-stone-200 rounded-none bg-transparent text-sm text-stone-700 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-[#D4AF37]/50 h-10 px-1"
+                          />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-medium text-stone-500 tracking-wide">Titre du chapitre *</label>
+                          <Input
+                            value={chapterTitle}
+                            onChange={(e) => setChapterTitle(e.target.value)}
+                            placeholder="Ex: Le voyage en Italie"
+                            className="border-0 border-b border-stone-200 rounded-none bg-transparent text-sm text-stone-700 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-[#D4AF37]/50 h-10 px-1"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {/* Submit */}
                 <button className="w-full py-3.5 rounded-xl bg-[#D4AF37] text-white font-medium text-sm hover:bg-[#C4A030] transition-colors shadow-md shadow-[#D4AF37]/20 tracking-wide">
                   Déposer dans le sanctuaire
                 </button>
 
                 <p className="text-[11px] text-stone-300 text-center leading-relaxed">
-                  Votre souvenir sera soumis à l'approbation de la famille.
+                  {isAdmin
+                    ? "Ce souvenir sera publié directement sur le sanctuaire."
+                    : "Votre souvenir sera soumis à l'approbation de la famille."}
                 </p>
               </div>
             )}
