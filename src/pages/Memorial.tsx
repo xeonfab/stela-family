@@ -268,12 +268,21 @@ const TimelineEditModal = ({ open, onOpenChange, initialData }: { open: boolean;
 };
 
 /* ─── Timeline Tab ─── */
-const TimelineTab = ({ isAdmin }: { isAdmin: boolean }) => {
+/* ─── Biography intro text ─── */
+const biographyText = [
+  "Jean-Claude était un homme de terre et d'esprit. Professeur d'histoire passionné, il a éveillé la curiosité de centaines d'élèves au fil de ses trente années d'enseignement. Son regard pétillant et sa voix grave captivaient son auditoire dès les premières minutes.",
+  "Mais c'est dans son jardin, entouré de ses rosiers et de ses petits-enfants, qu'il trouvait sa véritable paix. Chaque dimanche, la famille se réunissait autour de sa grande table en bois pour partager un repas qui durait des heures — ponctué de rires, de débats passionnés et de bouteilles soigneusement choisies.",
+  "Un épicurien au rire tonitruant, un conteur intarissable, un grand-père extraordinaire. Il laisse derrière lui un jardin en fleur et des cœurs à jamais marqués par sa lumière.",
+];
+
+/* ─── Son Histoire Tab (Biography + Timeline) ─── */
+const SonHistoireTab = ({ isAdmin }: { isAdmin: boolean }) => {
   const [selectedEvent, setSelectedEvent] = useState<TimelineEntry | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editInitialData, setEditInitialData] = useState<{ year?: string; title?: string; desc?: string } | undefined>();
+  const [bioEditOpen, setBioEditOpen] = useState(false);
 
   const openDetail = (ev: TimelineEntry) => {
     if (editMode) return;
@@ -296,6 +305,37 @@ const TimelineTab = ({ isAdmin }: { isAdmin: boolean }) => {
             className="data-[state=checked]:bg-[#D4AF37]" />
         </div>
       )}
+
+      {/* ─── Biography Introduction ─── */}
+      <div className="relative mb-16">
+        {editMode && (
+          <button
+            onClick={() => setBioEditOpen(true)}
+            className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-white border border-[#D4AF37]/30 flex items-center justify-center hover:bg-amber-50 hover:border-[#D4AF37] transition-all shadow-sm z-20"
+          >
+            <Pencil size={12} className="text-[#D4AF37]" />
+          </button>
+        )}
+        <article className="prose prose-stone prose-lg max-w-none">
+          {biographyText.map((paragraph, idx) => (
+            <p
+              key={idx}
+              className={`text-stone-600 leading-[1.9] text-lg ${idx === 0 ? "first-letter:text-6xl first-letter:font-serif first-letter:font-bold first-letter:text-amber-700 first-letter:float-left first-letter:mr-3 first-letter:mt-1" : "mt-6"}`}
+            >
+              {paragraph}
+            </p>
+          ))}
+        </article>
+      </div>
+
+      {/* ─── Divider ─── */}
+      <div className="flex items-center gap-4 mb-12">
+        <div className="flex-1 h-px bg-stone-200" />
+        <span className="text-xs tracking-[0.2em] uppercase text-stone-300 font-medium">Chronologie</span>
+        <div className="flex-1 h-px bg-stone-200" />
+      </div>
+
+      {/* ─── Timeline ─── */}
 
       <div className="relative">
         {/* Vertical line */}
@@ -381,6 +421,30 @@ const TimelineTab = ({ isAdmin }: { isAdmin: boolean }) => {
 
       <TimelineDetailModal event={selectedEvent} open={modalOpen} onOpenChange={setModalOpen} />
       <TimelineEditModal open={editModalOpen} onOpenChange={setEditModalOpen} initialData={editInitialData} />
+
+      {/* Bio Edit Modal */}
+      <Dialog open={bioEditOpen} onOpenChange={setBioEditOpen}>
+        <DialogContent className="max-w-lg bg-[#FAF9F6] border-stone-200 rounded-2xl p-0 overflow-hidden">
+          <DialogTitle className="sr-only">Modifier la biographie</DialogTitle>
+          <div className="p-8 space-y-6">
+            <h3 className="font-serif text-xl font-semibold text-stone-900">Modifier l'introduction</h3>
+            <textarea
+              defaultValue={biographyText.join("\n\n")}
+              rows={10}
+              className="w-full resize-none bg-stone-50/60 rounded-xl px-4 py-3 text-sm text-stone-700 leading-relaxed placeholder:text-stone-300 focus:outline-none focus:bg-stone-50 transition-colors border border-stone-100 focus:border-[#D4AF37]/40 min-h-[200px]"
+            />
+            <button
+              onClick={() => {
+                toast("Biographie enregistrée.", { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });
+                setBioEditOpen(false);
+              }}
+              className="w-full py-3 rounded-xl bg-[#D4AF37] text-white font-medium text-sm hover:bg-[#C4A030] transition-colors shadow-md shadow-[#D4AF37]/20 tracking-wide"
+            >
+              Enregistrer
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
@@ -508,8 +572,7 @@ const Memorial = () => {
           <div className="max-w-3xl mx-auto px-6">
             <TabsList className="w-full bg-transparent h-14 gap-0">
               <TabsTrigger value="souvenirs" className={tabTriggerClass}>Souvenirs</TabsTrigger>
-              <TabsTrigger value="biographie" className={tabTriggerClass}>Biographie</TabsTrigger>
-              <TabsTrigger value="timeline" className={tabTriggerClass}>Roman de sa Vie</TabsTrigger>
+              <TabsTrigger value="histoire" className={tabTriggerClass}>Son Histoire</TabsTrigger>
               {isAdmin && (
                 <TabsTrigger value="intime" className={tabTriggerClass}>
                   <Lock size={13} className="mr-1.5 opacity-60" />
@@ -531,31 +594,9 @@ const Memorial = () => {
           </div>
         </TabsContent>
 
-        {/* ─── TAB 2: Biography ─── */}
-        <TabsContent value="biographie" className="mt-0">
-          <div className="max-w-2xl mx-auto px-6 py-16">
-            <article className="prose prose-stone prose-lg max-w-none">
-              <p className="text-stone-600 leading-[1.9] text-lg first-letter:text-6xl first-letter:font-serif first-letter:font-bold first-letter:text-amber-700 first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                Jean-Claude était un homme de terre et d'esprit. Professeur d'histoire passionné, il a éveillé la
-                curiosité de centaines d'élèves au fil de ses trente années d'enseignement. Son regard pétillant et sa
-                voix grave captivaient son auditoire dès les premières minutes.
-              </p>
-              <p className="text-stone-600 leading-[1.9] text-lg mt-6">
-                Mais c'est dans son jardin, entouré de ses rosiers et de ses petits-enfants, qu'il trouvait sa véritable
-                paix. Chaque dimanche, la famille se réunissait autour de sa grande table en bois pour partager un repas
-                qui durait des heures — ponctué de rires, de débats passionnés et de bouteilles soigneusement choisies.
-              </p>
-              <p className="text-stone-600 leading-[1.9] text-lg mt-6">
-                Un épicurien au rire tonitruant, un conteur intarissable, un grand-père extraordinaire. Il laisse
-                derrière lui un jardin en fleur et des cœurs à jamais marqués par sa lumière.
-              </p>
-            </article>
-          </div>
-        </TabsContent>
-
-        {/* ─── TAB 3: Timeline ─── */}
-        <TabsContent value="timeline" className="mt-0">
-          <TimelineTab isAdmin={isAdmin} />
+        {/* ─── TAB 2: Son Histoire (Biography + Timeline) ─── */}
+        <TabsContent value="histoire" className="mt-0">
+          <SonHistoireTab isAdmin={isAdmin} />
         </TabsContent>
 
         {/* ─── TAB 4: Intime (Admin only) ─── */}
