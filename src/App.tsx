@@ -10,6 +10,9 @@ import PompesFunebres from "./pages/PompesFunebres";
 import Acces from "./pages/Acces";
 import MemorialAdmin from "./pages/MemorialAdmin";
 import InvitationPrivee from "./pages/InvitationPrivee";
+import EmailInvitation from "./pages/EmailInvitation";
+import CreatePassword from "./pages/CreatePassword";
+import OnboardingPhoto from "./pages/OnboardingPhoto";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +31,9 @@ const App = () => (
           <Route path="/acces" element={<Acces />} />
           <Route path="/memorial-admin" element={<MemorialAdmin />} />
           <Route path="/invitation-privee" element={<InvitationPrivee />} />
+          <Route path="/onboarding/email" element={<EmailInvitation />} />
+          <Route path="/onboarding/mot-de-passe" element={<CreatePassword />} />
+          <Route path="/onboarding/photo" element={<OnboardingPhoto />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
