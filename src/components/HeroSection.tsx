@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 import jcGardening from "@/assets/jc-gardening.jpg";
 
-const AudioWaveform = () =>
-<svg viewBox="0 0 60 24" className="w-full h-5" preserveAspectRatio="none">
-    {[3, 7, 12, 8, 16, 10, 14, 6, 18, 9, 13, 5, 11, 15, 7, 12, 8, 16, 10, 6].map((h, i) =>
-  <rect key={i} x={i * 3} y={12 - h / 2} width="2" rx="1" height={h} className="fill-primary/60" />
-  )}
-  </svg>;
+const AudioWaveform = () => (
+  <div className="w-full h-[2px] bg-[#EAEAEA] rounded-full relative">
+    <div className="absolute left-0 top-0 h-full bg-[#D4AF37] rounded-full" style={{ width: "35%" }} />
+    <div className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#D4AF37]" style={{ left: "calc(35% - 3px)" }} />
+  </div>
+);
 
 
 const HeroSection = () =>

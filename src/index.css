@@ -254,3 +254,9 @@
     stroke: #B8942A;
   }
 }
+
+/* ─── Audio Player "Fil d'Or" glow ─── */
+@keyframes audioGlow {
+  0%, 100% { box-shadow: 0 0 8px -2px rgba(212, 175, 55, 0.3); }
+  50% { box-shadow: 0 0 16px -2px rgba(212, 175, 55, 0.55); }
+}
