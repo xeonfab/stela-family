@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings, PenLine } from "lucide-react";
 import AudioPlayer from "@/components/AudioPlayer";
 import JewelCandle from "@/components/JewelCandle";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -488,12 +488,66 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
   return null;
 };
 
+/* ─── Empty State: Ghost Card for Souvenirs ─── */
+const EmptySouvenirsState = ({ onDeposit }: { onDeposit: () => void }) => (
+  <div className="max-w-5xl mx-auto px-6 py-20 flex items-center justify-center">
+    <div className="border-2 border-dashed border-[#EAEAEA] rounded-2xl p-12 md:p-16 max-w-md w-full text-center space-y-6">
+      <div className="w-14 h-14 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mx-auto">
+        <Camera size={24} className="text-[#D4AF37]" />
+      </div>
+      <h3 className="font-serif text-xl md:text-2xl text-stone-800">Le début d'un bel hommage.</h3>
+      <p className="text-sm text-stone-400 leading-relaxed max-w-xs mx-auto">
+        Soyez le premier à déposer une photo, une anecdote ou une voix. Votre premier souvenir guidera et inspirera les proches qui rejoindront bientôt cet espace.
+      </p>
+      <button
+        onClick={onDeposit}
+        className="inline-flex items-center gap-2 px-6 py-3 bg-[#D4AF37] text-white text-sm font-medium rounded-full hover:bg-[#c9a432] transition-colors shadow-sm"
+      >
+        <Feather size={16} />
+        Déposer le premier souvenir
+      </button>
+    </div>
+  </div>
+);
+
+/* ─── Empty State: Son Histoire (Golden Thread) ─── */
+const EmptyHistoireState = () => (
+  <div className="max-w-2xl mx-auto px-6 py-16">
+    <div className="relative flex flex-col items-center" style={{ minHeight: '420px' }}>
+      {/* Top year */}
+      <span className="text-xs tracking-[0.2em] uppercase text-[#D4AF37] font-medium mb-4">1948</span>
+
+      {/* Golden thread line — top half */}
+      <div className="w-px bg-[#D4AF37]/30 flex-1 min-h-[80px]" />
+
+      {/* Center block cutting the line */}
+      <div className="bg-[#FAF9F6] px-8 py-10 text-center space-y-5 max-w-sm -my-1 z-10">
+        <h3 className="font-serif text-xl md:text-2xl text-stone-800">Le livre de sa vie</h3>
+        <p className="text-sm text-stone-400 leading-relaxed">
+          Épinglez ici les années marquantes, les rencontres et les passions pour construire sa biographie intemporelle.
+        </p>
+        <button className="inline-flex items-center gap-2 px-6 py-3 border border-[#D4AF37] text-[#D4AF37] text-sm font-medium rounded-full hover:bg-[#D4AF37]/5 transition-colors">
+          <BookOpen size={16} />
+          Ajouter un premier chapitre
+        </button>
+      </div>
+
+      {/* Golden thread line — bottom half */}
+      <div className="w-px bg-[#D4AF37]/30 flex-1 min-h-[80px]" />
+
+      {/* Bottom year */}
+      <span className="text-xs tracking-[0.2em] uppercase text-[#D4AF37] font-medium mt-4">2024</span>
+    </div>
+  </div>
+);
+
 /* ═══════════════════ MAIN ADMIN PAGE ═══════════════════ */
 const MemorialAdmin = () => {
   const [activeTab, setActiveTab] = useState("souvenirs");
   const [memoryModalOpen, setMemoryModalOpen] = useState(false);
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
   const [memoryDetailOpen, setMemoryDetailOpen] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(true);
 
   const openMemoryDetail = (memory: Memory) => {
     setSelectedMemory(memory);
@@ -576,12 +630,21 @@ const MemorialAdmin = () => {
           <p className="text-sm tracking-[0.3em] uppercase text-stone-400 mb-8 cursor-pointer">1948 — 2024</p>
         </EditableField>
 
-        {/* Epitaph — Editable */}
-        <EditableField>
-          <p className="font-serif italic text-lg md:text-xl text-stone-500 max-w-xl mx-auto leading-relaxed cursor-pointer">
-            « Il cultivait son jardin comme il cultivait ses amitiés&nbsp;: avec patience, lumière et amour. »
-          </p>
-        </EditableField>
+        {/* Epitaph / Citation placeholder — Editable */}
+        {isEmpty ? (
+          <button className="inline-flex items-center gap-2 mt-2 mb-8 cursor-pointer group/citation max-w-xl mx-auto">
+            <p className="font-serif italic text-lg md:text-xl text-stone-300 leading-relaxed group-hover/citation:text-stone-400 transition-colors">
+              « Ajoutez les mots ou la citation qui racontent le mieux son essence... »
+            </p>
+            <PenLine size={16} className="text-[#D4AF37] shrink-0 opacity-70 group-hover/citation:opacity-100 transition-opacity" />
+          </button>
+        ) : (
+          <EditableField>
+            <p className="font-serif italic text-lg md:text-xl text-stone-500 max-w-xl mx-auto leading-relaxed cursor-pointer">
+              « Il cultivait son jardin comme il cultivait ses amitiés&nbsp;: avec patience, lumière et amour. »
+            </p>
+          </EditableField>
+        )}
 
         <FlameRitual />
       </section>
@@ -601,45 +664,49 @@ const MemorialAdmin = () => {
           </div>
         </div>
 
-        {/* ─── TAB 1: Memory Wall with Pending Cards ─── */}
+        {/* ─── TAB 1: Memory Wall ─── */}
         <TabsContent value="souvenirs" className="mt-0">
-          {/* Moderation notification banner */}
-          <div className="max-w-5xl mx-auto px-6 pt-8">
-            <div className="flex items-center justify-between bg-[#D4AF37]/10 rounded-xl px-6 py-4 border border-[#D4AF37]/15">
-              <p className="font-serif text-[#2C2C2C] text-sm md:text-base">
-                3 nouveaux hommages attendent votre regard.
-              </p>
-              <Link
-                to="/moderation"
-                className="text-sm font-medium text-[#D4AF37] hover:text-[#c9a432] transition-colors whitespace-nowrap ml-4"
-              >
-                Ouvrir →
-              </Link>
-            </div>
-          </div>
-          <div className="max-w-5xl mx-auto px-6 py-12">
-            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-              {/* Pending cards first */}
-              {pendingMemories.map((memory, idx) => (
-                <PendingCardWrapper
-                  key={`pending-${idx}`}
-                  onApprove={() => handleApprove(memory.author)}
-                  onKeepPrivate={() => handleKeepPrivate(memory.author)}
-                >
-                  <MemoryCard memory={memory} onClick={() => openMemoryDetail(memory)} />
-                </PendingCardWrapper>
-              ))}
-              {/* Standard cards */}
-              {memories.map((memory, idx) => (
-                <MemoryCard key={idx} memory={memory} onClick={() => openMemoryDetail(memory)} />
-              ))}
-            </div>
-          </div>
+          {isEmpty ? (
+            <EmptySouvenirsState onDeposit={() => setMemoryModalOpen(true)} />
+          ) : (
+            <>
+              {/* Moderation notification banner */}
+              <div className="max-w-5xl mx-auto px-6 pt-8">
+                <div className="flex items-center justify-between bg-[#D4AF37]/10 rounded-xl px-6 py-4 border border-[#D4AF37]/15">
+                  <p className="font-serif text-[#2C2C2C] text-sm md:text-base">
+                    3 nouveaux hommages attendent votre regard.
+                  </p>
+                  <Link
+                    to="/moderation"
+                    className="text-sm font-medium text-[#D4AF37] hover:text-[#c9a432] transition-colors whitespace-nowrap ml-4"
+                  >
+                    Ouvrir →
+                  </Link>
+                </div>
+              </div>
+              <div className="max-w-5xl mx-auto px-6 py-12">
+                <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                  {pendingMemories.map((memory, idx) => (
+                    <PendingCardWrapper
+                      key={`pending-${idx}`}
+                      onApprove={() => handleApprove(memory.author)}
+                      onKeepPrivate={() => handleKeepPrivate(memory.author)}
+                    >
+                      <MemoryCard memory={memory} onClick={() => openMemoryDetail(memory)} />
+                    </PendingCardWrapper>
+                  ))}
+                  {memories.map((memory, idx) => (
+                    <MemoryCard key={idx} memory={memory} onClick={() => openMemoryDetail(memory)} />
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
         </TabsContent>
 
-        {/* ─── TAB 2: Son Histoire (Biography + Timeline) ─── */}
+        {/* ─── TAB 2: Son Histoire ─── */}
         <TabsContent value="histoire" className="mt-0">
-          <SonHistoireTab />
+          {isEmpty ? <EmptyHistoireState /> : <SonHistoireTab />}
         </TabsContent>
       </Tabs>
 
@@ -652,6 +719,14 @@ const MemorialAdmin = () => {
       <div className="text-center py-8">
         <p className="text-xs text-stone-300">Cet espace est privé et sécurisé par la famille.</p>
       </div>
+
+      {/* Demo toggle: Empty / Filled state */}
+      <button
+        onClick={() => setIsEmpty(!isEmpty)}
+        className="fixed bottom-6 left-6 z-50 px-4 py-2 text-xs font-medium rounded-full bg-stone-800 text-white/80 hover:text-white shadow-lg transition-colors"
+      >
+        {isEmpty ? "👁 Voir état rempli" : "👁 Voir état vide"}
+      </button>
 
       <div className="h-24" />
     </div>
