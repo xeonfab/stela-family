@@ -128,4 +128,24 @@
   .animate-shake {
     animation: shake 0.5s ease-in-out;
   }
+
+  /* LivingCandle */
+  .flame-path {
+    stroke: #2C2C2C;
+    stroke-width: 1.5;
+    fill: transparent;
+    transition: all 0.5s ease-in-out;
+    transform-origin: center bottom;
+  }
+  .is-active .flame-path {
+    stroke: transparent;
+    fill: #D4AF37;
+    animation: gentleFlicker 4s infinite ease-in-out;
+  }
+  @keyframes gentleFlicker {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    25% { transform: scaleY(1.04) rotate(1deg); opacity: 0.95; }
+    50% { transform: scaleX(1.02) scaleY(0.98) rotate(-1deg); opacity: 1; }
+    75% { transform: scaleY(1.03); opacity: 0.98; }
+  }
 }
