@@ -175,25 +175,82 @@
     }
   }
 
-  /* Jewel Candle breathing animation */
-  @keyframes jewelBreathe {
+  /* ── Jewel Candle: Figurative Skeuomorphic ── */
+
+  /* Body shape: outline by default, filled gold when active */
+  .candle-body-shape {
+    fill: transparent;
+    stroke: #D4AF37;
+    stroke-width: 1.2;
+    transition: all 0.6s ease-in-out;
+  }
+  .is-active .candle-body-shape {
+    fill: url(#candle-body-gold);
+    stroke: transparent;
+  }
+
+  /* Wick */
+  .candle-wick {
+    stroke: #8B6914;
+    stroke-width: 1;
+    stroke-linecap: round;
+    transition: opacity 0.6s;
+  }
+
+  /* Flame shape: outline by default, filled gold when active */
+  .candle-flame-shape {
+    fill: transparent;
+    stroke: #D4AF37;
+    stroke-width: 1.2;
+    transition: all 0.6s ease-in-out;
+  }
+  .is-active .candle-flame-shape {
+    fill: url(#candle-flame-gold);
+    stroke: transparent;
+    filter: url(#flame-aura);
+  }
+
+  .candle-flame-inner {
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+  .is-active .candle-flame-inner {
+    opacity: 1;
+  }
+
+  /* Flame flicker animation — only on the flame group */
+  .candle-flame-group {
+    transform-origin: 12px 13px;
+    transition: all 0.6s;
+  }
+  .is-active .candle-flame-group {
+    animation: candleFlicker 3s infinite ease-in-out;
+  }
+
+  @keyframes candleFlicker {
     0%, 100% {
-      transform: scale(1) translateY(0);
-      filter: drop-shadow(0px 2px 3px rgba(212, 175, 55, 0.2));
+      transform: rotate(0deg) scaleY(1);
+      filter: drop-shadow(0px 0px 4px rgba(212, 175, 55, 0.3));
+    }
+    25% {
+      transform: rotate(1deg) scaleY(1.03);
+      filter: drop-shadow(0px 0px 6px rgba(212, 175, 55, 0.5));
     }
     50% {
-      transform: scale(1.06) translateY(-1px);
-      filter: drop-shadow(0px 4px 6px rgba(212, 175, 55, 0.4));
+      transform: rotate(-0.5deg) scaleY(1.04);
+      filter: drop-shadow(0px 0px 8px rgba(212, 175, 55, 0.6));
+    }
+    75% {
+      transform: rotate(0.8deg) scaleY(1.01);
+      filter: drop-shadow(0px 0px 5px rgba(212, 175, 55, 0.4));
     }
   }
 
-  .jewel-candle {
-    overflow: visible;
-    transform-origin: center bottom;
-    animation: jewelBreathe 4s infinite ease-in-out;
+  /* Hover effect on parent button */
+  button:hover .jewel-candle-icon .candle-body-shape {
+    stroke: #B8942A;
   }
-
-  .jewel-candle-lit {
-    filter: drop-shadow(0px 0px 10px rgba(245, 158, 11, 0.5));
+  button:hover .jewel-candle-icon .candle-flame-shape {
+    stroke: #B8942A;
   }
 }
