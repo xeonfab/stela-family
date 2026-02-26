@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, Flame, X, Lock, Pencil, Plus, Upload, CalendarDays } from "lucide-react";
+import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, Flame, X, Lock, Pencil, Plus, Upload, CalendarDays } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,7 @@ import jcGardening from "@/assets/jc-gardening.jpg";
 import jcTrumpet from "@/assets/jc-trumpet.jpg";
 import jcHiking from "@/assets/jc-hiking.jpg";
 import AddMemoryModal from "@/components/AddMemoryModal";
+import LivingCandle from "@/components/LivingCandle";
 
 /* ─── Memory Card Data ─── */
 type Memory = {
@@ -176,9 +177,8 @@ const MemoryDetailModal = ({ memory, open, onOpenChange }: { memory: Memory | nu
           )}
           <div className="flex items-center justify-between pt-2 border-t border-stone-100">
             <span className="text-sm text-stone-400">— {memory.author}</span>
-            <div className="flex items-center gap-1.5 text-amber-600">
-              <Heart size={16} className="fill-amber-600" />
-              <span className="text-sm font-medium">{memory.hearts}</span>
+            <div className="flex items-center gap-1.5">
+              <LivingCandle count={memory.hearts} size={16} />
             </div>
           </div>
         </div>
@@ -459,7 +459,7 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
           <p className="text-stone-600 text-sm leading-relaxed line-clamp-3">{memory.text}</p>
           <div className="flex items-center justify-between">
             <span className="text-xs text-stone-400">— {memory.author}</span>
-            <div className="flex items-center gap-1 text-amber-600"><Heart size={14} className="fill-amber-600" /><span className="text-xs">{memory.hearts}</span></div>
+            <LivingCandle count={memory.hearts} />
           </div>
         </div>
       </div>
@@ -480,7 +480,7 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
         <AudioWaveform />
         <div className="flex items-center justify-between">
           <span className="text-xs text-stone-400">— {memory.author}</span>
-          <div className="flex items-center gap-1 text-amber-600"><Heart size={14} className="fill-amber-600" /><span className="text-xs">{memory.hearts}</span></div>
+          <LivingCandle count={memory.hearts} />
         </div>
       </div>
     );
@@ -492,7 +492,7 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
         <p className="font-serif text-lg text-stone-800 leading-relaxed italic mb-4 line-clamp-3">{memory.text}</p>
         <div className="flex items-center justify-center gap-3">
           <span className="text-xs text-stone-400">— {memory.author}</span>
-          <div className="flex items-center gap-1 text-amber-600"><Heart size={14} className="fill-amber-600" /><span className="text-xs">{memory.hearts}</span></div>
+          <LivingCandle count={memory.hearts} />
         </div>
       </div>
     );
@@ -513,7 +513,7 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
           <p className="text-sm font-medium text-stone-800">{memory.title}</p>
           <div className="flex items-center justify-between">
             <span className="text-xs text-stone-400">— {memory.author}</span>
-            <div className="flex items-center gap-1 text-amber-600"><Heart size={14} className="fill-amber-600" /><span className="text-xs">{memory.hearts}</span></div>
+            <LivingCandle count={memory.hearts} />
           </div>
         </div>
       </div>
