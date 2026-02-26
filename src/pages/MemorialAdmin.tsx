@@ -530,8 +530,8 @@ const MemorialAdmin = () => {
       {/* ─── Sacred Header with Editable Fields ─── */}
       <section className="pt-8 pb-12 px-6 text-center">
         {/* Portrait — Editable */}
-        <EditableField className="mx-auto">
-          <div className="mx-auto w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-[3px] border-amber-600/20 shadow-[0_0_60px_-10px_rgba(212,175,55,0.2)] mb-8 cursor-pointer">
+        <EditableField className="mx-auto flex justify-center">
+          <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-[3px] border-amber-600/20 shadow-[0_0_60px_-10px_rgba(212,175,55,0.2)] mb-8 cursor-pointer">
             <img src={portraitImg} alt="Jean-Claude Dubois" className="w-full h-full object-cover" />
           </div>
         </EditableField>
