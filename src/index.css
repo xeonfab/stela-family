@@ -148,4 +148,30 @@
     50% { transform: scaleX(1.02) scaleY(0.98) rotate(-1deg); opacity: 1; }
     75% { transform: scaleY(1.03); opacity: 0.98; }
   }
+
+  /* LivingHeart */
+  .heart-path {
+    stroke: #2C2C2C;
+    stroke-width: 1.5;
+    fill: transparent;
+    transition: all 0.6s ease-in-out;
+    transform-origin: center center;
+  }
+  .is-active .heart-path {
+    stroke: transparent;
+    fill: #D4AF37;
+    animation: gentleHeartbeat 4s infinite ease-in-out;
+  }
+  @keyframes gentleHeartbeat {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+      filter: drop-shadow(0px 0px 0px rgba(212, 175, 55, 0));
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.95;
+      filter: drop-shadow(0px 4px 8px rgba(212, 175, 55, 0.4));
+    }
+  }
 }

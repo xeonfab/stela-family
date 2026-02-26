@@ -13,6 +13,7 @@ import jcTrumpet from "@/assets/jc-trumpet.jpg";
 import jcHiking from "@/assets/jc-hiking.jpg";
 import AddMemoryModal from "@/components/AddMemoryModal";
 import LivingCandle from "@/components/LivingCandle";
+import LivingHeart from "@/components/LivingHeart";
 
 /* ─── Memory Card Data ─── */
 type Memory = {
@@ -177,8 +178,9 @@ const MemoryDetailModal = ({ memory, open, onOpenChange }: { memory: Memory | nu
           )}
           <div className="flex items-center justify-between pt-2 border-t border-stone-100">
             <span className="text-sm text-stone-400">— {memory.author}</span>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-3">
               <LivingCandle count={memory.hearts} size={16} />
+              <LivingHeart count={Math.floor(memory.hearts * 0.6)} size={16} />
             </div>
           </div>
         </div>
@@ -459,7 +461,10 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
           <p className="text-stone-600 text-sm leading-relaxed line-clamp-3">{memory.text}</p>
           <div className="flex items-center justify-between">
             <span className="text-xs text-stone-400">— {memory.author}</span>
-            <LivingCandle count={memory.hearts} />
+            <div className="flex items-center gap-3">
+              <LivingCandle count={memory.hearts} />
+              <LivingHeart count={Math.floor(memory.hearts * 0.6)} />
+            </div>
           </div>
         </div>
       </div>
@@ -480,7 +485,10 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
         <AudioWaveform />
         <div className="flex items-center justify-between">
           <span className="text-xs text-stone-400">— {memory.author}</span>
-          <LivingCandle count={memory.hearts} />
+          <div className="flex items-center gap-3">
+            <LivingCandle count={memory.hearts} />
+            <LivingHeart count={Math.floor(memory.hearts * 0.6)} />
+          </div>
         </div>
       </div>
     );
@@ -492,7 +500,10 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
         <p className="font-serif text-lg text-stone-800 leading-relaxed italic mb-4 line-clamp-3">{memory.text}</p>
         <div className="flex items-center justify-center gap-3">
           <span className="text-xs text-stone-400">— {memory.author}</span>
-          <LivingCandle count={memory.hearts} />
+          <div className="flex items-center gap-3">
+            <LivingCandle count={memory.hearts} />
+            <LivingHeart count={Math.floor(memory.hearts * 0.6)} />
+          </div>
         </div>
       </div>
     );
@@ -513,7 +524,10 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
           <p className="text-sm font-medium text-stone-800">{memory.title}</p>
           <div className="flex items-center justify-between">
             <span className="text-xs text-stone-400">— {memory.author}</span>
-            <LivingCandle count={memory.hearts} />
+            <div className="flex items-center gap-3">
+              <LivingCandle count={memory.hearts} />
+              <LivingHeart count={Math.floor(memory.hearts * 0.6)} />
+            </div>
           </div>
         </div>
       </div>
