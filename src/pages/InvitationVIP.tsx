@@ -1,8 +1,21 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Zap, QrCode, Heart } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import kitCeremonyHero from "@/assets/kit-ceremony-hero.png";
+
+/* ─── Header ─── */
+const HeaderVIP = () => (
+  <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/80 border-b-[0.5px] border-border/20">
+    <div className="container mx-auto flex items-center justify-between h-16 px-6">
+      <Link to="/" className="font-serif-display text-2xl font-bold tracking-tight text-foreground">
+        Stela
+      </Link>
+    </div>
+  </header>
+);
 
 /* ─── Hero ─── */
 const HeroSection = () => {
@@ -19,9 +32,12 @@ const HeroSection = () => {
       <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
         {/* Photo placeholder */}
         <div className="flex-1 flex justify-center">
-          <div className="w-full max-w-md aspect-[3/4] rounded-2xl bg-[#F0EEEA] border border-border/30 shadow-soft flex items-center justify-center">
-            <span className="text-muted-foreground/40 text-sm font-sans-body tracking-wide">Photo présentoir A4</span>
-          </div>
+          <img
+            src={kitCeremonyHero}
+            alt="Kit Cérémonie Stela : chevalet A4 avec QR code et smartphone affichant l'application de recueillement"
+            className="w-full max-w-md rounded-2xl shadow-soft object-cover"
+            loading="eager"
+          />
         </div>
 
         {/* Text + form */}
@@ -65,6 +81,9 @@ const HeroSection = () => {
               </Button>
               <p className="text-xs text-center" style={{ color: "#9CA3AF" }}>
                 ✓ Sans engagement&nbsp;&nbsp;•&nbsp;&nbsp;Expédition sous 48h
+              </p>
+              <p className="text-[10px] text-center" style={{ color: "#B0B0B0" }}>
+                🔒 Vos données sont strictement confidentielles et réservées à l'expédition.
               </p>
             </form>
           ) : (
@@ -208,10 +227,13 @@ const ReassuranceSection = () => {
 /* ─── Page ─── */
 const InvitationVIP = () => (
   <main style={{ backgroundColor: "#FAFAFA" }}>
-    <HeroSection />
-    <ExperienceFamilleSection />
-    <ConceptSection />
-    <ReassuranceSection />
+    <HeaderVIP />
+    <div className="pt-16">
+      <HeroSection />
+      <ExperienceFamilleSection />
+      <ConceptSection />
+      <ReassuranceSection />
+    </div>
   </main>
 );
 
