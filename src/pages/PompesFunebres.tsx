@@ -33,10 +33,10 @@ const NavbarB2B = () => {
 
       {open && (
         <div className="md:hidden px-6 pb-4 space-y-3">
-          <Link to="/" className="block text-sm text-muted-foreground">
-            Espace Familles
-          </Link>
-          <Button className="w-full rounded-full bg-primary text-primary-foreground">Devenir Partenaire</Button>
+          <Link to="/" className="block text-sm text-muted-foreground">Espace Familles</Link>
+          <Button className="w-full rounded-full bg-primary text-primary-foreground">
+            Devenir Partenaire
+          </Button>
         </div>
       )}
     </nav>
@@ -55,8 +55,7 @@ const HeroSection = () => (
           Démarquez votre agence. Prolongez l'hommage en 60&nbsp;secondes.
         </h1>
         <p className="text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
-          Offrez aux familles un espace de recueillement en ligne premium et privé. Une solution clé en main pour
-          moderniser votre image et enrichir votre accompagnement, sans aucune charge administrative.
+          Offrez aux familles un espace de recueillement en ligne premium et privé. Une solution clé en main pour moderniser votre image et enrichir votre accompagnement, sans aucune charge administrative.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
           <Button className="rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 px-8 py-6 text-base shadow-gold">
@@ -111,9 +110,7 @@ const ValueProposition = () => {
 
   return (
     <section ref={ref} className="py-28 bg-background">
-      <div
-        className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      >
+      <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground text-center mb-16">
           Pensé pour le quotidien de votre agence.
         </h2>
@@ -150,9 +147,7 @@ const ProductShowcase = () => {
 
   return (
     <section ref={ref} className="py-28 bg-[#F5F4F0]">
-      <div
-        className={`container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      >
+      <div className={`container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         {/* Phone mockup */}
         <div className="flex-1 flex justify-center">
           <div className="relative w-[280px] lg:w-[300px] aspect-[9/19] rounded-[2.5rem] border border-border/30 bg-background shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)] overflow-hidden">
@@ -197,24 +192,16 @@ const ProductShowcase = () => {
             Le plus beau des héritages numériques.
           </h2>
           <p className="text-[#2C2C2C] text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
-            Rassemblez photos, vidéos, voix et hommages dans un écrin numérique partagé. Un espace digne et sécurisé
-            pour que le souvenir continue de vivre à travers eux.
+            Rassemblez photos, vidéos, voix et hommages dans un écrin numérique partagé. Un espace digne et sécurisé pour que le souvenir continue de vivre à travers eux.
           </p>
           <p className="text-muted-foreground text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
-            C'est cette délicatesse et cette richesse émotionnelle qui transformeront votre prestation funéraire en un
-            accompagnement inoubliable pour les familles.
+            C'est cette délicatesse et cette richesse émotionnelle qui transformeront votre prestation funéraire en un accompagnement inoubliable pour les familles.
           </p>
           <ul className="space-y-3 max-w-lg mx-auto lg:mx-0">
             {checks.map((item, i) => (
               <li key={i} className="flex items-center gap-3 text-[#2C2C2C]">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
-                  <path
-                    d="M20 6L9 17l-5-5"
-                    stroke="#D4AF37"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                  <path d="M20 6L9 17l-5-5" stroke="#D4AF37" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span className="text-base">{item}</span>
               </li>
@@ -232,9 +219,7 @@ const CeremonyKitSection = () => {
 
   return (
     <section ref={ref} className="py-28 bg-primary/5">
-      <div
-        className={`container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      >
+      <div className={`container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="flex-1 flex justify-center">
           <img
             src={chevaletImg}
@@ -248,9 +233,7 @@ const CeremonyKitSection = () => {
             Le Kit Cérémonie&nbsp;: Le pont entre le salon et le digital.
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
-            Posé dans la chambre funéraire ou à l'entrée de la cérémonie, notre chevalet invite les proches à flasher le
-            QR code. Ils accèdent instantanément au mémorial pour y déposer leurs condoléances, photos et souvenirs
-            vocaux.
+            Posé dans la chambre funéraire ou à l'entrée de la cérémonie, notre chevalet invite les proches à flasher le QR code. Ils accèdent instantanément au mémorial pour y déposer leurs condoléances, photos et souvenirs vocaux.
           </p>
         </div>
       </div>
@@ -262,39 +245,46 @@ const CeremonyKitSection = () => {
 const Partnership = () => {
   const { ref, isVisible } = useScrollReveal();
 
-  const card = {
-    title: "L'Inclusion Premium",
-    badge: "Recommandé",
-    text: "Vous achetez nos mémoriaux à un tarif de gros exclusif (ex: 50€). Vous l'incluez d'office dans vos devis 'Prestige' pour augmenter votre marge et la satisfaction famille.",
-  };
+  const columns = [
+    {
+      num: "1",
+      title: "Le Tarif Partenaire",
+      text: "Bénéficiez d'un tarif d'achat fixe, exclusif aux indépendants (ex\u00A0: 40\u00A0€ par espace). Aucun abonnement mensuel, aucun frais caché.",
+    },
+    {
+      num: "2",
+      title: "La Valeur Ajoutée",
+      text: "Intégrez ce service inédit à vos devis. Vous offrez aux familles un héritage inestimable, augmentant instantanément la valeur perçue de votre accompagnement.",
+    },
+    {
+      num: "3",
+      title: "Le Bénéfice Agence",
+      text: "Vous modernisez votre image et sécurisez une nouvelle rentabilité à chaque cérémonie, sans aucune charge administrative supplémentaire.",
+    },
+  ];
 
   return (
     <section ref={ref} className="py-28 bg-[hsl(30_6%_12%)] text-[hsl(0_0%_96%)]">
-      <div
-        className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      >
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+      <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="text-center max-w-2xl mx-auto mb-20 space-y-5">
           <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
-            La marge silencieuse&nbsp;: un modèle pensé pour votre sérénité.
+            Un modèle économique pensé pour votre sérénité.
           </h2>
           <p className="text-[hsl(30_6%_70%)] text-lg leading-relaxed">
-            Augmentez la valeur de vos devis et modernisez votre image, sans modifier votre métier.
+            Développez l'activité de votre agence sans modifier votre métier, grâce à un partenariat transparent.
           </p>
         </div>
 
-        <div className="max-w-lg mx-auto">
-          <div
-            className={`rounded-2xl border border-primary/30 bg-[hsl(30_6%_16%)] p-8 space-y-3 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-            style={{ transitionDelay: "200ms" }}
-          >
-            <div className="flex items-center gap-3">
-              <h3 className="font-serif-display text-xl font-semibold">{card.title}</h3>
-              <span className="text-xs font-sans-body font-medium bg-primary/20 text-primary px-2.5 py-0.5 rounded-full">
-                {card.badge}
+        <div className="grid md:grid-cols-3 gap-12 lg:gap-16 max-w-5xl mx-auto">
+          {columns.map((col, i) => (
+            <div key={i} className="text-center md:text-left space-y-4">
+              <span className="inline-block font-serif-display text-4xl font-bold" style={{ color: "#D4AF37" }}>
+                {col.num}
               </span>
+              <h3 className="font-serif-display text-xl font-semibold text-white">{col.title}</h3>
+              <p className="text-[hsl(30_6%_65%)] text-sm leading-relaxed">{col.text}</p>
             </div>
-            <p className="text-[hsl(30_6%_70%)] leading-relaxed">{card.text}</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -307,9 +297,7 @@ const FinalCTA = () => {
 
   return (
     <section ref={ref} className="py-28 bg-background">
-      <div
-        className={`container mx-auto px-6 text-center space-y-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      >
+      <div className={`container mx-auto px-6 text-center space-y-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight max-w-3xl mx-auto">
           Rencontrons-nous. Laissez-nous vous montrer un exemple sur tablette.
         </h2>
