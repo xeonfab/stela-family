@@ -350,14 +350,42 @@ const GuardianBanner = () => (
   </div>
 );
 
-/* ─── Timeline Tab ─── */
-const TimelineTab = () => {
+/* ─── Son Histoire Tab (Biography + Timeline) ─── */
+const SonHistoireTab = () => {
   const [selectedEvent, setSelectedEvent] = useState<TimelineEntry | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const openDetail = (ev: TimelineEntry) => { setSelectedEvent(ev); setModalOpen(true); };
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-12">
+      {/* ─── Biography Introduction ─── */}
+      <div className="relative mb-16">
+        <article className="prose prose-stone prose-lg max-w-none">
+          <p className="text-stone-600 leading-[1.9] text-lg first-letter:text-6xl first-letter:font-serif first-letter:font-bold first-letter:text-amber-700 first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+            Jean-Claude était un homme de terre et d'esprit. Professeur d'histoire passionné, il a éveillé la
+            curiosité de centaines d'élèves au fil de ses trente années d'enseignement. Son regard pétillant et sa
+            voix grave captivaient son auditoire dès les premières minutes.
+          </p>
+          <p className="text-stone-600 leading-[1.9] text-lg mt-6">
+            Mais c'est dans son jardin, entouré de ses rosiers et de ses petits-enfants, qu'il trouvait sa véritable
+            paix. Chaque dimanche, la famille se réunissait autour de sa grande table en bois pour partager un repas
+            qui durait des heures — ponctué de rires, de débats passionnés et de bouteilles soigneusement choisies.
+          </p>
+          <p className="text-stone-600 leading-[1.9] text-lg mt-6">
+            Un épicurien au rire tonitruant, un conteur intarissable, un grand-père extraordinaire. Il laisse
+            derrière lui un jardin en fleur et des cœurs à jamais marqués par sa lumière.
+          </p>
+        </article>
+      </div>
+
+      {/* ─── Divider ─── */}
+      <div className="flex items-center gap-4 mb-12">
+        <div className="flex-1 h-px bg-stone-200" />
+        <span className="text-xs tracking-[0.2em] uppercase text-stone-300 font-medium">Chronologie</span>
+        <div className="flex-1 h-px bg-stone-200" />
+      </div>
+
+      {/* ─── Timeline ─── */}
       <div className="relative">
         <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-stone-200 md:-translate-x-px" />
         {timeline.map((event, i) => (
@@ -566,11 +594,8 @@ const MemorialAdmin = () => {
               <TabsTrigger value="souvenirs" className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors">
                 Souvenirs
               </TabsTrigger>
-              <TabsTrigger value="biographie" className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors">
-                Biographie
-              </TabsTrigger>
-              <TabsTrigger value="timeline" className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors">
-                Roman de sa Vie
+              <TabsTrigger value="histoire" className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors">
+                Son Histoire
               </TabsTrigger>
             </TabsList>
           </div>
@@ -612,31 +637,9 @@ const MemorialAdmin = () => {
           </div>
         </TabsContent>
 
-        {/* ─── TAB 2: Biography ─── */}
-        <TabsContent value="biographie" className="mt-0">
-          <div className="max-w-2xl mx-auto px-6 py-16">
-            <article className="prose prose-stone prose-lg max-w-none">
-              <p className="text-stone-600 leading-[1.9] text-lg first-letter:text-6xl first-letter:font-serif first-letter:font-bold first-letter:text-amber-700 first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                Jean-Claude était un homme de terre et d'esprit. Professeur d'histoire passionné, il a éveillé la
-                curiosité de centaines d'élèves au fil de ses trente années d'enseignement. Son regard pétillant et sa
-                voix grave captivaient son auditoire dès les premières minutes.
-              </p>
-              <p className="text-stone-600 leading-[1.9] text-lg mt-6">
-                Mais c'est dans son jardin, entouré de ses rosiers et de ses petits-enfants, qu'il trouvait sa véritable
-                paix. Chaque dimanche, la famille se réunissait autour de sa grande table en bois pour partager un repas
-                qui durait des heures — ponctué de rires, de débats passionnés et de bouteilles soigneusement choisies.
-              </p>
-              <p className="text-stone-600 leading-[1.9] text-lg mt-6">
-                Un épicurien au rire tonitruant, un conteur intarissable, un grand-père extraordinaire. Il laisse
-                derrière lui un jardin en fleur et des cœurs à jamais marqués par sa lumière.
-              </p>
-            </article>
-          </div>
-        </TabsContent>
-
-        {/* ─── TAB 3: Timeline ─── */}
-        <TabsContent value="timeline" className="mt-0">
-          <TimelineTab />
+        {/* ─── TAB 2: Son Histoire (Biography + Timeline) ─── */}
+        <TabsContent value="histoire" className="mt-0">
+          <SonHistoireTab />
         </TabsContent>
       </Tabs>
 
