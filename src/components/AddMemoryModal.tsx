@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -6,9 +6,14 @@ import {
   DialogPortal,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Camera, Mic, Video, CalendarDays, X, Sparkles, Upload, BookOpen } from "lucide-react";
+import { Camera, Mic, Video, X, Sparkles, Upload, BookOpen } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
+import { cn } from "@/lib/utils";
 
 interface AddMemoryModalProps {
   open: boolean;
@@ -24,8 +29,6 @@ const DUMMY_AI_TEXT =
 
 const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalProps) => {
   const [text, setText] = useState("");
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
   const [selectedMedia, setSelectedMedia] = useState<MediaType>(null);
   const [view, setView] = useState<ModalView>("canvas");
   const [maieutic1, setMaieutic1] = useState("");
@@ -33,13 +36,11 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
   const [maieutic3, setMaieutic3] = useState("");
   const [pinToTimeline, setPinToTimeline] = useState(false);
   const [chapterTitle, setChapterTitle] = useState("");
-  const [chapterDate, setChapterDate] = useState("");
+  const [chapterDate, setChapterDate] = useState<Date | undefined>(undefined);
 
   const handleClose = (val: boolean) => {
     if (!val) {
       setText("");
-      setTitle("");
-      setDate("");
       setSelectedMedia(null);
       setView("canvas");
       setMaieutic1("");
@@ -47,7 +48,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       setMaieutic3("");
       setPinToTimeline(false);
       setChapterTitle("");
-      setChapterDate("");
+      setChapterDate(undefined);
     }
     onOpenChange(val);
   };
@@ -65,6 +66,8 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
     { type: "audio", icon: Mic, label: "Vocal" },
     { type: "video", icon: Video, label: "Vidéo" },
   ];
+
+  const inputStyle = "border border-[#EAEAEA] rounded-lg bg-[#F9F9F9] text-sm text-stone-700 placeholder:text-[#757575] focus-visible:ring-1 focus-visible:ring-[#D4AF37]/40 focus-visible:border-[#D4AF37]/50 h-11 px-3";
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -91,7 +94,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
             {view === "loading" && (
               <div className="flex flex-col items-center justify-center py-16 gap-4 animate-in fade-in duration-300">
                 <Sparkles size={28} strokeWidth={1.5} className="text-[#D4AF37] animate-pulse" />
-                <p className="text-sm text-stone-400 font-serif italic tracking-wide">
+                <p className="text-sm text-[#757575] font-serif italic tracking-wide">
                   La plume rassemble vos souvenirs...
                 </p>
               </div>
@@ -107,14 +110,14 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                     { n: "3", label: "Son plus bel héritage", placeholder: "Une phrase qu'il répétait souvent...", value: maieutic3, set: setMaieutic3 },
                   ].map((f) => (
                     <div key={f.n} className="space-y-1.5">
-                      <label className="text-xs font-serif text-stone-500 tracking-wide">
+                      <label className="text-xs font-serif text-[#757575] tracking-wide">
                         {f.n}. {f.label}
                       </label>
                       <Input
                         value={f.value}
                         onChange={(e) => f.set(e.target.value)}
                         placeholder={f.placeholder}
-                        className="border-0 border-b border-stone-200 rounded-none bg-transparent text-sm text-stone-700 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-[#D4AF37]/50 h-10 px-1"
+                        className="border-0 border-b border-stone-200 rounded-none bg-transparent text-sm text-stone-700 placeholder:text-[#757575] focus-visible:ring-0 focus-visible:border-[#D4AF37]/50 h-10 px-1"
                       />
                     </div>
                   ))}
@@ -123,7 +126,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                 <div className="flex gap-3">
                   <button
                     onClick={() => setView("canvas")}
-                    className="px-4 py-2.5 rounded-xl text-xs font-medium text-stone-400 hover:text-stone-600 transition-colors"
+                    className="px-4 py-2.5 rounded-xl text-xs font-medium text-[#757575] hover:text-stone-600 transition-colors"
                   >
                     Retour
                   </button>
@@ -141,39 +144,39 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
             {/* === DEFAULT CANVAS VIEW === */}
             {view === "canvas" && (
               <div className="animate-in fade-in duration-300 space-y-5">
-                {/* AI Assistant trigger */}
-                <div className="flex justify-end">
+
+                {/* Textarea with embedded AI button */}
+                <div className="relative">
+                  <textarea
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="Une anecdote, un éclat de rire, ce qui vous manque le plus..."
+                    rows={4}
+                    className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl px-5 py-4 pb-10 text-[0.94rem] text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0 min-h-[130px]"
+                    style={{ fieldSizing: "content" } as React.CSSProperties}
+                  />
+                  {/* AI button inside textarea */}
                   <button
                     onClick={() => setView("maieutic")}
-                    className="flex items-center gap-1.5 text-[11px] text-stone-400 hover:text-amber-600 transition-colors font-medium tracking-wide group"
+                    className="absolute bottom-3 right-3 flex items-center gap-1.5 text-[11px] text-[#757575] hover:text-[#D4AF37] transition-colors font-medium tracking-wide group bg-white/80 backdrop-blur-sm rounded-full px-2.5 py-1 border border-[#EAEAEA] hover:border-[#D4AF37]/40"
                   >
-                    <Sparkles size={13} strokeWidth={1.5} className="group-hover:text-amber-500 transition-colors" />
+                    <Sparkles size={12} strokeWidth={1.5} className="group-hover:text-[#D4AF37] transition-colors" />
                     Trouver les mots...
                   </button>
                 </div>
 
-                {/* Auto-expanding textarea */}
-                <textarea
-                  value={text}
-                  onChange={(e) => setText(e.target.value)}
-                  placeholder="Une anecdote, un éclat de rire, ce qui vous manque le plus..."
-                  rows={4}
-                  className="w-full resize-none bg-stone-50/60 rounded-2xl px-5 py-4 text-[0.94rem] text-stone-700 leading-relaxed placeholder:text-stone-300 focus:outline-none focus:bg-stone-50 transition-colors border-0 ring-0 focus:ring-0 min-h-[120px]"
-                  style={{ fieldSizing: "content" } as React.CSSProperties}
-                />
-
-                {/* Media type selector */}
-                <div className="flex items-center gap-2">
+                {/* Media toolbar */}
+                <div className="flex items-center gap-0 rounded-xl border border-[#EAEAEA] bg-[#F9F9F9] p-1 w-fit">
                   {mediaOptions.map(({ type, icon: Icon, label }) => {
                     const active = selectedMedia === type;
                     return (
                       <button
                         key={type}
                         onClick={() => setSelectedMedia(active ? null : type)}
-                        className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium transition-all border ${
+                        className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium transition-all ${
                           active
-                            ? "border-amber-400/60 bg-amber-50 text-amber-700"
-                            : "border-stone-150 bg-white text-stone-400 hover:border-stone-200 hover:text-stone-500"
+                            ? "bg-white border border-[#D4AF37]/30 text-[#D4AF37] shadow-sm"
+                            : "text-[#757575] hover:text-stone-600"
                         }`}
                       >
                         <Icon size={14} strokeWidth={1.5} />
@@ -185,7 +188,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
 
                 {/* Contextual media area */}
                 {selectedMedia === "photo" && (
-                  <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-stone-300 bg-stone-50/30">
+                  <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-[#757575] bg-[#F9F9F9]">
                     <Upload size={20} strokeWidth={1.5} />
                     <span className="text-xs font-medium">Ajouter jusqu'à 4 photos</span>
                   </div>
@@ -195,11 +198,11 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                     <button className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-md shadow-amber-500/20 hover:scale-105 transition-transform">
                       <Mic size={22} strokeWidth={1.5} className="text-white" />
                     </button>
-                    <span className="text-xs text-stone-400 font-medium">Appuyez pour parler</span>
+                    <span className="text-xs text-[#757575] font-medium">Appuyez pour parler</span>
                   </div>
                 )}
                 {selectedMedia === "video" && (
-                  <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-stone-300 bg-stone-50/30">
+                  <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-[#757575] bg-[#F9F9F9]">
                     <Video size={20} strokeWidth={1.5} />
                     <span className="text-xs font-medium">Ajouter une vidéo</span>
                   </div>
@@ -208,72 +211,74 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                 {/* Separator */}
                 <div className="h-px bg-stone-100" />
 
-                {/* Timeline metadata fields */}
-                <div className="space-y-3">
-                  <Input
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    placeholder="Titre (ex: L'été 1998...)"
-                    className="border-0 border-b border-stone-100 rounded-none bg-transparent text-sm text-stone-600 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-stone-300 h-11 px-1"
-                  />
-                  <div className="relative">
-                    <CalendarDays size={15} className="absolute left-1 top-1/2 -translate-y-1/2 text-stone-300" />
-                    <Input
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      placeholder="Date de ce souvenir"
-                      className="border-0 border-b border-stone-100 rounded-none bg-transparent text-sm text-stone-600 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-stone-300 h-11 pl-7 pr-1"
+                {/* ─── Pin to Timeline Toggle ─── */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm">📌</span>
+                      <span className="text-sm text-stone-600 font-medium">
+                        Épingler ce souvenir dans la frise « Son histoire »
+                      </span>
+                    </div>
+                    <Switch
+                      checked={pinToTimeline}
+                      onCheckedChange={setPinToTimeline}
+                      className="data-[state=checked]:bg-[#D4AF37]"
                     />
                   </div>
-                </div>
 
-                {/* ─── Admin: Pin to Timeline ─── */}
-                {isAdmin && (
-                  <div className="space-y-4">
-                    <div className="h-px bg-stone-100" />
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <BookOpen size={14} className="text-[#D4AF37]" />
-                        <span className="text-sm text-stone-600 font-medium">Épingler dans le Roman de sa Vie</span>
+                  {pinToTimeline && (
+                    <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-300 rounded-xl border border-[#D4AF37]/20 bg-amber-50/20 p-4">
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-medium text-[#757575] tracking-wide">
+                          Titre de l'événement *
+                        </label>
+                        <Input
+                          value={chapterTitle}
+                          onChange={(e) => setChapterTitle(e.target.value)}
+                          placeholder="Ex: L'été 1998..."
+                          className={inputStyle}
+                        />
                       </div>
-                      <Switch
-                        checked={pinToTimeline}
-                        onCheckedChange={setPinToTimeline}
-                        className="data-[state=checked]:bg-[#D4AF37]"
-                      />
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-medium text-[#757575] tracking-wide">
+                          Date de l'événement *
+                        </label>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <button
+                              className={cn(
+                                inputStyle,
+                                "w-full flex items-center text-left",
+                                !chapterDate && "text-[#757575]"
+                              )}
+                            >
+                              {chapterDate
+                                ? format(chapterDate, "d MMMM yyyy", { locale: fr })
+                                : "Sélectionner une date"}
+                            </button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0 z-[100]" align="start">
+                            <Calendar
+                              mode="single"
+                              selected={chapterDate}
+                              onSelect={setChapterDate}
+                              initialFocus
+                              className={cn("p-3 pointer-events-auto")}
+                            />
+                          </PopoverContent>
+                        </Popover>
+                      </div>
                     </div>
-
-                    {pinToTimeline && (
-                      <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-200 rounded-xl border border-[#D4AF37]/20 bg-amber-50/20 p-4">
-                        <div className="space-y-1.5">
-                          <label className="text-xs font-medium text-stone-500 tracking-wide">Date de l'événement *</label>
-                          <Input
-                            value={chapterDate}
-                            onChange={(e) => setChapterDate(e.target.value)}
-                            placeholder="Ex: 1998"
-                            className="border-0 border-b border-stone-200 rounded-none bg-transparent text-sm text-stone-700 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-[#D4AF37]/50 h-10 px-1"
-                          />
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-xs font-medium text-stone-500 tracking-wide">Titre du chapitre *</label>
-                          <Input
-                            value={chapterTitle}
-                            onChange={(e) => setChapterTitle(e.target.value)}
-                            placeholder="Ex: Le voyage en Italie"
-                            className="border-0 border-b border-stone-200 rounded-none bg-transparent text-sm text-stone-700 placeholder:text-stone-300 focus-visible:ring-0 focus-visible:border-[#D4AF37]/50 h-10 px-1"
-                          />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
+                  )}
+                </div>
 
                 {/* Submit */}
                 <button className="w-full py-3.5 rounded-xl bg-[#D4AF37] text-white font-medium text-sm hover:bg-[#C4A030] transition-colors shadow-md shadow-[#D4AF37]/20 tracking-wide">
-                  Déposer dans le sanctuaire
+                  Déposer dans l'espace de recueillement
                 </button>
 
-                <p className="text-[11px] text-stone-300 text-center leading-relaxed">
+                <p className="text-[11px] text-[#757575] text-center leading-relaxed">
                   {isAdmin
                     ? "Ce souvenir sera publié directement sur le sanctuaire."
                     : "Votre souvenir sera soumis à l'approbation de la famille."}
