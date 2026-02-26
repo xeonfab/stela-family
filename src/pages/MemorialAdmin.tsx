@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, Flame, X, Pencil, Download, Sparkles, Lock } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, Flame, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/jean-claude-portrait-new.jpg";
@@ -530,6 +531,26 @@ const MemorialAdmin = () => {
           <ArrowLeft size={18} />
           <span>Retour</span>
         </Link>
+        <Sheet>
+          <SheetTrigger asChild>
+            <button className="w-9 h-9 flex items-center justify-center rounded-full border border-stone-200 hover:border-stone-300 transition-colors bg-white/60">
+              <Menu size={18} className="text-stone-500" />
+            </button>
+          </SheetTrigger>
+          <SheetContent side="right" className="bg-[#FAFAFA] border-l border-stone-200/60 w-72 p-0">
+            <SheetTitle className="sr-only">Menu administrateur</SheetTitle>
+            <nav className="flex flex-col justify-center h-full px-10 gap-8">
+              <Link to="/kit-ceremonie" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
+                <BookOpenCheck size={20} strokeWidth={1.5} />
+                Kit de Cérémonie
+              </Link>
+              <Link to="/parametres" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
+                <Settings size={20} strokeWidth={1.5} />
+                Paramètres de l'espace
+              </Link>
+            </nav>
+          </SheetContent>
+        </Sheet>
       </header>
 
       {/* ─── Sacred Header with Editable Fields ─── */}
