@@ -15,6 +15,8 @@ import CreatePassword from "./pages/CreatePassword";
 import OnboardingPhoto from "./pages/OnboardingPhoto";
 import NotFound from "./pages/NotFound";
 import PageModeration from "./pages/PageModeration";
+import KitCeremonie from "./pages/KitCeremonie";
+import ParametresAdmin from "./pages/ParametresAdmin";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +38,8 @@ const App = () => (
           <Route path="/onboarding/mot-de-passe" element={<CreatePassword />} />
           <Route path="/onboarding/photo" element={<OnboardingPhoto />} />
           <Route path="/moderation" element={<PageModeration />} />
+          <Route path="/kit-ceremonie" element={<KitCeremonie />} />
+          <Route path="/parametres" element={<ParametresAdmin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
