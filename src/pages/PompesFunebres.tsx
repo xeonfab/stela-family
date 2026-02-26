@@ -245,37 +245,46 @@ const CeremonyKitSection = () => {
 const Partnership = () => {
   const { ref, isVisible } = useScrollReveal();
 
-  const card = {
-    title: "L'Inclusion Premium",
-    badge: "Recommandé",
-    text: "Vous achetez nos mémoriaux à un tarif de gros exclusif (ex: 40€). Vous l'incluez d'office dans vos devis 'Prestige' pour augmenter votre marge et la satisfaction famille.",
-  };
+  const columns = [
+    {
+      num: "1",
+      title: "Le Tarif Partenaire",
+      text: "Bénéficiez d'un tarif d'achat fixe, exclusif aux indépendants (ex\u00A0: 40\u00A0€ par espace). Aucun abonnement mensuel, aucun frais caché.",
+    },
+    {
+      num: "2",
+      title: "La Valeur Ajoutée",
+      text: "Intégrez ce service inédit à vos devis. Vous offrez aux familles un héritage inestimable, augmentant instantanément la valeur perçue de votre accompagnement.",
+    },
+    {
+      num: "3",
+      title: "Le Bénéfice Agence",
+      text: "Vous modernisez votre image et sécurisez une nouvelle rentabilité à chaque cérémonie, sans aucune charge administrative supplémentaire.",
+    },
+  ];
 
   return (
     <section ref={ref} className="py-28 bg-[hsl(30_6%_12%)] text-[hsl(0_0%_96%)]">
       <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-2xl mx-auto mb-20 space-y-5">
           <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
-            La marge silencieuse&nbsp;: un modèle pensé pour votre sérénité.
+            Un modèle économique pensé pour votre sérénité.
           </h2>
           <p className="text-[hsl(30_6%_70%)] text-lg leading-relaxed">
-            Augmentez la valeur de vos devis et modernisez votre image, sans modifier votre métier.
+            Développez l'activité de votre agence sans modifier votre métier, grâce à un partenariat transparent.
           </p>
         </div>
 
-        <div className="max-w-lg mx-auto">
-          <div
-            className={`rounded-2xl border border-primary/30 bg-[hsl(30_6%_16%)] p-8 space-y-3 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-            style={{ transitionDelay: "200ms" }}
-          >
-            <div className="flex items-center gap-3">
-              <h3 className="font-serif-display text-xl font-semibold">{card.title}</h3>
-              <span className="text-xs font-sans-body font-medium bg-primary/20 text-primary px-2.5 py-0.5 rounded-full">
-                {card.badge}
+        <div className="grid md:grid-cols-3 gap-12 lg:gap-16 max-w-5xl mx-auto">
+          {columns.map((col, i) => (
+            <div key={i} className="text-center md:text-left space-y-4">
+              <span className="inline-block font-serif-display text-4xl font-bold" style={{ color: "#D4AF37" }}>
+                {col.num}
               </span>
+              <h3 className="font-serif-display text-xl font-semibold text-white">{col.title}</h3>
+              <p className="text-[hsl(30_6%_65%)] text-sm leading-relaxed">{col.text}</p>
             </div>
-            <p className="text-[hsl(30_6%_70%)] leading-relaxed">{card.text}</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>
