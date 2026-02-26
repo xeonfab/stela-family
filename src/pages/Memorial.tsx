@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Lock, Pencil, Plus, Upload, CalendarDays } from "lucide-react";
+import AudioPlayer from "@/components/AudioPlayer";
 import JewelCandle from "@/components/JewelCandle";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
@@ -63,14 +64,7 @@ const timeline: TimelineEntry[] = [
   { type: "standard", year: "2010", title: "La retraite et le jardin parfait", desc: "Enfin le temps de cultiver ses roses, ses amitiés et le bonheur simple d'être grand-père." },
 ];
 
-/* ─── Audio Waveform SVG ─── */
-const AudioWaveform = () => (
-  <div className="flex items-end gap-[2px] h-8">
-    {[3, 5, 8, 4, 7, 10, 6, 3, 8, 5, 9, 4, 7, 3, 6, 8, 5, 3, 7, 4, 9, 6, 3, 5, 8].map((h, i) => (
-      <div key={i} className="w-[3px] rounded-full bg-amber-600/40" style={{ height: `${h * 3}px` }} />
-    ))}
-  </div>
-);
+/* AudioWaveform removed — using AudioPlayer component */
 
 const FlameRitual = () => {
   const [isLit, setIsLit] = useState(false);
@@ -123,13 +117,7 @@ const TimelineDetailModal = ({ event, open, onOpenChange }: { event: TimelineEnt
           {event.type === "audio" && (
             <div className="space-y-3">
               <p className="text-xs text-stone-400">{event.attribution}</p>
-              <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-stone-100">
-                <button className="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center shrink-0 hover:bg-amber-700 transition-colors">
-                  <Play size={14} className="text-white ml-0.5" fill="currentColor" />
-                </button>
-                <AudioWaveform />
-                <span className="text-xs text-stone-400 font-mono shrink-0">{event.current} / {event.duration}</span>
-              </div>
+              <AudioPlayer current={event.current} duration={event.duration} size="sm" className="bg-white rounded-xl px-4 py-3 shadow-sm border border-stone-100" />
               <p className="text-stone-600 italic leading-relaxed">{event.quote}</p>
             </div>
           )}
@@ -166,13 +154,7 @@ const MemoryDetailModal = ({ memory, open, onOpenChange }: { memory: Memory | nu
           )}
           {memory.type === "audio" && (
             <div className="space-y-3">
-              <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-stone-100">
-                <button className="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center shrink-0 hover:bg-amber-700 transition-colors">
-                  <Play size={16} className="text-white ml-0.5" fill="currentColor" />
-                </button>
-                <AudioWaveform />
-                <span className="text-xs text-stone-400 font-mono shrink-0">{memory.duration}</span>
-              </div>
+              <AudioPlayer duration={memory.duration} className="bg-white rounded-xl px-4 py-3 shadow-sm border border-stone-100" />
             </div>
           )}
           <div className="flex items-center justify-between pt-2 border-t border-stone-100">
@@ -403,13 +385,7 @@ const SonHistoireTab = ({ isAdmin }: { isAdmin: boolean }) => {
                   {event.type === "audio" && (
                     <div className="mt-2 space-y-2">
                       <p className="text-xs text-stone-400">{event.attribution}</p>
-                      <div className={`flex items-center gap-3 bg-white rounded-xl px-3 py-2.5 shadow-sm border border-stone-100 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                        <button className="w-7 h-7 rounded-full bg-amber-600 flex items-center justify-center shrink-0 hover:bg-amber-700 transition-colors" onClick={(e) => e.stopPropagation()}>
-                          <Play size={12} className="text-white ml-0.5" fill="currentColor" />
-                        </button>
-                        <AudioWaveform />
-                        <span className="text-xs text-stone-400 font-mono shrink-0">{event.current} / {event.duration}</span>
-                      </div>
+                      <AudioPlayer current={event.current} duration={event.duration} size="sm" className={`bg-white rounded-xl px-3 py-2.5 shadow-sm border border-stone-100 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`} />
                       <p className="text-sm text-stone-600 italic leading-relaxed line-clamp-3">{event.quote}</p>
                     </div>
                   )}
@@ -472,16 +448,13 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
   if (memory.type === "audio") {
     return (
       <div onClick={onClick} className="break-inside-avoid bg-amber-50/50 rounded-2xl p-5 shadow-sm border border-amber-100/50 space-y-4 cursor-pointer group hover:shadow-md transition-shadow">
-        <div className="flex items-center gap-3">
-          <button className="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center shadow-md hover:bg-amber-700 transition-colors" onClick={(e) => e.stopPropagation()}>
-            <Play size={16} className="ml-0.5" />
-          </button>
+        <div className="flex items-center gap-3 mb-4">
           <div>
             <p className="text-sm font-medium text-stone-800">{memory.title}</p>
             <p className="text-xs text-stone-400">{memory.duration}</p>
           </div>
         </div>
-        <AudioWaveform />
+        <AudioPlayer duration={memory.duration} size="sm" />
         <div className="flex items-center justify-between">
           <span className="text-xs text-stone-400">— {memory.author}</span>
           <div className="flex items-center gap-3">

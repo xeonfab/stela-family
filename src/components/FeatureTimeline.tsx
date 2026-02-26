@@ -1,5 +1,6 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Play, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
+import AudioPlayer from "@/components/AudioPlayer";
 import couplePhoto from "@/assets/couple-70s.jpg";
 
 type BaseEvent = {
@@ -50,21 +51,7 @@ const events: TimelineEvent[] = [
   { type: "standard", year: "2023", title: "L'hommage", desc: "Sa lumière continue de briller à travers nous." },
 ];
 
-/* Static waveform bars */
-const Waveform = () => {
-  const bars = [3, 6, 10, 7, 12, 8, 5, 11, 6, 9, 4, 8, 13, 7, 5, 10, 6, 3, 8, 11, 5, 7, 9, 4, 6];
-  return (
-    <div className="flex items-center gap-[2px] h-6 flex-1">
-      {bars.map((h, i) => (
-        <div
-          key={i}
-          className="w-[3px] rounded-full bg-primary/30"
-          style={{ height: `${h * 1.8}px` }}
-        />
-      ))}
-    </div>
-  );
-};
+/* Waveform removed — using AudioPlayer */
 
 const FeatureTimeline = () => {
   const { ref, isVisible } = useScrollReveal();
@@ -139,15 +126,7 @@ const FeatureTimeline = () => {
                       <p className="text-xs text-muted-foreground">{ev.attribution}</p>
 
                       {/* Mini audio player */}
-                      <div className="flex items-center gap-3 bg-card rounded-xl px-4 py-3 shadow-sm border border-border/50">
-                        <button className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 hover:bg-primary/90 transition-colors">
-                          <Play size={14} className="text-primary-foreground ml-0.5" fill="currentColor" />
-                        </button>
-                        <Waveform />
-                        <span className="text-xs text-muted-foreground font-mono shrink-0">
-                          {ev.current} / {ev.duration}
-                        </span>
-                      </div>
+                      <AudioPlayer current={ev.current} duration={ev.duration} size="sm" className="bg-card rounded-xl px-4 py-3 shadow-sm border border-border/50" />
 
                       <p className="text-sm text-foreground/80 italic leading-relaxed">{ev.quote}</p>
                     </div>
