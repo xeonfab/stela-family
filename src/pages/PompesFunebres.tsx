@@ -249,7 +249,7 @@ const Partnership = () => {
     {
       num: "1",
       title: "Le Tarif Partenaire",
-      text: "Bénéficiez d'un tarif d'achat fixe, exclusif aux indépendants (ex\u00A0: 40\u00A0€ par espace). Aucun abonnement mensuel, aucun frais caché.",
+      text: "Bénéficiez d'un tarif d'achat fixe, exclusif aux indépendants (ex\u00A0: 50\u00A0€ par espace). Aucun abonnement mensuel, aucun frais caché.",
     },
     {
       num: "2",
