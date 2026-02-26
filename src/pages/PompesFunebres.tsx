@@ -52,23 +52,26 @@ const HeroSection = () => (
           Pour les Agences Indépendantes
         </p>
         <h1 className="font-serif-display text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-foreground">
-          Démarquez votre agence avec un hommage sans fin.
+          Démarquez votre agence. Prolongez l'hommage en 60&nbsp;secondes.
         </h1>
         <p className="text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
-          Offrez aux familles un sanctuaire numérique premium. Une solution clé en main pour moderniser votre image et enrichir votre accompagnement, sans aucune charge administrative.
+          Offrez aux familles un espace de recueillement en ligne premium et privé. Une solution clé en main pour moderniser votre image et enrichir votre accompagnement, sans aucune charge administrative.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
           <Button className="rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 px-8 py-6 text-base shadow-gold">
-            Découvrir nos offres B2B
+            Réserver une démonstration
           </Button>
           <Button
             variant="outline"
             className="rounded-full border-muted-foreground/30 text-foreground px-8 py-6 text-base hover:bg-secondary transition-transform duration-200 hover:scale-105"
             asChild
           >
-            <Link to="/memorial">Voir un mémorial d'exemple</Link>
+            <Link to="/memorial">Voir un espace d'exemple</Link>
           </Button>
         </div>
+        <p className="text-xs text-muted-foreground/60 text-center lg:text-left">
+          ✓ Sans engagement&nbsp; •&nbsp; ✓ Déploiement immédiat
+        </p>
       </div>
 
       <div className="flex-1 flex justify-center">
