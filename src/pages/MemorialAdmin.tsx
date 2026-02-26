@@ -583,6 +583,20 @@ const MemorialAdmin = () => {
 
         {/* ─── TAB 1: Memory Wall with Pending Cards ─── */}
         <TabsContent value="souvenirs" className="mt-0">
+          {/* Moderation notification banner */}
+          <div className="max-w-5xl mx-auto px-6 pt-8">
+            <div className="flex items-center justify-between bg-[#D4AF37]/10 rounded-xl px-6 py-4 border border-[#D4AF37]/15">
+              <p className="font-serif text-[#2C2C2C] text-sm md:text-base">
+                3 nouveaux hommages attendent votre regard.
+              </p>
+              <Link
+                to="/moderation"
+                className="text-sm font-medium text-[#D4AF37] hover:text-[#c9a432] transition-colors whitespace-nowrap ml-4"
+              >
+                Ouvrir →
+              </Link>
+            </div>
+          </div>
           <div className="max-w-5xl mx-auto px-6 py-12">
             <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
               {/* Pending cards first */}

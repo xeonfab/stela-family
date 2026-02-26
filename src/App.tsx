@@ -14,6 +14,7 @@ import EmailInvitation from "./pages/EmailInvitation";
 import CreatePassword from "./pages/CreatePassword";
 import OnboardingPhoto from "./pages/OnboardingPhoto";
 import NotFound from "./pages/NotFound";
+import PageModeration from "./pages/PageModeration";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/onboarding/email" element={<EmailInvitation />} />
           <Route path="/onboarding/mot-de-passe" element={<CreatePassword />} />
           <Route path="/onboarding/photo" element={<OnboardingPhoto />} />
+          <Route path="/moderation" element={<PageModeration />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
