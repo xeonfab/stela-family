@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import PageModeration from "./pages/PageModeration";
 import KitCeremonie from "./pages/KitCeremonie";
 import ParametresAdmin from "./pages/ParametresAdmin";
+import DashboardB2B from "./pages/DashboardB2B";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/moderation" element={<PageModeration />} />
           <Route path="/kit-ceremonie" element={<KitCeremonie />} />
           <Route path="/parametres" element={<ParametresAdmin />} />
+          <Route path="/dashboard-b2b" element={<DashboardB2B />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
