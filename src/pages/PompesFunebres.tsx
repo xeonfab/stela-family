@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Menu, X, Star, CheckCircle, TrendingUp, ArrowRight, Calendar } from "lucide-react";
+import { Menu, X, Award, Hourglass, Handshake, ArrowRight, Calendar } from "lucide-react";
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import heroImg from "@/assets/pompes-funebres-hero.jpg";
@@ -92,19 +92,19 @@ const ValueProposition = () => {
 
   const items = [
     {
-      icon: Star,
-      title: "Une image modernisée",
-      text: "Montrez aux familles que vous comprenez leurs nouveaux besoins. Prolongez votre présence bien au-delà des obsèques avec un service innovant et digne.",
+      icon: Award,
+      title: "L'élégance en héritage",
+      text: "Démarquez votre agence face aux réseaux standardisés. En offrant cet espace exclusif, vous modernisez votre image et prouvez que votre accompagnement dépasse le jour des obsèques.",
     },
     {
-      icon: CheckCircle,
-      title: "Zéro charge mentale",
-      text: "Aucune compétence technique requise. Vous remettez le Kit Cérémonie à la famille, la plateforme intelligente s'occupe du reste. Zéro SAV pour vous.",
+      icon: Hourglass,
+      title: "Le rituel des 60 secondes",
+      text: "Saisissez le nom et l'année, le système génère le lien. Vous remettez le Kit Cérémonie, la famille prend le relais. Aucun SAV ni support technique à gérer pour vos conseillers.",
     },
     {
-      icon: TrendingUp,
-      title: "Valorisez vos prestations",
-      text: "Justifiez plus facilement vos tarifs premium en incluant un service à forte valeur émotionnelle perçue que les grands groupes standardisés n'ont pas.",
+      icon: Handshake,
+      title: "Une valeur ajoutée immédiate",
+      text: "Intégrez naturellement ce service premium à vos devis. Un modèle économique conçu pour les indépendants\u00a0: aucune installation, et une rentabilité dès la première famille accompagnée.",
     },
   ];
 
@@ -112,7 +112,7 @@ const ValueProposition = () => {
     <section ref={ref} className="py-28 bg-background">
       <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground text-center mb-16">
-          Pourquoi intégrer Stela à votre agence&nbsp;?
+          Pensé pour le quotidien de votre agence.
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
