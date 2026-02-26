@@ -55,7 +55,7 @@ const HeroSection = () => (
           Démarquez votre agence. Prolongez l'hommage en 60&nbsp;secondes.
         </h1>
         <p className="text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
-          Offrez aux familles un espace de recueillement en ligne premium et privé. Une solution clé en main pour moderniser votre image et enrichir votre accompagnement, sans aucune charge administrative.
+          Offrez aux familles un espace de recueillement en ligne premium, privé et accessible à vie. Une solution clé en main pour moderniser votre image et enrichir votre accompagnement, sans aucune charge administrative.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
           <Button className="rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 px-8 py-6 text-base shadow-gold">
@@ -143,6 +143,7 @@ const ProductShowcase = () => {
     "Dépôt de souvenirs et photos en 1 clic",
     "Messages vocaux intimes",
     "Modération totale par la famille",
+    "Un lieu de mémoire pérenne, accessible à vie et sans abonnement pour les proches",
   ];
 
   return (
@@ -195,7 +196,7 @@ const ProductShowcase = () => {
             Rassemblez photos, vidéos, voix et hommages dans un écrin numérique partagé. Un espace digne et sécurisé pour que le souvenir continue de vivre à travers eux.
           </p>
           <p className="text-muted-foreground text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
-            C'est cette délicatesse et cette richesse émotionnelle qui transformeront votre prestation funéraire en un accompagnement inoubliable pour les familles.
+            C'est cette délicatesse et cette richesse émotionnelle qui transformeront votre prestation funéraire en un accompagnement inoubliable et intemporel pour les familles.
           </p>
           <ul className="space-y-3 max-w-lg mx-auto lg:mx-0">
             {checks.map((item, i) => (
@@ -249,7 +250,7 @@ const Partnership = () => {
     {
       num: "1",
       title: "Le Tarif Partenaire",
-      text: "Bénéficiez d'un tarif d'achat fixe, exclusif aux indépendants (ex\u00A0: 50\u00A0€ par espace). Aucun abonnement mensuel, aucun frais caché.",
+      text: "Bénéficiez d'un tarif d'achat fixe, exclusif aux indépendants (ex\u00A0: 40\u00A0€ par espace). Ce tarif unique inclut la génération du kit et l'hébergement à vie du mémorial pour la famille. Aucun frais caché.",
     },
     {
       num: "2",

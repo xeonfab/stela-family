@@ -49,7 +49,7 @@ const HeroSection = () => {
             Recevez votre premier Kit Cérémonie offert.
           </h1>
           <p className="text-lg leading-relaxed max-w-lg mx-auto lg:mx-0" style={{ color: "#2C2C2C" }}>
-            Découvrez Stela, l'espace de recueillement numérique premium. Commandez votre présentoir physique gratuit aujourd'hui, testez-le avec votre prochaine famille.
+            Offrez aux familles un espace de recueillement en ligne premium, privé et accessible à vie. Une solution clé en main pour moderniser votre image et enrichir votre accompagnement, sans aucune charge administrative.
           </p>
 
           {!submitted ? (
@@ -109,6 +109,7 @@ const ExperienceFamilleSection = () => {
     "Dépôt de souvenirs et photos en 1 clic",
     "Messages vocaux intimes",
     "Modération totale par la famille",
+    "Un lieu de mémoire pérenne, accessible à vie et sans abonnement pour les proches",
   ];
 
   return (
@@ -156,7 +157,7 @@ const ExperienceFamilleSection = () => {
             Rassemblez photos, vidéos, voix et hommages dans un écrin numérique partagé. Un espace digne et sécurisé pour que le souvenir continue de vivre à travers eux.
           </p>
           <p className="text-base leading-relaxed max-w-lg mx-auto lg:mx-0" style={{ color: "#6B7280" }}>
-            C'est cette délicatesse et cette richesse émotionnelle qui transformeront votre prestation funéraire en un accompagnement inoubliable pour les familles.
+            C'est cette délicatesse et cette richesse émotionnelle qui transformeront votre prestation funéraire en un accompagnement inoubliable et intemporel pour les familles.
           </p>
           <ul className="space-y-3 max-w-lg mx-auto lg:mx-0">
             {checks.map((item, i) => (
