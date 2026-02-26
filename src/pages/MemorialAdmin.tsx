@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, Flame, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings } from "lucide-react";
+import JewelCandle from "@/components/JewelCandle";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { toast } from "sonner";
@@ -176,7 +177,7 @@ const FlameRitual = () => {
   return (
     <div className="flex flex-col items-center mt-6 mb-8 gap-2.5">
       <button onClick={handleLight} className={`flex items-center gap-2.5 px-6 py-2.5 rounded-full transition-all duration-700 ease-in-out focus:outline-none ${isLit ? "bg-amber-50 border border-[#D4AF37]/40 shadow-[0_0_20px_-5px_rgba(212,175,55,0.15)]" : "bg-white border border-stone-200 hover:border-stone-300 shadow-sm"}`} aria-label="Allumer une bougie">
-        <Flame size={20} fill="currentColor" strokeWidth={1.5} className={`transition-all duration-700 ${isLit ? "text-amber-500 fill-amber-500 drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]" : "text-amber-400 fill-amber-400 animate-flame-pulse"}`} />
+        <JewelCandle size={20} lit={isLit} />
         <span className={`text-sm font-medium transition-all duration-700 ${isLit ? "text-amber-800" : "text-stone-600"}`}>
           {isLit ? `Vous veillez avec ${litCount} proches` : "Allumer une bougie"}
         </span>

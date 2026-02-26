@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, Flame, X, Lock, Pencil, Plus, Upload, CalendarDays } from "lucide-react";
+import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Lock, Pencil, Plus, Upload, CalendarDays } from "lucide-react";
+import JewelCandle from "@/components/JewelCandle";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
@@ -94,9 +95,7 @@ const FlameRitual = () => {
         }`}
         aria-label="Allumer une bougie"
       >
-        <Flame size={20} fill="currentColor" strokeWidth={1.5}
-          className={`transition-all duration-700 ${isLit ? "text-amber-500 fill-amber-500 drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]" : "text-amber-400 fill-amber-400 animate-flame-pulse"}`}
-        />
+        <JewelCandle size={20} lit={isLit} />
         <span className={`text-sm font-medium transition-all duration-700 ${isLit ? "text-amber-800" : "text-stone-600"}`}>
           {isLit ? `Vous veillez avec ${litCount} proches` : "Allumer une bougie"}
         </span>
