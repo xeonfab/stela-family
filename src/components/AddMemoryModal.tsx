@@ -299,7 +299,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                 </div>
 
                 {/* Submit */}
-                <button className="btn-gold-gradient btn-gold-shimmer w-full py-3.5 rounded-xl text-white font-medium text-sm tracking-wide">
+                <button className="btn-gold-jewel w-full py-3.5 rounded-xl text-white font-medium text-sm tracking-[0.05em]">
                   Déposer dans l'espace de recueillement
                 </button>
 
