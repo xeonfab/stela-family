@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -29,6 +29,7 @@ const DUMMY_AI_TEXT =
   "Je revois encore ses lunettes glissant sur le bout de son nez, dans la lumière de 6h du matin, une tasse de café noir à la main. C'est dans ces instants calmes qu'il aimait nous rappeler qu'on 'a le temps de se presser'. Ce temps, aujourd'hui, est devenu notre plus précieux héritage.";
 
 const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalProps) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [text, setText] = useState("");
   const [intentTab, setIntentTab] = useState<IntentTab>("pensee");
   const [view, setView] = useState<ModalView>("canvas");
@@ -201,22 +202,51 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
 
                         {/* PENSÉE tab */}
                         {intentTab === "pensee" && (
-                          <div className="relative">
+                          <div className="space-y-3">
                             <textarea
+                              ref={textareaRef}
                               value={text}
                               onChange={(e) => setText(e.target.value)}
                               placeholder="Une anecdote, un éclat de rire, ce qui vous manque le plus..."
                               rows={8}
-                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl px-5 py-4 pb-12 text-[0.94rem] text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0 min-h-[260px]"
-                              style={{ fieldSizing: "content" } as React.CSSProperties}
+                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl px-5 py-5 text-[1rem] text-stone-700 placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0 min-h-[260px]"
+                              style={{ lineHeight: 1.7, fieldSizing: "content" } as React.CSSProperties}
                             />
-                            <button
-                              onClick={() => setView("maieutic")}
-                              className="absolute bottom-3 right-3 flex items-center gap-1.5 text-[11px] text-[#757575] hover:text-[#D4AF37] transition-colors font-medium tracking-wide group bg-white/80 backdrop-blur-sm rounded-full px-2.5 py-1 border border-[#EAEAEA] hover:border-[#D4AF37]/40"
+
+                            {/* Inspiration chips — disappear when text is not empty */}
+                            <div
+                              className={cn(
+                                "transition-all duration-500 overflow-hidden",
+                                text.length > 0 ? "opacity-0 max-h-0 mt-0" : "opacity-100 max-h-40"
+                              )}
                             >
-                              <Sparkles size={12} strokeWidth={1.5} className="group-hover:text-[#D4AF37] transition-colors" />
-                              Trouver les mots...
-                            </button>
+                              <p className="text-[11px] text-stone-400 tracking-wide mb-2">Besoin d'inspiration ?</p>
+                              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+                                {[
+                                  { label: "✨ Raconter une anecdote", prompt: "Je me souviendrai toujours de la fois où " },
+                                  { label: "✨ Un trait de caractère", prompt: "Ce que j'aimais le plus chez toi, c'était " },
+                                  { label: "✨ Un simple mot", prompt: "Tu vas me manquer profondément " },
+                                ].map((chip) => (
+                                  <button
+                                    key={chip.label}
+                                    type="button"
+                                    onClick={() => {
+                                      setText(chip.prompt);
+                                      setTimeout(() => {
+                                        if (textareaRef.current) {
+                                          textareaRef.current.focus();
+                                          textareaRef.current.selectionStart = chip.prompt.length;
+                                          textareaRef.current.selectionEnd = chip.prompt.length;
+                                        }
+                                      }, 50);
+                                    }}
+                                    className="whitespace-nowrap shrink-0 text-[12px] text-stone-500 border border-[#EAEAEA] rounded-full px-3.5 py-1.5 hover:bg-[#F5F5F4] hover:text-stone-700 transition-colors bg-white"
+                                  >
+                                    {chip.label}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
                           </div>
                         )}
 
