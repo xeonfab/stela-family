@@ -34,6 +34,8 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
   const [maieutic1, setMaieutic1] = useState("");
   const [maieutic2, setMaieutic2] = useState("");
   const [maieutic3, setMaieutic3] = useState("");
+  const [authorName, setAuthorName] = useState("");
+  const [authorRelation, setAuthorRelation] = useState("");
   const [pinToTimeline, setPinToTimeline] = useState(false);
   const [chapterTitle, setChapterTitle] = useState("");
   const [chapterDate, setChapterDate] = useState<Date | undefined>(undefined);
@@ -46,6 +48,8 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       setMaieutic1("");
       setMaieutic2("");
       setMaieutic3("");
+      setAuthorName("");
+      setAuthorRelation("");
       setPinToTimeline(false);
       setChapterTitle("");
       setChapterDate(undefined);
@@ -207,6 +211,25 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                     <span className="text-xs font-medium">Ajouter une vidéo</span>
                   </div>
                 )}
+
+                {/* ─── Signature ─── */}
+                <div className="space-y-2">
+                  <span className="text-xs font-medium text-[#757575] tracking-wide">Votre signature</span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <Input
+                      value={authorName}
+                      onChange={(e) => setAuthorName(e.target.value)}
+                      placeholder="Votre prénom et nom *"
+                      className={inputStyle}
+                    />
+                    <Input
+                      value={authorRelation}
+                      onChange={(e) => setAuthorRelation(e.target.value)}
+                      placeholder="Votre lien (ex: petit-fils, collègue...)"
+                      className={inputStyle}
+                    />
+                  </div>
+                </div>
 
                 {/* Separator */}
                 <div className="h-px bg-stone-100" />
