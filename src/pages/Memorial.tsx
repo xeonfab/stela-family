@@ -609,7 +609,7 @@ const Memorial = () => {
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
         <button
           onClick={() => setMemoryModalOpen(true)}
-          className="flex items-center gap-2.5 px-8 py-4 bg-amber-600 text-white rounded-full shadow-[0_8px_30px_-4px_rgba(217,119,6,0.5)] hover:bg-amber-700 hover:shadow-[0_12px_40px_-4px_rgba(217,119,6,0.6)] transition-all duration-300 hover:scale-105 font-medium text-sm"
+          className="flex items-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 bg-amber-600 text-white rounded-full shadow-[0_8px_30px_-4px_rgba(217,119,6,0.5)] hover:bg-amber-700 hover:shadow-[0_12px_40px_-4px_rgba(217,119,6,0.6)] transition-all duration-300 hover:scale-105 font-medium text-sm whitespace-nowrap"
         >
           <Feather size={16} />
           Déposer un souvenir
