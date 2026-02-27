@@ -77,12 +77,14 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogPortal>
         <DialogOverlay className="bg-black/30 backdrop-blur-sm" />
-        <DialogContent className="sm:max-w-xl w-[calc(100%-2rem)] rounded-2xl border-0 shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white overflow-hidden max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-none sm:max-w-xl w-screen h-[100dvh] sm:w-[calc(100%-2rem)] sm:h-auto sm:max-h-[90vh] rounded-none sm:rounded-2xl border-0 shadow-none sm:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white overflow-hidden inset-0 sm:inset-auto sm:left-[50%] sm:top-[50%] translate-x-0 translate-y-0 sm:translate-x-[-50%] sm:translate-y-[-50%]">
+          {/* Scrollable wrapper */}
+          <div className="h-full overflow-y-auto">
           {/* Header */}
-          <div className="relative px-8 pt-8 pb-2">
+          <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm px-8 pt-8 pb-2">
             <button
               onClick={() => handleClose(false)}
-              className="absolute right-5 top-5 p-1.5 rounded-full text-stone-300 hover:text-stone-500 hover:bg-stone-50 transition-colors"
+              className="absolute right-5 top-5 p-1.5 rounded-full text-stone-300 hover:text-stone-500 hover:bg-stone-50 transition-colors z-10"
             >
               <X size={18} strokeWidth={1.5} />
             </button>
@@ -308,6 +310,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                 </p>
               </div>
             )}
+          </div>
           </div>
         </DialogContent>
       </DialogPortal>
