@@ -109,7 +109,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
               </div>
 
               <DialogTitle className="font-serif text-2xl md:text-[1.7rem] text-stone-800 text-center tracking-tight">
-                {step === 1 ? "Racontez-nous un instant" : "Signez votre hommage"}
+                {step === 1 ? "Partagez un souvenir avec Jean-Claude" : "Signez votre hommage"}
               </DialogTitle>
             </div>
 
