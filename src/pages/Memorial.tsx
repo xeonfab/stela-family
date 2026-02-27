@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Lock, Pencil, Plus, Upload, CalendarDays } from "lucide-react";
 import AudioPlayer from "@/components/AudioPlayer";
-import JewelCandle from "@/components/JewelCandle";
+
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
@@ -89,7 +89,11 @@ const FlameRitual = () => {
         }`}
         aria-label="Allumer une bougie"
       >
-        <JewelCandle size={20} lit={isLit} />
+        <span className={isLit ? "is-active" : ""}>
+          <svg width={18} height={18} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path className="flame-path" d="M12 2C12 2 5 9 5 14.5C5 18.6421 8.13401 22 12 22C15.866 22 19 18.6421 19 14.5C19 9 12 2 12 2Z" strokeLinejoin="round" />
+          </svg>
+        </span>
         <span className={`text-sm font-medium transition-all duration-700 ${isLit ? "text-amber-800" : "text-stone-600"}`}>
           {isLit ? `Vous veillez avec ${litCount} proches` : "Allumer une bougie"}
         </span>

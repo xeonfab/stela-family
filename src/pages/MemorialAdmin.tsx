@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings, PenLine } from "lucide-react";
 import AudioPlayer from "@/components/AudioPlayer";
-import JewelCandle from "@/components/JewelCandle";
+
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { toast } from "sonner";
@@ -171,7 +171,11 @@ const FlameRitual = () => {
   return (
     <div className="flex flex-col items-center mt-6 mb-8 gap-2.5">
       <button onClick={handleLight} className={`flex items-center gap-2.5 px-6 py-2.5 rounded-full transition-all duration-700 ease-in-out focus:outline-none ${isLit ? "bg-amber-50 border border-[#D4AF37]/40 shadow-[0_0_20px_-5px_rgba(212,175,55,0.15)]" : "bg-white border border-stone-200 hover:border-stone-300 shadow-sm"}`} aria-label="Allumer une bougie">
-        <JewelCandle size={20} lit={isLit} />
+        <span className={isLit ? "is-active" : ""}>
+          <svg width={18} height={18} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path className="flame-path" d="M12 2C12 2 5 9 5 14.5C5 18.6421 8.13401 22 12 22C15.866 22 19 18.6421 19 14.5C19 9 12 2 12 2Z" strokeLinejoin="round" />
+          </svg>
+        </span>
         <span className={`text-sm font-medium transition-all duration-700 ${isLit ? "text-amber-800" : "text-stone-600"}`}>
           {isLit ? `Vous veillez avec ${litCount} proches` : "Allumer une bougie"}
         </span>
