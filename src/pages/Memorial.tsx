@@ -549,9 +549,9 @@ const Memorial = () => {
 
       {/* ─── Sticky Tabs ─── */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <div className="sticky top-0 z-40 bg-[#FAF9F6]/80 backdrop-blur-xl border-b border-stone-200/50">
+        <div className="sticky top-0 z-40 bg-[#FAF9F6]/80 backdrop-blur-xl">
           <div className="max-w-3xl mx-auto px-6">
-            <TabsList className="w-full bg-transparent h-14 gap-0">
+            <TabsList className="w-full bg-transparent h-14 gap-0 border-b border-stone-200/50 rounded-none p-0">
               <TabsTrigger value="souvenirs" className={tabTriggerClass}>Souvenirs</TabsTrigger>
               <TabsTrigger value="histoire" className={tabTriggerClass}>Son Histoire</TabsTrigger>
               {isAdmin && (
