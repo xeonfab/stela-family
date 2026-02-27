@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings, PenLine } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import AudioPlayer from "@/components/AudioPlayer";
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -515,32 +518,186 @@ const EmptySouvenirsState = ({ onDeposit }: { onDeposit: () => void }) => (
   </div>
 );
 
-/* ─── Empty State: Son Histoire (Golden Thread) ─── */
-const EmptyHistoireState = () => (
+/* ─── Biography Modal (Modale 1) ─── */
+const BiographyModal = ({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) => {
+  const [text, setText] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const chips = [
+    { label: "✨ Structurer pour moi", prompt: "Enfance et origines\n\nSes passions et son caractère\n\nSa vie professionnelle\n\nSon héritage et ce qu'il laisse\n" },
+    { label: "✨ Corriger l'orthographe", prompt: "" },
+  ];
+
+  const handleChip = (chip: typeof chips[0]) => {
+    if (chip.prompt) {
+      setText(chip.prompt);
+      setTimeout(() => {
+        if (textareaRef.current) {
+          textareaRef.current.focus();
+          textareaRef.current.selectionStart = textareaRef.current.value.length;
+          textareaRef.current.selectionEnd = textareaRef.current.value.length;
+        }
+      }, 50);
+    } else {
+      toast("Correction orthographique à venir…", {
+        style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" },
+      });
+    }
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-xl w-full h-full sm:h-auto sm:max-h-[90vh] rounded-none sm:rounded-2xl border-0 sm:border border-stone-200/60 bg-[#FAF9F6] p-0 flex flex-col gap-0 [&>button]:hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 pt-6 pb-4">
+          <DialogTitle className="font-serif text-2xl text-stone-800">Sa biographie</DialogTitle>
+          <button onClick={() => onOpenChange(false)} className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-stone-100 transition-colors">
+            <X size={18} className="text-stone-400" />
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="flex-1 overflow-y-auto px-6 pb-6 space-y-4">
+          <Textarea
+            ref={textareaRef}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Racontez son enfance, ses passions, son caractère..."
+            className="min-h-[250px] bg-stone-100/60 border-0 rounded-xl text-[1rem] leading-[1.7] text-stone-700 placeholder:text-stone-300 resize-none focus-visible:ring-1 focus-visible:ring-[#D4AF37]/30 p-5"
+          />
+
+          {/* AI Chips */}
+          <div className={`transition-all duration-500 ${text.length > 0 ? "opacity-40" : "opacity-100"}`}>
+            <p className="text-xs text-stone-400 mb-2">Aide à la rédaction</p>
+            <div className="flex flex-wrap gap-2">
+              {chips.map((chip) => (
+                <button
+                  key={chip.label}
+                  onClick={() => handleChip(chip)}
+                  className="px-4 py-2 text-sm text-stone-500 bg-white border border-[#EAEAEA] rounded-full hover:bg-[#F9F9F9] transition-colors"
+                >
+                  {chip.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="px-6 py-5 border-t border-stone-200/50">
+          <button
+            onClick={() => { onOpenChange(false); toast("Biographie enregistrée.", { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } }); }}
+            className="w-full py-3.5 bg-[#D4AF37] text-white text-sm font-semibold rounded-full hover:bg-[#c9a432] transition-colors shadow-sm"
+          >
+            Enregistrer la biographie
+          </button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+/* ─── Chapter Modal (Modale 2) ─── */
+const ChapterModal = ({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) => {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-lg w-full h-full sm:h-auto sm:max-h-[90vh] rounded-none sm:rounded-2xl border-0 sm:border border-stone-200/60 bg-[#FAF9F6] p-0 flex flex-col gap-0 [&>button]:hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 pt-6 pb-4">
+          <DialogTitle className="font-serif text-2xl text-stone-800">Nouveau chapitre</DialogTitle>
+          <button onClick={() => onOpenChange(false)} className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-stone-100 transition-colors">
+            <X size={18} className="text-stone-400" />
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="flex-1 overflow-y-auto px-6 pb-6 space-y-5">
+          {/* Row 1: Title + Year */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <Label className="text-[0.7rem] tracking-[0.15em] uppercase text-stone-400 font-medium">Titre de l'événement *</Label>
+              <Input placeholder="Rencontre avec Marie" className="bg-white border-stone-200/80 rounded-xl h-11 text-stone-700 placeholder:text-stone-300 focus-visible:ring-1 focus-visible:ring-[#D4AF37]/30" />
+            </div>
+            <div className="space-y-1.5">
+              <Label className="text-[0.7rem] tracking-[0.15em] uppercase text-stone-400 font-medium">Année ou date *</Label>
+              <Input placeholder="1972" className="bg-white border-stone-200/80 rounded-xl h-11 text-stone-700 placeholder:text-stone-300 focus-visible:ring-1 focus-visible:ring-[#D4AF37]/30" />
+            </div>
+          </div>
+
+          {/* Row 2: Story */}
+          <div className="space-y-1.5">
+            <Label className="text-[0.7rem] tracking-[0.15em] uppercase text-stone-400 font-medium">Votre récit</Label>
+            <Textarea
+              placeholder="Racontez ce moment précis..."
+              className="min-h-[140px] bg-white border-stone-200/80 rounded-xl text-[0.95rem] leading-[1.6] text-stone-700 placeholder:text-stone-300 resize-none focus-visible:ring-1 focus-visible:ring-[#D4AF37]/30 p-4"
+            />
+          </div>
+
+          {/* Row 3: Optional media */}
+          <div className="space-y-2">
+            <p className="text-[0.7rem] tracking-[0.15em] uppercase text-stone-400 font-medium">Illustrer ce moment (optionnel)</p>
+            <div className="flex gap-3">
+              <button className="inline-flex items-center gap-2 px-4 py-2.5 text-sm text-stone-500 bg-white border border-stone-200/80 rounded-xl hover:bg-stone-50 transition-colors">
+                <ImagePlus size={16} className="text-stone-400" />
+                Ajouter une photo
+              </button>
+              <button className="inline-flex items-center gap-2 px-4 py-2.5 text-sm text-stone-500 bg-white border border-stone-200/80 rounded-xl hover:bg-stone-50 transition-colors">
+                <Mic size={16} className="text-stone-400" />
+                Ajouter un vocal
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="px-6 py-5 border-t border-stone-200/50">
+          <button
+            onClick={() => { onOpenChange(false); toast("Chapitre épinglé à son histoire.", { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } }); }}
+            className="w-full py-3.5 bg-[#D4AF37] text-white text-sm font-semibold rounded-full hover:bg-[#c9a432] transition-colors shadow-sm"
+          >
+            Épingler à son histoire
+          </button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+/* ─── Empty State: Son Histoire (Biography + Golden Thread) ─── */
+const EmptyHistoireState = ({ onOpenBiography, onOpenChapter }: { onOpenBiography: () => void; onOpenChapter: () => void }) => (
   <div className="max-w-2xl mx-auto px-6 py-16">
+    {/* ── Biography empty block ── */}
+    <div className="bg-[#F9F9F9] rounded-3xl px-8 py-12 text-center space-y-4 mb-14">
+      <h3 className="font-serif text-lg text-stone-700">L'essence de sa vie</h3>
+      <p className="text-sm text-stone-400 leading-relaxed max-w-sm mx-auto">
+        Rédigez les quelques lignes qui accueilleront les visiteurs et résumeront son parcours.
+      </p>
+      <button
+        onClick={onOpenBiography}
+        className="inline-flex items-center gap-2 px-6 py-3 border border-[#D4AF37] text-[#D4AF37] text-sm font-medium rounded-full hover:bg-[#D4AF37]/5 transition-colors"
+      >
+        🖋 Rédiger la biographie
+      </button>
+    </div>
+
+    {/* ── Golden Thread empty state ── */}
     <div className="relative flex flex-col items-center" style={{ minHeight: '420px' }}>
-      {/* Top year */}
       <span className="text-xs tracking-[0.2em] uppercase text-[#D4AF37] font-medium mb-4">1948</span>
-
-      {/* Golden thread line — top half */}
       <div className="w-px bg-[#D4AF37]/30 flex-1 min-h-[80px]" />
-
-      {/* Center block cutting the line */}
       <div className="bg-[#FAF9F6] px-8 py-10 text-center space-y-5 max-w-sm -my-1 z-10">
         <h3 className="font-serif text-xl md:text-2xl text-stone-800">Le livre de sa vie</h3>
         <p className="text-sm text-stone-400 leading-relaxed">
           Épinglez ici les années marquantes, les rencontres et les passions pour construire sa biographie intemporelle.
         </p>
-        <button className="inline-flex items-center gap-2 px-6 py-3 border border-[#D4AF37] text-[#D4AF37] text-sm font-medium rounded-full hover:bg-[#D4AF37]/5 transition-colors">
+        <button
+          onClick={onOpenChapter}
+          className="inline-flex items-center gap-2 px-6 py-3 border border-[#D4AF37] text-[#D4AF37] text-sm font-medium rounded-full hover:bg-[#D4AF37]/5 transition-colors"
+        >
           <BookOpen size={16} />
           Ajouter un premier chapitre
         </button>
       </div>
-
-      {/* Golden thread line — bottom half */}
       <div className="w-px bg-[#D4AF37]/30 flex-1 min-h-[80px]" />
-
-      {/* Bottom year */}
       <span className="text-xs tracking-[0.2em] uppercase text-[#D4AF37] font-medium mt-4">2024</span>
     </div>
   </div>
@@ -553,6 +710,8 @@ const MemorialAdmin = () => {
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
   const [memoryDetailOpen, setMemoryDetailOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
+  const [biographyModalOpen, setBiographyModalOpen] = useState(false);
+  const [chapterModalOpen, setChapterModalOpen] = useState(false);
 
   const openMemoryDetail = (memory: Memory) => {
     setSelectedMemory(memory);
@@ -711,7 +870,7 @@ const MemorialAdmin = () => {
 
         {/* ─── TAB 2: Son Histoire ─── */}
         <TabsContent value="histoire" className="mt-0">
-          {isEmpty ? <EmptyHistoireState /> : <SonHistoireTab />}
+          {isEmpty ? <EmptyHistoireState onOpenBiography={() => setBiographyModalOpen(true)} onOpenChapter={() => setChapterModalOpen(true)} /> : <SonHistoireTab />}
         </TabsContent>
       </Tabs>
 
@@ -719,6 +878,8 @@ const MemorialAdmin = () => {
 
       <MemoryDetailModal memory={selectedMemory} open={memoryDetailOpen} onOpenChange={setMemoryDetailOpen} />
       <AddMemoryModal open={memoryModalOpen} onOpenChange={setMemoryModalOpen} />
+      <BiographyModal open={biographyModalOpen} onOpenChange={setBiographyModalOpen} />
+      <ChapterModal open={chapterModalOpen} onOpenChange={setChapterModalOpen} />
 
       {/* Footer */}
       <div className="text-center py-8">
