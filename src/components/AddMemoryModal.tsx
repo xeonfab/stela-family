@@ -138,7 +138,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                   </button>
                   <button
                     onClick={handleTisser}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-[#D4AF37]/40 text-[#D4AF37] font-medium text-sm hover:bg-amber-50 transition-colors"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-[#D4AF37] bg-[#FAFAFA] text-[#D4AF37] font-medium text-sm hover:bg-[#D4AF37] hover:text-white transition-all duration-500"
                   >
                     <Sparkles size={14} strokeWidth={1.5} />
                     Tisser ce souvenir
@@ -299,7 +299,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                 </div>
 
                 {/* Submit */}
-                <button className="w-full py-3.5 rounded-xl bg-[#D4AF37] text-white font-medium text-sm hover:bg-[#C4A030] transition-colors shadow-md shadow-[#D4AF37]/20 tracking-wide">
+                <button className="btn-gold-gradient btn-gold-shimmer w-full py-3.5 rounded-xl text-white font-medium text-sm tracking-wide">
                   Déposer dans l'espace de recueillement
                 </button>
 

@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    --background: 40 33% 97%;
-    --foreground: 20 12% 9%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 17%;
 
     --card: 40 33% 97%;
     --card-foreground: 20 12% 9%;
@@ -252,6 +252,41 @@
   }
   button:hover .jewel-candle-icon .candle-flame-shape {
     stroke: #B8942A;
+  }
+
+  /* ── Gold Jewel Button ── */
+  .btn-gold-gradient {
+    background: linear-gradient(135deg, #FDF3CE 0%, #D4AF37 45%, #B88A24 100%);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+  }
+
+  .btn-gold-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-gold-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 100%
+    );
+    transition: none;
+    pointer-events: none;
+  }
+  .btn-gold-shimmer:hover::after {
+    animation: shimmer-sweep 0.7s ease-in-out;
+  }
+
+  @keyframes shimmer-sweep {
+    0% { left: -100%; }
+    100% { left: 150%; }
   }
 }
 

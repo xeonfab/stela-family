@@ -14,7 +14,8 @@ const Navbar = () => {
 
         {/* Desktop */}
         <Button
-          className="hidden md:inline-flex rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 px-6"
+          variant="gold"
+          className="hidden md:inline-flex px-6"
         >
           Créer un Mémorial
         </Button>
@@ -27,7 +28,7 @@ const Navbar = () => {
 
       {open && (
         <div className="md:hidden px-6 pb-4">
-          <Button className="w-full rounded-full bg-primary text-primary-foreground">
+          <Button variant="gold" className="w-full">
             Créer un Mémorial
           </Button>
         </div>

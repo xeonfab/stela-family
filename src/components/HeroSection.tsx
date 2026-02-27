@@ -25,12 +25,12 @@ const HeroSection = () =>
           que leur souvenir continue de vivre à travers vous.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-          <Button className="rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 px-8 py-6 text-base shadow-gold">
+          <Button variant="gold" className="px-8 py-6 text-base">
             Créer le Mémorial (79€)
           </Button>
           <Button
-          variant="outline"
-          className="rounded-full border-muted-foreground/30 text-foreground px-8 py-6 text-base hover:bg-secondary transition-transform duration-200 hover:scale-105"
+          variant="goldOutline"
+          className="px-8 py-6 text-base"
           asChild>
 
             <Link to="/memorial">Voir un exemple</Link>

@@ -21,7 +21,7 @@ const NavbarB2B = () => {
           <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Espace Familles
           </Link>
-          <Button className="rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 px-6">
+          <Button variant="gold" className="px-6">
             Devenir Partenaire
           </Button>
         </div>
@@ -34,7 +34,7 @@ const NavbarB2B = () => {
       {open && (
         <div className="md:hidden px-6 pb-4 space-y-3">
           <Link to="/" className="block text-sm text-muted-foreground">Espace Familles</Link>
-          <Button className="w-full rounded-full bg-primary text-primary-foreground">
+          <Button variant="gold" className="w-full">
             Devenir Partenaire
           </Button>
         </div>
@@ -58,12 +58,12 @@ const HeroSection = () => (
           Offrez aux familles un espace de recueillement en ligne premium, privé et accessible à vie. Une solution clé en main pour moderniser votre image et enrichir votre accompagnement, sans aucune charge administrative.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-          <Button className="rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 px-8 py-6 text-base shadow-gold">
+          <Button variant="gold" className="px-8 py-6 text-base">
             Réserver une démonstration
           </Button>
           <Button
-            variant="outline"
-            className="rounded-full border-muted-foreground/30 text-foreground px-8 py-6 text-base hover:bg-secondary transition-transform duration-200 hover:scale-105"
+            variant="goldOutline"
+            className="px-8 py-6 text-base"
             asChild
           >
             <Link to="/memorial">Voir un espace d'exemple</Link>
@@ -302,7 +302,7 @@ const FinalCTA = () => {
         <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight max-w-3xl mx-auto">
           Rencontrons-nous. Laissez-nous vous montrer un exemple sur tablette.
         </h2>
-        <Button className="rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 px-10 py-6 text-base shadow-gold">
+        <Button variant="gold" className="px-10 py-6 text-base">
           <Calendar size={18} className="mr-2" />
           Planifier une démonstration (15 min)
         </Button>
