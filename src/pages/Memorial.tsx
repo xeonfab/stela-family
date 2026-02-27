@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Lock, Pencil, Plus, Upload, CalendarDays } from "lucide-react";
+import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Lock, Pencil, Plus, Upload, CalendarDays } from "lucide-react";
 import AudioPlayer from "@/components/AudioPlayer";
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -534,9 +534,26 @@ const Memorial = () => {
 
       {/* ─── Top bar ─── */}
       <header className="py-4 px-6 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 text-sm text-stone-400 hover:text-stone-600 transition-colors">
-          <ArrowLeft size={18} /><span>Retour</span>
-        </Link>
+        <button
+          onClick={() => {
+            if (navigator.share) {
+              navigator.share({
+                title: "Mémorial de Jean-Claude Dubois",
+                text: "Venez vous recueillir et partager vos souvenirs sur le mémorial de Jean-Claude Dubois.",
+                url: window.location.href,
+              }).catch(() => {});
+            } else {
+              navigator.clipboard.writeText(window.location.href);
+              toast("Lien copié dans le presse-papier.", {
+                style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" },
+              });
+            }
+          }}
+          className="flex items-center gap-1.5 text-sm text-stone-400 hover:text-[#D4AF37] transition-colors"
+        >
+          <Share2 size={16} />
+          <span className="font-sans-body">Partager</span>
+        </button>
       </header>
 
       {/* ─── Sacred Header ─── */}
