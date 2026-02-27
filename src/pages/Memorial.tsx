@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Lock, Pencil, Plus, Upload, CalendarDays } from "lucide-react";
+import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Lock, Pencil, Plus, Upload, CalendarDays, Copy, Check } from "lucide-react";
 import AudioPlayer from "@/components/AudioPlayer";
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -514,6 +514,25 @@ const Memorial = () => {
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
   const [memoryDetailOpen, setMemoryDetailOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const shareMessage = `Un espace privé et éternel pour honorer la mémoire de Jean-Claude Dubois sur Stela.family.
+
+Ici, nous rassemblons nos pensées, photos et témoignages pour créer son plus bel héritage. Vous pouvez aussi y allumer une bougie.
+
+👉 stela.family/hommage/jean-claude-dubois
+
+N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`;
+
+  const handleCopyMessage = () => {
+    navigator.clipboard.writeText(shareMessage);
+    setCopied(true);
+    toast("Message copié !", {
+      style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" },
+    });
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const openMemoryDetail = (memory: Memory) => {
     setSelectedMemory(memory);
@@ -535,20 +554,7 @@ const Memorial = () => {
       {/* ─── Top bar ─── */}
       <header className="py-4 px-6 flex items-center justify-between">
         <button
-          onClick={() => {
-            if (navigator.share) {
-              navigator.share({
-                title: "Mémorial de Jean-Claude Dubois",
-                text: "Venez vous recueillir et partager vos souvenirs sur le mémorial de Jean-Claude Dubois.",
-                url: window.location.href,
-              }).catch(() => {});
-            } else {
-              navigator.clipboard.writeText(window.location.href);
-              toast("Lien copié dans le presse-papier.", {
-                style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" },
-              });
-            }
-          }}
+          onClick={() => setShareModalOpen(true)}
           className="flex items-center gap-1.5 text-sm text-stone-400 hover:text-[#D4AF37] transition-colors"
         >
           <Share2 size={16} />
@@ -635,6 +641,60 @@ const Memorial = () => {
 
       <MemoryDetailModal memory={selectedMemory} open={memoryDetailOpen} onOpenChange={setMemoryDetailOpen} />
       <AddMemoryModal open={memoryModalOpen} onOpenChange={setMemoryModalOpen} isAdmin={isAdmin} />
+
+      {/* ─── Share Modal ─── */}
+      <Dialog open={shareModalOpen} onOpenChange={setShareModalOpen}>
+        <DialogContent className="sm:max-w-lg max-sm:h-screen max-sm:max-h-screen max-sm:w-screen max-sm:max-w-none max-sm:rounded-none max-sm:border-none bg-[#FAF9F6] border-stone-200 rounded-2xl p-0 overflow-hidden [&>button]:z-10">
+          <DialogTitle className="sr-only">Partager ce mémorial</DialogTitle>
+          
+          {/* Preview image / visual */}
+          <div className="relative w-full h-48 sm:h-56 bg-gradient-to-b from-stone-800 to-stone-900 flex flex-col items-center justify-center text-center px-6">
+            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-amber-600/30 mb-4 shadow-lg">
+              <img src={portraitImg} alt="Jean-Claude Dubois" className="w-full h-full object-cover" />
+            </div>
+            <p className="font-serif text-white/90 text-lg">Jean-Claude Dubois</p>
+            <p className="text-stone-400 text-xs tracking-widest mt-1">1948 — 2024</p>
+            <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#FAF9F6] to-transparent" />
+          </div>
+
+          <div className="px-6 sm:px-8 pb-8 pt-2 space-y-6">
+            <div className="text-center">
+              <h3 className="font-serif text-xl text-stone-800 mb-2">Partagez ce mémorial avec vos proches, où qu'ils soient.</h3>
+            </div>
+
+            {/* Message to copy */}
+            <div className="bg-white rounded-xl border border-stone-100 p-4 sm:p-5 space-y-3">
+              <p className="text-stone-600 text-sm leading-relaxed whitespace-pre-line">{shareMessage}</p>
+            </div>
+
+            {/* Copy button */}
+            <button
+              onClick={handleCopyMessage}
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-300 border border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-white"
+            >
+              {copied ? <Check size={16} /> : <Copy size={16} />}
+              {copied ? "Copié !" : "Copier le message"}
+            </button>
+
+            {/* Native share (mobile) */}
+            {typeof navigator !== "undefined" && navigator.share && (
+              <button
+                onClick={() => {
+                  navigator.share({
+                    title: "Mémorial de Jean-Claude Dubois",
+                    text: shareMessage,
+                    url: window.location.href,
+                  }).catch(() => {});
+                }}
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-300 bg-[#D4AF37] text-white hover:bg-[#c9a432]"
+              >
+                <Share2 size={16} />
+                Envoyer via une app
+              </button>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Bottom spacer for FAB */}
       <div className="h-24" />
