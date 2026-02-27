@@ -160,7 +160,6 @@ const MemoryDetailModal = ({ memory, open, onOpenChange }: { memory: Memory | nu
           <div className="flex items-center justify-between pt-2 border-t border-stone-100">
             <span className="text-sm text-stone-400">— {memory.author}</span>
             <div className="flex items-center gap-3">
-              <LivingCandle count={memory.hearts} size={16} />
               <LivingHeart count={Math.floor(memory.hearts * 0.6)} size={16} />
             </div>
           </div>
@@ -437,7 +436,6 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
           <div className="flex items-center justify-between">
             <span className="text-xs text-stone-400">— {memory.author}</span>
             <div className="flex items-center gap-3">
-              <LivingCandle count={memory.hearts} />
               <LivingHeart count={Math.floor(memory.hearts * 0.6)} />
             </div>
           </div>
@@ -458,7 +456,6 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
         <div className="flex items-center justify-between">
           <span className="text-xs text-stone-400">— {memory.author}</span>
           <div className="flex items-center gap-3">
-            <LivingCandle count={memory.hearts} />
             <LivingHeart count={Math.floor(memory.hearts * 0.6)} />
           </div>
         </div>
@@ -473,7 +470,6 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
         <div className="flex items-center justify-center gap-3">
           <span className="text-xs text-stone-400">— {memory.author}</span>
           <div className="flex items-center gap-3">
-            <LivingCandle count={memory.hearts} />
             <LivingHeart count={Math.floor(memory.hearts * 0.6)} />
           </div>
         </div>
@@ -497,7 +493,6 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
           <div className="flex items-center justify-between">
             <span className="text-xs text-stone-400">— {memory.author}</span>
             <div className="flex items-center gap-3">
-              <LivingCandle count={memory.hearts} />
               <LivingHeart count={Math.floor(memory.hearts * 0.6)} />
             </div>
           </div>
