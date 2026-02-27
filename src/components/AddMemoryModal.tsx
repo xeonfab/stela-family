@@ -6,7 +6,7 @@ import {
   DialogPortal,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Camera, Mic, Video, X, Sparkles, Upload, ArrowRight, ArrowLeft } from "lucide-react";
+import { Camera, Mic, Video, X, Sparkles, Upload, ArrowRight, ArrowLeft, MessageSquare } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Calendar } from "@/components/ui/calendar";
@@ -21,7 +21,7 @@ interface AddMemoryModalProps {
   isAdmin?: boolean;
 }
 
-type MediaType = "photo" | "audio" | "video" | null;
+type IntentTab = "pensee" | "photos" | "vocal" | "video";
 type ModalView = "canvas" | "maieutic" | "loading";
 type Step = 1 | 2;
 
@@ -30,7 +30,7 @@ const DUMMY_AI_TEXT =
 
 const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalProps) => {
   const [text, setText] = useState("");
-  const [selectedMedia, setSelectedMedia] = useState<MediaType>(null);
+  const [intentTab, setIntentTab] = useState<IntentTab>("pensee");
   const [view, setView] = useState<ModalView>("canvas");
   const [maieutic1, setMaieutic1] = useState("");
   const [maieutic2, setMaieutic2] = useState("");
@@ -45,7 +45,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
   const handleClose = (val: boolean) => {
     if (!val) {
       setText("");
-      setSelectedMedia(null);
+      setIntentTab("pensee");
       setView("canvas");
       setMaieutic1("");
       setMaieutic2("");
@@ -64,19 +64,21 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
     setView("loading");
     setTimeout(() => {
       setText(DUMMY_AI_TEXT);
+      setIntentTab("pensee");
       setView("canvas");
     }, 2500);
   };
 
-  const mediaOptions: { type: MediaType; icon: typeof Camera; label: string }[] = [
-    { type: "photo", icon: Camera, label: "Photos" },
-    { type: "audio", icon: Mic, label: "Vocal" },
-    { type: "video", icon: Video, label: "Vidéo" },
+  const intentTabs: { key: IntentTab; icon: typeof MessageSquare; label: string }[] = [
+    { key: "pensee", icon: MessageSquare, label: "Pensée" },
+    { key: "photos", icon: Camera, label: "Photos" },
+    { key: "vocal", icon: Mic, label: "Vocal" },
+    { key: "video", icon: Video, label: "Vidéo" },
   ];
 
   const inputStyle = "border border-[#EAEAEA] rounded-lg bg-[#F9F9F9] text-sm text-stone-700 placeholder:text-[#757575] focus-visible:ring-1 focus-visible:ring-[#D4AF37]/40 focus-visible:border-[#D4AF37]/50 h-11 px-3";
 
-  const canProceed = text.trim().length > 0 || selectedMedia !== null;
+  const canProceed = text.trim().length > 0 || intentTab !== "pensee";
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -172,39 +174,20 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                   {view === "canvas" && (
                     <div className="animate-in fade-in duration-300 space-y-5">
 
-                      {/* Textarea with embedded AI button */}
-                      <div className="relative">
-                        <textarea
-                          value={text}
-                          onChange={(e) => setText(e.target.value)}
-                          placeholder="Une anecdote, un éclat de rire, ce qui vous manque le plus..."
-                          rows={4}
-                          className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl px-5 py-4 pb-10 text-[0.94rem] text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0 min-h-[130px]"
-                          style={{ fieldSizing: "content" } as React.CSSProperties}
-                        />
-                        {/* AI button inside textarea */}
-                        <button
-                          onClick={() => setView("maieutic")}
-                          className="absolute bottom-3 right-3 flex items-center gap-1.5 text-[11px] text-[#757575] hover:text-[#D4AF37] transition-colors font-medium tracking-wide group bg-white/80 backdrop-blur-sm rounded-full px-2.5 py-1 border border-[#EAEAEA] hover:border-[#D4AF37]/40"
-                        >
-                          <Sparkles size={12} strokeWidth={1.5} className="group-hover:text-[#D4AF37] transition-colors" />
-                          Trouver les mots...
-                        </button>
-                      </div>
-
-                      {/* Media toolbar */}
-                      <div className="flex items-center gap-0 rounded-xl border border-[#EAEAEA] bg-[#F9F9F9] p-1 w-fit">
-                        {mediaOptions.map(({ type, icon: Icon, label }) => {
-                          const active = selectedMedia === type;
+                      {/* Segmented Control */}
+                      <div className="flex items-center rounded-xl bg-[#F5F5F4] p-1 gap-0.5">
+                        {intentTabs.map(({ key, icon: Icon, label }) => {
+                          const active = intentTab === key;
                           return (
                             <button
-                              key={type}
-                              onClick={() => setSelectedMedia(active ? null : type)}
-                              className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium transition-all ${
+                              key={key}
+                              onClick={() => setIntentTab(key)}
+                              className={cn(
+                                "flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-xs font-medium transition-all duration-200",
                                 active
-                                  ? "bg-white border border-[#D4AF37]/30 text-[#D4AF37] shadow-sm"
-                                  : "text-[#757575] hover:text-stone-600"
-                              }`}
+                                  ? "bg-white text-stone-700 shadow-sm"
+                                  : "text-[#999] hover:text-stone-500"
+                              )}
                             >
                               <Icon size={14} strokeWidth={1.5} />
                               {label}
@@ -213,27 +196,85 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                         })}
                       </div>
 
-                      {/* Contextual media area */}
-                      {selectedMedia === "photo" && (
-                        <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-[#757575] bg-[#F9F9F9]">
-                          <Upload size={20} strokeWidth={1.5} />
-                          <span className="text-xs font-medium">Ajouter jusqu'à 4 photos</span>
-                        </div>
-                      )}
-                      {selectedMedia === "audio" && (
-                        <div className="flex flex-col items-center gap-3 py-4">
-                          <button className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-md shadow-amber-500/20 hover:scale-105 transition-transform">
-                            <Mic size={22} strokeWidth={1.5} className="text-white" />
-                          </button>
-                          <span className="text-xs text-[#757575] font-medium">Appuyez pour parler</span>
-                        </div>
-                      )}
-                      {selectedMedia === "video" && (
-                        <div className="border border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center gap-2 text-[#757575] bg-[#F9F9F9]">
-                          <Video size={20} strokeWidth={1.5} />
-                          <span className="text-xs font-medium">Ajouter une vidéo</span>
-                        </div>
-                      )}
+                      {/* Conditional content per tab */}
+                      <div className="animate-in fade-in duration-200">
+
+                        {/* PENSÉE tab */}
+                        {intentTab === "pensee" && (
+                          <div className="relative">
+                            <textarea
+                              value={text}
+                              onChange={(e) => setText(e.target.value)}
+                              placeholder="Une anecdote, un éclat de rire, ce qui vous manque le plus..."
+                              rows={5}
+                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl px-5 py-4 pb-10 text-[0.94rem] text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0 min-h-[160px]"
+                              style={{ fieldSizing: "content" } as React.CSSProperties}
+                            />
+                            <button
+                              onClick={() => setView("maieutic")}
+                              className="absolute bottom-3 right-3 flex items-center gap-1.5 text-[11px] text-[#757575] hover:text-[#D4AF37] transition-colors font-medium tracking-wide group bg-white/80 backdrop-blur-sm rounded-full px-2.5 py-1 border border-[#EAEAEA] hover:border-[#D4AF37]/40"
+                            >
+                              <Sparkles size={12} strokeWidth={1.5} className="group-hover:text-[#D4AF37] transition-colors" />
+                              Trouver les mots...
+                            </button>
+                          </div>
+                        )}
+
+                        {/* PHOTOS tab */}
+                        {intentTab === "photos" && (
+                          <div className="space-y-4">
+                            <div className="border border-dashed border-stone-200 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-[#999] bg-[#F9F9F9]">
+                              <Camera size={24} strokeWidth={1.2} />
+                              <span className="text-sm font-medium text-stone-500">Ajouter jusqu'à 4 photos</span>
+                              <span className="text-[11px] text-[#999]">JPG, PNG · 10 Mo max par fichier</span>
+                            </div>
+                            <textarea
+                              value={text}
+                              onChange={(e) => setText(e.target.value)}
+                              placeholder="Ajouter une légende ou une pensée (optionnel)..."
+                              rows={2}
+                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-xl px-4 py-3 text-sm text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0"
+                            />
+                          </div>
+                        )}
+
+                        {/* VOCAL tab */}
+                        {intentTab === "vocal" && (
+                          <div className="space-y-4">
+                            <div className="flex flex-col items-center gap-3 py-6 bg-[#F9F9F9] border border-[#EAEAEA] rounded-xl">
+                              <button className="w-16 h-16 rounded-full bg-[#D4AF37] flex items-center justify-center shadow-sm hover:scale-105 transition-transform">
+                                <Mic size={24} strokeWidth={1.5} className="text-white" />
+                              </button>
+                              <span className="text-xs text-[#999] font-medium">Appuyez pour enregistrer un message vocal</span>
+                            </div>
+                            <textarea
+                              value={text}
+                              onChange={(e) => setText(e.target.value)}
+                              placeholder="Ajouter une légende ou une pensée (optionnel)..."
+                              rows={2}
+                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-xl px-4 py-3 text-sm text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0"
+                            />
+                          </div>
+                        )}
+
+                        {/* VIDEO tab */}
+                        {intentTab === "video" && (
+                          <div className="space-y-4">
+                            <div className="border border-dashed border-stone-200 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-[#999] bg-[#F9F9F9]">
+                              <Video size={24} strokeWidth={1.2} />
+                              <span className="text-sm font-medium text-stone-500">Ajouter une vidéo</span>
+                              <span className="text-[11px] text-[#999]">MP4, MOV · 50 Mo max</span>
+                            </div>
+                            <textarea
+                              value={text}
+                              onChange={(e) => setText(e.target.value)}
+                              placeholder="Ajouter une légende ou une pensée (optionnel)..."
+                              rows={2}
+                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-xl px-4 py-3 text-sm text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0"
+                            />
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>
