@@ -206,8 +206,8 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                               value={text}
                               onChange={(e) => setText(e.target.value)}
                               placeholder="Une anecdote, un éclat de rire, ce qui vous manque le plus..."
-                              rows={5}
-                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl px-5 py-4 pb-10 text-[0.94rem] text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0 min-h-[160px]"
+                              rows={8}
+                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl px-5 py-4 pb-12 text-[0.94rem] text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0 min-h-[260px]"
                               style={{ fieldSizing: "content" } as React.CSSProperties}
                             />
                             <button
