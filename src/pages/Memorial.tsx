@@ -239,7 +239,7 @@ const TimelineEditModal = ({ open, onOpenChange, initialData }: { open: boolean;
               toast("Chapitre enregistré.", { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });
               onOpenChange(false);
             }}
-            className="w-full py-3 rounded-xl bg-[#D4AF37] text-white font-medium text-sm hover:bg-[#C4A030] transition-colors shadow-md shadow-[#D4AF37]/20 tracking-wide"
+            className="btn-gold-gradient btn-gold-shimmer w-full py-3 rounded-xl text-white font-medium text-sm tracking-wide"
           >
             Enregistrer
           </button>
@@ -414,7 +414,7 @@ const SonHistoireTab = ({ isAdmin }: { isAdmin: boolean }) => {
                 toast("Biographie enregistrée.", { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });
                 setBioEditOpen(false);
               }}
-              className="w-full py-3 rounded-xl bg-[#D4AF37] text-white font-medium text-sm hover:bg-[#C4A030] transition-colors shadow-md shadow-[#D4AF37]/20 tracking-wide"
+              className="btn-gold-gradient btn-gold-shimmer w-full py-3 rounded-xl text-white font-medium text-sm tracking-wide"
             >
               Enregistrer
             </button>
@@ -604,7 +604,7 @@ const Memorial = () => {
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
         <button
           onClick={() => setMemoryModalOpen(true)}
-          className="flex items-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 bg-amber-600 text-white rounded-full shadow-[0_8px_30px_-4px_rgba(217,119,6,0.5)] hover:bg-amber-700 hover:shadow-[0_12px_40px_-4px_rgba(217,119,6,0.6)] transition-all duration-300 hover:scale-105 font-medium text-sm whitespace-nowrap"
+          className="btn-gold-gradient btn-gold-shimmer flex items-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 text-white rounded-full shadow-[0_4px_20px_rgba(212,175,55,0.25)] hover:shadow-[0_8px_30px_rgba(212,175,55,0.35)] transition-all duration-300 font-medium text-sm whitespace-nowrap"
         >
           <Feather size={16} />
           Déposer un souvenir

@@ -28,7 +28,7 @@ const Pricing = () => {
             ))}
           </ul>
 
-          <Button className="w-full rounded-full bg-gradient-to-b from-primary to-[hsl(43_56%_42%)] text-primary-foreground hover:opacity-90 transition-all duration-200 hover:scale-105 py-6 text-base shadow-gold">
+          <Button variant="gold" className="w-full py-6 text-base">
             Créer le Mémorial
           </Button>
 

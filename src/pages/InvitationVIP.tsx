@@ -76,7 +76,7 @@ const HeroSection = () => {
                 required
                 className="border-border/20 bg-background/80 focus-visible:ring-primary"
               />
-              <Button type="submit" className="w-full h-12 text-base font-semibold rounded-lg" style={{ backgroundColor: "#D4AF37", color: "#fff" }}>
+              <Button type="submit" variant="gold" className="w-full h-12 text-base">
                 Recevoir mon Kit gratuit par courrier
               </Button>
               <p className="text-xs text-center" style={{ color: "#9CA3AF" }}>
