@@ -173,7 +173,8 @@ const FlameRitual = () => {
       <button onClick={handleLight} className={`flex items-center gap-2.5 px-6 py-2.5 rounded-full transition-all duration-700 ease-in-out focus:outline-none ${isLit ? "bg-amber-50 border border-[#D4AF37]/40 shadow-[0_0_20px_-5px_rgba(212,175,55,0.15)]" : "bg-white border border-stone-200 hover:border-stone-300 shadow-sm"}`} aria-label="Allumer une bougie">
         <span className={isLit ? "is-active" : ""}>
           <svg width={18} height={18} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path className="flame-path" d="M12 2C12 2 5 9 5 14.5C5 18.6421 8.13401 22 12 22C15.866 22 19 18.6421 19 14.5C19 9 12 2 12 2Z" strokeLinejoin="round" />
+            <path className="flame-path" d="M12 1C12 1 4 8.5 4 14a8 8 0 0 0 16 0c0-2.5-1.2-4.8-2.5-6.5-.5.8-1.2 1.5-2 2C15 7 13.5 4 12 1Z" strokeLinejoin="round" />
+            <path className="flame-path" d="M12 22a4.5 4.5 0 0 0 4.5-4.5c0-2-1.5-3.5-2.5-4.5-.5.7-1 1.2-1.5 1.5C12 13 11 11.5 10 10c-1.5 2-2.5 4-2.5 5.5A4.5 4.5 0 0 0 12 22Z" strokeLinejoin="round" />
           </svg>
         </span>
         <span className={`text-sm font-medium transition-all duration-700 ${isLit ? "text-amber-800" : "text-stone-600"}`}>
