@@ -43,6 +43,9 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
   const [chapterDate, setChapterDate] = useState<Date | undefined>(undefined);
   const [step, setStep] = useState<Step>(1);
   const [isIntimate, setIsIntimate] = useState(false);
+  const [originalText, setOriginalText] = useState("");
+  const [aiApplied, setAiApplied] = useState(false);
+  const [isAiLoading, setIsAiLoading] = useState<"harmoniser" | "corriger" | null>(null);
 
   const handleClose = (val: boolean) => {
     if (!val) {
@@ -59,6 +62,9 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       setChapterDate(undefined);
       setStep(1);
       setIsIntimate(false);
+      setOriginalText("");
+      setAiApplied(false);
+      setIsAiLoading(null);
     }
     onOpenChange(val);
   };
@@ -81,7 +87,33 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
 
   const inputStyle = "border border-[#EAEAEA] rounded-lg bg-[#F9F9F9] text-sm text-stone-700 placeholder:text-[#757575] focus-visible:ring-1 focus-visible:ring-[#D4AF37]/40 focus-visible:border-[#D4AF37]/50 h-11 px-3";
 
-  const canProceed = text.trim().length > 0 || intentTab !== "pensee";
+  const canProceed = (text.trim().length > 0 || intentTab !== "pensee") && !isAiLoading;
+
+  const handleAiAction = (action: "harmoniser" | "corriger") => {
+    if (isAiLoading) return;
+    setOriginalText(text);
+    setIsAiLoading(action);
+    setTimeout(() => {
+      if (action === "harmoniser") {
+        setText(
+          "Je revois encore ses yeux pétillants, ce sourire discret qui illuminait la pièce. " +
+          text.trim() +
+          " — un souvenir qui, aujourd'hui encore, réchauffe le cœur."
+        );
+      } else {
+        // Simulate correction
+        setText(text.charAt(0).toUpperCase() + text.slice(1).replace(/  +/g, " ").trim());
+      }
+      setAiApplied(true);
+      setIsAiLoading(null);
+    }, 1800);
+  };
+
+  const handleAiReset = () => {
+    setText(originalText);
+    setAiApplied(false);
+    setOriginalText("");
+  };
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -234,6 +266,8 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                                     type="button"
                                     onClick={() => {
                                       setText(chip.prompt);
+                                      setAiApplied(false);
+                                      setOriginalText("");
                                       setTimeout(() => {
                                         if (textareaRef.current) {
                                           textareaRef.current.focus();
@@ -247,6 +281,60 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                                     {chip.label}
                                   </button>
                                 ))}
+                              </div>
+                            </div>
+
+                            {/* AI Toolbar — appears when text is not empty */}
+                            <div
+                              className={cn(
+                                "transition-all duration-500 overflow-hidden",
+                                text.length > 0 ? "opacity-100 max-h-20 mt-1" : "opacity-0 max-h-0 mt-0"
+                              )}
+                            >
+                              <div className="flex items-center gap-2">
+                                <button
+                                  type="button"
+                                  disabled={!!isAiLoading}
+                                  onClick={() => handleAiAction("harmoniser")}
+                                  className={cn(
+                                    "text-[13px] border rounded-full px-3.5 py-1.5 transition-all duration-200",
+                                    isAiLoading === "harmoniser"
+                                      ? "border-[#D4AF37]/40 bg-amber-50/50 text-[#D4AF37]"
+                                      : "border-[#EAEAEA] bg-transparent text-stone-500 hover:bg-[#F5F5F4] hover:text-stone-700"
+                                  )}
+                                >
+                                  {isAiLoading === "harmoniser" ? (
+                                    <span className="animate-pulse">✨ Harmonisation...</span>
+                                  ) : (
+                                    "✨ Harmoniser"
+                                  )}
+                                </button>
+                                <button
+                                  type="button"
+                                  disabled={!!isAiLoading}
+                                  onClick={() => handleAiAction("corriger")}
+                                  className={cn(
+                                    "text-[13px] border rounded-full px-3.5 py-1.5 transition-all duration-200",
+                                    isAiLoading === "corriger"
+                                      ? "border-[#D4AF37]/40 bg-amber-50/50 text-[#D4AF37]"
+                                      : "border-[#EAEAEA] bg-transparent text-stone-500 hover:bg-[#F5F5F4] hover:text-stone-700"
+                                  )}
+                                >
+                                  {isAiLoading === "corriger" ? (
+                                    <span className="animate-pulse">✨ Correction...</span>
+                                  ) : (
+                                    "✨ Corriger"
+                                  )}
+                                </button>
+                                {aiApplied && !isAiLoading && (
+                                  <button
+                                    type="button"
+                                    onClick={handleAiReset}
+                                    className="text-[13px] border border-[#EAEAEA] rounded-full px-3.5 py-1.5 text-stone-400 hover:bg-[#F5F5F4] hover:text-stone-500 transition-all duration-200"
+                                  >
+                                    ↺ Réinitialiser
+                                  </button>
+                                )}
                               </div>
                             </div>
                           </div>
