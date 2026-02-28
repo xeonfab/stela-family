@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2 } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2 } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,24 +29,6 @@ type Memory = {
   hearts: number;
   pending?: boolean;
 };
-
-const pendingMemories: Memory[] = [
-  {
-    type: "photo" as const,
-    image: jcHiking,
-    text: "Cette photo date de notre dernière escapade ensemble dans les Alpes. Tu étais si heureux ce jour-là, le vent dans les cheveux et le sourire aux lèvres. Je chéris ce moment plus que tout.",
-    author: "Nathalie",
-    hearts: 0,
-    pending: true,
-  },
-  {
-    type: "quote" as const,
-    text: "« Tu m'as appris que la vraie richesse, c'est le temps qu'on offre aux autres. Merci pour toutes ces heures passées à m'écouter et me conseiller. »",
-    author: "Julien (Neveu)",
-    hearts: 0,
-    pending: true,
-  },
-];
 
 const memories: Memory[] = [
   {
@@ -294,54 +276,6 @@ const EditableField = ({ children, className = "" }: { children: React.ReactNode
   </div>
 );
 
-/* ─── Pending Memory Card Wrapper ─── */
-const PendingCardWrapper = ({ children, onApprove, onKeepPrivate }: { children: React.ReactNode; onApprove: () => void; onKeepPrivate: () => void }) => {
-  const [resolved, setResolved] = useState(false);
-  const [fading, setFading] = useState(false);
-
-  const handleAction = (action: () => void) => {
-    setFading(true);
-    setTimeout(() => {
-      setResolved(true);
-      action();
-    }, 500);
-  };
-
-  if (resolved) {
-    return <>{children}</>;
-  }
-
-  return (
-    <div className={`relative transition-all duration-500 ${fading ? "opacity-70" : ""}`}>
-      <div className={`transition-all duration-500 ${fading ? "" : "border-2 border-dashed border-[#D4AF37]/50 rounded-2xl bg-amber-50/30"}`}>
-        {!fading && (
-          <div className="px-4 pt-3 pb-1">
-            <p className="text-xs italic text-stone-400">En attente de votre validation</p>
-          </div>
-        )}
-        {children}
-        {!fading && (
-          <div className="flex items-center gap-2 px-4 pb-4 pt-1">
-            <button
-              onClick={(e) => { e.stopPropagation(); handleAction(onApprove); }}
-              className="flex items-center gap-1.5 px-4 py-2 bg-[#D4AF37] text-white text-xs font-medium rounded-full hover:bg-[#c9a432] transition-colors"
-            >
-              <Sparkles size={12} />
-              Rendre public
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); handleAction(onKeepPrivate); }}
-              className="flex items-center gap-1.5 px-4 py-2 text-xs text-stone-400 hover:text-stone-600 transition-colors border border-stone-200 rounded-full bg-transparent"
-            >
-              <Lock size={12} />
-              Garder intime
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
 
 /* ─── Guardian Banner ─── */
 const GuardianBanner = () => (
@@ -350,7 +284,7 @@ const GuardianBanner = () => (
       <span className="flex items-center gap-2">
         🔒 <span className="font-medium">Mode Gardien</span> <span className="hidden sm:inline text-white/70">: Vous veillez sur ce sanctuaire.</span>
       </span>
-      <span className="hidden md:inline text-white/70">✨ 2 souvenirs attendent votre regard.</span>
+      
       <button className="flex items-center gap-1.5 text-white/60 hover:text-white transition-colors text-xs">
         <Download size={14} />
         <span className="hidden sm:inline">Obtenir le Kit Cérémonie (PDF)</span>
@@ -759,17 +693,6 @@ const MemorialAdmin = () => {
     setMemoryDetailOpen(true);
   };
 
-  const handleApprove = (author: string) => {
-    toast(`Le souvenir de ${author} est désormais visible par tous.`, {
-      style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" },
-    });
-  };
-
-  const handleKeepPrivate = (author: string) => {
-    toast(`Le souvenir de ${author} reste intime.`, {
-      style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" },
-    });
-  };
 
   return (
     <div className="min-h-screen bg-[#FAF9F6]">
@@ -882,31 +805,8 @@ const MemorialAdmin = () => {
             <EmptySouvenirsState onDeposit={() => setMemoryModalOpen(true)} />
           ) : (
             <>
-              {/* Moderation notification banner */}
-              <div className="max-w-5xl mx-auto px-6 pt-8">
-                <div className="flex items-center justify-between bg-[#D4AF37]/10 rounded-xl px-6 py-4 border border-[#D4AF37]/15">
-                  <p className="font-serif text-[#2C2C2C] text-sm md:text-base">
-                    3 nouveaux hommages attendent votre regard.
-                  </p>
-                  <Link
-                    to="/moderation"
-                    className="text-sm font-medium text-[#D4AF37] hover:text-[#c9a432] transition-colors whitespace-nowrap ml-4"
-                  >
-                    Ouvrir →
-                  </Link>
-                </div>
-              </div>
               <div className="max-w-5xl mx-auto px-6 py-12">
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-                  {pendingMemories.map((memory, idx) => (
-                    <PendingCardWrapper
-                      key={`pending-${idx}`}
-                      onApprove={() => handleApprove(memory.author)}
-                      onKeepPrivate={() => handleKeepPrivate(memory.author)}
-                    >
-                      <MemoryCard memory={memory} onClick={() => openMemoryDetail(memory)} />
-                    </PendingCardWrapper>
-                  ))}
                   {publicMemories.map((memory, idx) => (
                     <MemoryCard
                       key={idx}
