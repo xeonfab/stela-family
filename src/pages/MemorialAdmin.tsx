@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, EyeOff, Trash2 } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2 } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -445,8 +445,8 @@ const AdminCardMenu = ({ author, onHide, onDelete }: { author: string; onHide: (
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" className="min-w-[180px] bg-white/95 backdrop-blur-sm border border-stone-100 rounded-xl shadow-lg p-1">
       <DropdownMenuItem onClick={(e) => { e.stopPropagation(); onHide(); }} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-stone-600 rounded-lg cursor-pointer">
-        <EyeOff size={14} className="text-stone-400" />
-        Masquer ce souvenir
+        <Lock size={14} className="text-stone-400" />
+        Rendre intime
       </DropdownMenuItem>
       <DropdownMenuItem onClick={(e) => { e.stopPropagation(); onDelete(); }} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-[#8B4513] rounded-lg cursor-pointer">
         <Trash2 size={14} className="text-[#8B4513]" />
@@ -743,6 +743,16 @@ const MemorialAdmin = () => {
   const [isEmpty, setIsEmpty] = useState(true);
   const [biographyModalOpen, setBiographyModalOpen] = useState(false);
   const [chapterModalOpen, setChapterModalOpen] = useState(false);
+  const [publicMemories, setPublicMemories] = useState<Memory[]>(memories);
+  const [intimateMemories, setIntimateMemories] = useState<Memory[]>([]);
+
+  const handleMakeIntimate = (memory: Memory, idx: number) => {
+    setPublicMemories(prev => prev.filter((_, i) => i !== idx));
+    setIntimateMemories(prev => [...prev, memory]);
+    toast(`Le souvenir de ${memory.author} a été déplacé dans l'Espace Intime.`, {
+      style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" },
+    });
+  };
 
   const openMemoryDetail = (memory: Memory) => {
     setSelectedMemory(memory);
@@ -855,6 +865,13 @@ const MemorialAdmin = () => {
               <TabsTrigger value="histoire" className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors">
                 Son Histoire
               </TabsTrigger>
+              <TabsTrigger value="intime" className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors flex items-center justify-center gap-1.5">
+                <Lock size={13} />
+                Intime
+                {intimateMemories.length > 0 && (
+                  <span className="ml-1 w-5 h-5 rounded-full bg-[#D4AF37]/15 text-[#D4AF37] text-[10px] font-semibold flex items-center justify-center">{intimateMemories.length}</span>
+                )}
+              </TabsTrigger>
             </TabsList>
           </div>
         </div>
@@ -890,14 +907,17 @@ const MemorialAdmin = () => {
                       <MemoryCard memory={memory} onClick={() => openMemoryDetail(memory)} />
                     </PendingCardWrapper>
                   ))}
-                  {memories.map((memory, idx) => (
+                  {publicMemories.map((memory, idx) => (
                     <MemoryCard
                       key={idx}
                       memory={memory}
                       onClick={() => openMemoryDetail(memory)}
                       isAdmin
-                      onHide={() => toast(`Le souvenir de ${memory.author} a été masqué.`, { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } })}
-                      onDelete={() => toast(`Le souvenir de ${memory.author} a été supprimé.`, { style: { background: "#FAF9F6", border: "1px solid rgba(140,69,19,0.15)", color: "#8B4513", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } })}
+                      onHide={() => handleMakeIntimate(memory, idx)}
+                      onDelete={() => {
+                        setPublicMemories(prev => prev.filter((_, i) => i !== idx));
+                        toast(`Le souvenir de ${memory.author} a été supprimé.`, { style: { background: "#FAF9F6", border: "1px solid rgba(140,69,19,0.15)", color: "#8B4513", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });
+                      }}
                     />
                   ))}
                 </div>
@@ -909,6 +929,35 @@ const MemorialAdmin = () => {
         {/* ─── TAB 2: Son Histoire ─── */}
         <TabsContent value="histoire" className="mt-0">
           {isEmpty ? <EmptyHistoireState onOpenBiography={() => setBiographyModalOpen(true)} onOpenChapter={() => setChapterModalOpen(true)} /> : <SonHistoireTab />}
+        </TabsContent>
+
+        {/* ─── TAB 3: Espace Intime ─── */}
+        <TabsContent value="intime" className="mt-0">
+          {intimateMemories.length === 0 ? (
+            <div className="max-w-5xl mx-auto px-6 py-20 flex items-center justify-center">
+              <div className="border-2 border-dashed border-stone-200 rounded-2xl p-12 md:p-16 max-w-md w-full text-center space-y-6">
+                <div className="w-14 h-14 rounded-full bg-[#D4AF37]/10 flex items-center justify-center mx-auto">
+                  <Lock size={24} className="text-[#D4AF37]" />
+                </div>
+                <h3 className="font-serif text-xl md:text-2xl text-stone-800">L'espace intime est vide</h3>
+                <p className="text-sm text-stone-400 leading-relaxed max-w-xs mx-auto">
+                  Les souvenirs rendus intimes par le garant apparaîtront ici, visibles uniquement par la famille.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="max-w-5xl mx-auto px-6 py-12">
+              <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                {intimateMemories.map((memory, idx) => (
+                  <MemoryCard
+                    key={`intimate-${idx}`}
+                    memory={memory}
+                    onClick={() => openMemoryDetail(memory)}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </TabsContent>
       </Tabs>
 
