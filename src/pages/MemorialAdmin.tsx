@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Sparkles, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, EyeOff, Trash2 } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,6 +8,7 @@ import AudioPlayer from "@/components/AudioPlayer";
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/jean-claude-portrait-new.jpg";
@@ -431,11 +432,38 @@ const SonHistoireTab = () => {
   );
 };
 
+/* ─── Admin options menu for memory cards ─── */
+const AdminCardMenu = ({ author, onHide, onDelete }: { author: string; onHide: () => void; onDelete: () => void }) => (
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <button
+        onClick={(e) => e.stopPropagation()}
+        className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm border border-stone-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+      >
+        <MoreHorizontal size={15} className="text-stone-400" />
+      </button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent align="end" className="min-w-[180px] bg-white/95 backdrop-blur-sm border border-stone-100 rounded-xl shadow-lg p-1">
+      <DropdownMenuItem onClick={(e) => { e.stopPropagation(); onHide(); }} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-stone-600 rounded-lg cursor-pointer">
+        <EyeOff size={14} className="text-stone-400" />
+        Masquer ce souvenir
+      </DropdownMenuItem>
+      <DropdownMenuItem onClick={(e) => { e.stopPropagation(); onDelete(); }} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-[#8B4513] rounded-lg cursor-pointer">
+        <Trash2 size={14} className="text-[#8B4513]" />
+        Supprimer
+      </DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+);
+
 /* ─── Render a single memory card ─── */
-const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }) => {
+const MemoryCard = ({ memory, onClick, isAdmin = false, onHide, onDelete }: { memory: Memory; onClick: () => void; isAdmin?: boolean; onHide?: () => void; onDelete?: () => void }) => {
+  const adminMenu = isAdmin && onHide && onDelete ? <AdminCardMenu author={memory.author} onHide={onHide} onDelete={onDelete} /> : null;
+
   if (memory.type === "photo") {
     return (
-      <div onClick={onClick} className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 cursor-pointer group hover:shadow-md transition-shadow">
+      <div onClick={onClick} className="relative break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 cursor-pointer group hover:shadow-md transition-shadow">
+        {adminMenu}
         <img src={memory.image} alt={memory.text} className="w-full h-52 object-cover" loading="lazy" />
         <div className="p-5 space-y-3">
           <p className="text-stone-600 text-sm leading-relaxed line-clamp-3">{memory.text}</p>
@@ -449,7 +477,8 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
   }
   if (memory.type === "audio") {
     return (
-      <div onClick={onClick} className="break-inside-avoid bg-amber-50/50 rounded-2xl p-5 shadow-sm border border-amber-100/50 space-y-4 cursor-pointer group hover:shadow-md transition-shadow">
+      <div onClick={onClick} className="relative break-inside-avoid bg-amber-50/50 rounded-2xl p-5 shadow-sm border border-amber-100/50 space-y-4 cursor-pointer group hover:shadow-md transition-shadow">
+        {adminMenu}
         <div className="flex items-center gap-3">
           <div><p className="text-sm font-medium text-stone-800">{memory.title}</p><p className="text-xs text-stone-400">{memory.duration}</p></div>
         </div>
@@ -463,7 +492,8 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
   }
   if (memory.type === "quote") {
     return (
-      <div onClick={onClick} className="break-inside-avoid bg-white rounded-2xl p-8 shadow-sm border border-stone-100 text-center cursor-pointer group hover:shadow-md transition-shadow">
+      <div onClick={onClick} className="relative break-inside-avoid bg-white rounded-2xl p-8 shadow-sm border border-stone-100 text-center cursor-pointer group hover:shadow-md transition-shadow">
+        {adminMenu}
         <Quote size={24} className="mx-auto text-amber-600/30 mb-4" />
         <p className="font-serif text-lg text-stone-800 leading-relaxed italic mb-4 line-clamp-3">{memory.text}</p>
         <div className="flex items-center justify-center gap-3">
@@ -475,7 +505,8 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
   }
   if (memory.type === "video") {
     return (
-      <div onClick={onClick} className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 cursor-pointer group hover:shadow-md transition-shadow">
+      <div onClick={onClick} className="relative break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 cursor-pointer group hover:shadow-md transition-shadow">
+        {adminMenu}
         <div className="relative">
           <img src={memory.image} alt={memory.title} className="w-full h-48 object-cover" loading="lazy" />
           <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
@@ -860,7 +891,14 @@ const MemorialAdmin = () => {
                     </PendingCardWrapper>
                   ))}
                   {memories.map((memory, idx) => (
-                    <MemoryCard key={idx} memory={memory} onClick={() => openMemoryDetail(memory)} />
+                    <MemoryCard
+                      key={idx}
+                      memory={memory}
+                      onClick={() => openMemoryDetail(memory)}
+                      isAdmin
+                      onHide={() => toast(`Le souvenir de ${memory.author} a été masqué.`, { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } })}
+                      onDelete={() => toast(`Le souvenir de ${memory.author} a été supprimé.`, { style: { background: "#FAF9F6", border: "1px solid rgba(140,69,19,0.15)", color: "#8B4513", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } })}
+                    />
                   ))}
                 </div>
               </div>

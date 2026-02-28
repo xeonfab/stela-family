@@ -6,7 +6,7 @@ import {
   DialogPortal,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Camera, Mic, Video, X, Sparkles, Upload, ArrowRight, ArrowLeft, MessageSquare } from "lucide-react";
+import { Camera, Mic, Video, X, Sparkles, Upload, ArrowRight, ArrowLeft, MessageSquare, Lock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Calendar } from "@/components/ui/calendar";
@@ -42,6 +42,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
   const [chapterTitle, setChapterTitle] = useState("");
   const [chapterDate, setChapterDate] = useState<Date | undefined>(undefined);
   const [step, setStep] = useState<Step>(1);
+  const [isIntimate, setIsIntimate] = useState(false);
 
   const handleClose = (val: boolean) => {
     if (!val) {
@@ -57,6 +58,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       setChapterTitle("");
       setChapterDate(undefined);
       setStep(1);
+      setIsIntimate(false);
     }
     onOpenChange(val);
   };
@@ -338,6 +340,22 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                         className={inputStyle}
                       />
                     </div>
+                  </div>
+
+                   {/* Intimate toggle */}
+                  <div className="flex items-center justify-between py-1">
+                    <div className="flex items-center gap-2.5">
+                      <Lock size={15} strokeWidth={1.5} className="text-stone-400" />
+                      <span className="text-sm text-stone-500">
+                        Rendre ce souvenir intime
+                        <span className="block text-[11px] text-stone-300 mt-0.5">Visible uniquement par la famille</span>
+                      </span>
+                    </div>
+                    <Switch
+                      checked={isIntimate}
+                      onCheckedChange={setIsIntimate}
+                      className="data-[state=checked]:bg-[#D4AF37]"
+                    />
                   </div>
 
                   {/* Separator */}
