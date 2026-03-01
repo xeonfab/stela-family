@@ -539,7 +539,7 @@ N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`
     setMemoryDetailOpen(true);
   };
 
-  const tabTriggerClass = "flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors";
+  const segmentedTriggerClass = "rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 text-stone-400 hover:text-stone-600 data-[state=active]:bg-white data-[state=active]:text-stone-800 data-[state=active]:shadow-[0_1px_3px_rgba(0,0,0,0.05)]";
 
   return (
     <div className="min-h-screen bg-[#FAF9F6]">
@@ -577,14 +577,14 @@ N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`
 
       {/* ─── Sticky Tabs ─── */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <div className="sticky top-0 z-40 bg-[#FAF9F6]/80 backdrop-blur-xl">
-          <div className="max-w-3xl mx-auto px-6">
-            <TabsList className="w-full bg-transparent h-14 gap-0 border-b border-stone-200/50 rounded-none p-0">
-              <TabsTrigger value="souvenirs" className={tabTriggerClass}>Souvenirs</TabsTrigger>
-              <TabsTrigger value="histoire" className={tabTriggerClass}>Son Histoire</TabsTrigger>
+        <div className="sticky top-0 z-40 bg-[#FAF9F6]/80 backdrop-blur-xl py-3">
+          <div className="flex justify-center">
+            <TabsList className="inline-flex w-auto bg-[#F5F5F0] rounded-full p-1 gap-1 h-auto">
+              <TabsTrigger value="souvenirs" className={segmentedTriggerClass}>Souvenirs</TabsTrigger>
+              <TabsTrigger value="histoire" className={segmentedTriggerClass}>Son Histoire</TabsTrigger>
               {isAdmin && (
-                <TabsTrigger value="intime" className={tabTriggerClass}>
-                  <Lock size={13} className="mr-1.5 opacity-60" />
+                <TabsTrigger value="intime" className={`${segmentedTriggerClass} flex items-center gap-1.5`}>
+                  <Lock size={13} />
                   Intime
                 </TabsTrigger>
               )}
