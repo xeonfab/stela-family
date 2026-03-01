@@ -348,12 +348,11 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                               <span className="text-sm font-medium text-stone-500">Ajouter jusqu'à 4 photos</span>
                               <span className="text-[11px] text-[#999]">JPG, PNG · 10 Mo max par fichier</span>
                             </div>
-                            <textarea
+                            <Input
                               value={text}
                               onChange={(e) => setText(e.target.value)}
-                              placeholder="Ajouter une légende ou une pensée (optionnel)..."
-                              rows={2}
-                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-xl px-4 py-3 text-sm text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0"
+                              placeholder="Donnez un titre à ce souvenir (optionnel)..."
+                              className={inputStyle}
                             />
                           </div>
                         )}
@@ -367,12 +366,11 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                               </button>
                               <span className="text-xs text-[#999] font-medium">Appuyez pour enregistrer un message vocal</span>
                             </div>
-                            <textarea
+                            <Input
                               value={text}
                               onChange={(e) => setText(e.target.value)}
-                              placeholder="Ajouter une légende ou une pensée (optionnel)..."
-                              rows={2}
-                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-xl px-4 py-3 text-sm text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0"
+                              placeholder="Donnez un titre à ce souvenir (optionnel)..."
+                              className={inputStyle}
                             />
                           </div>
                         )}
@@ -385,12 +383,11 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                               <span className="text-sm font-medium text-stone-500">Ajouter une vidéo</span>
                               <span className="text-[11px] text-[#999]">MP4, MOV · 50 Mo max</span>
                             </div>
-                            <textarea
+                            <Input
                               value={text}
                               onChange={(e) => setText(e.target.value)}
-                              placeholder="Ajouter une légende ou une pensée (optionnel)..."
-                              rows={2}
-                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-xl px-4 py-3 text-sm text-stone-700 leading-relaxed placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0"
+                              placeholder="Donnez un titre à ce souvenir (optionnel)..."
+                              className={inputStyle}
                             />
                           </div>
                         )}
