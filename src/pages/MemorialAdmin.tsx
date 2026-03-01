@@ -164,11 +164,11 @@ const FlameRitual = () => {
           </svg>
         </span>
         <span className={`text-sm font-medium transition-all duration-700 ${isLit ? "text-amber-800" : "text-stone-600"}`}>
-          {isLit ? `Vous veillez avec ${litCount} proches` : "Allumer une bougie"}
+          {isLit ? "✨ Votre lumière brille" : "🕯️ Allumer une bougie"}
         </span>
       </button>
       <p className={`text-xs transition-all duration-700 text-center max-w-[280px] ${isLit ? "italic text-stone-400" : "text-stone-400"}`}>
-        {isLit ? "Cette bougie brillera 7 jours. Revenez la raviver." : `${litCount} proches veillent sur ce sanctuaire.`}
+        {isLit ? `Avec ${litCount} autres proches. Revenez raviver cette flamme dans 7 jours.` : `${litCount} proches ont laissé une lumière.`}
       </p>
     </div>
   );
