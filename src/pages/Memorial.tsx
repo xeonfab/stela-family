@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Lock, Pencil, Plus, Upload, CalendarDays, Copy, Check } from "lucide-react";
+import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Lock, Pencil, Plus, Upload, CalendarDays, Copy, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import AudioPlayer from "@/components/AudioPlayer";
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -435,7 +435,24 @@ const MemoryCard = ({ memory, onClick }: { memory: Memory; onClick: () => void }
   if (memory.type === "photo") {
     return (
       <div onClick={onClick} className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 cursor-pointer group hover:shadow-md transition-shadow">
-        <img src={memory.image} alt={memory.text} className="w-full h-52 object-cover" loading="lazy" />
+        <div className="relative">
+          <img src={memory.image} alt={memory.text} className="w-full h-52 object-cover" loading="lazy" />
+          {/* Image slider navigation arrows */}
+          <button
+            onClick={(e) => e.stopPropagation()}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white/80"
+            aria-label="Photo précédente"
+          >
+            <ChevronLeft size={15} className="text-stone-700" />
+          </button>
+          <button
+            onClick={(e) => e.stopPropagation()}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white/80"
+            aria-label="Photo suivante"
+          >
+            <ChevronRight size={15} className="text-stone-700" />
+          </button>
+        </div>
         <div className="p-5 space-y-3">
           <p className="text-stone-600 text-sm leading-relaxed line-clamp-3">{memory.text}</p>
           <div className="flex items-center justify-between">
