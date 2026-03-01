@@ -164,7 +164,7 @@ const FlameRitual = () => {
           </svg>
         </span>
         <span className={`text-sm font-medium transition-all duration-700 ${isLit ? "text-amber-800" : "text-stone-600"}`}>
-          {isLit ? "✨ Votre lumière brille" : "🕯️ Allumer une bougie"}
+          {isLit ? "Votre lumière brille" : "Allumer une bougie"}
         </span>
       </button>
       <p className={`text-xs transition-all duration-700 text-center max-w-[280px] ${isLit ? "italic text-stone-400" : "text-stone-400"}`}>
