@@ -170,7 +170,7 @@ const LogisticsLink = () => {
         onClick={() => setOpen(true)}
         className="text-sm text-stone-400 font-medium hover:text-stone-600 cursor-pointer transition-colors"
       >
-        🕊️ Consulter les informations et le faire-part
+        Consulter le déroulé des obsèques
       </button>
       <LogisticsModal open={open} onOpenChange={setOpen} />
     </>
