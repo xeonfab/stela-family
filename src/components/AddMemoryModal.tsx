@@ -403,27 +403,40 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
 
                   {/* Signature fields */}
                   <div className="space-y-5">
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-medium text-[#999] uppercase tracking-[0.12em]">
-                        Votre prénom et nom *
-                      </label>
-                      <Input
-                        value={authorName}
-                        onChange={(e) => setAuthorName(e.target.value)}
-                        placeholder="Jean Dupont"
-                        className={inputStyle}
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-medium text-[#999] uppercase tracking-[0.12em]">
+                          Votre prénom et nom *
+                        </label>
+                        <Input
+                          value={authorName}
+                          onChange={(e) => setAuthorName(e.target.value)}
+                          placeholder="Jean Dupont"
+                          className={inputStyle}
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-medium text-[#999] uppercase tracking-[0.12em]">
+                          Votre lien (optionnel)
+                        </label>
+                        <Input
+                          value={authorRelation}
+                          onChange={(e) => setAuthorRelation(e.target.value)}
+                          placeholder="Ex : petit-fils, collègue, ami d'enfance..."
+                          className={inputStyle}
+                        />
+                      </div>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                       <label className="text-[10px] font-medium text-[#999] uppercase tracking-[0.12em]">
-                        Votre lien (optionnel)
+                        Email (optionnel)
                       </label>
                       <Input
-                        value={authorRelation}
-                        onChange={(e) => setAuthorRelation(e.target.value)}
-                        placeholder="Ex : petit-fils, collègue, ami d'enfance..."
+                        type="email"
+                        placeholder="jean.dupont@email.com"
                         className={inputStyle}
                       />
+                      <p className="text-[10px] text-stone-400 mt-1">Restez informé des hommages déposés</p>
                     </div>
                   </div>
 
@@ -508,11 +521,11 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                     )}
                   </div>
 
-                  <p className="text-[11px] text-[#757575] text-center leading-relaxed pt-2">
-                    {isAdmin
-                      ? "Ce souvenir sera publié directement sur le sanctuaire."
-                      : "Votre souvenir sera soumis à l'approbation de la famille."}
-                  </p>
+                  {isAdmin && (
+                    <p className="text-[11px] text-[#757575] text-center leading-relaxed pt-2">
+                      Ce souvenir sera publié directement sur le sanctuaire.
+                    </p>
+                  )}
                 </div>
               )}
             </div>
