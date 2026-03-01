@@ -779,16 +779,16 @@ const MemorialAdmin = () => {
 
       {/* ─── Sticky Tabs ─── */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <div className="sticky top-[52px] z-40 bg-[#FAF9F6]/80 backdrop-blur-xl border-b border-stone-200/50">
-          <div className="max-w-3xl mx-auto px-6">
-            <TabsList className="w-full bg-transparent h-14 gap-0">
-              <TabsTrigger value="souvenirs" className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors">
+        <div className="sticky top-[52px] z-40 bg-[#FAF9F6]/80 backdrop-blur-xl py-3">
+          <div className="flex justify-center">
+            <TabsList className="inline-flex w-auto bg-[#F5F5F0] rounded-full p-1 gap-1 h-auto">
+              <TabsTrigger value="souvenirs" className="rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 text-stone-400 hover:text-stone-600 data-[state=active]:bg-white data-[state=active]:text-stone-800 data-[state=active]:shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
                 Souvenirs
               </TabsTrigger>
-              <TabsTrigger value="histoire" className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors">
+              <TabsTrigger value="histoire" className="rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 text-stone-400 hover:text-stone-600 data-[state=active]:bg-white data-[state=active]:text-stone-800 data-[state=active]:shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
                 Son Histoire
               </TabsTrigger>
-              <TabsTrigger value="intime" className="flex-1 h-full rounded-none border-b-2 border-transparent text-stone-400 data-[state=active]:text-amber-700 data-[state=active]:border-amber-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none font-medium text-sm transition-colors flex items-center justify-center gap-1.5">
+              <TabsTrigger value="intime" className="rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 text-stone-400 hover:text-stone-600 data-[state=active]:bg-white data-[state=active]:text-stone-800 data-[state=active]:shadow-[0_1px_3px_rgba(0,0,0,0.05)] flex items-center gap-1.5">
                 <Lock size={13} />
                 Intime
                 {intimateMemories.length > 0 && (
