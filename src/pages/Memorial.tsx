@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Lock, Pencil, Plus, Upload, CalendarDays, Copy, Check, ChevronLeft, ChevronRight, MapPin, Flower, Scroll } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 import AudioPlayer from "@/components/AudioPlayer";
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -66,104 +67,112 @@ const timeline: TimelineEntry[] = [
 
 /* AudioWaveform removed — using AudioPlayer component */
 
-/* ─── Logistics Bar (Ceremony / Resting Place / Obituary) ─── */
-const logisticsItems = [
-  {
-    key: "ceremony",
-    icon: MapPin,
-    label: "Cérémonie",
-    content: (
-      <div className="space-y-4">
-        <div className="space-y-1">
-          <p className="text-xs uppercase tracking-[0.15em] text-stone-400 font-medium">Date & Heure</p>
-          <p className="text-stone-700">Samedi 15 juin 2024 à 10h30</p>
-        </div>
-        <div className="space-y-1">
-          <p className="text-xs uppercase tracking-[0.15em] text-stone-400 font-medium">Lieu</p>
-          <p className="text-stone-700">Église Saint-Pierre, Clermont-Ferrand</p>
-        </div>
-        <a
-          href="https://maps.google.com/?q=Église+Saint-Pierre+Clermont-Ferrand"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[#D4AF37] hover:text-[#c9a432] transition-colors mt-2"
-        >
-          🗺️ Ouvrir dans Maps
-        </a>
-      </div>
-    ),
-  },
-  {
-    key: "resting",
-    icon: Flower,
-    label: "Lieu de repos",
-    content: (
-      <div className="space-y-4">
-        <div className="space-y-1">
-          <p className="text-xs uppercase tracking-[0.15em] text-stone-400 font-medium">Cimetière</p>
-          <p className="text-stone-700">Cimetière des Carmes, Clermont-Ferrand</p>
-        </div>
-        <div className="space-y-1">
-          <p className="text-xs uppercase tracking-[0.15em] text-stone-400 font-medium">Emplacement</p>
-          <p className="text-stone-700">Allée 4, Division 12, Rang B</p>
-        </div>
-      </div>
-    ),
-  },
-  {
-    key: "obituary",
-    icon: Scroll,
-    label: "Faire-part",
-    content: (
-      <div className="font-serif text-stone-600 text-lg leading-[1.9] space-y-4">
-        <p>
-          Marie Dubois, son épouse, Hélène et Philippe, ses enfants, Léo, Emma et Clara, ses petits-enfants, ainsi que toute la famille, ont la douleur de vous faire part du décès de
-        </p>
-        <p className="text-center font-semibold text-stone-800 text-xl">Jean-Claude Dubois</p>
-        <p>
-          survenu le 12 juin 2024 à l'âge de 76 ans, dans la paix de son foyer, entouré de l'amour des siens.
-        </p>
-        <p>
-          La cérémonie religieuse sera célébrée le samedi 15 juin à 10h30 en l'église Saint-Pierre de Clermont-Ferrand. L'inhumation aura lieu dans l'intimité familiale au cimetière des Carmes.
-        </p>
-        <p className="italic text-stone-500">
-          « Il cultivait son jardin comme il cultivait ses amitiés : avec patience, lumière et amour. »
-        </p>
-      </div>
-    ),
-  },
-];
+/* ─── Logistics Info Modal (Tabbed) ─── */
+const LogisticsModal = ({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) => (
+  <Dialog open={open} onOpenChange={onOpenChange}>
+    <DialogContent className="max-w-md bg-[#FCFBF9] border-stone-200 rounded-2xl p-0 overflow-hidden shadow-lg">
+      <DialogTitle className="sr-only">Informations et faire-part</DialogTitle>
+      <div className="p-6 pt-8">
+        <Tabs defaultValue="obseques" className="w-full">
+          <TabsList className="w-full bg-[#F5F5F0] rounded-full p-1 h-auto">
+            <TabsTrigger value="obseques" className="flex-1 rounded-full text-sm font-medium py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-stone-800 text-stone-500">
+              Déroulé des obsèques
+            </TabsTrigger>
+            <TabsTrigger value="fairepart" className="flex-1 rounded-full text-sm font-medium py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-stone-800 text-stone-500">
+              Faire-part
+            </TabsTrigger>
+          </TabsList>
 
-const LogisticsBar = () => {
-  const [openModal, setOpenModal] = useState<string | null>(null);
-  const current = logisticsItems.find((i) => i.key === openModal);
+          <TabsContent value="obseques" className="mt-6 space-y-0">
+            {/* Bloc A — Cérémonie */}
+            <div className="space-y-3 pb-5">
+              <div className="flex items-center gap-2 text-stone-700">
+                <MapPin size={16} className="text-stone-400" />
+                <span className="text-sm font-semibold tracking-wide">Cérémonie</span>
+              </div>
+              <div className="pl-6 space-y-2">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.15em] text-stone-400 font-medium">Date & Heure</p>
+                  <p className="text-sm text-stone-700 mt-0.5">Samedi 15 juin 2024 à 10h30</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.15em] text-stone-400 font-medium">Lieu</p>
+                  <p className="text-sm text-stone-700 mt-0.5">Église Saint-Pierre, Clermont-Ferrand</p>
+                </div>
+                <a
+                  href="https://maps.google.com/?q=Église+Saint-Pierre+Clermont-Ferrand"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-[#D4AF37] hover:text-[#c9a432] underline underline-offset-2 transition-colors"
+                >
+                  🗺️ Ouvrir le plan
+                </a>
+              </div>
+            </div>
 
+            <Separator className="bg-stone-200/60" />
+
+            {/* Bloc B — Lieu de repos */}
+            <div className="space-y-3 pt-5">
+              <div className="flex items-center gap-2 text-stone-700">
+                <Flower size={16} className="text-stone-400" />
+                <span className="text-sm font-semibold tracking-wide">Lieu de repos</span>
+              </div>
+              <div className="pl-6 space-y-2">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.15em] text-stone-400 font-medium">Cimetière</p>
+                  <p className="text-sm text-stone-700 mt-0.5">Cimetière des Carmes, Clermont-Ferrand</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.15em] text-stone-400 font-medium">Emplacement</p>
+                  <p className="text-sm text-stone-700 mt-0.5">Allée 4, Division 12, Rang B</p>
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="fairepart" className="mt-6">
+            <div className="max-h-[50vh] overflow-y-auto pr-1">
+              <div className="font-serif text-stone-700 text-base leading-[1.9] space-y-4">
+                <p>
+                  Marie Dubois, son épouse, Hélène et Philippe, ses enfants, Léo, Emma et Clara, ses petits-enfants, ainsi que toute la famille, ont la douleur de vous faire part du décès de
+                </p>
+                <p className="text-center font-semibold text-stone-800 text-xl py-2">Jean-Claude Dubois</p>
+                <p>
+                  survenu le 12 juin 2024 à l'âge de 76 ans, dans la paix de son foyer, entouré de l'amour des siens.
+                </p>
+                <p>
+                  La cérémonie religieuse sera célébrée le samedi 15 juin à 10h30 en l'église Saint-Pierre de Clermont-Ferrand. L'inhumation aura lieu dans l'intimité familiale au cimetière des Carmes.
+                </p>
+                <p>
+                  La famille remercie du fond du cœur tous ceux qui l'ont accompagné durant ces derniers mois. Vos témoignages d'affection et de soutien ont été d'un réconfort immense.
+                </p>
+                <p>
+                  Ceux qui le souhaitent pourront déposer un souvenir, un mot ou une photo sur cet espace mémoriel, afin que la mémoire de Jean-Claude continue de vivre à travers chacun d'entre nous.
+                </p>
+                <p className="italic text-stone-500">
+                  « Il cultivait son jardin comme il cultivait ses amitiés : avec patience, lumière et amour. »
+                </p>
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
+      </div>
+    </DialogContent>
+  </Dialog>
+);
+
+const LogisticsLink = () => {
+  const [open, setOpen] = useState(false);
   return (
     <>
-      <div className="flex justify-center py-4">
-        <div className="flex flex-row gap-3 overflow-x-auto md:overflow-visible scrollbar-hide px-2">
-          {logisticsItems.map((item) => (
-            <button
-              key={item.key}
-              onClick={() => setOpenModal(item.key)}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5F5F0] border border-stone-200 text-sm font-medium text-stone-600 hover:bg-stone-100 transition-colors whitespace-nowrap shrink-0"
-            >
-              <item.icon size={16} />
-              {item.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <Dialog open={!!openModal} onOpenChange={(v) => !v && setOpenModal(null)}>
-        <DialogContent className="max-w-md bg-[#FAF9F6] border-stone-200 rounded-2xl p-0 overflow-hidden">
-          <DialogTitle className="sr-only">{current?.label}</DialogTitle>
-          <div className="p-8 space-y-5">
-            <h3 className="font-serif text-2xl font-semibold text-stone-900">{current?.label}</h3>
-            {current?.content}
-          </div>
-        </DialogContent>
-      </Dialog>
+      <button
+        onClick={() => setOpen(true)}
+        className="text-sm text-stone-400 font-medium hover:text-stone-600 cursor-pointer transition-colors"
+      >
+        🕊️ Consulter les informations et le faire-part
+      </button>
+      <LogisticsModal open={open} onOpenChange={setOpen} />
     </>
   );
 };
@@ -687,14 +696,12 @@ N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`
           <img src={portraitImg} alt="Jean-Claude Dubois" className="w-full h-full object-cover" />
         </div>
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 mb-3">Jean-Claude Dubois</h1>
-        <p className="text-sm tracking-[0.3em] uppercase text-stone-400 mb-8">1948 — 2024</p>
-        <p className="font-serif italic text-lg md:text-xl text-stone-500 max-w-xl mx-auto leading-relaxed">
+        <p className="text-sm tracking-[0.3em] uppercase text-stone-400 mb-4">1948 — 2024</p>
+        <LogisticsLink />
+        <p className="font-serif italic text-lg md:text-xl text-stone-500 max-w-xl mx-auto leading-relaxed mt-5">
           « Il cultivait son jardin comme il cultivait ses amitiés&nbsp;: avec patience, lumière et amour. »
         </p>
         <FlameRitual />
-
-        {/* ─── Logistique & Informations (Pill bar) ─── */}
-        <LogisticsBar />
       </section>
 
       {/* ─── Sticky Tabs ─── */}
