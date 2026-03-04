@@ -278,7 +278,7 @@ const EditableField = ({ children, className = "" }: {children: React.ReactNode;
 
 
 /* ─── Guardian Banner ─── */
-const GuardianBanner = () => {};
+const GuardianBanner = () => { return null; };
 
 
 

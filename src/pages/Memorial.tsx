@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Lock, Pencil, Plus, Upload, CalendarDays, Copy, Check, ChevronLeft, ChevronRight, MapPin, Flower, Scroll } from "lucide-react";
+import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Pencil, Plus, Upload, CalendarDays, Copy, Check, ChevronLeft, ChevronRight, MapPin, Flower, Scroll } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import AudioPlayer from "@/components/AudioPlayer";
 
@@ -45,11 +45,6 @@ const memories: Memory[] = [
   { type: "quote", text: "« Je garde précieusement le livre que tu m'as offert. Tes annotations dans la marge sont de vrais trésors. »", author: "Lucie", hearts: 14 },
 ];
 
-/* ─── Intimate memories (kept private by admin) ─── */
-const intimateMemories: Memory[] = [
-  { type: "quote", text: "« Papa, tu te souviens quand on se cachait sous la table pour manger du chocolat en secret ? Je n'ai jamais oublié. »", author: "Hélène (Fille)", hearts: 3 },
-  { type: "photo", image: jcGardening, text: "Sa dernière lettre, écrite à la main, que nous gardons précieusement.", author: "Marie", hearts: 1 },
-];
 
 /* ─── Timeline Data ─── */
 type TimelineEntry =
@@ -641,7 +636,6 @@ const Memorial = () => {
   const [memoryModalOpen, setMemoryModalOpen] = useState(false);
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
   const [memoryDetailOpen, setMemoryDetailOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -711,12 +705,6 @@ N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`
             <TabsList className="inline-flex w-auto bg-[#F5F5F0] rounded-full p-1 gap-1 h-auto">
               <TabsTrigger value="souvenirs" className={segmentedTriggerClass}>Souvenirs</TabsTrigger>
               <TabsTrigger value="histoire" className={segmentedTriggerClass}>Son Histoire</TabsTrigger>
-              {isAdmin && (
-                <TabsTrigger value="intime" className={`${segmentedTriggerClass} flex items-center gap-1.5`}>
-                  <Lock size={13} />
-                  Intime
-                </TabsTrigger>
-              )}
             </TabsList>
           </div>
         </div>
@@ -734,27 +722,9 @@ N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`
 
         {/* ─── TAB 2: Son Histoire (Biography + Timeline) ─── */}
         <TabsContent value="histoire" className="mt-0">
-          <SonHistoireTab isAdmin={isAdmin} />
+          <SonHistoireTab isAdmin={false} />
         </TabsContent>
 
-        {/* ─── TAB 4: Intime (Admin only) ─── */}
-        {isAdmin && (
-          <TabsContent value="intime" className="mt-0">
-            <div className="max-w-5xl mx-auto px-6 py-12">
-              <div className="text-center mb-10">
-                <Lock size={20} className="mx-auto text-stone-300 mb-3" />
-                <p className="text-sm text-stone-400 italic max-w-md mx-auto">
-                  Ces souvenirs sont gardés dans l'intimité. Seuls les gardiens du sanctuaire peuvent les consulter.
-                </p>
-              </div>
-              <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-                {intimateMemories.map((memory, idx) => (
-                  <MemoryCard key={idx} memory={memory} onClick={() => openMemoryDetail(memory)} />
-                ))}
-              </div>
-            </div>
-          </TabsContent>
-        )}
       </Tabs>
 
       {/* ─── Floating CTA ─── */}
@@ -769,7 +739,7 @@ N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`
       </div>
 
       <MemoryDetailModal memory={selectedMemory} open={memoryDetailOpen} onOpenChange={setMemoryDetailOpen} />
-      <AddMemoryModal open={memoryModalOpen} onOpenChange={setMemoryModalOpen} isAdmin={isAdmin} />
+      <AddMemoryModal open={memoryModalOpen} onOpenChange={setMemoryModalOpen} />
 
       {/* ─── Share Modal ─── */}
       <Dialog open={shareModalOpen} onOpenChange={setShareModalOpen}>
@@ -828,15 +798,6 @@ N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`
       {/* Bottom spacer for FAB */}
       <div className="h-24" />
 
-      {/* ─── Dev Toggle: Admin / Guest ─── */}
-      <div className="fixed bottom-4 right-4 z-[60]">
-        <button
-          onClick={() => setIsAdmin(!isAdmin)}
-          className="px-4 py-2 rounded-full text-xs font-medium shadow-lg border transition-all duration-200 backdrop-blur-sm bg-white/90 border-stone-200 text-stone-600 hover:bg-stone-50"
-        >
-          {isAdmin ? "👁 Vue Admin" : "👤 Vue Invité"}
-        </button>
-      </div>
     </div>
   );
 };
