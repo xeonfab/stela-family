@@ -163,7 +163,7 @@ const LogisticsLink = () => {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="text-sm text-stone-400 font-medium hover:text-stone-600 cursor-pointer transition-colors"
+        className="text-sm text-[#FBF9F6]/50 font-medium hover:text-[#FBF9F6]/80 cursor-pointer transition-colors"
       >
         Consulter le déroulé des obsèques
       </button>
@@ -190,8 +190,8 @@ const FlameRitual = () => {
         onClick={handleLight}
         className={`flex items-center gap-2.5 px-6 py-2.5 rounded-full transition-all duration-700 ease-in-out focus:outline-none ${
           isLit
-            ? "bg-amber-50 border border-[#D4AF37]/40 shadow-[0_0_20px_-5px_rgba(212,175,55,0.15)]"
-            : "bg-white border border-stone-200 hover:border-stone-300 shadow-sm"
+            ? "bg-[#FBF9F6] border border-[#D4AF37]/40 shadow-[0_0_20px_-5px_rgba(212,175,55,0.15)]"
+            : "bg-[#FBF9F6] border border-[#FBF9F6]/20 shadow-sm hover:shadow-md"
         }`}
         aria-label="Allumer une bougie"
       >
@@ -201,11 +201,11 @@ const FlameRitual = () => {
             <path className="flame-path" d="M12 22a4.5 4.5 0 0 0 4.5-4.5c0-2-1.5-3.5-2.5-4.5-.5.7-1 1.2-1.5 1.5C12 13 11 11.5 10 10c-1.5 2-2.5 4-2.5 5.5A4.5 4.5 0 0 0 12 22Z" strokeLinejoin="round" />
           </svg>
         </span>
-        <span className={`text-sm font-medium transition-all duration-700 ${isLit ? "text-amber-800" : "text-stone-600"}`}>
+        <span className={`text-sm font-medium transition-all duration-700 ${isLit ? "text-[#D4AF37]" : "text-[#2C221B]"}`}>
           {isLit ? "Votre lumière brille" : "Allumer une bougie"}
         </span>
       </button>
-      <p className={`text-xs transition-all duration-700 text-center max-w-[280px] ${isLit ? "italic text-stone-400" : "text-stone-400"}`}>
+      <p className={`text-xs transition-all duration-700 text-center max-w-[280px] ${isLit ? "italic text-[#FBF9F6]/50" : "text-[#FBF9F6]/40"}`}>
         {isLit ? `Avec ${litCount} autres proches. Revenez raviver cette flamme dans 7 jours.` : `${litCount} proches ont laissé une lumière.`}
       </p>
     </div>
@@ -673,30 +673,33 @@ N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`
         </svg>
       </div>
 
-      {/* ─── Top bar ─── */}
-      <header className="py-4 px-6 flex items-center justify-between">
-        <button
-          onClick={() => setShareModalOpen(true)}
-          className="flex items-center gap-1.5 text-sm text-stone-400 hover:text-[#D4AF37] transition-colors"
-        >
-          <Share2 size={16} />
-          <span className="font-sans-body">Partager</span>
-        </button>
-      </header>
+      {/* ─── Dark Hero Section (Brun Noyer) ─── */}
+      <div className="w-full bg-[#2C221B]">
+        {/* ─── Top bar ─── */}
+        <header className="py-4 px-6 flex items-center justify-between">
+          <button
+            onClick={() => setShareModalOpen(true)}
+            className="flex items-center gap-1.5 text-sm text-[#FBF9F6]/60 hover:text-[#D4AF37] transition-colors"
+          >
+            <Share2 size={16} />
+            <span className="font-sans-body">Partager</span>
+          </button>
+        </header>
 
-      {/* ─── Sacred Header ─── */}
-      <section className="pt-8 pb-12 px-6 text-center">
-        <div className="mx-auto w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-[3px] border-amber-600/20 shadow-[0_0_60px_-10px_rgba(212,175,55,0.2)] mb-8">
-          <img src={portraitImg} alt="Jean-Claude Dubois" className="w-full h-full object-cover" />
-        </div>
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 mb-3">Jean-Claude Dubois</h1>
-        <p className="text-sm tracking-[0.3em] uppercase text-stone-400 mb-4">1948 — 2024</p>
-        <LogisticsLink />
-        <p className="font-serif italic text-lg md:text-xl text-stone-500 max-w-xl mx-auto leading-relaxed mt-5">
-          « Il cultivait son jardin comme il cultivait ses amitiés&nbsp;: avec patience, lumière et amour. »
-        </p>
-        <FlameRitual />
-      </section>
+        {/* ─── Sacred Header ─── */}
+        <section className="pt-8 pb-16 px-6 text-center">
+          <div className="mx-auto w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-[#FBF9F6]/80 shadow-[0_0_60px_-10px_rgba(212,175,55,0.15)] mb-8">
+            <img src={portraitImg} alt="Jean-Claude Dubois" className="w-full h-full object-cover" />
+          </div>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#FBF9F6] mb-3">Jean-Claude Dubois</h1>
+          <p className="text-sm tracking-[0.3em] uppercase text-[#FBF9F6]/50 mb-4">1948 — 2024</p>
+          <LogisticsLink />
+          <p className="font-serif italic text-lg md:text-xl text-[#FBF9F6]/70 max-w-xl mx-auto leading-relaxed mt-5">
+            « Il cultivait son jardin comme il cultivait ses amitiés&nbsp;: avec patience, lumière et amour. »
+          </p>
+          <FlameRitual />
+        </section>
+      </div>
 
       {/* ─── Sticky Tabs ─── */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
