@@ -141,7 +141,7 @@
 
   /* LivingCandle */
   .flame-path {
-    stroke: #2C2C2C;
+    stroke: #2C221B;
     stroke-width: 1.5;
     fill: transparent;
     transition: all 0.5s ease-in-out;
