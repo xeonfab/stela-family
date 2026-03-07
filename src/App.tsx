@@ -16,7 +16,9 @@ import OnboardingPhoto from "./pages/OnboardingPhoto";
 import NotFound from "./pages/NotFound";
 import PageModeration from "./pages/PageModeration";
 import KitCeremonie from "./pages/KitCeremonie";
-import ParametresAdmin from "./pages/ParametresAdmin";
+import ProfilAdmin from "./pages/ProfilAdmin";
+import GestionAcces from "./pages/GestionAcces";
+import Confidentialite from "./pages/Confidentialite";
 import DashboardB2B from "./pages/DashboardB2B";
 import InvitationVIP from "./pages/InvitationVIP";
 
