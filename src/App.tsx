@@ -35,7 +35,7 @@ const App = () => (
           <Route path="/memorial" element={<Memorial />} />
           <Route path="/officiants" element={<Officiants />} />
           <Route path="/pompe-funebre" element={<PompesFunebres />} />
-          <Route path="/acces" element={<Acces />} />
+          <Route path="/code-acces" element={<Acces />} />
           <Route path="/memorial-admin" element={<MemorialAdmin />} />
           <Route path="/invitation-privee" element={<InvitationPrivee />} />
           <Route path="/onboarding/email" element={<EmailInvitation />} />
@@ -43,7 +43,9 @@ const App = () => (
           <Route path="/onboarding/photo" element={<OnboardingPhoto />} />
           <Route path="/moderation" element={<PageModeration />} />
           <Route path="/kit-ceremonie" element={<KitCeremonie />} />
-          <Route path="/parametres" element={<ParametresAdmin />} />
+          <Route path="/profil" element={<ProfilAdmin />} />
+          <Route path="/acces" element={<GestionAcces />} />
+          <Route path="/confidentialite" element={<Confidentialite />} />
           <Route path="/dashboard-b2b" element={<DashboardB2B />} />
           <Route path="/invitation" element={<InvitationVIP />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
