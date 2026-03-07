@@ -706,76 +706,79 @@ const MemorialAdmin = () => {
         </svg>
       </div>
 
-      {/* ─── Guardian Banner ─── */}
-      <GuardianBanner />
+      {/* ─── Dark Hero Section (Brun Noyer) ─── */}
+      <div className="w-full bg-[#1d2a24]">
+        {/* ─── Guardian Banner ─── */}
+        <GuardianBanner />
 
-      {/* ─── Top bar ─── */}
-      <header className="py-4 px-6 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 text-sm text-stone-400 hover:text-stone-600 transition-colors">
-          <ArrowLeft size={18} />
-          <span>Retour</span>
-        </Link>
-        <Sheet>
-          <SheetTrigger asChild>
-            <button className="w-9 h-9 flex items-center justify-center rounded-full border border-stone-200 hover:border-stone-300 transition-colors bg-white/60">
-              <Menu size={18} className="text-stone-500" />
-            </button>
-          </SheetTrigger>
-          <SheetContent side="right" className="bg-[#FAFAFA] border-l border-stone-200/60 w-72 p-0">
-            <SheetTitle className="sr-only">Menu administrateur</SheetTitle>
-            <nav className="flex flex-col justify-center h-full px-10 gap-8">
-              <Link to="/kit-ceremonie" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
-                <BookOpenCheck size={20} strokeWidth={1.5} />
-                Kit de Cérémonie
-              </Link>
-              <Link to="/parametres" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
-                <Settings size={20} strokeWidth={1.5} />
-                Paramètres de l'espace
-              </Link>
-            </nav>
-          </SheetContent>
-        </Sheet>
-      </header>
+        {/* ─── Top bar ─── */}
+        <header className="py-4 px-6 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2 text-sm text-[#FBF9F6]/60 hover:text-[#D4AF37] transition-colors">
+            <ArrowLeft size={18} />
+            <span>Retour</span>
+          </Link>
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="w-9 h-9 flex items-center justify-center rounded-full border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 transition-colors bg-[#FBF9F6]/10">
+                <Menu size={18} className="text-[#FBF9F6]/70" />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="right" className="bg-[#FAFAFA] border-l border-stone-200/60 w-72 p-0">
+              <SheetTitle className="sr-only">Menu administrateur</SheetTitle>
+              <nav className="flex flex-col justify-center h-full px-10 gap-8">
+                <Link to="/kit-ceremonie" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
+                  <BookOpenCheck size={20} strokeWidth={1.5} />
+                  Kit de Cérémonie
+                </Link>
+                <Link to="/parametres" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
+                  <Settings size={20} strokeWidth={1.5} />
+                  Paramètres de l'espace
+                </Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </header>
 
-      {/* ─── Sacred Header with Editable Fields ─── */}
-      <section className="pt-8 pb-12 px-6 text-center">
-        {/* Portrait — Editable */}
-        <EditableField className="mx-auto flex justify-center">
-          <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-[3px] border-amber-600/20 shadow-[0_0_60px_-10px_rgba(212,175,55,0.2)] mb-8 cursor-pointer">
-            <img src={portraitImg} alt="Jean-Claude Dubois" className="w-full h-full object-cover" />
-          </div>
-        </EditableField>
-
-        {/* Name — Editable */}
-        <EditableField>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 mb-3 cursor-pointer">
-            Jean-Claude Dubois
-          </h1>
-        </EditableField>
-
-        {/* Dates — Editable */}
-        <EditableField>
-          <p className="text-sm tracking-[0.3em] uppercase text-stone-400 mb-8 cursor-pointer">1948 — 2024</p>
-        </EditableField>
-
-        {/* Epitaph / Citation placeholder — Editable */}
-        {isEmpty ?
-        <button className="inline-flex items-center gap-2 mt-2 mb-8 cursor-pointer group/citation max-w-xl mx-auto">
-            <p className="font-serif italic text-lg md:text-xl text-stone-300 leading-relaxed group-hover/citation:text-stone-400 transition-colors">
-              « Ajoutez les mots ou la citation qui racontent le mieux son essence... »
-            </p>
-            <PenLine size={16} className="text-[#D4AF37] shrink-0 opacity-70 group-hover/citation:opacity-100 transition-opacity" />
-          </button> :
-
-        <EditableField>
-            <p className="font-serif italic text-lg md:text-xl text-stone-500 max-w-xl mx-auto leading-relaxed cursor-pointer">
-              « Il cultivait son jardin comme il cultivait ses amitiés&nbsp;: avec patience, lumière et amour. »
-            </p>
+        {/* ─── Sacred Header with Editable Fields ─── */}
+        <section className="pt-8 pb-16 px-6 text-center">
+          {/* Portrait — Editable */}
+          <EditableField className="mx-auto flex justify-center">
+            <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-[#FBF9F6]/80 shadow-[0_0_60px_-10px_rgba(212,175,55,0.15)] mb-8 cursor-pointer">
+              <img src={portraitImg} alt="Jean-Claude Dubois" className="w-full h-full object-cover" />
+            </div>
           </EditableField>
-        }
 
-        <FlameRitual />
-      </section>
+          {/* Name — Editable */}
+          <EditableField>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#FBF9F6] mb-3 cursor-pointer">
+              Jean-Claude Dubois
+            </h1>
+          </EditableField>
+
+          {/* Dates — Editable */}
+          <EditableField>
+            <p className="text-sm tracking-[0.3em] uppercase text-[#FBF9F6]/50 mb-8 cursor-pointer">1948 — 2024</p>
+          </EditableField>
+
+          {/* Epitaph / Citation placeholder — Editable */}
+          {isEmpty ?
+          <button className="inline-flex items-center gap-2 mt-2 mb-8 cursor-pointer group/citation max-w-xl mx-auto">
+              <p className="font-serif italic text-lg md:text-xl text-[#FBF9F6]/30 leading-relaxed group-hover/citation:text-[#FBF9F6]/50 transition-colors">
+                « Ajoutez les mots ou la citation qui racontent le mieux son essence... »
+              </p>
+              <PenLine size={16} className="text-[#D4AF37] shrink-0 opacity-70 group-hover/citation:opacity-100 transition-opacity" />
+            </button> :
+
+          <EditableField>
+              <p className="font-serif italic text-lg md:text-xl text-[#FBF9F6]/70 max-w-xl mx-auto leading-relaxed cursor-pointer">
+                « Il cultivait son jardin comme il cultivait ses amitiés&nbsp;: avec patience, lumière et amour. »
+              </p>
+            </EditableField>
+          }
+
+          <FlameRitual />
+        </section>
+      </div>
 
       {/* ─── Sticky Tabs ─── */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
