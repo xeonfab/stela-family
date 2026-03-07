@@ -734,9 +734,17 @@ const MemorialAdmin = () => {
                   <BookOpenCheck size={20} strokeWidth={1.5} />
                   Kit de Cérémonie
                 </Link>
-                <Link to="/parametres" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
+                <Link to="/profil" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
                   <Settings size={20} strokeWidth={1.5} />
-                  Paramètres de l'espace
+                  Mon Profil
+                </Link>
+                <Link to="/acces" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
+                  <Settings size={20} strokeWidth={1.5} />
+                  Gestion des Accès
+                </Link>
+                <Link to="/confidentialite" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
+                  <Settings size={20} strokeWidth={1.5} />
+                  Confidentialité
                 </Link>
               </nav>
             </SheetContent>
