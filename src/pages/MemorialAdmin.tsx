@@ -744,44 +744,83 @@ const MemorialAdmin = () => {
         </header>
 
         {/* ─── Sacred Header with Editable Fields ─── */}
-        <section className="pt-8 pb-16 px-6 text-center">
-          {/* Portrait — Editable */}
-          <EditableField className="mx-auto flex justify-center">
-            <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-[#FBF9F6]/80 shadow-[0_0_60px_-10px_rgba(212,175,55,0.15)] mb-8 cursor-pointer">
-              <img src={portraitImg} alt="Jean-Claude Dubois" className="w-full h-full object-cover" />
-            </div>
-          </EditableField>
+        <section className="relative pt-8 pb-16 px-6 flex flex-col items-center text-center">
+          {/* Single Edit Button */}
+          <button
+            onClick={() => setHeroEditOpen(true)}
+            className="absolute top-4 right-6 w-9 h-9 rounded-full bg-[#FBF9F6]/10 border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 hover:bg-[#FBF9F6]/20 transition-all flex items-center justify-center z-10"
+            aria-label="Modifier le profil"
+          >
+            <Pencil size={14} className="text-[#FBF9F6]/70" />
+          </button>
 
-          {/* Name — Editable */}
-          <EditableField>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#FBF9F6] mb-3 cursor-pointer">
-              Jean-Claude Dubois
-            </h1>
-          </EditableField>
+          {/* Portrait */}
+          <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-[#FBF9F6]/80 shadow-[0_0_60px_-10px_rgba(212,175,55,0.15)] mb-8">
+            <img src={portraitImg} alt={heroName} className="w-full h-full object-cover" />
+          </div>
 
-          {/* Dates — Editable */}
-          <EditableField className="block text-center">
-            <p className="text-sm tracking-[0.3em] uppercase text-[#FBF9F6]/50 mb-8 cursor-pointer">1948 — 2024</p>
-          </EditableField>
+          {/* Name */}
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#FBF9F6] mb-3">
+            {heroName}
+          </h1>
 
-          {/* Epitaph / Citation placeholder — Editable */}
-          {isEmpty ?
-          <button className="inline-flex items-center gap-2 mt-2 mb-8 cursor-pointer group/citation max-w-xl mx-auto">
+          {/* Dates */}
+          <p className="text-sm tracking-[0.3em] uppercase text-[#FBF9F6]/50 mb-8">{heroDates}</p>
+
+          {/* Citation */}
+          {isEmpty ? (
+            <button onClick={() => setHeroEditOpen(true)} className="inline-flex items-center gap-2 mt-2 mb-8 cursor-pointer group/citation max-w-xl mx-auto">
               <p className="font-serif italic text-lg md:text-xl text-[#FBF9F6]/30 leading-relaxed group-hover/citation:text-[#FBF9F6]/50 transition-colors">
                 « Ajoutez les mots ou la citation qui racontent le mieux son essence... »
               </p>
-              <PenLine size={16} className="text-[#D4AF37] shrink-0 opacity-70 group-hover/citation:opacity-100 transition-opacity" />
-            </button> :
-
-          <EditableField>
-              <p className="font-serif italic text-lg md:text-xl text-[#FBF9F6]/70 max-w-xl mx-auto leading-relaxed cursor-pointer">
-                « Il cultivait son jardin comme il cultivait ses amitiés&nbsp;: avec patience, lumière et amour. »
-              </p>
-            </EditableField>
-          }
+            </button>
+          ) : (
+            <p className="font-serif italic text-lg md:text-xl text-[#FBF9F6]/70 max-w-xl mx-auto leading-relaxed mb-2">
+              {heroCitation}
+            </p>
+          )}
 
           <FlameRitual />
         </section>
+
+        {/* ─── Hero Edit Modal ─── */}
+        <Dialog open={heroEditOpen} onOpenChange={setHeroEditOpen}>
+          <DialogContent className="max-w-md bg-[#FAF9F6] border-stone-200 rounded-2xl">
+            <DialogTitle className="font-serif text-xl text-stone-800">Modifier le profil</DialogTitle>
+            <div className="space-y-5 pt-2">
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-stone-200">
+                  <img src={portraitImg} alt={heroName} className="w-full h-full object-cover" />
+                </div>
+                <button className="text-xs text-[#D4AF37] hover:text-[#B8960C] transition-colors font-medium flex items-center gap-1.5">
+                  <Camera size={13} />
+                  Changer la photo
+                </button>
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-xs text-stone-500 uppercase tracking-wider">Nom</Label>
+                <Input value={heroName} onChange={(e) => setHeroName(e.target.value)} className="bg-white border-stone-200 font-serif text-lg" />
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-xs text-stone-500 uppercase tracking-wider">Dates</Label>
+                <Input value={heroDates} onChange={(e) => setHeroDates(e.target.value)} className="bg-white border-stone-200" />
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-xs text-stone-500 uppercase tracking-wider">Citation / Épitaphe</Label>
+                <Textarea value={heroCitation} onChange={(e) => setHeroCitation(e.target.value)} className="bg-white border-stone-200 font-serif italic min-h-[100px]" />
+              </div>
+              <button
+                onClick={() => {
+                  setHeroEditOpen(false);
+                  toast("Profil mis à jour.", { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });
+                }}
+                className="w-full py-3 rounded-full bg-[#2C221B] text-[#FBF9F6] text-sm font-medium hover:bg-[#3a2e24] transition-colors"
+              >
+                Enregistrer
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
 
       {/* ─── Sticky Tabs ─── */}
