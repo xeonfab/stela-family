@@ -756,7 +756,7 @@ const MemorialAdmin = () => {
           </EditableField>
 
           {/* Dates — Editable */}
-          <EditableField>
+          <EditableField className="block text-center">
             <p className="text-sm tracking-[0.3em] uppercase text-[#FBF9F6]/50 mb-8 cursor-pointer">1948 — 2024</p>
           </EditableField>
 
