@@ -638,22 +638,31 @@ const Memorial = () => {
   const [memoryDetailOpen, setMemoryDetailOpen] = useState(false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
 
-  const shareMessage = `Un espace privé et éternel pour honorer la mémoire de Jean-Claude Dubois sur Stela.family.
+  const shareUrl = "stela.family/hommage/jean-claude-dubois";
+  const shareMessage = `Un espace privé et éternel pour honorer la mémoire de Jean-Claude Dubois sur Stela.family.\n\nIci, nous rassemblons nos pensées, photos et témoignages pour créer son plus bel héritage. Vous pouvez aussi y allumer une bougie.\n\n👉 stela.family/hommage/jean-claude-dubois\n\nN'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`;
 
-Ici, nous rassemblons nos pensées, photos et témoignages pour créer son plus bel héritage. Vous pouvez aussi y allumer une bougie.
-
-👉 stela.family/hommage/jean-claude-dubois
-
-N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`;
-
-  const handleCopyMessage = () => {
-    navigator.clipboard.writeText(shareMessage);
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(`https://${shareUrl}`);
     setCopied(true);
-    toast("Message copié !", {
+    toast("Lien copié !", {
       style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" }
     });
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleShareWhatsApp = () => {
+    window.open(`https://wa.me/?text=${encodeURIComponent(shareMessage)}`, "_blank");
+  };
+  const handleShareSMS = () => {
+    window.open(`sms:?body=${encodeURIComponent(shareMessage)}`, "_self");
+  };
+  const handleShareEmail = () => {
+    window.open(`mailto:?subject=${encodeURIComponent("Mémorial de Jean-Claude Dubois")}&body=${encodeURIComponent(shareMessage)}`, "_self");
+  };
+  const handleShareNative = () => {
+    navigator.share?.({ title: "Mémorial de Jean-Claude Dubois", text: shareMessage, url: `https://${shareUrl}` }).catch(() => {});
   };
 
   const openMemoryDetail = (memory: Memory) => {
