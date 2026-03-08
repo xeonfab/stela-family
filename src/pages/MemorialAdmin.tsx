@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2 } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2, Share2 } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -717,10 +717,25 @@ const MemorialAdmin = () => {
 
         {/* ─── Top bar ─── */}
         <header className="py-4 px-6 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-sm text-[#FBF9F6]/60 hover:text-[#D4AF37] transition-colors">
-            <ArrowLeft size={18} />
-            <span>Retour</span>
-          </Link>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setHeroEditOpen(true)}
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 transition-colors bg-[#FBF9F6]/10"
+              aria-label="Modifier le profil"
+            >
+              <Pencil size={16} className="text-[#FBF9F6]/70" />
+            </button>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.origin + "/memorial");
+                toast("Lien copié !", { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });
+              }}
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 transition-colors bg-[#FBF9F6]/10"
+              aria-label="Partager"
+            >
+              <Share2 size={16} className="text-[#FBF9F6]/70" />
+            </button>
+          </div>
           <Sheet>
             <SheetTrigger asChild>
               <button className="w-9 h-9 flex items-center justify-center rounded-full border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 transition-colors bg-[#FBF9F6]/10">
@@ -753,14 +768,6 @@ const MemorialAdmin = () => {
 
         {/* ─── Sacred Header with Editable Fields ─── */}
         <section className="relative pt-8 pb-16 px-6 flex flex-col items-center text-center">
-          {/* Single Edit Button */}
-          <button
-            onClick={() => setHeroEditOpen(true)}
-            className="absolute top-4 right-6 w-9 h-9 rounded-full bg-[#FBF9F6]/10 border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 hover:bg-[#FBF9F6]/20 transition-all flex items-center justify-center z-10"
-            aria-label="Modifier le profil"
-          >
-            <Pencil size={14} className="text-[#FBF9F6]/70" />
-          </button>
 
           {/* Portrait */}
           <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-[#FBF9F6]/80 shadow-[0_0_60px_-10px_rgba(212,175,55,0.15)] mb-8">
