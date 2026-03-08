@@ -53,23 +53,21 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
   const [isAiLoading, setIsAiLoading] = useState<"harmoniser" | "corriger" | null>(null);
   const [photos, setPhotos] = useState<{ file: File; preview: string }[]>([]);
   const [photoError, setPhotoError] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const handlePhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const processFiles = (files: File[]) => {
     setPhotoError(null);
-    const files = Array.from(e.target.files || []);
     if (!files.length) return;
 
     const oversized = files.find(f => f.size > MAX_FILE_SIZE_BYTES);
     if (oversized) {
       setPhotoError(`Le fichier « ${oversized.name} » dépasse la limite de ${MAX_FILE_SIZE_MB} Mo.`);
-      e.target.value = "";
       return;
     }
 
     const totalAfter = photos.length + files.length;
     if (totalAfter > MAX_PHOTOS) {
       setPhotoError(`Vous ne pouvez ajouter que ${MAX_PHOTOS} photos maximum. Il vous reste ${MAX_PHOTOS - photos.length} emplacement(s).`);
-      e.target.value = "";
       return;
     }
 
@@ -78,7 +76,37 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       preview: URL.createObjectURL(file),
     }));
     setPhotos(prev => [...prev, ...newPhotos]);
+  };
+
+  const handlePhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    processFiles(Array.from(e.target.files || []));
     e.target.value = "";
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    const files = Array.from(e.dataTransfer.files).filter(f =>
+      f.type === "image/jpeg" || f.type === "image/png"
+    );
+    if (files.length === 0) {
+      setPhotoError("Seuls les fichiers JPG et PNG sont acceptés.");
+      return;
+    }
+    processFiles(files);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
   };
 
   const removePhoto = (index: number) => {
@@ -112,6 +140,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       photos.forEach(p => URL.revokeObjectURL(p.preview));
       setPhotos([]);
       setPhotoError(null);
+      setIsDragging(false);
     }
     onOpenChange(val);
   };
@@ -166,8 +195,8 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogPortal>
         <DialogOverlay className="bg-black/30 backdrop-blur-sm" />
-        <DialogContent className="max-w-none sm:max-w-xl w-screen h-[100dvh] sm:w-[calc(100%-2rem)] sm:h-auto sm:max-h-[90vh] rounded-none sm:rounded-2xl border-0 shadow-none sm:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white overflow-hidden inset-0 sm:inset-auto sm:left-[50%] sm:top-[50%] translate-x-0 translate-y-0 sm:translate-x-[-50%] sm:translate-y-[-50%]">
-          <div className="h-full overflow-y-auto flex flex-col">
+        <DialogContent className="max-w-none sm:max-w-xl w-screen h-[100dvh] sm:w-[calc(100%-2rem)] sm:h-auto sm:max-h-[90vh] rounded-none sm:rounded-2xl border-0 shadow-none sm:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white overflow-y-auto inset-0 sm:inset-auto sm:left-[50%] sm:top-[50%] translate-x-0 translate-y-0 sm:translate-x-[-50%] sm:translate-y-[-50%]">
+          <div className="flex flex-col min-h-full">
             {/* Header */}
             <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm px-8 pt-8 pb-2">
               <button
@@ -389,7 +418,12 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
 
                         {/* PHOTOS tab */}
                         {intentTab === "photos" && (
-                          <div className="space-y-4">
+                          <div
+                            className="space-y-4"
+                            onDrop={handleDrop}
+                            onDragOver={handleDragOver}
+                            onDragLeave={handleDragLeave}
+                          >
                             {/* Photo previews grid */}
                             {photos.length > 0 && (
                               <div className="grid grid-cols-2 gap-3">
@@ -417,10 +451,13 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                                   <button
                                     type="button"
                                     onClick={() => fileInputRef.current?.click()}
-                                    className="aspect-square rounded-xl border-2 border-dashed border-stone-200 bg-[#F9F9F9] flex flex-col items-center justify-center gap-1.5 text-stone-400 hover:border-[#D4AF37]/40 hover:text-[#D4AF37] transition-colors"
+                                    className={cn(
+                                      "aspect-square rounded-xl border-2 border-dashed bg-[#F9F9F9] flex flex-col items-center justify-center gap-1.5 text-stone-400 hover:border-[#D4AF37]/40 hover:text-[#D4AF37] transition-colors",
+                                      isDragging ? "border-[#D4AF37] bg-[#FDFBF5] text-[#D4AF37]" : "border-stone-200"
+                                    )}
                                   >
                                     <Camera size={20} strokeWidth={1.2} />
-                                    <span className="text-[11px] font-medium">Ajouter</span>
+                                    <span className="text-[11px] font-medium">{isDragging ? "Déposer ici" : "Ajouter"}</span>
                                   </button>
                                 )}
                               </div>
@@ -431,11 +468,18 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                               <button
                                 type="button"
                                 onClick={() => fileInputRef.current?.click()}
-                                className="w-full border border-dashed border-stone-200 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-[#999] bg-[#F9F9F9] hover:border-[#D4AF37]/40 hover:bg-[#FDFBF5] transition-colors cursor-pointer"
+                                className={cn(
+                                  "w-full border border-dashed rounded-xl p-8 flex flex-col items-center justify-center gap-3 transition-colors cursor-pointer",
+                                  isDragging
+                                    ? "border-[#D4AF37] bg-[#FDFBF5] text-[#D4AF37]"
+                                    : "border-stone-200 text-[#999] bg-[#F9F9F9] hover:border-[#D4AF37]/40 hover:bg-[#FDFBF5]"
+                                )}
                               >
-                                <Camera size={24} strokeWidth={1.2} />
-                                <span className="text-sm font-medium text-stone-500">Ajouter jusqu'à {MAX_PHOTOS} photos</span>
-                                <span className="text-[11px] text-[#999]">JPG, PNG · {MAX_FILE_SIZE_MB} Mo max par fichier</span>
+                                <Upload size={24} strokeWidth={1.2} />
+                                <span className="text-sm font-medium text-stone-500">
+                                  {isDragging ? "Déposez vos photos ici" : `Ajouter jusqu'à ${MAX_PHOTOS} photos`}
+                                </span>
+                                <span className="text-[11px] text-[#999]">Glissez-déposez ou cliquez · JPG, PNG · {MAX_FILE_SIZE_MB} Mo max</span>
                               </button>
                             )}
 
