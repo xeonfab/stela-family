@@ -242,77 +242,33 @@ const CeremonyKitSection = () => {
   );
 };
 
-/* ─── Partnership Model (Dark) ─── */
+/* ─── Partnership & CTA (Dark) ─── */
 const Partnership = () => {
   const { ref, isVisible } = useScrollReveal();
 
-  const columns = [
-    {
-      num: "1",
-      title: "La Stèle Principale",
-      subtitle: "Le cœur de l'hommage (Frêne ou Noyer)",
-      text: "Achat B2B à partir de\u00A0105\u00A0€\u00A0HT. Revendue aux familles au prix conseillé de\u00A0199\u00A0€ à\u00A0249\u00A0€\u00A0TTC. Vous dégagez jusqu'à\u00A072\u00A0€ de marge nette par famille, sans aucun effort de stockage.",
-      highlight: "72\u00A0€ de marge nette",
-    },
-    {
-      num: "2",
-      title: "La Stèle Compagne",
-      subtitle: "L'édition Fratrie (Upsell naturel)",
-      text: "Achat B2B à partir de\u00A065\u00A0€\u00A0HT. Revendue\u00A0129\u00A0€ à\u00A0149\u00A0€\u00A0TTC. Répondez à la demande des fratries et boostez votre panier moyen avec plus de\u00A040\u00A0€ de marge additionnelle par copie commandée.",
-      highlight: "40\u00A0€ de marge",
-    },
-    {
-      num: "3",
-      title: "Le BFR Négatif",
-      subtitle: "Trésorerie 100% maîtrisée",
-      text: "Les Monolithes sont usinés et gravés sur mesure en flux tendu. Vous ne commandez que ce que vous avez déjà vendu. Vous encaissez la famille avant de nous régler. La livraison à J+15 vous assure un second point de contact précieux.",
-      highlight: "J+15",
-    },
-  ];
-
   return (
-    <section ref={ref} className="py-28 bg-[hsl(30_6%_12%)] text-[hsl(0_0%_96%)]">
-      <div className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <div className="text-center max-w-2xl mx-auto mb-20 space-y-5">
-          <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
-            Un modèle économique pensé pour votre sérénité.
-          </h2>
-          <p className="text-[hsl(30_6%_70%)] text-lg leading-relaxed">
-            Zéro avance de trésorerie. Zéro gestion de stock. Une marge attractive garantie sur chaque accompagnement.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-12 lg:gap-16 max-w-5xl mx-auto">
-          {columns.map((col, i) => (
-            <div key={i} className="text-center md:text-left space-y-4">
-              <span className="inline-block font-serif-display text-4xl font-bold" style={{ color: "#D4AF37" }}>
-                {col.num}
-              </span>
-              <h3 className="font-serif-display text-xl font-semibold" style={{ color: "#D4AF37" }}>{col.title}</h3>
-              <p className="text-[hsl(0_0%_80%)] text-sm font-medium italic">{col.subtitle}</p>
-              <p className="text-[hsl(30_6%_65%)] text-sm leading-relaxed">{col.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-/* ─── Final CTA ─── */
-const FinalCTA = () => {
-  const { ref, isVisible } = useScrollReveal();
-
-  return (
-    <section ref={ref} className="py-28 bg-background">
-      <div className={`container mx-auto px-6 text-center space-y-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight max-w-3xl mx-auto">
-          Rencontrons-nous. Laissez-nous vous montrer un exemple sur tablette.
+    <section ref={ref} className="py-32 lg:py-44 bg-[hsl(30_6%_12%)] text-[hsl(0_0%_96%)]">
+      <div className={`container mx-auto px-6 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        {/* Titre principal */}
+        <h2 className="font-serif-display text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight max-w-3xl mx-auto">
+          Un modèle économique pensé pour votre sérénité.
         </h2>
-        <Button variant="gold" className="px-10 py-6 text-base">
-          <Calendar size={18} className="mr-2" />
-          Planifier une démonstration (15 min)
-        </Button>
+
+        {/* Paragraphe descriptif */}
+        <p className="mt-8 text-[hsl(30_6%_65%)] text-lg leading-relaxed max-w-[600px] mx-auto">
+          Intégrez un relais de croissance naturel à votre agence, sans aucun risque financier. Notre fonctionnement en flux tendu vous garantit une absence totale de stock et une trésorerie préservée. Vous ne commandez que ce que vous avez déjà vendu, avec une marge commerciale forte sur chaque accompagnement.
+        </p>
+
+        {/* Espace vertical */}
+        <div className="mt-20 lg:mt-28 space-y-6">
+          <h3 className="font-serif-display text-xl lg:text-2xl font-semibold text-[hsl(0_0%_96%)]">
+            Laissez-nous vous faire tester la magie du sans-contact en agence.
+          </h3>
+          <Button variant="gold" className="px-10 py-6 text-base mt-4">
+            <Calendar size={18} className="mr-2" />
+            Planifier une démonstration (15 min)
+          </Button>
+        </div>
       </div>
     </section>
   );
@@ -328,7 +284,7 @@ const PompesFunebres = () => (
       <ProductShowcase />
       <CeremonyKitSection />
       <Partnership />
-      <FinalCTA />
+      
     </main>
   </div>
 );
