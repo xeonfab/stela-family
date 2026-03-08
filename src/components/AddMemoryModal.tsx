@@ -134,7 +134,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
 
   const inputStyle = "border border-[#EAEAEA] rounded-lg bg-[#F9F9F9] text-sm text-stone-700 placeholder:text-[#757575] focus-visible:ring-1 focus-visible:ring-[#D4AF37]/40 focus-visible:border-[#D4AF37]/50 h-11 px-3";
 
-  const canProceed = (text.trim().length > 0 || intentTab !== "pensee") && !isAiLoading;
+  const canProceed = (text.trim().length > 0 || (intentTab === "photos" && photos.length > 0) || (intentTab !== "pensee" && intentTab !== "photos")) && !isAiLoading;
 
   const handleAiAction = (action: "harmoniser" | "corriger") => {
     if (isAiLoading) return;
