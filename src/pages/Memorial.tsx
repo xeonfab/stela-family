@@ -755,7 +755,7 @@ const Memorial = () => {
 
       {/* ─── Share Modal ─── */}
       <Dialog open={shareModalOpen} onOpenChange={(v) => { setShareModalOpen(v); if (!v) { setCopied(false); setPreviewOpen(false); } }}>
-        <DialogContent className="sm:max-w-md max-sm:h-screen max-sm:max-h-screen max-sm:w-screen max-sm:max-w-none max-sm:rounded-none max-sm:border-none bg-background border-border rounded-2xl p-0 overflow-hidden [&>button]:z-10">
+        <DialogContent className="sm:max-w-md max-sm:h-screen max-sm:max-h-screen max-sm:w-screen max-sm:max-w-none max-sm:rounded-none max-sm:border-none bg-background border-border rounded-2xl p-0 gap-0 overflow-hidden [&>button]:z-10">
           <DialogTitle className="sr-only">Partager ce mémorial</DialogTitle>
           
           {/* Modern header — blurred photo bg + glass overlay */}
