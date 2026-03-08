@@ -52,10 +52,10 @@ const HeroSection = () => (
           Pour les Agences Indépendantes
         </p>
         <h1 className="font-serif-display text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-foreground">
-          Démarquez votre agence. Prolongez l'hommage en 60&nbsp;secondes.
+          Différenciez votre agence. Sanctuarisez la mémoire des familles.
         </h1>
         <p className="text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
-          Offrez aux familles un espace de recueillement en ligne premium, privé et accessible à vie. Une solution clé en main pour moderniser votre image et enrichir votre accompagnement, sans aucune charge administrative.
+          Le premier service post-obsèques qui unit la noblesse de la matière à la pérennité du digital. Un espace de recueillement premium, matérialisé par une stèle en bois massif connectée. Zéro stock, marge garantie.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
           <Button variant="gold" className="px-8 py-6 text-base">
