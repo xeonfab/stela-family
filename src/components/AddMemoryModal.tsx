@@ -53,23 +53,21 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
   const [isAiLoading, setIsAiLoading] = useState<"harmoniser" | "corriger" | null>(null);
   const [photos, setPhotos] = useState<{ file: File; preview: string }[]>([]);
   const [photoError, setPhotoError] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const handlePhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const processFiles = (files: File[]) => {
     setPhotoError(null);
-    const files = Array.from(e.target.files || []);
     if (!files.length) return;
 
     const oversized = files.find(f => f.size > MAX_FILE_SIZE_BYTES);
     if (oversized) {
       setPhotoError(`Le fichier « ${oversized.name} » dépasse la limite de ${MAX_FILE_SIZE_MB} Mo.`);
-      e.target.value = "";
       return;
     }
 
     const totalAfter = photos.length + files.length;
     if (totalAfter > MAX_PHOTOS) {
       setPhotoError(`Vous ne pouvez ajouter que ${MAX_PHOTOS} photos maximum. Il vous reste ${MAX_PHOTOS - photos.length} emplacement(s).`);
-      e.target.value = "";
       return;
     }
 
@@ -78,7 +76,37 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       preview: URL.createObjectURL(file),
     }));
     setPhotos(prev => [...prev, ...newPhotos]);
+  };
+
+  const handlePhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    processFiles(Array.from(e.target.files || []));
     e.target.value = "";
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    const files = Array.from(e.dataTransfer.files).filter(f =>
+      f.type === "image/jpeg" || f.type === "image/png"
+    );
+    if (files.length === 0) {
+      setPhotoError("Seuls les fichiers JPG et PNG sont acceptés.");
+      return;
+    }
+    processFiles(files);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
   };
 
   const removePhoto = (index: number) => {
