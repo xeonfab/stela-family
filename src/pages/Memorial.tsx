@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Pencil, Plus, Upload, CalendarDays, Copy, Check, ChevronLeft, ChevronRight, MapPin, Flower, Scroll } from "lucide-react";
+import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Pencil, Plus, Upload, CalendarDays, Copy, Check, ChevronLeft, ChevronRight, MapPin, Flower, Scroll, Eye, Mail, Smartphone, Link as LinkIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import AudioPlayer from "@/components/AudioPlayer";
 
@@ -638,22 +638,31 @@ const Memorial = () => {
   const [memoryDetailOpen, setMemoryDetailOpen] = useState(false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
 
-  const shareMessage = `Un espace privé et éternel pour honorer la mémoire de Jean-Claude Dubois sur Stela.family.
+  const shareUrl = "stela.family/hommage/jean-claude-dubois";
+  const shareMessage = `Un espace privé et éternel pour honorer la mémoire de Jean-Claude Dubois sur Stela.family.\n\nIci, nous rassemblons nos pensées, photos et témoignages pour créer son plus bel héritage. Vous pouvez aussi y allumer une bougie.\n\n👉 stela.family/hommage/jean-claude-dubois\n\nN'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`;
 
-Ici, nous rassemblons nos pensées, photos et témoignages pour créer son plus bel héritage. Vous pouvez aussi y allumer une bougie.
-
-👉 stela.family/hommage/jean-claude-dubois
-
-N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`;
-
-  const handleCopyMessage = () => {
-    navigator.clipboard.writeText(shareMessage);
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(`https://${shareUrl}`);
     setCopied(true);
-    toast("Message copié !", {
+    toast("Lien copié !", {
       style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" }
     });
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleShareWhatsApp = () => {
+    window.open(`https://wa.me/?text=${encodeURIComponent(shareMessage)}`, "_blank");
+  };
+  const handleShareSMS = () => {
+    window.open(`sms:?body=${encodeURIComponent(shareMessage)}`, "_self");
+  };
+  const handleShareEmail = () => {
+    window.open(`mailto:?subject=${encodeURIComponent("Mémorial de Jean-Claude Dubois")}&body=${encodeURIComponent(shareMessage)}`, "_self");
+  };
+  const handleShareNative = () => {
+    navigator.share?.({ title: "Mémorial de Jean-Claude Dubois", text: shareMessage, url: `https://${shareUrl}` }).catch(() => {});
   };
 
   const openMemoryDetail = (memory: Memory) => {
@@ -745,55 +754,85 @@ N'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`
       <AddMemoryModal open={memoryModalOpen} onOpenChange={setMemoryModalOpen} />
 
       {/* ─── Share Modal ─── */}
-      <Dialog open={shareModalOpen} onOpenChange={setShareModalOpen}>
-        <DialogContent className="sm:max-w-lg max-sm:h-screen max-sm:max-h-screen max-sm:w-screen max-sm:max-w-none max-sm:rounded-none max-sm:border-none bg-[#FAF9F6] border-stone-200 rounded-2xl p-0 overflow-hidden [&>button]:z-10">
+      <Dialog open={shareModalOpen} onOpenChange={(v) => { setShareModalOpen(v); if (!v) { setCopied(false); setPreviewOpen(false); } }}>
+        <DialogContent className="sm:max-w-md max-sm:h-screen max-sm:max-h-screen max-sm:w-screen max-sm:max-w-none max-sm:rounded-none max-sm:border-none bg-[#FAF9F6] border-stone-200 rounded-2xl p-0 overflow-hidden [&>button]:z-10">
           <DialogTitle className="sr-only">Partager ce mémorial</DialogTitle>
           
-          {/* Preview image / visual */}
-          <div className="relative w-full h-48 sm:h-56 bg-gradient-to-b from-stone-800 to-stone-900 flex flex-col items-center justify-center text-center px-6">
-            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-amber-600/30 mb-4 shadow-lg">
+          {/* Header with photo */}
+          <div className="relative w-full h-44 sm:h-52 bg-gradient-to-b from-stone-800 to-stone-900 flex flex-col items-center justify-center text-center px-6">
+            <div className="w-18 h-18 rounded-full overflow-hidden border-2 border-amber-600/30 mb-3 shadow-lg" style={{ width: 72, height: 72 }}>
               <img src={portraitImg} alt="Jean-Claude Dubois" className="w-full h-full object-cover" />
             </div>
             <p className="font-serif text-white/90 text-lg">Jean-Claude Dubois</p>
             <p className="text-stone-400 text-xs tracking-widest mt-1">1948 — 2024</p>
-            <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#FAF9F6] to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#FAF9F6] to-transparent" />
           </div>
 
-          <div className="px-6 sm:px-8 pb-8 pt-2 space-y-6">
-            <div className="text-center">
-              <h3 className="font-serif text-xl text-stone-800 mb-2">Partagez ce mémorial avec vos proches, où qu'ils soient.</h3>
+          <div className="px-6 sm:px-8 pb-7 pt-1 space-y-5">
+            <p className="text-center font-serif text-base text-stone-700 leading-snug">
+              Partagez ce mémorial avec vos proches, où qu'ils soient.
+            </p>
+
+            {/* Section 1: Quick Share Actions */}
+            <div className="flex items-center justify-center gap-5">
+              {[
+                { label: "WhatsApp", icon: <MessageCircle size={22} />, onClick: handleShareWhatsApp },
+                { label: "SMS", icon: <Smartphone size={22} />, onClick: handleShareSMS },
+                { label: "Email", icon: <Mail size={22} />, onClick: handleShareEmail },
+                ...(typeof navigator !== "undefined" && navigator.share
+                  ? [{ label: "Partager", icon: <Share2 size={22} />, onClick: handleShareNative }]
+                  : []),
+              ].map((item) => (
+                <button
+                  key={item.label}
+                  onClick={item.onClick}
+                  className="flex flex-col items-center gap-1.5 group transition-all duration-200"
+                >
+                  <span className="w-14 h-14 rounded-2xl bg-white border border-stone-200/80 flex items-center justify-center text-stone-500 group-hover:border-[#D4AF37]/50 group-hover:text-[#D4AF37] transition-all duration-300 shadow-sm">
+                    {item.icon}
+                  </span>
+                  <span className="text-[11px] text-stone-400 group-hover:text-stone-600 transition-colors">{item.label}</span>
+                </button>
+              ))}
             </div>
 
-            {/* Message to copy */}
-            <div className="bg-white rounded-xl border border-stone-100 p-4 sm:p-5 space-y-3">
-              <p className="text-stone-600 text-sm leading-relaxed whitespace-pre-line">{shareMessage}</p>
-            </div>
-
-            {/* Copy button */}
-            <button
-              onClick={handleCopyMessage}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-300 border border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-white">
-              
-              {copied ? <Check size={16} /> : <Copy size={16} />}
-              {copied ? "Copié !" : "Copier le message"}
-            </button>
-
-            {/* Native share (mobile) */}
-            {typeof navigator !== "undefined" && navigator.share &&
-            <button
-              onClick={() => {
-                navigator.share({
-                  title: "Mémorial de Jean-Claude Dubois",
-                  text: shareMessage,
-                  url: window.location.href
-                }).catch(() => {});
-              }}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-300 bg-[#D4AF37] text-white hover:bg-[#c9a432]">
-              
-                <Share2 size={16} />
-                Envoyer via une app
+            {/* Section 2: Copy Link */}
+            <div className="flex items-center gap-0 rounded-xl bg-white border border-stone-200/80 overflow-hidden">
+              <div className="flex items-center gap-2 px-3.5 py-2.5 flex-1 min-w-0">
+                <LinkIcon size={14} className="text-stone-300 shrink-0" />
+                <span className="text-sm text-stone-500 truncate">{shareUrl}</span>
+              </div>
+              <button
+                onClick={handleCopyLink}
+                className={`shrink-0 flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium transition-all duration-300 border-l border-stone-100 ${
+                  copied
+                    ? "text-emerald-600 bg-emerald-50"
+                    : "text-[#D4AF37] hover:bg-[#D4AF37]/5"
+                }`}
+              >
+                {copied ? <Check size={14} /> : <Copy size={14} />}
+                {copied ? "Copié !" : "Copier"}
               </button>
-            }
+            </div>
+
+            {/* Section 3: Message Preview Accordion */}
+            <div className="rounded-xl border border-stone-100 bg-white overflow-hidden">
+              <button
+                onClick={() => setPreviewOpen(!previewOpen)}
+                className="w-full flex items-center justify-between px-4 py-3 text-xs text-stone-400 hover:text-stone-500 transition-colors"
+              >
+                <span className="flex items-center gap-2">
+                  <Eye size={14} />
+                  Aperçu du message envoyé
+                </span>
+                <ChevronRight size={14} className={`transition-transform duration-200 ${previewOpen ? "rotate-90" : ""}`} />
+              </button>
+              {previewOpen && (
+                <div className="px-4 pb-4 pt-0 border-t border-stone-50">
+                  <p className="text-xs text-stone-400 leading-relaxed whitespace-pre-line mt-3">{shareMessage}</p>
+                </div>
+              )}
+            </div>
           </div>
         </DialogContent>
       </Dialog>
