@@ -28,8 +28,13 @@ type Step = 1 | 2;
 const DUMMY_AI_TEXT =
   "Je revois encore ses lunettes glissant sur le bout de son nez, dans la lumière de 6h du matin, une tasse de café noir à la main. C'est dans ces instants calmes qu'il aimait nous rappeler qu'on 'a le temps de se presser'. Ce temps, aujourd'hui, est devenu notre plus précieux héritage.";
 
+const MAX_PHOTOS = 4;
+const MAX_FILE_SIZE_MB = 10;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+
 const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [text, setText] = useState("");
   const [intentTab, setIntentTab] = useState<IntentTab>("pensee");
   const [view, setView] = useState<ModalView>("canvas");
@@ -46,6 +51,45 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
   const [originalText, setOriginalText] = useState("");
   const [aiApplied, setAiApplied] = useState(false);
   const [isAiLoading, setIsAiLoading] = useState<"harmoniser" | "corriger" | null>(null);
+  const [photos, setPhotos] = useState<{ file: File; preview: string }[]>([]);
+  const [photoError, setPhotoError] = useState<string | null>(null);
+
+  const handlePhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhotoError(null);
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+
+    const oversized = files.find(f => f.size > MAX_FILE_SIZE_BYTES);
+    if (oversized) {
+      setPhotoError(`Le fichier « ${oversized.name} » dépasse la limite de ${MAX_FILE_SIZE_MB} Mo.`);
+      e.target.value = "";
+      return;
+    }
+
+    const totalAfter = photos.length + files.length;
+    if (totalAfter > MAX_PHOTOS) {
+      setPhotoError(`Vous ne pouvez ajouter que ${MAX_PHOTOS} photos maximum. Il vous reste ${MAX_PHOTOS - photos.length} emplacement(s).`);
+      e.target.value = "";
+      return;
+    }
+
+    const newPhotos = files.map(file => ({
+      file,
+      preview: URL.createObjectURL(file),
+    }));
+    setPhotos(prev => [...prev, ...newPhotos]);
+    e.target.value = "";
+  };
+
+  const removePhoto = (index: number) => {
+    setPhotos(prev => {
+      const updated = [...prev];
+      URL.revokeObjectURL(updated[index].preview);
+      updated.splice(index, 1);
+      return updated;
+    });
+    setPhotoError(null);
+  };
 
   const handleClose = (val: boolean) => {
     if (!val) {
