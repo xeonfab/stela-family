@@ -85,6 +85,36 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
     };
   }, [recordState]);
 
+  // Simulated upload progress
+  useEffect(() => {
+    if (uploadState === "uploading") {
+      setUploadProgress(0);
+      const duration = 2000;
+      const interval = 50;
+      const step = 100 / (duration / interval);
+      uploadTimerRef.current = setInterval(() => {
+        setUploadProgress(prev => {
+          const next = prev + step;
+          if (next >= 100) {
+            clearInterval(uploadTimerRef.current!);
+            uploadTimerRef.current = null;
+            setUploadState("uploaded");
+            return 100;
+          }
+          return next;
+        });
+      }, interval);
+    } else {
+      if (uploadTimerRef.current) {
+        clearInterval(uploadTimerRef.current);
+        uploadTimerRef.current = null;
+      }
+    }
+    return () => {
+      if (uploadTimerRef.current) clearInterval(uploadTimerRef.current);
+    };
+  }, [uploadState]);
+
   const processFiles = (files: File[]) => {
     setPhotoError(null);
     if (!files.length) return;
