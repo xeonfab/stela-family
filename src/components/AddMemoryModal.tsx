@@ -203,6 +203,8 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       setIsDragging(false);
       setRecordState("idle");
       setRecordSeconds(0);
+      setUploadState("idle");
+      setUploadProgress(0);
     }
     onOpenChange(val);
   };
