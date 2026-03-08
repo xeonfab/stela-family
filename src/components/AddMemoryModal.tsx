@@ -109,6 +109,9 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       setOriginalText("");
       setAiApplied(false);
       setIsAiLoading(null);
+      photos.forEach(p => URL.revokeObjectURL(p.preview));
+      setPhotos([]);
+      setPhotoError(null);
     }
     onOpenChange(val);
   };
