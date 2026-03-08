@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2, Share2 } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2, Share2, Sparkles } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -681,7 +681,9 @@ const MemorialAdmin = () => {
   const [intimateMemories, setIntimateMemories] = useState<Memory[]>([]);
   const [heroEditOpen, setHeroEditOpen] = useState(false);
   const [heroName, setHeroName] = useState("Jean-Claude Dubois");
-  const [heroDates, setHeroDates] = useState("1948 — 2024");
+  const [heroBirthYear, setHeroBirthYear] = useState("1948");
+  const [heroDeathYear, setHeroDeathYear] = useState(new Date().getFullYear().toString());
+  const heroDates = `${heroBirthYear} — ${heroDeathYear}`;
   const [heroCitation, setHeroCitation] = useState("« Il cultivait son jardin comme il cultivait ses amitiés\u00a0: avec patience, lumière et amour. »");
 
   const handleMakeIntimate = (memory: Memory, idx: number) => {
@@ -816,13 +818,29 @@ const MemorialAdmin = () => {
                 <Label className="text-xs text-stone-500 uppercase tracking-wider">Nom</Label>
                 <Input value={heroName} onChange={(e) => setHeroName(e.target.value)} className="bg-white border-stone-200 font-serif text-lg" />
               </div>
-              <div className="space-y-1.5">
-                <Label className="text-xs text-stone-500 uppercase tracking-wider">Dates</Label>
-                <Input value={heroDates} onChange={(e) => setHeroDates(e.target.value)} className="bg-white border-stone-200" />
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <Label className="text-xs text-stone-500 uppercase tracking-wider">Année de naissance</Label>
+                  <Input type="number" value={heroBirthYear} onChange={(e) => setHeroBirthYear(e.target.value)} className="bg-white border-stone-200" placeholder="1948" />
+                </div>
+                <div className="space-y-1.5">
+                  <Label className="text-xs text-stone-500 uppercase tracking-wider">Année du décès</Label>
+                  <Input type="number" value={heroDeathYear} onChange={(e) => setHeroDeathYear(e.target.value)} className="bg-white border-stone-200" placeholder={new Date().getFullYear().toString()} />
+                </div>
               </div>
               <div className="space-y-1.5">
                 <Label className="text-xs text-stone-500 uppercase tracking-wider">Citation / Épitaphe</Label>
                 <Textarea value={heroCitation} onChange={(e) => setHeroCitation(e.target.value)} className="bg-white border-stone-200 font-serif italic min-h-[100px]" />
+                <button
+                  type="button"
+                  onClick={() => {
+                    toast("✨ L'IA vous suggérera bientôt une citation personnalisée.", { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });
+                  }}
+                  className="flex items-center gap-1.5 text-xs text-[#D4AF37] hover:text-[#B8960C] transition-colors font-medium mt-1"
+                >
+                  <Sparkles size={13} />
+                  Aide IA — Générer une citation
+                </button>
               </div>
               <button
                 onClick={() => {
