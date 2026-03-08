@@ -542,12 +542,73 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                         {/* VOCAL tab */}
                         {intentTab === "vocal" && (
                           <div className="space-y-4">
-                            <div className="flex flex-col items-center gap-3 py-6 bg-[#F9F9F9] border border-[#EAEAEA] rounded-xl">
-                              <button className="w-16 h-16 rounded-full bg-[#D4AF37] flex items-center justify-center shadow-sm hover:scale-105 transition-transform">
-                                <Mic size={24} strokeWidth={1.5} className="text-white" />
-                              </button>
-                              <span className="text-xs text-[#999] font-medium">Appuyez pour enregistrer un message vocal</span>
+                            <div className="flex flex-col items-center gap-4 py-8 bg-[#F9F9F9] border border-[#EAEAEA] rounded-xl">
+
+                              {/* STATE: idle */}
+                              {recordState === "idle" && (
+                                <div className="flex flex-col items-center gap-3 animate-in fade-in duration-300">
+                                  <button
+                                    onClick={() => setRecordState("recording")}
+                                    className="w-20 h-20 rounded-full bg-[#D4AF37] flex items-center justify-center shadow-sm hover:scale-105 transition-all duration-300 hover:shadow-[0_0_20px_-4px_rgba(212,175,55,0.4)]"
+                                  >
+                                    <Mic size={28} strokeWidth={1.5} className="text-white" />
+                                  </button>
+                                  <span className="text-xs text-[#999] font-medium">
+                                    Appuyez pour commencer l'enregistrement
+                                  </span>
+                                </div>
+                              )}
+
+                              {/* STATE: recording */}
+                              {recordState === "recording" && (
+                                <div className="flex flex-col items-center gap-3 animate-in fade-in duration-300">
+                                  <button
+                                    onClick={() => setRecordState("recorded")}
+                                    className="w-20 h-20 rounded-full bg-[#D4AF37] flex items-center justify-center shadow-sm hover:scale-105 transition-all duration-300 animate-[audioGlow_2s_ease-in-out_infinite]"
+                                  >
+                                    <Square size={22} strokeWidth={1.5} className="text-white" fill="currentColor" />
+                                  </button>
+                                  <span className="text-lg font-mono text-foreground tracking-wider font-medium">
+                                    {formatTimer(recordSeconds)}
+                                  </span>
+                                  <span className="text-[11px] text-[#999]">Enregistrement en cours…</span>
+                                </div>
+                              )}
+
+                              {/* STATE: recorded */}
+                              {recordState === "recorded" && (
+                                <div className="flex flex-col items-center gap-4 w-full px-6 animate-in fade-in duration-300">
+                                  {/* Mini player */}
+                                  <div className="w-full flex items-center gap-3">
+                                    <button className="w-10 h-10 rounded-full bg-[#D4AF37] flex items-center justify-center shrink-0 shadow-sm hover:scale-105 transition-transform">
+                                      <Play size={16} strokeWidth={1.5} className="text-white ml-0.5" fill="currentColor" />
+                                    </button>
+                                    <div className="flex-1 relative h-5 flex items-center">
+                                      <div className="w-full h-[2px] bg-[#EAEAEA] rounded-full relative">
+                                        <div className="absolute left-0 top-0 h-full bg-[#D4AF37] rounded-full w-0" />
+                                        <div className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#D4AF37] shadow-sm left-0" />
+                                      </div>
+                                    </div>
+                                    <span className="text-xs font-mono shrink-0 text-muted-foreground">
+                                      {formatTimer(recordSeconds)}
+                                    </span>
+                                  </div>
+
+                                  {/* Restart */}
+                                  <button
+                                    onClick={() => {
+                                      setRecordState("idle");
+                                      setRecordSeconds(0);
+                                    }}
+                                    className="flex items-center gap-1.5 text-xs text-[#999] hover:text-foreground transition-colors"
+                                  >
+                                    <RotateCcw size={13} strokeWidth={1.5} />
+                                    Recommencer
+                                  </button>
+                                </div>
+                              )}
                             </div>
+
                             <Input
                               value={text}
                               onChange={(e) => setText(e.target.value)}
