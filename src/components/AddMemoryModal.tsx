@@ -57,6 +57,9 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
   const [recordState, setRecordState] = useState<"idle" | "recording" | "recorded">("idle");
   const [recordSeconds, setRecordSeconds] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [uploadState, setUploadState] = useState<"idle" | "uploading" | "uploaded">("idle");
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const uploadTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const formatTimer = useCallback((sec: number) => {
     const m = Math.floor(sec / 60).toString().padStart(2, "0");
