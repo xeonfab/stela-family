@@ -656,11 +656,60 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                         {/* VIDEO tab */}
                         {intentTab === "video" && (
                           <div className="space-y-4">
-                            <div className="border border-dashed border-stone-200 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-[#999] bg-[#F9F9F9]">
-                              <Video size={24} strokeWidth={1.2} />
-                              <span className="text-sm font-medium text-stone-500">Ajouter une vidéo</span>
-                              <span className="text-[11px] text-[#999]">MP4, MOV · 50 Mo max</span>
-                            </div>
+
+                            {/* STATE: idle */}
+                            {uploadState === "idle" && (
+                              <button
+                                type="button"
+                                onClick={() => setUploadState("uploading")}
+                                className="w-full border border-dashed border-stone-200 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-[#999] bg-[#F9F9F9] hover:border-[#D4AF37]/40 hover:bg-[#FDFBF5] transition-all duration-300 cursor-pointer animate-in fade-in duration-300"
+                              >
+                                <Video size={24} strokeWidth={1.2} />
+                                <span className="text-sm font-medium text-stone-500">Ajouter une vidéo</span>
+                                <span className="text-[11px] text-[#999]">MP4, MOV · 50 Mo max</span>
+                              </button>
+                            )}
+
+                            {/* STATE: uploading */}
+                            {uploadState === "uploading" && (
+                              <div className="w-full border border-solid border-[#D4AF37]/30 rounded-xl p-8 flex flex-col items-center justify-center gap-4 bg-[#FDFBF5] animate-in fade-in duration-300">
+                                <div className="w-full max-w-[240px] space-y-3">
+                                  <div className="w-full h-[3px] bg-[#EAEAEA] rounded-full overflow-hidden">
+                                    <div
+                                      className="h-full bg-[#D4AF37] rounded-full transition-all duration-100 ease-linear"
+                                      style={{ width: `${uploadProgress}%` }}
+                                    />
+                                  </div>
+                                  <p className="text-xs text-muted-foreground text-center">
+                                    Chargement de la vidéo en cours… ({Math.round(uploadProgress)}%)
+                                  </p>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* STATE: uploaded */}
+                            {uploadState === "uploaded" && (
+                              <div className="w-full rounded-xl overflow-hidden relative animate-in fade-in duration-300">
+                                {/* Video thumbnail placeholder */}
+                                <div className="w-full aspect-video bg-stone-700 rounded-xl flex items-center justify-center relative">
+                                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                                    <Play size={20} strokeWidth={1.5} className="text-white ml-0.5" fill="currentColor" />
+                                  </div>
+                                  <span className="absolute bottom-2 right-3 text-[10px] text-white/70 font-mono">00:15</span>
+                                  {/* Delete / replace button */}
+                                  <button
+                                    onClick={() => {
+                                      setUploadState("idle");
+                                      setUploadProgress(0);
+                                    }}
+                                    className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white/80 hover:text-white hover:bg-black/60 transition-colors"
+                                  >
+                                    <Trash2 size={13} strokeWidth={1.5} />
+                                  </button>
+                                </div>
+                              </div>
+                            )}
+
                             <Input
                               value={text}
                               onChange={(e) => setText(e.target.value)}
