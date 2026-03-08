@@ -77,8 +77,8 @@ const HeroSection = () => (
       <div className="flex-1 flex justify-center">
         <img
           src={heroImg}
-          alt="Directeur de pompes funèbres remettant un document à une famille"
-          className="w-full max-w-md rounded-3xl shadow-golden-glow border-luxury object-cover aspect-[3/4]"
+          alt="Stèle Stela en noyer connectée NFC avec smartphone affichant le mémorial"
+          className="w-full max-w-lg rounded-3xl shadow-golden-glow border-luxury object-cover aspect-[4/3]"
           loading="lazy"
         />
       </div>
