@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, X, Award, Hourglass, Handshake, ArrowRight, Calendar } from "lucide-react";
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import heroImg from "@/assets/pompes-funebres-hero.jpg";
+import heroImg from "@/assets/stele-noyer-nfc.png";
 import chevaletImg from "@/assets/ceremony-chevalet.png";
 
 /* ─── Navbar B2B ─── */
