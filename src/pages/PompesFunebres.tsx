@@ -249,18 +249,24 @@ const Partnership = () => {
   const columns = [
     {
       num: "1",
-      title: "Le Tarif Partenaire",
-      text: "Bénéficiez d'un tarif d'achat fixe, exclusif aux indépendants (ex\u00A0: 40\u00A0€ par espace). Ce tarif unique inclut la génération du kit et l'hébergement à vie du mémorial pour la famille. Aucun frais caché.",
+      title: "La Stèle Principale",
+      subtitle: "Le cœur de l'hommage (Frêne ou Noyer)",
+      text: "Achat B2B à partir de\u00A0105\u00A0€\u00A0HT. Revendue aux familles au prix conseillé de\u00A0199\u00A0€ à\u00A0249\u00A0€\u00A0TTC. Vous dégagez jusqu'à\u00A072\u00A0€ de marge nette par famille, sans aucun effort de stockage.",
+      highlight: "72\u00A0€ de marge nette",
     },
     {
       num: "2",
-      title: "La Valeur Ajoutée",
-      text: "Intégrez ce service inédit à vos devis. Vous offrez aux familles un héritage inestimable, augmentant instantanément la valeur perçue de votre accompagnement.",
+      title: "La Stèle Compagne",
+      subtitle: "L'édition Fratrie (Upsell naturel)",
+      text: "Achat B2B à partir de\u00A065\u00A0€\u00A0HT. Revendue\u00A0129\u00A0€ à\u00A0149\u00A0€\u00A0TTC. Répondez à la demande des fratries et boostez votre panier moyen avec plus de\u00A040\u00A0€ de marge additionnelle par copie commandée.",
+      highlight: "40\u00A0€ de marge",
     },
     {
       num: "3",
-      title: "Le Bénéfice Agence",
-      text: "Vous modernisez votre image et sécurisez une nouvelle rentabilité à chaque cérémonie, sans aucune charge administrative supplémentaire.",
+      title: "Le BFR Négatif",
+      subtitle: "Trésorerie 100% maîtrisée",
+      text: "Les Monolithes sont usinés et gravés sur mesure en flux tendu. Vous ne commandez que ce que vous avez déjà vendu. Vous encaissez la famille avant de nous régler. La livraison à J+15 vous assure un second point de contact précieux.",
+      highlight: "J+15",
     },
   ];
 
@@ -272,7 +278,7 @@ const Partnership = () => {
             Un modèle économique pensé pour votre sérénité.
           </h2>
           <p className="text-[hsl(30_6%_70%)] text-lg leading-relaxed">
-            Développez l'activité de votre agence sans modifier votre métier, grâce à un partenariat transparent.
+            Zéro avance de trésorerie. Zéro gestion de stock. Une marge attractive garantie sur chaque accompagnement.
           </p>
         </div>
 
@@ -282,7 +288,8 @@ const Partnership = () => {
               <span className="inline-block font-serif-display text-4xl font-bold" style={{ color: "#D4AF37" }}>
                 {col.num}
               </span>
-              <h3 className="font-serif-display text-xl font-semibold text-white">{col.title}</h3>
+              <h3 className="font-serif-display text-xl font-semibold" style={{ color: "#D4AF37" }}>{col.title}</h3>
+              <p className="text-[hsl(0_0%_80%)] text-sm font-medium italic">{col.subtitle}</p>
               <p className="text-[hsl(30_6%_65%)] text-sm leading-relaxed">{col.text}</p>
             </div>
           ))}
