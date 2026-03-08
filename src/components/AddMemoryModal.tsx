@@ -54,6 +54,33 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
   const [photos, setPhotos] = useState<{ file: File; preview: string }[]>([]);
   const [photoError, setPhotoError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [recordState, setRecordState] = useState<"idle" | "recording" | "recorded">("idle");
+  const [recordSeconds, setRecordSeconds] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const formatTimer = useCallback((sec: number) => {
+    const m = Math.floor(sec / 60).toString().padStart(2, "0");
+    const s = (sec % 60).toString().padStart(2, "0");
+    return `${m}:${s}`;
+  }, []);
+
+  // Fake timer for recording state
+  useEffect(() => {
+    if (recordState === "recording") {
+      setRecordSeconds(0);
+      timerRef.current = setInterval(() => {
+        setRecordSeconds(prev => prev + 1);
+      }, 1000);
+    } else {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+    }
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [recordState]);
 
   const processFiles = (files: File[]) => {
     setPhotoError(null);
