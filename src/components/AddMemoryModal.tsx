@@ -418,7 +418,12 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
 
                         {/* PHOTOS tab */}
                         {intentTab === "photos" && (
-                          <div className="space-y-4">
+                          <div
+                            className="space-y-4"
+                            onDrop={handleDrop}
+                            onDragOver={handleDragOver}
+                            onDragLeave={handleDragLeave}
+                          >
                             {/* Photo previews grid */}
                             {photos.length > 0 && (
                               <div className="grid grid-cols-2 gap-3">
@@ -446,10 +451,13 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                                   <button
                                     type="button"
                                     onClick={() => fileInputRef.current?.click()}
-                                    className="aspect-square rounded-xl border-2 border-dashed border-stone-200 bg-[#F9F9F9] flex flex-col items-center justify-center gap-1.5 text-stone-400 hover:border-[#D4AF37]/40 hover:text-[#D4AF37] transition-colors"
+                                    className={cn(
+                                      "aspect-square rounded-xl border-2 border-dashed bg-[#F9F9F9] flex flex-col items-center justify-center gap-1.5 text-stone-400 hover:border-[#D4AF37]/40 hover:text-[#D4AF37] transition-colors",
+                                      isDragging ? "border-[#D4AF37] bg-[#FDFBF5] text-[#D4AF37]" : "border-stone-200"
+                                    )}
                                   >
                                     <Camera size={20} strokeWidth={1.2} />
-                                    <span className="text-[11px] font-medium">Ajouter</span>
+                                    <span className="text-[11px] font-medium">{isDragging ? "Déposer ici" : "Ajouter"}</span>
                                   </button>
                                 )}
                               </div>
@@ -460,11 +468,18 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                               <button
                                 type="button"
                                 onClick={() => fileInputRef.current?.click()}
-                                className="w-full border border-dashed border-stone-200 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-[#999] bg-[#F9F9F9] hover:border-[#D4AF37]/40 hover:bg-[#FDFBF5] transition-colors cursor-pointer"
+                                className={cn(
+                                  "w-full border border-dashed rounded-xl p-8 flex flex-col items-center justify-center gap-3 transition-colors cursor-pointer",
+                                  isDragging
+                                    ? "border-[#D4AF37] bg-[#FDFBF5] text-[#D4AF37]"
+                                    : "border-stone-200 text-[#999] bg-[#F9F9F9] hover:border-[#D4AF37]/40 hover:bg-[#FDFBF5]"
+                                )}
                               >
-                                <Camera size={24} strokeWidth={1.2} />
-                                <span className="text-sm font-medium text-stone-500">Ajouter jusqu'à {MAX_PHOTOS} photos</span>
-                                <span className="text-[11px] text-[#999]">JPG, PNG · {MAX_FILE_SIZE_MB} Mo max par fichier</span>
+                                <Upload size={24} strokeWidth={1.2} />
+                                <span className="text-sm font-medium text-stone-500">
+                                  {isDragging ? "Déposez vos photos ici" : `Ajouter jusqu'à ${MAX_PHOTOS} photos`}
+                                </span>
+                                <span className="text-[11px] text-[#999]">Glissez-déposez ou cliquez · JPG, PNG · {MAX_FILE_SIZE_MB} Mo max</span>
                               </button>
                             )}
 
