@@ -6,7 +6,7 @@ import {
   DialogPortal,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Camera, Mic, Video, X, Sparkles, Upload, ArrowRight, ArrowLeft, MessageSquare, Lock } from "lucide-react";
+import { Camera, Mic, Video, X, Sparkles, Upload, ArrowRight, ArrowLeft, MessageSquare, Lock, Square, Play, Pause, RotateCcw } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Calendar } from "@/components/ui/calendar";
