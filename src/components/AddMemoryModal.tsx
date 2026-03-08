@@ -28,8 +28,13 @@ type Step = 1 | 2;
 const DUMMY_AI_TEXT =
   "Je revois encore ses lunettes glissant sur le bout de son nez, dans la lumière de 6h du matin, une tasse de café noir à la main. C'est dans ces instants calmes qu'il aimait nous rappeler qu'on 'a le temps de se presser'. Ce temps, aujourd'hui, est devenu notre plus précieux héritage.";
 
+const MAX_PHOTOS = 4;
+const MAX_FILE_SIZE_MB = 10;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+
 const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [text, setText] = useState("");
   const [intentTab, setIntentTab] = useState<IntentTab>("pensee");
   const [view, setView] = useState<ModalView>("canvas");
@@ -46,6 +51,45 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
   const [originalText, setOriginalText] = useState("");
   const [aiApplied, setAiApplied] = useState(false);
   const [isAiLoading, setIsAiLoading] = useState<"harmoniser" | "corriger" | null>(null);
+  const [photos, setPhotos] = useState<{ file: File; preview: string }[]>([]);
+  const [photoError, setPhotoError] = useState<string | null>(null);
+
+  const handlePhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhotoError(null);
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+
+    const oversized = files.find(f => f.size > MAX_FILE_SIZE_BYTES);
+    if (oversized) {
+      setPhotoError(`Le fichier « ${oversized.name} » dépasse la limite de ${MAX_FILE_SIZE_MB} Mo.`);
+      e.target.value = "";
+      return;
+    }
+
+    const totalAfter = photos.length + files.length;
+    if (totalAfter > MAX_PHOTOS) {
+      setPhotoError(`Vous ne pouvez ajouter que ${MAX_PHOTOS} photos maximum. Il vous reste ${MAX_PHOTOS - photos.length} emplacement(s).`);
+      e.target.value = "";
+      return;
+    }
+
+    const newPhotos = files.map(file => ({
+      file,
+      preview: URL.createObjectURL(file),
+    }));
+    setPhotos(prev => [...prev, ...newPhotos]);
+    e.target.value = "";
+  };
+
+  const removePhoto = (index: number) => {
+    setPhotos(prev => {
+      const updated = [...prev];
+      URL.revokeObjectURL(updated[index].preview);
+      updated.splice(index, 1);
+      return updated;
+    });
+    setPhotoError(null);
+  };
 
   const handleClose = (val: boolean) => {
     if (!val) {
@@ -65,6 +109,9 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       setOriginalText("");
       setAiApplied(false);
       setIsAiLoading(null);
+      photos.forEach(p => URL.revokeObjectURL(p.preview));
+      setPhotos([]);
+      setPhotoError(null);
     }
     onOpenChange(val);
   };
@@ -87,7 +134,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
 
   const inputStyle = "border border-[#EAEAEA] rounded-lg bg-[#F9F9F9] text-sm text-stone-700 placeholder:text-[#757575] focus-visible:ring-1 focus-visible:ring-[#D4AF37]/40 focus-visible:border-[#D4AF37]/50 h-11 px-3";
 
-  const canProceed = (text.trim().length > 0 || intentTab !== "pensee") && !isAiLoading;
+  const canProceed = (text.trim().length > 0 || (intentTab === "photos" && photos.length > 0) || (intentTab !== "pensee" && intentTab !== "photos")) && !isAiLoading;
 
   const handleAiAction = (action: "harmoniser" | "corriger") => {
     if (isAiLoading) return;
@@ -343,11 +390,73 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                         {/* PHOTOS tab */}
                         {intentTab === "photos" && (
                           <div className="space-y-4">
-                            <div className="border border-dashed border-stone-200 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-[#999] bg-[#F9F9F9]">
-                              <Camera size={24} strokeWidth={1.2} />
-                              <span className="text-sm font-medium text-stone-500">Ajouter jusqu'à 4 photos</span>
-                              <span className="text-[11px] text-[#999]">JPG, PNG · 10 Mo max par fichier</span>
-                            </div>
+                            {/* Photo previews grid */}
+                            {photos.length > 0 && (
+                              <div className="grid grid-cols-2 gap-3">
+                                {photos.map((photo, idx) => (
+                                  <div key={idx} className="relative group aspect-square rounded-xl overflow-hidden bg-stone-100">
+                                    <img
+                                      src={photo.preview}
+                                      alt={`Photo ${idx + 1}`}
+                                      className="w-full h-full object-cover"
+                                    />
+                                    <button
+                                      type="button"
+                                      onClick={() => removePhoto(idx)}
+                                      className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                                    >
+                                      <X size={14} strokeWidth={2} />
+                                    </button>
+                                    <span className="absolute bottom-2 left-2 text-[10px] font-medium text-white bg-black/40 px-2 py-0.5 rounded-full">
+                                      {idx + 1}/{MAX_PHOTOS}
+                                    </span>
+                                  </div>
+                                ))}
+                                {/* Add more slot */}
+                                {photos.length < MAX_PHOTOS && (
+                                  <button
+                                    type="button"
+                                    onClick={() => fileInputRef.current?.click()}
+                                    className="aspect-square rounded-xl border-2 border-dashed border-stone-200 bg-[#F9F9F9] flex flex-col items-center justify-center gap-1.5 text-stone-400 hover:border-[#D4AF37]/40 hover:text-[#D4AF37] transition-colors"
+                                  >
+                                    <Camera size={20} strokeWidth={1.2} />
+                                    <span className="text-[11px] font-medium">Ajouter</span>
+                                  </button>
+                                )}
+                              </div>
+                            )}
+
+                            {/* Empty state / drop zone */}
+                            {photos.length === 0 && (
+                              <button
+                                type="button"
+                                onClick={() => fileInputRef.current?.click()}
+                                className="w-full border border-dashed border-stone-200 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-[#999] bg-[#F9F9F9] hover:border-[#D4AF37]/40 hover:bg-[#FDFBF5] transition-colors cursor-pointer"
+                              >
+                                <Camera size={24} strokeWidth={1.2} />
+                                <span className="text-sm font-medium text-stone-500">Ajouter jusqu'à {MAX_PHOTOS} photos</span>
+                                <span className="text-[11px] text-[#999]">JPG, PNG · {MAX_FILE_SIZE_MB} Mo max par fichier</span>
+                              </button>
+                            )}
+
+                            {/* Hidden file input */}
+                            <input
+                              ref={fileInputRef}
+                              type="file"
+                              accept="image/jpeg,image/png"
+                              multiple
+                              onChange={handlePhotoSelect}
+                              className="hidden"
+                            />
+
+                            {/* Error message */}
+                            {photoError && (
+                              <div className="flex items-start gap-2 p-3 rounded-lg bg-red-50 border border-red-200">
+                                <span className="text-red-500 mt-0.5 shrink-0">⚠</span>
+                                <p className="text-[13px] text-red-600 leading-snug">{photoError}</p>
+                              </div>
+                            )}
+
                             <Input
                               value={text}
                               onChange={(e) => setText(e.target.value)}
