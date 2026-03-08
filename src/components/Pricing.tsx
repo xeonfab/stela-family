@@ -14,7 +14,8 @@ const plans = [
     price: "79€",
     subtitle: "Le sanctuaire 100% numérique.",
     features: [
-      { text: "Espace de recueillement en ligne (Format dématérialisé)", muted: false },
+      { text: "Paiement unique (Aucun abonnement)", muted: false },
+      { text: "Accès permanent à l'espace de recueillement", muted: false },
       { text: "Dépôt de photos, vidéos et anecdotes", muted: false },
       { text: "Affiches et QR Codes pour la cérémonie (Prêt-à-imprimer)", muted: false },
       { text: "Stèle physique non incluse", muted: true },
