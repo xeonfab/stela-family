@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, X, Award, Hourglass, Handshake, ArrowRight, Calendar } from "lucide-react";
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import heroImg from "@/assets/pompes-funebres-hero.jpg";
+import heroImg from "@/assets/stele-noyer-nfc.png";
 import chevaletImg from "@/assets/ceremony-chevalet.png";
 
 /* ─── Navbar B2B ─── */
@@ -52,10 +52,10 @@ const HeroSection = () => (
           Pour les Agences Indépendantes
         </p>
         <h1 className="font-serif-display text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-foreground">
-          Démarquez votre agence. Prolongez l'hommage en 60&nbsp;secondes.
+          Différenciez votre agence. Sanctuarisez la mémoire des familles.
         </h1>
         <p className="text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
-          Offrez aux familles un espace de recueillement en ligne premium, privé et accessible à vie. Une solution clé en main pour moderniser votre image et enrichir votre accompagnement, sans aucune charge administrative.
+          Le premier service post-obsèques qui unit la noblesse de la matière à la pérennité du digital. Un espace de recueillement premium, matérialisé par une stèle en bois massif connectée. Zéro stock, marge garantie.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
           <Button variant="gold" className="px-8 py-6 text-base">
@@ -77,8 +77,8 @@ const HeroSection = () => (
       <div className="flex-1 flex justify-center">
         <img
           src={heroImg}
-          alt="Directeur de pompes funèbres remettant un document à une famille"
-          className="w-full max-w-md rounded-3xl shadow-golden-glow border-luxury object-cover aspect-[3/4]"
+          alt="Stèle Stela en noyer connectée NFC avec smartphone affichant le mémorial"
+          className="w-full max-w-lg rounded-3xl shadow-golden-glow border-luxury object-cover aspect-[4/3]"
           loading="lazy"
         />
       </div>
