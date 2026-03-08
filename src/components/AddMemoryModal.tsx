@@ -168,6 +168,8 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       setPhotos([]);
       setPhotoError(null);
       setIsDragging(false);
+      setRecordState("idle");
+      setRecordSeconds(0);
     }
     onOpenChange(val);
   };
