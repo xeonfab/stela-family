@@ -103,9 +103,9 @@ const Pricing = () => {
 
               <ul className="space-y-3 text-left mx-auto max-w-xs">
                 {plan.features.map((f, j) => (
-                  <li key={j} className="flex items-start gap-3 text-foreground text-sm">
-                    <Check size={16} className="text-primary shrink-0 mt-0.5" />
-                    <span>{f}</span>
+                  <li key={j} className={`flex items-start gap-3 text-sm ${f.muted ? "text-muted-foreground italic text-xs" : "text-foreground"}`}>
+                    <Check size={16} className={`shrink-0 mt-0.5 ${f.muted ? "text-muted-foreground/50" : "text-primary"}`} />
+                    <span>{f.text}</span>
                   </li>
                 ))}
               </ul>
