@@ -140,6 +140,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
       photos.forEach(p => URL.revokeObjectURL(p.preview));
       setPhotos([]);
       setPhotoError(null);
+      setIsDragging(false);
     }
     onOpenChange(val);
   };
