@@ -284,7 +284,7 @@ const PompesFunebres = () => (
       <ProductShowcase />
       <CeremonyKitSection />
       <Partnership />
-      <FinalCTA />
+      
     </main>
   </div>
 );
