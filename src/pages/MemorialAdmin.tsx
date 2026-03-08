@@ -681,7 +681,9 @@ const MemorialAdmin = () => {
   const [intimateMemories, setIntimateMemories] = useState<Memory[]>([]);
   const [heroEditOpen, setHeroEditOpen] = useState(false);
   const [heroName, setHeroName] = useState("Jean-Claude Dubois");
-  const [heroDates, setHeroDates] = useState("1948 — 2024");
+  const [heroBirthYear, setHeroBirthYear] = useState("1948");
+  const [heroDeathYear, setHeroDeathYear] = useState(new Date().getFullYear().toString());
+  const heroDates = `${heroBirthYear} — ${heroDeathYear}`;
   const [heroCitation, setHeroCitation] = useState("« Il cultivait son jardin comme il cultivait ses amitiés\u00a0: avec patience, lumière et amour. »");
 
   const handleMakeIntimate = (memory: Memory, idx: number) => {
