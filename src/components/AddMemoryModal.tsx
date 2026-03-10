@@ -431,7 +431,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                                 text.length > 0 ? "opacity-100 max-h-20 mt-1" : "opacity-0 max-h-0 mt-0"
                               )}
                             >
-                              <div className="flex items-center gap-2">
+                              <div className="flex flex-wrap items-center gap-2">
                                 <button
                                   type="button"
                                   disabled={!!isAiLoading}
