@@ -815,12 +815,27 @@ const MemorialAdmin = () => {
       </div>
 
       {/* ─── Dark Hero Section (Brun Noyer) ─── */}
-      <div className="w-full bg-[#1d2a24]">
+      <div
+        className="w-full relative"
+        style={{
+          background: "radial-gradient(ellipse at 50% 0%, #2a3d33 0%, #1d2a24 55%, #161f1b 100%)"
+        }}
+      >
+        {/* Subtle noise texture overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none mix-blend-overlay"
+          style={{
+            opacity: 0.035,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundRepeat: "repeat",
+            backgroundSize: "128px 128px"
+          }}
+        />
         {/* ─── Guardian Banner ─── */}
         <GuardianBanner />
 
         {/* ─── Top bar ─── */}
-        <header className="py-4 px-6 flex items-center justify-between">
+        <header className="relative z-10 py-4 px-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <button
               onClick={() => setHeroEditOpen(true)}
