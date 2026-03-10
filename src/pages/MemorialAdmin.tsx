@@ -791,6 +791,7 @@ const MemorialAdmin = () => {
   const [heroDeathDate, setHeroDeathDate] = useState<Date | undefined>(new Date(2024, 0, 10));
   const heroDates = `${heroBirthDate ? format(heroBirthDate, "dd/MM/yyyy") : "?"} — ${heroDeathDate ? format(heroDeathDate, "dd/MM/yyyy") : "?"}`;
   const heroDatesShort = `${heroBirthDate ? heroBirthDate.getFullYear() : "?"} — ${heroDeathDate ? heroDeathDate.getFullYear() : "?"}`;
+  const [heroCitation, setHeroCitation] = useState("« Il cultivait son jardin comme il cultivait ses amitiés\u00a0: avec patience, lumière et amour. »");
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
