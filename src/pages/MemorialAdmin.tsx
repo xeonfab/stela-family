@@ -1152,7 +1152,7 @@ const MemorialAdmin = () => {
                 <img src={portraitImg} alt={heroName} className="w-full h-full object-cover" />
               </div>
               <p className="font-serif text-foreground text-lg mt-3">{heroName}</p>
-              <p className="text-muted-foreground text-xs tracking-widest mt-0.5">{heroDates}</p>
+              <p className="text-muted-foreground text-xs tracking-widest mt-0.5">{heroDatesShort}</p>
             </div>
           </div>
 
