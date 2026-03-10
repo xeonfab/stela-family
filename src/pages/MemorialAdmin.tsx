@@ -917,7 +917,7 @@ const MemorialAdmin = () => {
           </h1>
 
           {/* Dates */}
-          <p className="text-sm tracking-[0.3em] uppercase text-[#FBF9F6]/50 mb-8">{heroDates}</p>
+          <p className="text-sm tracking-[0.3em] uppercase text-[#FBF9F6]/50 mb-8">{heroDatesShort}</p>
 
           {/* Citation */}
           {isEmpty ? (
