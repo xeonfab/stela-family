@@ -914,7 +914,7 @@ const MemorialAdmin = () => {
 
         {/* ─── TAB 2: Son Histoire ─── */}
         <TabsContent value="histoire" className="mt-0">
-          {isEmpty ? <EmptyHistoireState onOpenBiography={() => setBiographyModalOpen(true)} onOpenChapter={() => setChapterModalOpen(true)} /> : <SonHistoireTab />}
+          {isEmpty ? <EmptyHistoireState onOpenBiography={() => setBiographyModalOpen(true)} onOpenChapter={() => setChapterModalOpen(true)} /> : <SonHistoireTab onOpenBiography={() => setBiographyModalOpen(true)} />}
         </TabsContent>
 
         {/* ─── TAB 3: Espace Intime ─── */}
