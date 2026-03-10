@@ -543,21 +543,25 @@ const MemoryCard = ({ memory, onClick }: {memory: Memory;onClick: () => void;}) 
       <div onClick={onClick} className="break-inside-avoid bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 cursor-pointer group hover:shadow-md transition-shadow">
         <div className="relative">
           <img src={memory.image} alt={memory.text} className="w-full h-52 object-cover" loading="lazy" />
-          {/* Image slider navigation arrows */}
+          {/* Image slider navigation arrows - always visible */}
           <button
             onClick={(e) => e.stopPropagation()}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white/80"
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center hover:bg-white/90 transition-colors shadow-sm"
             aria-label="Photo précédente">
-            
             <ChevronLeft size={15} className="text-stone-700" />
           </button>
           <button
             onClick={(e) => e.stopPropagation()}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white/80"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center hover:bg-white/90 transition-colors shadow-sm"
             aria-label="Photo suivante">
-            
             <ChevronRight size={15} className="text-stone-700" />
           </button>
+          {/* Dots indicator */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
+            {[0, 1, 2, 3].map((i) => (
+              <span key={i} className={`w-1.5 h-1.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'}`} />
+            ))}
+          </div>
         </div>
         <div className="p-5 space-y-3">
           <p className="text-stone-600 text-sm leading-relaxed line-clamp-3">{memory.text}</p>
