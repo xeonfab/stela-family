@@ -1173,6 +1173,7 @@ const MemorialAdmin = () => {
         </DialogContent>
       </Dialog>
 
+      <div className="h-24" />
     </div>);
 
 };
