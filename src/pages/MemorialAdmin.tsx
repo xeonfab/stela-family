@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2, Share2, Sparkles } from "lucide-react";
 import { Label } from "@/components/ui/label";
@@ -294,7 +295,7 @@ const GuardianBanner = () => { return null; };
 
 
 /* ─── Son Histoire Tab (Biography + Timeline) ─── */
-const SonHistoireTab = () => {
+const SonHistoireTab = ({ onOpenBiography }: { onOpenBiography: () => void }) => {
   const [selectedEvent, setSelectedEvent] = useState<TimelineEntry | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const openDetail = (ev: TimelineEntry) => {setSelectedEvent(ev);setModalOpen(true);};
@@ -319,6 +320,12 @@ const SonHistoireTab = () => {
             derrière lui un jardin en fleur et des cœurs à jamais marqués par sa lumière.
           </p>
         </article>
+        <div className="flex justify-center mt-6">
+          <Button variant="goldOutline" size="sm" onClick={onOpenBiography} className="gap-2">
+            <Pencil size={14} />
+            Modifier
+          </Button>
+        </div>
       </div>
 
       {/* ─── Divider ─── */}
@@ -907,7 +914,7 @@ const MemorialAdmin = () => {
 
         {/* ─── TAB 2: Son Histoire ─── */}
         <TabsContent value="histoire" className="mt-0">
-          {isEmpty ? <EmptyHistoireState onOpenBiography={() => setBiographyModalOpen(true)} onOpenChapter={() => setChapterModalOpen(true)} /> : <SonHistoireTab />}
+          {isEmpty ? <EmptyHistoireState onOpenBiography={() => setBiographyModalOpen(true)} onOpenChapter={() => setChapterModalOpen(true)} /> : <SonHistoireTab onOpenBiography={() => setBiographyModalOpen(true)} />}
         </TabsContent>
 
         {/* ─── TAB 3: Espace Intime ─── */}
