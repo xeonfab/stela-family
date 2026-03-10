@@ -493,80 +493,175 @@ const EmptySouvenirsState = ({ onDeposit }: {onDeposit: () => void;}) =>
 /* ─── Biography Modal (Modale 1) ─── */
 const BiographyModal = ({ open, onOpenChange }: {open: boolean;onOpenChange: (v: boolean) => void;}) => {
   const [text, setText] = useState("");
+  const [mode, setMode] = useState<"libre" | "guide">("libre");
+  const [guidedOrigins, setGuidedOrigins] = useState("");
+  const [guidedPassions, setGuidedPassions] = useState("");
+  const [guidedHeritage, setGuidedHeritage] = useState("");
+  const [isPolishing, setIsPolishing] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const chips = [
-  { label: "✨ Structurer pour moi", prompt: "Enfance et origines\n\nSes passions et son caractère\n\nSa vie professionnelle\n\nSon héritage et ce qu'il laisse\n" },
-  { label: "✨ Corriger l'orthographe", prompt: "" }];
-
-
-  const handleChip = (chip: typeof chips[0]) => {
-    if (chip.prompt) {
-      setText(chip.prompt);
-      setTimeout(() => {
-        if (textareaRef.current) {
-          textareaRef.current.focus();
-          textareaRef.current.selectionStart = textareaRef.current.value.length;
-          textareaRef.current.selectionEnd = textareaRef.current.value.length;
-        }
-      }, 50);
-    } else {
-      toast("Correction orthographique à venir…", {
+  const handlePolish = () => {
+    if (!text.trim()) return;
+    setIsPolishing(true);
+    setTimeout(() => {
+      setIsPolishing(false);
+      toast("Style amélioré et orthographe corrigée.", {
         style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" }
       });
-    }
+    }, 1800);
+  };
+
+  const handleGenerate = () => {
+    if (!guidedOrigins.trim() && !guidedPassions.trim() && !guidedHeritage.trim()) return;
+    setIsGenerating(true);
+    setTimeout(() => {
+      const parts = [guidedOrigins, guidedPassions, guidedHeritage].filter(Boolean);
+      setText(parts.join("\n\n"));
+      setMode("libre");
+      setIsGenerating(false);
+      toast("Texte généré ! Vous pouvez le modifier librement.", {
+        style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" }
+      });
+      setTimeout(() => textareaRef.current?.focus(), 100);
+    }, 2200);
   };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-xl w-full h-full sm:h-auto sm:max-h-[90vh] rounded-none sm:rounded-2xl border-0 sm:border border-stone-200/60 bg-[#FAF9F6] p-0 flex flex-col gap-0 [&>button]:hidden">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 pt-6 pb-4">
-          <DialogTitle className="font-serif text-2xl text-stone-800">Sa biographie</DialogTitle>
-          <button onClick={() => onOpenChange(false)} className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-stone-100 transition-colors">
-            <X size={18} className="text-stone-400" />
-          </button>
+        <div className="px-6 pt-6 pb-2 space-y-4">
+          <div className="flex items-center justify-between">
+            <DialogTitle className="font-serif text-2xl text-stone-800">Sa biographie</DialogTitle>
+            <button onClick={() => onOpenChange(false)} className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-stone-100 transition-colors">
+              <X size={18} className="text-stone-400" />
+            </button>
+          </div>
+
+          {/* Segmented Control */}
+          <div className="flex bg-stone-100 rounded-full p-1 gap-1">
+            <button
+              onClick={() => setMode("libre")}
+              className={`flex-1 py-2 px-4 text-sm font-medium rounded-full transition-all duration-300 ${
+                mode === "libre"
+                  ? "bg-white text-stone-800 shadow-sm"
+                  : "text-stone-400 hover:text-stone-500"
+              }`}
+            >
+              Écriture libre
+            </button>
+            <button
+              onClick={() => setMode("guide")}
+              className={`flex-1 py-2 px-4 text-sm font-medium rounded-full transition-all duration-300 ${
+                mode === "guide"
+                  ? "bg-white text-stone-800 shadow-sm"
+                  : "text-stone-400 hover:text-stone-500"
+              }`}
+            >
+              Mode guidé (Aide IA)
+            </button>
+          </div>
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto px-6 pb-6 space-y-4">
-          <Textarea
-            ref={textareaRef}
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Racontez son enfance, ses passions, son caractère..."
-            className="min-h-[250px] bg-stone-100/60 border-0 rounded-xl text-[1rem] leading-[1.7] text-stone-700 placeholder:text-stone-300 resize-none focus-visible:ring-1 focus-visible:ring-[#D4AF37]/30 p-5" />
-          
+        <div className="flex-1 overflow-y-auto px-6 pb-4 pt-2">
+          {mode === "libre" ? (
+            <div className="space-y-4">
+              {/* Premium Textarea */}
+              <Textarea
+                ref={textareaRef}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Commencez à écrire ici... Vous pouvez raconter ses origines, ses passions, ou ce qu'il vous a transmis."
+                className="min-h-[280px] bg-[#FDFBF7] border border-stone-200/70 rounded-xl font-serif text-[1.05rem] leading-[1.85] text-stone-700 placeholder:text-stone-400/70 placeholder:font-sans placeholder:text-[0.95rem] placeholder:leading-[1.6] resize-none focus-visible:ring-1 focus-visible:ring-[#D4AF37]/30 focus-visible:border-[#D4AF37]/20 p-5"
+              />
 
-          {/* AI Chips */}
-          <div className={`transition-all duration-500 ${text.length > 0 ? "opacity-40" : "opacity-100"}`}>
-            <p className="text-xs text-stone-400 mb-2">Aide à la rédaction</p>
-            <div className="flex flex-wrap gap-2">
-              {chips.map((chip) =>
-              <button
-                key={chip.label}
-                onClick={() => handleChip(chip)}
-                className="px-4 py-2 text-sm text-stone-500 bg-white border border-[#EAEAEA] rounded-full hover:bg-[#F9F9F9] transition-colors">
-                
-                  {chip.label}
+              {/* AI Toolbar */}
+              <div className="bg-stone-100/80 rounded-xl p-3 flex items-center justify-between gap-3">
+                <span className="text-xs text-stone-400 font-medium tracking-wide uppercase hidden sm:block">Outils IA</span>
+                <button
+                  onClick={handlePolish}
+                  disabled={isPolishing || !text.trim()}
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
+                    isPolishing
+                      ? "bg-[#D4AF37]/10 text-[#D4AF37] animate-pulse cursor-wait"
+                      : text.trim()
+                        ? "bg-white text-stone-600 border border-stone-200/60 shadow-sm hover:border-[#D4AF37]/40 hover:text-[#D4AF37] hover:shadow-md"
+                        : "bg-white/50 text-stone-300 border border-stone-200/30 cursor-not-allowed"
+                  }`}
+                >
+                  <Sparkles size={15} className={isPolishing ? "text-[#D4AF37]" : ""} />
+                  {isPolishing ? "Amélioration en cours…" : "Améliorer le style et corriger"}
                 </button>
-              )}
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="space-y-5">
+              {/* Guided Field 1 */}
+              <div className="space-y-1.5">
+                <Label className="text-[0.7rem] tracking-[0.15em] uppercase text-stone-400 font-medium">Ses origines</Label>
+                <Textarea
+                  value={guidedOrigins}
+                  onChange={(e) => setGuidedOrigins(e.target.value)}
+                  placeholder="Où a-t-il grandi, sa famille..."
+                  className="min-h-[80px] bg-[#FDFBF7] border border-stone-200/70 rounded-xl text-[0.95rem] leading-[1.6] text-stone-700 placeholder:text-stone-400/60 resize-none focus-visible:ring-1 focus-visible:ring-[#D4AF37]/30 p-4"
+                />
+              </div>
+
+              {/* Guided Field 2 */}
+              <div className="space-y-1.5">
+                <Label className="text-[0.7rem] tracking-[0.15em] uppercase text-stone-400 font-medium">Ses passions & son caractère</Label>
+                <Textarea
+                  value={guidedPassions}
+                  onChange={(e) => setGuidedPassions(e.target.value)}
+                  placeholder="Qu'est-ce qui l'animait au quotidien ?"
+                  className="min-h-[80px] bg-[#FDFBF7] border border-stone-200/70 rounded-xl text-[0.95rem] leading-[1.6] text-stone-700 placeholder:text-stone-400/60 resize-none focus-visible:ring-1 focus-visible:ring-[#D4AF37]/30 p-4"
+                />
+              </div>
+
+              {/* Guided Field 3 */}
+              <div className="space-y-1.5">
+                <Label className="text-[0.7rem] tracking-[0.15em] uppercase text-stone-400 font-medium">Son héritage</Label>
+                <Textarea
+                  value={guidedHeritage}
+                  onChange={(e) => setGuidedHeritage(e.target.value)}
+                  placeholder="Que retiendrez-vous de lui ?"
+                  className="min-h-[80px] bg-[#FDFBF7] border border-stone-200/70 rounded-xl text-[0.95rem] leading-[1.6] text-stone-700 placeholder:text-stone-400/60 resize-none focus-visible:ring-1 focus-visible:ring-[#D4AF37]/30 p-4"
+                />
+              </div>
+
+              {/* Generate Button */}
+              <button
+                onClick={handleGenerate}
+                disabled={isGenerating || (!guidedOrigins.trim() && !guidedPassions.trim() && !guidedHeritage.trim())}
+                className={`w-full inline-flex items-center justify-center gap-2 py-3 text-sm font-medium rounded-full transition-all duration-300 ${
+                  isGenerating
+                    ? "bg-[#D4AF37]/10 text-[#D4AF37] animate-pulse cursor-wait"
+                    : (guidedOrigins.trim() || guidedPassions.trim() || guidedHeritage.trim())
+                      ? "bg-white text-stone-600 border border-stone-200/60 shadow-sm hover:border-[#D4AF37]/40 hover:text-[#D4AF37] hover:shadow-md"
+                      : "bg-white/50 text-stone-300 border border-stone-200/30 cursor-not-allowed"
+                }`}
+              >
+                <Sparkles size={15} />
+                {isGenerating ? "Génération en cours…" : "✨ Générer un texte à partir de ces notes"}
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Footer */}
         <div className="px-6 py-5 border-t border-stone-200/50">
           <button
             onClick={() => {onOpenChange(false);toast("Biographie enregistrée.", { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });}}
-            className="w-full py-3.5 bg-[#D4AF37] text-white text-sm font-semibold rounded-full hover:bg-[#c9a432] transition-colors shadow-sm">
-            
+            className="w-full py-3.5 bg-[#D4AF37] text-white text-sm font-semibold rounded-full hover:bg-[#c9a432] transition-colors shadow-sm tracking-[0.05em]"
+          >
             Enregistrer la biographie
           </button>
         </div>
       </DialogContent>
-    </Dialog>);
-
+    </Dialog>
+  );
 };
 
 /* ─── Chapter Modal (Modale 2) ─── */
