@@ -259,7 +259,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogPortal>
         <DialogOverlay className="bg-black/30 backdrop-blur-sm" />
-        <DialogContent className="max-w-none sm:max-w-xl w-screen h-[100dvh] sm:w-[calc(100%-2rem)] sm:h-auto sm:max-h-[90vh] rounded-none sm:rounded-2xl border-0 shadow-none sm:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white overflow-y-auto inset-0 sm:inset-auto sm:left-[50%] sm:top-[50%] translate-x-0 translate-y-0 sm:translate-x-[-50%] sm:translate-y-[-50%]">
+        <DialogContent className="max-w-none sm:max-w-xl w-screen h-[100dvh] sm:w-[calc(100%-2rem)] sm:h-auto sm:max-h-[90vh] rounded-none sm:rounded-2xl border-0 shadow-none sm:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white overflow-y-auto overflow-x-hidden inset-0 sm:inset-auto sm:left-[50%] sm:top-[50%] translate-x-0 translate-y-0 sm:translate-x-[-50%] sm:translate-y-[-50%]">
           <div className="flex flex-col min-h-full">
             {/* Header */}
             <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm px-8 pt-8 pb-2">
@@ -288,7 +288,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
             </div>
 
             {/* Content area */}
-            <div className="flex-1 px-8 pt-4 pb-6">
+            <div className="flex-1 px-4 sm:px-8 pt-4 pb-6 overflow-x-hidden">
 
               {/* === STEP 1: L'ÉMOTION === */}
               {step === 1 && (
@@ -383,7 +383,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                               onChange={(e) => setText(e.target.value)}
                               placeholder="Une anecdote, un éclat de rire, ce qui vous manque le plus..."
                               rows={8}
-                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl px-5 py-5 text-[1rem] text-stone-700 placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0 min-h-[260px]"
+                              className="w-full box-border resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl px-5 py-5 text-[1rem] text-stone-700 placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0 min-h-[260px]"
                               style={{ lineHeight: 1.7, fieldSizing: "content" } as React.CSSProperties}
                             />
 
@@ -395,7 +395,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                               )}
                             >
                               <p className="text-[11px] text-stone-400 tracking-wide mb-2">Besoin d'inspiration ?</p>
-                              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+                              <div className="flex flex-wrap gap-2 gap-y-2">
                                 {[
                                   { label: "✨ Raconter une anecdote", prompt: "Je me souviendrai toujours de la fois où " },
                                   { label: "✨ Un trait de caractère", prompt: "Ce que j'aimais le plus chez toi, c'était " },
@@ -416,7 +416,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                                         }
                                       }, 50);
                                     }}
-                                    className="whitespace-nowrap shrink-0 text-[12px] text-stone-500 border border-[#EAEAEA] rounded-full px-3.5 py-1.5 hover:bg-[#F5F5F4] hover:text-stone-700 transition-colors bg-white"
+                                    className="text-[12px] text-stone-500 border border-[#EAEAEA] rounded-full px-3.5 py-1.5 hover:bg-[#F5F5F4] hover:text-stone-700 transition-colors bg-white"
                                   >
                                     {chip.label}
                                   </button>
@@ -431,7 +431,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                                 text.length > 0 ? "opacity-100 max-h-20 mt-1" : "opacity-0 max-h-0 mt-0"
                               )}
                             >
-                              <div className="flex items-center gap-2">
+                              <div className="flex flex-wrap items-center gap-2">
                                 <button
                                   type="button"
                                   disabled={!!isAiLoading}
