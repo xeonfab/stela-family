@@ -1,13 +1,17 @@
 import { useState, useRef, useEffect } from "react";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2, Share2, Sparkles, Smartphone, Mail, LinkIcon, Copy, Check, Eye, ChevronRight } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2, Share2, Sparkles, Smartphone, Mail, LinkIcon, Copy, Check, Eye, ChevronRight, CalendarIcon } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import AudioPlayer from "@/components/AudioPlayer";
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
@@ -783,9 +787,10 @@ const MemorialAdmin = () => {
   const [intimateMemories, setIntimateMemories] = useState<Memory[]>([]);
   const [heroEditOpen, setHeroEditOpen] = useState(false);
   const [heroName, setHeroName] = useState("Jean-Claude Dubois");
-  const [heroBirthYear, setHeroBirthYear] = useState("1948");
-  const [heroDeathYear, setHeroDeathYear] = useState(new Date().getFullYear().toString());
-  const heroDates = `${heroBirthYear} — ${heroDeathYear}`;
+  const [heroBirthDate, setHeroBirthDate] = useState<Date | undefined>(new Date(1948, 2, 15));
+  const [heroDeathDate, setHeroDeathDate] = useState<Date | undefined>(new Date(2024, 0, 10));
+  const heroDates = `${heroBirthDate ? format(heroBirthDate, "dd/MM/yyyy") : "?"} — ${heroDeathDate ? format(heroDeathDate, "dd/MM/yyyy") : "?"}`;
+  const heroDatesShort = `${heroBirthDate ? heroBirthDate.getFullYear() : "?"} — ${heroDeathDate ? heroDeathDate.getFullYear() : "?"}`;
   const [heroCitation, setHeroCitation] = useState("« Il cultivait son jardin comme il cultivait ses amitiés\u00a0: avec patience, lumière et amour. »");
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -912,7 +917,7 @@ const MemorialAdmin = () => {
           </h1>
 
           {/* Dates */}
-          <p className="text-sm tracking-[0.3em] uppercase text-[#FBF9F6]/50 mb-8">{heroDates}</p>
+          <p className="text-sm tracking-[0.3em] uppercase text-[#FBF9F6]/50 mb-8">{heroDatesShort}</p>
 
           {/* Citation */}
           {isEmpty ? (
@@ -950,12 +955,54 @@ const MemorialAdmin = () => {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <Label className="text-xs text-stone-500 uppercase tracking-wider">Année de naissance</Label>
-                  <Input type="number" value={heroBirthYear} onChange={(e) => setHeroBirthYear(e.target.value)} className="bg-white border-stone-200" placeholder="1948" />
+                  <Label className="text-xs text-stone-500 uppercase tracking-wider">Date de naissance</Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button className="w-full flex items-center gap-2 px-3 py-2 rounded-md border border-stone-200 bg-white text-sm text-left hover:border-stone-300 transition-colors">
+                        <CalendarIcon size={14} className="text-stone-400 shrink-0" />
+                        <span className={heroBirthDate ? "text-stone-800" : "text-stone-400"}>
+                          {heroBirthDate ? format(heroBirthDate, "dd/MM/yyyy") : "JJ/MM/AAAA"}
+                        </span>
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={heroBirthDate}
+                        onSelect={setHeroBirthDate}
+                        locale={fr}
+                        captionLayout="dropdown-buttons"
+                        fromYear={1900}
+                        toYear={new Date().getFullYear()}
+                        className="p-3 pointer-events-auto"
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
                 <div className="space-y-1.5">
-                  <Label className="text-xs text-stone-500 uppercase tracking-wider">Année du décès</Label>
-                  <Input type="number" value={heroDeathYear} onChange={(e) => setHeroDeathYear(e.target.value)} className="bg-white border-stone-200" placeholder={new Date().getFullYear().toString()} />
+                  <Label className="text-xs text-stone-500 uppercase tracking-wider">Date du décès</Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button className="w-full flex items-center gap-2 px-3 py-2 rounded-md border border-stone-200 bg-white text-sm text-left hover:border-stone-300 transition-colors">
+                        <CalendarIcon size={14} className="text-stone-400 shrink-0" />
+                        <span className={heroDeathDate ? "text-stone-800" : "text-stone-400"}>
+                          {heroDeathDate ? format(heroDeathDate, "dd/MM/yyyy") : "JJ/MM/AAAA"}
+                        </span>
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={heroDeathDate}
+                        onSelect={setHeroDeathDate}
+                        locale={fr}
+                        captionLayout="dropdown-buttons"
+                        fromYear={1900}
+                        toYear={new Date().getFullYear()}
+                        className="p-3 pointer-events-auto"
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
               </div>
               <div className="space-y-1.5">
@@ -1105,7 +1152,7 @@ const MemorialAdmin = () => {
                 <img src={portraitImg} alt={heroName} className="w-full h-full object-cover" />
               </div>
               <p className="font-serif text-foreground text-lg mt-3">{heroName}</p>
-              <p className="text-muted-foreground text-xs tracking-widest mt-0.5">{heroDates}</p>
+              <p className="text-muted-foreground text-xs tracking-widest mt-0.5">{heroDatesShort}</p>
             </div>
           </div>
 
