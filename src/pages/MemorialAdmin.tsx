@@ -294,7 +294,7 @@ const GuardianBanner = () => { return null; };
 
 
 /* ─── Son Histoire Tab (Biography + Timeline) ─── */
-const SonHistoireTab = () => {
+const SonHistoireTab = ({ onOpenBiography }: { onOpenBiography: () => void }) => {
   const [selectedEvent, setSelectedEvent] = useState<TimelineEntry | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const openDetail = (ev: TimelineEntry) => {setSelectedEvent(ev);setModalOpen(true);};
