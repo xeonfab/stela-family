@@ -383,7 +383,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                               onChange={(e) => setText(e.target.value)}
                               placeholder="Une anecdote, un éclat de rire, ce qui vous manque le plus..."
                               rows={8}
-                              className="w-full resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl px-5 py-5 text-[1rem] text-stone-700 placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0 min-h-[260px]"
+                              className="w-full box-border resize-none bg-[#F9F9F9] border border-[#EAEAEA] rounded-2xl px-5 py-5 text-[1rem] text-stone-700 placeholder:text-[#757575] focus:outline-none focus:border-[#D4AF37]/50 focus:ring-1 focus:ring-[#D4AF37]/30 transition-all ring-0 min-h-[260px]"
                               style={{ lineHeight: 1.7, fieldSizing: "content" } as React.CSSProperties}
                             />
 
