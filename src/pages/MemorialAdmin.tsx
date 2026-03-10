@@ -932,7 +932,7 @@ const MemorialAdmin = () => {
 
         {/* ─── Hero Edit Modal ─── */}
         <Dialog open={heroEditOpen} onOpenChange={setHeroEditOpen}>
-          <DialogContent className="max-w-md bg-[#FAF9F6] border-stone-200 rounded-2xl">
+          <DialogContent className="max-w-md max-sm:h-screen max-sm:max-h-screen max-sm:w-screen max-sm:max-w-none max-sm:rounded-none max-sm:border-none bg-[#FAF9F6] border-stone-200 rounded-2xl">
             <DialogTitle className="font-serif text-xl text-stone-800">Modifier le profil</DialogTitle>
             <div className="space-y-5 pt-2">
               <div className="flex flex-col items-center gap-3">
