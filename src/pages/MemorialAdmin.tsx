@@ -319,6 +319,12 @@ const SonHistoireTab = ({ onOpenBiography }: { onOpenBiography: () => void }) =>
             derrière lui un jardin en fleur et des cœurs à jamais marqués par sa lumière.
           </p>
         </article>
+        <div className="flex justify-center mt-6">
+          <Button variant="goldOutline" size="sm" onClick={onOpenBiography} className="gap-2">
+            <Pencil size={14} />
+            Modifier
+          </Button>
+        </div>
       </div>
 
       {/* ─── Divider ─── */}
