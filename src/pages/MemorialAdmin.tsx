@@ -787,6 +787,22 @@ const MemorialAdmin = () => {
   const [heroDeathYear, setHeroDeathYear] = useState(new Date().getFullYear().toString());
   const heroDates = `${heroBirthYear} — ${heroDeathYear}`;
   const [heroCitation, setHeroCitation] = useState("« Il cultivait son jardin comme il cultivait ses amitiés\u00a0: avec patience, lumière et amour. »");
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
+
+  const shareUrl = "stela.family/hommage/jean-claude-dubois";
+  const shareMessage = `Un espace privé et éternel pour honorer la mémoire de ${heroName} sur Stela.family.\n\nIci, nous rassemblons nos pensées, photos et témoignages pour créer son plus bel héritage. Vous pouvez aussi y allumer une bougie.\n\n👉 ${shareUrl}\n\nN'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`;
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(`https://${shareUrl}`);
+    setCopied(true);
+    toast("Lien copié !", { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });
+  };
+  const handleShareWhatsApp = () => { window.open(`https://wa.me/?text=${encodeURIComponent(shareMessage)}`, "_blank"); };
+  const handleShareSMS = () => { window.open(`sms:?body=${encodeURIComponent(shareMessage)}`, "_self"); };
+  const handleShareEmail = () => { window.open(`mailto:?subject=${encodeURIComponent(`Mémorial de ${heroName}`)}&body=${encodeURIComponent(shareMessage)}`, "_self"); };
+  const handleShareNative = () => { navigator.share?.({ title: `Mémorial de ${heroName}`, text: shareMessage, url: `https://${shareUrl}` }).catch(() => {}); };
 
   const handleMakeIntimate = (memory: Memory, idx: number) => {
     setPublicMemories((prev) => prev.filter((_, i) => i !== idx));
