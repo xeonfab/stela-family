@@ -1090,7 +1090,89 @@ const MemorialAdmin = () => {
         {isEmpty ? "👁 Voir état rempli" : "👁 Voir état vide"}
       </button>
 
-      <div className="h-24" />
+      {/* ─── Share Modal ─── */}
+      <Dialog open={shareModalOpen} onOpenChange={(v) => { setShareModalOpen(v); if (!v) { setCopied(false); setPreviewOpen(false); } }}>
+        <DialogContent className="sm:max-w-md max-sm:h-screen max-sm:max-h-screen max-sm:w-screen max-sm:max-w-none max-sm:rounded-none max-sm:border-none bg-background border-border rounded-2xl p-0 gap-0 overflow-hidden [&>button]:z-10">
+          <DialogTitle className="sr-only">Partager ce mémorial</DialogTitle>
+          
+          <div className="relative w-full overflow-hidden">
+            <div className="absolute inset-0">
+              <img src={portraitImg} alt="" className="w-full h-full object-cover scale-110 blur-2xl opacity-30" />
+              <div className="absolute inset-0 bg-background/60 backdrop-blur-sm" />
+            </div>
+            <div className="relative flex flex-col items-center pt-7 pb-6 px-6">
+              <div className="w-[68px] h-[68px] rounded-full overflow-hidden ring-2 ring-primary/20 ring-offset-2 ring-offset-background shadow-md">
+                <img src={portraitImg} alt={heroName} className="w-full h-full object-cover" />
+              </div>
+              <p className="font-serif text-foreground text-lg mt-3">{heroName}</p>
+              <p className="text-muted-foreground text-xs tracking-widest mt-0.5">{heroDates}</p>
+            </div>
+          </div>
+
+          <div className="px-6 sm:px-8 pb-7 space-y-5">
+            <p className="text-center text-sm text-muted-foreground leading-relaxed">
+              Partagez ce mémorial avec vos proches, où qu'ils soient.
+            </p>
+
+            <div className="flex items-center justify-center gap-5">
+              {[
+                { label: "WhatsApp", icon: <MessageCircle size={22} />, onClick: handleShareWhatsApp },
+                { label: "SMS", icon: <Smartphone size={22} />, onClick: handleShareSMS },
+                { label: "Email", icon: <Mail size={22} />, onClick: handleShareEmail },
+                ...(typeof navigator !== "undefined" && navigator.share
+                  ? [{ label: "Partager", icon: <Share2 size={22} />, onClick: handleShareNative }]
+                  : []),
+              ].map((item) => (
+                <button
+                  key={item.label}
+                  onClick={item.onClick}
+                  className="flex flex-col items-center gap-1.5 group transition-all duration-200"
+                >
+                  <span className="w-14 h-14 rounded-2xl bg-card border border-border/80 flex items-center justify-center text-muted-foreground group-hover:border-primary/50 group-hover:text-primary transition-all duration-300 shadow-sm">
+                    {item.icon}
+                  </span>
+                  <span className="text-[11px] text-muted-foreground group-hover:text-foreground transition-colors">{item.label}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-0 rounded-xl bg-card border border-border/80 overflow-hidden">
+              <div className="flex items-center gap-2 px-3.5 py-2.5 flex-1 min-w-0">
+                <LinkIcon size={14} className="text-muted-foreground/50 shrink-0" />
+                <span className="text-sm text-muted-foreground truncate">{shareUrl}</span>
+              </div>
+              <button
+                onClick={handleCopyLink}
+                className={`shrink-0 flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium transition-all duration-300 border-l border-border/50 ${
+                  copied ? "text-emerald-600 bg-emerald-50" : "text-primary hover:bg-primary/5"
+                }`}
+              >
+                {copied ? <Check size={14} /> : <Copy size={14} />}
+                {copied ? "Copié !" : "Copier"}
+              </button>
+            </div>
+
+            <div className="rounded-xl border border-border/50 bg-card overflow-hidden">
+              <button
+                onClick={() => setPreviewOpen(!previewOpen)}
+                className="w-full flex items-center justify-between px-4 py-3 text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <span className="flex items-center gap-2">
+                  <Eye size={14} />
+                  Aperçu du message envoyé
+                </span>
+                <ChevronRight size={14} className={`transition-transform duration-200 ${previewOpen ? "rotate-90" : ""}`} />
+              </button>
+              {previewOpen && (
+                <div className="px-4 pb-4 pt-0 border-t border-border/30">
+                  <p className="text-xs text-muted-foreground leading-relaxed whitespace-pre-line mt-3">{shareMessage}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
     </div>);
 
 };
