@@ -288,7 +288,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
             </div>
 
             {/* Content area */}
-            <div className="flex-1 px-8 pt-4 pb-6">
+            <div className="flex-1 px-4 sm:px-8 pt-4 pb-6 overflow-x-hidden">
 
               {/* === STEP 1: L'ÉMOTION === */}
               {step === 1 && (
