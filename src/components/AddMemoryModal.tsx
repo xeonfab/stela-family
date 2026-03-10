@@ -395,7 +395,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                               )}
                             >
                               <p className="text-[11px] text-stone-400 tracking-wide mb-2">Besoin d'inspiration ?</p>
-                              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+                              <div className="flex flex-wrap gap-2 gap-y-2">
                                 {[
                                   { label: "✨ Raconter une anecdote", prompt: "Je me souviendrai toujours de la fois où " },
                                   { label: "✨ Un trait de caractère", prompt: "Ce que j'aimais le plus chez toi, c'était " },
