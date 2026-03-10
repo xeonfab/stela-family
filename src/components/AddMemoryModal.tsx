@@ -259,7 +259,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogPortal>
         <DialogOverlay className="bg-black/30 backdrop-blur-sm" />
-        <DialogContent className="max-w-none sm:max-w-xl w-screen h-[100dvh] sm:w-[calc(100%-2rem)] sm:h-auto sm:max-h-[90vh] rounded-none sm:rounded-2xl border-0 shadow-none sm:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white overflow-y-auto inset-0 sm:inset-auto sm:left-[50%] sm:top-[50%] translate-x-0 translate-y-0 sm:translate-x-[-50%] sm:translate-y-[-50%]">
+        <DialogContent className="max-w-none sm:max-w-xl w-screen h-[100dvh] sm:w-[calc(100%-2rem)] sm:h-auto sm:max-h-[90vh] rounded-none sm:rounded-2xl border-0 shadow-none sm:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] p-0 gap-0 bg-white overflow-y-auto overflow-x-hidden inset-0 sm:inset-auto sm:left-[50%] sm:top-[50%] translate-x-0 translate-y-0 sm:translate-x-[-50%] sm:translate-y-[-50%]">
           <div className="flex flex-col min-h-full">
             {/* Header */}
             <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm px-8 pt-8 pb-2">
