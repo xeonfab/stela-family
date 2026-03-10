@@ -852,22 +852,6 @@ const MemorialAdmin = () => {
 
         {/* ─── Top bar ─── */}
         <header className="relative z-10 py-4 px-6 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setHeroEditOpen(true)}
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 transition-colors bg-[#FBF9F6]/10"
-              aria-label="Modifier le profil"
-            >
-              <Pencil size={16} className="text-[#FBF9F6]/70" />
-            </button>
-            <button
-              onClick={() => setShareModalOpen(true)}
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 transition-colors bg-[#FBF9F6]/10"
-              aria-label="Partager"
-            >
-              <Share2 size={16} className="text-[#FBF9F6]/70" />
-            </button>
-          </div>
           <Sheet>
             <SheetTrigger asChild>
               <button className="w-9 h-9 flex items-center justify-center rounded-full border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 transition-colors bg-[#FBF9F6]/10">
@@ -896,6 +880,22 @@ const MemorialAdmin = () => {
               </nav>
             </SheetContent>
           </Sheet>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setHeroEditOpen(true)}
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 transition-colors bg-[#FBF9F6]/10"
+              aria-label="Modifier le profil"
+            >
+              <Pencil size={16} className="text-[#FBF9F6]/70" />
+            </button>
+            <button
+              onClick={() => setShareModalOpen(true)}
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 transition-colors bg-[#FBF9F6]/10"
+              aria-label="Partager"
+            >
+              <Share2 size={16} className="text-[#FBF9F6]/70" />
+            </button>
+          </div>
         </header>
 
         {/* ─── Sacred Header with Editable Fields ─── */}
