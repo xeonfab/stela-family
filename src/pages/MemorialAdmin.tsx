@@ -861,10 +861,7 @@ const MemorialAdmin = () => {
               <Pencil size={16} className="text-[#FBF9F6]/70" />
             </button>
             <button
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.origin + "/memorial");
-                toast("Lien copié !", { style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });
-              }}
+              onClick={() => setShareModalOpen(true)}
               className="w-9 h-9 flex items-center justify-center rounded-full border border-[#FBF9F6]/20 hover:border-[#FBF9F6]/40 transition-colors bg-[#FBF9F6]/10"
               aria-label="Partager"
             >
