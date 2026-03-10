@@ -700,9 +700,25 @@ const Memorial = () => {
       </div>
 
       {/* ─── Dark Hero Section (Brun Noyer) ─── */}
-      <div className="w-full bg-[#1d2a24]">
+      <div
+        className="w-full relative"
+        style={{
+          background: "radial-gradient(ellipse at 50% 0%, #2a3d33 0%, #1d2a24 55%, #161f1b 100%)"
+        }}
+      >
+        {/* Subtle noise texture overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none mix-blend-overlay"
+          style={{
+            opacity: 0.035,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundRepeat: "repeat",
+            backgroundSize: "128px 128px"
+          }}
+        />
+
         {/* ─── Top bar ─── */}
-        <header className="py-4 px-6 flex items-center justify-between">
+        <header className="relative z-10 py-4 px-6 flex items-center justify-between">
           <button
             onClick={() => setShareModalOpen(true)}
             className="flex items-center gap-1.5 text-sm text-[#FBF9F6]/60 hover:text-[#D4AF37] transition-colors">
@@ -713,7 +729,7 @@ const Memorial = () => {
         </header>
 
         {/* ─── Sacred Header ─── */}
-        <section className="pt-8 pb-16 px-6 text-center">
+        <section className="relative z-10 pt-8 pb-16 px-6 text-center">
           <div className="mx-auto w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-[#FBF9F6]/80 shadow-[0_0_60px_-10px_rgba(212,175,55,0.15)] mb-8">
             <img src={portraitImg} alt="Jean-Claude Dubois" className="w-full h-full object-cover" />
           </div>
