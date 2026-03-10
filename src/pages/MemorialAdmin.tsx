@@ -583,7 +583,7 @@ const BiographyModal = ({ open, onOpenChange }: {open: boolean;onOpenChange: (v:
                 <button
                   onClick={handlePolish}
                   disabled={isPolishing || !text.trim()}
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
+                  className={`w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
                     isPolishing
                       ? "bg-[#D4AF37]/10 text-[#D4AF37] animate-pulse cursor-wait"
                       : text.trim()
