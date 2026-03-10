@@ -787,10 +787,10 @@ const MemorialAdmin = () => {
   const [intimateMemories, setIntimateMemories] = useState<Memory[]>([]);
   const [heroEditOpen, setHeroEditOpen] = useState(false);
   const [heroName, setHeroName] = useState("Jean-Claude Dubois");
-  const [heroBirthYear, setHeroBirthYear] = useState("1948");
-  const [heroDeathYear, setHeroDeathYear] = useState(new Date().getFullYear().toString());
-  const heroDates = `${heroBirthYear} — ${heroDeathYear}`;
-  const [heroCitation, setHeroCitation] = useState("« Il cultivait son jardin comme il cultivait ses amitiés\u00a0: avec patience, lumière et amour. »");
+  const [heroBirthDate, setHeroBirthDate] = useState<Date | undefined>(new Date(1948, 2, 15));
+  const [heroDeathDate, setHeroDeathDate] = useState<Date | undefined>(new Date(2024, 0, 10));
+  const heroDates = `${heroBirthDate ? format(heroBirthDate, "dd/MM/yyyy") : "?"} — ${heroDeathDate ? format(heroDeathDate, "dd/MM/yyyy") : "?"}`;
+  const heroDatesShort = `${heroBirthDate ? heroBirthDate.getFullYear() : "?"} — ${heroDeathDate ? heroDeathDate.getFullYear() : "?"}`;
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
