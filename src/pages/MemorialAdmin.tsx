@@ -955,12 +955,54 @@ const MemorialAdmin = () => {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <Label className="text-xs text-stone-500 uppercase tracking-wider">Année de naissance</Label>
-                  <Input type="number" value={heroBirthYear} onChange={(e) => setHeroBirthYear(e.target.value)} className="bg-white border-stone-200" placeholder="1948" />
+                  <Label className="text-xs text-stone-500 uppercase tracking-wider">Date de naissance</Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button className="w-full flex items-center gap-2 px-3 py-2 rounded-md border border-stone-200 bg-white text-sm text-left hover:border-stone-300 transition-colors">
+                        <CalendarIcon size={14} className="text-stone-400 shrink-0" />
+                        <span className={heroBirthDate ? "text-stone-800" : "text-stone-400"}>
+                          {heroBirthDate ? format(heroBirthDate, "dd/MM/yyyy") : "JJ/MM/AAAA"}
+                        </span>
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={heroBirthDate}
+                        onSelect={setHeroBirthDate}
+                        locale={fr}
+                        captionLayout="dropdown-buttons"
+                        fromYear={1900}
+                        toYear={new Date().getFullYear()}
+                        className="p-3 pointer-events-auto"
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
                 <div className="space-y-1.5">
-                  <Label className="text-xs text-stone-500 uppercase tracking-wider">Année du décès</Label>
-                  <Input type="number" value={heroDeathYear} onChange={(e) => setHeroDeathYear(e.target.value)} className="bg-white border-stone-200" placeholder={new Date().getFullYear().toString()} />
+                  <Label className="text-xs text-stone-500 uppercase tracking-wider">Date du décès</Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button className="w-full flex items-center gap-2 px-3 py-2 rounded-md border border-stone-200 bg-white text-sm text-left hover:border-stone-300 transition-colors">
+                        <CalendarIcon size={14} className="text-stone-400 shrink-0" />
+                        <span className={heroDeathDate ? "text-stone-800" : "text-stone-400"}>
+                          {heroDeathDate ? format(heroDeathDate, "dd/MM/yyyy") : "JJ/MM/AAAA"}
+                        </span>
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={heroDeathDate}
+                        onSelect={setHeroDeathDate}
+                        locale={fr}
+                        captionLayout="dropdown-buttons"
+                        fromYear={1900}
+                        toYear={new Date().getFullYear()}
+                        className="p-3 pointer-events-auto"
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </div>
               </div>
               <div className="space-y-1.5">
