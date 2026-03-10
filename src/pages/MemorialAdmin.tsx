@@ -835,7 +835,7 @@ const MemorialAdmin = () => {
         <GuardianBanner />
 
         {/* ─── Top bar ─── */}
-        <header className="py-4 px-6 flex items-center justify-between">
+        <header className="relative z-10 py-4 px-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <button
               onClick={() => setHeroEditOpen(true)}
