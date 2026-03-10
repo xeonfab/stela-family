@@ -416,7 +416,7 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                                         }
                                       }, 50);
                                     }}
-                                    className="whitespace-nowrap shrink-0 text-[12px] text-stone-500 border border-[#EAEAEA] rounded-full px-3.5 py-1.5 hover:bg-[#F5F5F4] hover:text-stone-700 transition-colors bg-white"
+                                    className="text-[12px] text-stone-500 border border-[#EAEAEA] rounded-full px-3.5 py-1.5 hover:bg-[#F5F5F4] hover:text-stone-700 transition-colors bg-white"
                                   >
                                     {chip.label}
                                   </button>
