@@ -578,12 +578,12 @@ const BiographyModal = ({ open, onOpenChange }: {open: boolean;onOpenChange: (v:
               />
 
               {/* AI Toolbar */}
-              <div className="bg-stone-100/80 rounded-xl p-3 flex items-center justify-between gap-3">
-                <span className="text-xs text-stone-400 font-medium tracking-wide uppercase hidden sm:block">Outils IA</span>
+              <div className="flex">
+
                 <button
                   onClick={handlePolish}
                   disabled={isPolishing || !text.trim()}
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
+                  className={`w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
                     isPolishing
                       ? "bg-[#D4AF37]/10 text-[#D4AF37] animate-pulse cursor-wait"
                       : text.trim()
