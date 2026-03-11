@@ -1219,6 +1219,7 @@ const MemorialAdmin = () => {
       <AddMemoryModal open={memoryModalOpen} onOpenChange={setMemoryModalOpen} />
       <BiographyModal open={biographyModalOpen} onOpenChange={setBiographyModalOpen} />
       <ChapterModal open={chapterModalOpen} onOpenChange={setChapterModalOpen} />
+      <PinToHistoryModal open={pinModalOpen} onOpenChange={setPinModalOpen} />
 
       {/* Footer */}
       <div className="text-center py-8">
