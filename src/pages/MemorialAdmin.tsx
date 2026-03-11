@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2, Share2, Sparkles, Smartphone, Mail, LinkIcon, Copy, Check, Eye, ChevronRight, CalendarIcon } from "lucide-react";
+import { Play, Feather, Heart, Quote, Music, Camera, BookOpen, Clock, ArrowLeft, MessageCircle, X, Pencil, Download, Lock, Menu, BookOpenCheck, Settings, PenLine, Mic, ImagePlus, MoreHorizontal, Trash2, Share2, Sparkles, Smartphone, Mail, LinkIcon, Copy, Check, Eye, ChevronRight, CalendarIcon, Pin } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -377,8 +377,98 @@ const SonHistoireTab = ({ onOpenBiography }: { onOpenBiography: () => void }) =>
 
 };
 
+/* ─── Pin to History Modal ─── */
+const PinToHistoryModal = ({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) => {
+  const [title, setTitle] = useState("");
+  const [dateValue, setDateValue] = useState("");
+
+  const handleDateInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let v = e.target.value.replace(/[^\d]/g, "");
+    if (v.length > 8) v = v.slice(0, 8);
+    if (v.length >= 5) v = v.slice(0, 2) + "/" + v.slice(2, 4) + "/" + v.slice(4);
+    else if (v.length >= 3) v = v.slice(0, 2) + "/" + v.slice(2);
+    setDateValue(v);
+  };
+
+  const handleSubmit = () => {
+    if (!title.trim() || dateValue.length < 10) return;
+    toast("Souvenir épinglé dans son histoire.", {
+      style: { background: "#FAF9F6", border: "1px solid rgba(212,175,55,0.2)", color: "#57534e", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" }
+    });
+    setTitle("");
+    setDateValue("");
+    onOpenChange(false);
+  };
+
+  const handleClose = (v: boolean) => {
+    if (!v) { setTitle(""); setDateValue(""); }
+    onOpenChange(v);
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={handleClose}>
+      <DialogContent className="sm:max-w-md w-full max-sm:h-screen max-sm:w-screen max-sm:max-w-none max-sm:rounded-none max-sm:flex max-sm:flex-col max-sm:justify-center rounded-2xl border-0 sm:border border-stone-200/60 bg-[#FAF9F6] p-0 [&>button]:hidden">
+        <div className="p-6 space-y-6">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <DialogTitle className="font-serif text-xl text-stone-800">Épingler à son histoire</DialogTitle>
+            <button onClick={() => handleClose(false)} className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-stone-100 transition-colors">
+              <X size={18} className="text-stone-400" />
+            </button>
+          </div>
+
+          {/* Description */}
+          <p className="text-sm text-stone-400 leading-relaxed">
+            Associez une date et un titre à ce souvenir pour l'ajouter à la chronologie de sa vie.
+          </p>
+
+          {/* Form */}
+          <div className="space-y-5">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-stone-600">Titre de l'événement</Label>
+              <Input
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="ex: Mariage, Naissance de Léo, Premier voyage..."
+                className="bg-white border-stone-200/70 rounded-xl h-11 text-sm text-stone-700 placeholder:text-stone-400/60 focus-visible:ring-1 focus-visible:ring-[#D4AF37]/30 focus-visible:border-[#D4AF37]/20"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-stone-600">Date de l'événement</Label>
+              <Input
+                value={dateValue}
+                onChange={handleDateInput}
+                placeholder="JJ/MM/AAAA"
+                maxLength={10}
+                className="bg-white border-stone-200/70 rounded-xl h-11 text-sm text-stone-700 placeholder:text-stone-400/60 focus-visible:ring-1 focus-visible:ring-[#D4AF37]/30 focus-visible:border-[#D4AF37]/20"
+              />
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="flex items-center justify-end gap-3 pt-2">
+            <button
+              onClick={() => handleClose(false)}
+              className="px-5 py-2.5 text-sm font-medium text-stone-400 hover:text-stone-600 transition-colors rounded-full"
+            >
+              Annuler
+            </button>
+            <button
+              onClick={handleSubmit}
+              disabled={!title.trim() || dateValue.length < 10}
+              className="px-6 py-2.5 text-sm font-semibold text-white rounded-full btn-gold-jewel disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+            >
+              Épingler
+            </button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
 /* ─── Admin options menu for memory cards ─── */
-const AdminCardMenu = ({ author, onHide, onDelete }: {author: string;onHide: () => void;onDelete: () => void;}) =>
+const AdminCardMenu = ({ author, onHide, onDelete, onPin }: {author: string;onHide: () => void;onDelete: () => void;onPin: () => void;}) =>
 <DropdownMenu>
     <DropdownMenuTrigger asChild>
       <button
@@ -389,6 +479,10 @@ const AdminCardMenu = ({ author, onHide, onDelete }: {author: string;onHide: () 
       </button>
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" className="min-w-[180px] bg-white/95 backdrop-blur-sm border border-stone-100 rounded-xl shadow-lg p-1">
+      <DropdownMenuItem onClick={(e) => {e.stopPropagation();onPin();}} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-stone-600 rounded-lg cursor-pointer">
+        <Pin size={14} className="text-stone-400" />
+        Épingler dans son histoire
+      </DropdownMenuItem>
       <DropdownMenuItem onClick={(e) => {e.stopPropagation();onHide();}} className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-stone-600 rounded-lg cursor-pointer">
         <Lock size={14} className="text-stone-400" />
         Rendre intime
@@ -402,8 +496,8 @@ const AdminCardMenu = ({ author, onHide, onDelete }: {author: string;onHide: () 
 
 
 /* ─── Render a single memory card ─── */
-const MemoryCard = ({ memory, onClick, isAdmin = false, onHide, onDelete }: {memory: Memory;onClick: () => void;isAdmin?: boolean;onHide?: () => void;onDelete?: () => void;}) => {
-  const adminMenu = isAdmin && onHide && onDelete ? <AdminCardMenu author={memory.author} onHide={onHide} onDelete={onDelete} /> : null;
+const MemoryCard = ({ memory, onClick, isAdmin = false, onHide, onDelete, onPin }: {memory: Memory;onClick: () => void;isAdmin?: boolean;onHide?: () => void;onDelete?: () => void;onPin?: () => void;}) => {
+  const adminMenu = isAdmin && onHide && onDelete && onPin ? <AdminCardMenu author={memory.author} onHide={onHide} onDelete={onDelete} onPin={onPin} /> : null;
 
   if (memory.type === "photo") {
     return (
@@ -783,6 +877,7 @@ const MemorialAdmin = () => {
   const [isEmpty, setIsEmpty] = useState(true);
   const [biographyModalOpen, setBiographyModalOpen] = useState(false);
   const [chapterModalOpen, setChapterModalOpen] = useState(false);
+  const [pinModalOpen, setPinModalOpen] = useState(false);
   const [publicMemories, setPublicMemories] = useState<Memory[]>(memories);
   const [intimateMemories, setIntimateMemories] = useState<Memory[]>([]);
   const [heroEditOpen, setHeroEditOpen] = useState(false);
@@ -1073,7 +1168,8 @@ const MemorialAdmin = () => {
                   onDelete={() => {
                     setPublicMemories((prev) => prev.filter((_, i) => i !== idx));
                     toast(`Le souvenir de ${memory.author} a été supprimé.`, { style: { background: "#FAF9F6", border: "1px solid rgba(140,69,19,0.15)", color: "#8B4513", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });
-                  }} />
+                    }}
+                    onPin={() => setPinModalOpen(true)} />
 
                 )}
                 </div>
@@ -1123,6 +1219,7 @@ const MemorialAdmin = () => {
       <AddMemoryModal open={memoryModalOpen} onOpenChange={setMemoryModalOpen} />
       <BiographyModal open={biographyModalOpen} onOpenChange={setBiographyModalOpen} />
       <ChapterModal open={chapterModalOpen} onOpenChange={setChapterModalOpen} />
+      <PinToHistoryModal open={pinModalOpen} onOpenChange={setPinModalOpen} />
 
       {/* Footer */}
       <div className="text-center py-8">
