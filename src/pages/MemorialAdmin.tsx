@@ -961,25 +961,72 @@ const MemorialAdmin = () => {
                 <Menu size={18} className="text-[#FBF9F6]/70" />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-[#FAFAFA] border-l border-stone-200/60 w-72 p-0">
+            <SheetContent side="left" className="bg-[#FAF9F6] border-r border-stone-200/40 w-80 p-0 flex flex-col [&>button]:hidden">
               <SheetTitle className="sr-only">Menu administrateur</SheetTitle>
-              <nav className="flex flex-col justify-center h-full px-10 gap-8">
-                <Link to="/kit-ceremonie" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
-                  <BookOpenCheck size={20} strokeWidth={1.5} />
-                  Kit de Cérémonie
-                </Link>
-                <Link to="/profil" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
-                  <Settings size={20} strokeWidth={1.5} />
-                  Mon Profil
-                </Link>
-                <Link to="/acces" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
-                  <Settings size={20} strokeWidth={1.5} />
-                  Gestion des Accès
-                </Link>
-                <Link to="/confidentialite" className="font-serif text-2xl text-[#2C2C2C] hover:text-[#D4AF37] transition-colors flex items-center gap-3">
-                  <Settings size={20} strokeWidth={1.5} />
-                  Confidentialité
-                </Link>
+
+              {/* Custom close button */}
+              <button onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))} className="absolute top-5 right-5 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-stone-100/80 hover:bg-stone-200/80 transition-colors">
+                <X size={16} className="text-stone-500" />
+              </button>
+
+              {/* ─── Memorial Selector ─── */}
+              <div className="px-6 pt-8 pb-2">
+                <Collapsible>
+                  <CollapsibleTrigger className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-stone-100/60 hover:bg-stone-100 transition-colors text-left">
+                    <Avatar className="w-8 h-8 border border-stone-200/60">
+                      <AvatarImage src={portraitImg} alt="Jean-Claude Dubois" />
+                      <AvatarFallback className="text-xs bg-stone-200 text-stone-600">JC</AvatarFallback>
+                    </Avatar>
+                    <span className="flex-1 font-serif text-sm font-semibold text-stone-800 truncate">Jean-Claude Dubois</span>
+                    <ChevronDown size={14} className="text-stone-400 shrink-0" />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="mt-2 rounded-xl bg-stone-100/40 overflow-hidden">
+                    <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-stone-100 transition-colors text-left">
+                      <Avatar className="w-7 h-7 border border-stone-200/60">
+                        <AvatarFallback className="text-xs bg-stone-200 text-stone-500">MD</AvatarFallback>
+                      </Avatar>
+                      <span className="text-sm text-stone-600">Marie Dubois</span>
+                    </button>
+                    <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-stone-100 transition-colors text-left border-t border-stone-200/40">
+                      <div className="w-7 h-7 rounded-full border border-dashed border-stone-300 flex items-center justify-center">
+                        <Plus size={12} className="text-stone-400" />
+                      </div>
+                      <span className="text-sm text-stone-500">Créer un nouveau mémorial</span>
+                    </button>
+                  </CollapsibleContent>
+                </Collapsible>
+              </div>
+
+              <div className="px-6 py-3">
+                <Separator className="bg-stone-200/50" />
+              </div>
+
+              {/* ─── Navigation Links ─── */}
+              <nav className="flex-1 px-6 flex flex-col">
+                <div className="space-y-1">
+                  <Link to="/kit-ceremonie" className="flex items-center gap-3.5 px-4 py-3 rounded-xl text-stone-700 hover:bg-stone-100/70 hover:text-stone-900 transition-colors group">
+                    <BookOpen size={18} strokeWidth={1.5} className="text-stone-500 group-hover:text-stone-700 transition-colors" />
+                    <span className="text-[15px] font-medium">Kit de Cérémonie</span>
+                  </Link>
+                  <Link to="/acces" className="flex items-center gap-3.5 px-4 py-3 rounded-xl text-stone-700 hover:bg-stone-100/70 hover:text-stone-900 transition-colors group">
+                    <Users size={18} strokeWidth={1.5} className="text-stone-500 group-hover:text-stone-700 transition-colors" />
+                    <span className="text-[15px] font-medium">Gestion des Accès</span>
+                  </Link>
+                  <Link to="/confidentialite" className="flex items-center gap-3.5 px-4 py-3 rounded-xl text-stone-700 hover:bg-stone-100/70 hover:text-stone-900 transition-colors group">
+                    <Shield size={18} strokeWidth={1.5} className="text-stone-500 group-hover:text-stone-700 transition-colors" />
+                    <span className="text-[15px] font-medium">Confidentialité</span>
+                  </Link>
+                </div>
+
+                {/* Spacer + Mon Profil at bottom */}
+                <div className="flex-1" />
+                <div className="pb-8">
+                  <Separator className="bg-stone-200/50 mb-4" />
+                  <Link to="/profil" className="flex items-center gap-3.5 px-4 py-3 rounded-xl text-stone-700 hover:bg-stone-100/70 hover:text-stone-900 transition-colors group">
+                    <User size={18} strokeWidth={1.5} className="text-stone-500 group-hover:text-stone-700 transition-colors" />
+                    <span className="text-[15px] font-medium">Mon Profil</span>
+                  </Link>
+                </div>
               </nav>
             </SheetContent>
           </Sheet>
