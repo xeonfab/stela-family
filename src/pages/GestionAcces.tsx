@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import { toast } from "sonner";
+import AdminSidebar from "@/components/AdminSidebar";
 
 const fakeUsers = [
   { name: "Marie Dubois", email: "marie.dubois@email.com", role: "Garant (Admin)" },
@@ -23,14 +22,8 @@ const GestionAcces = () => {
 
   return (
     <div className="min-h-screen bg-[#FAFAFA]">
-      <header className="py-6 px-6">
-        <Link
-          to="/memorial-admin"
-          className="inline-flex items-center gap-2 text-sm text-stone-400 hover:text-stone-600 transition-colors"
-        >
-          <ArrowLeft size={16} />
-          <span>Retour au sanctuaire</span>
-        </Link>
+      <header className="py-4 px-6">
+        <AdminSidebar />
       </header>
 
       <div className="max-w-xl mx-auto px-6 pb-20">
