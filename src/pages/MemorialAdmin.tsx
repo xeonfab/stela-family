@@ -496,8 +496,8 @@ const AdminCardMenu = ({ author, onHide, onDelete, onPin }: {author: string;onHi
 
 
 /* ─── Render a single memory card ─── */
-const MemoryCard = ({ memory, onClick, isAdmin = false, onHide, onDelete }: {memory: Memory;onClick: () => void;isAdmin?: boolean;onHide?: () => void;onDelete?: () => void;}) => {
-  const adminMenu = isAdmin && onHide && onDelete ? <AdminCardMenu author={memory.author} onHide={onHide} onDelete={onDelete} /> : null;
+const MemoryCard = ({ memory, onClick, isAdmin = false, onHide, onDelete, onPin }: {memory: Memory;onClick: () => void;isAdmin?: boolean;onHide?: () => void;onDelete?: () => void;onPin?: () => void;}) => {
+  const adminMenu = isAdmin && onHide && onDelete && onPin ? <AdminCardMenu author={memory.author} onHide={onHide} onDelete={onDelete} onPin={onPin} /> : null;
 
   if (memory.type === "photo") {
     return (
