@@ -1,5 +1,5 @@
-import { ArrowLeft, Download, Share2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Download, Share2 } from "lucide-react";
+import AdminSidebar from "@/components/AdminSidebar";
 import chevaletImg from "@/assets/ceremony-chevalet.png";
 import lettreImg from "@/assets/ceremony-lettre.png";
 import whatsappImg from "@/assets/ceremony-whatsapp.png";
@@ -31,18 +31,10 @@ const cards = [
 const KitCeremonie = () => {
   return (
     <div className="min-h-screen bg-[#FAFAFA]">
-      {/* Header */}
-      <header className="py-6 px-6">
-        <Link
-          to="/memorial-admin"
-          className="inline-flex items-center gap-2 text-sm text-stone-400 hover:text-stone-600 transition-colors"
-        >
-          <ArrowLeft size={16} />
-          <span>Retour au sanctuaire</span>
-        </Link>
+      <header className="py-4 px-6">
+        <AdminSidebar />
       </header>
 
-      {/* Content */}
       <div className="max-w-xl mx-auto px-6 pb-20">
         <div className="text-center mb-12">
           <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#2C2C2C] mb-3">

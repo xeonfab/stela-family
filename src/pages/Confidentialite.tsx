@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ArrowLeft, Link2, ShieldCheck } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link2, ShieldCheck } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
+import AdminSidebar from "@/components/AdminSidebar";
 
 const Confidentialite = () => {
   const [pinProtection, setPinProtection] = useState(false);
@@ -10,14 +10,8 @@ const Confidentialite = () => {
 
   return (
     <div className="min-h-screen bg-[#FAFAFA]">
-      <header className="py-6 px-6">
-        <Link
-          to="/memorial-admin"
-          className="inline-flex items-center gap-2 text-sm text-stone-400 hover:text-stone-600 transition-colors"
-        >
-          <ArrowLeft size={16} />
-          <span>Retour au sanctuaire</span>
-        </Link>
+      <header className="py-4 px-6">
+        <AdminSidebar />
       </header>
 
       <div className="max-w-xl mx-auto px-6 pb-20">
@@ -28,7 +22,6 @@ const Confidentialite = () => {
         </div>
 
         <div className="bg-white rounded-2xl border border-stone-200/60 p-6 space-y-5">
-          {/* Option 1: Secret link */}
           <div className="flex items-start gap-4">
             <div className="mt-0.5 w-9 h-9 rounded-full bg-[#D4AF37]/10 flex items-center justify-center shrink-0">
               <Link2 size={16} className="text-[#D4AF37]" />
@@ -48,7 +41,6 @@ const Confidentialite = () => {
 
           <div className="h-px bg-stone-100" />
 
-          {/* Option 2: PIN protection */}
           <div className="space-y-4">
             <div className="flex items-start gap-4">
               <div className="mt-0.5 w-9 h-9 rounded-full bg-stone-50 flex items-center justify-center shrink-0">
