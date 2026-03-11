@@ -877,6 +877,7 @@ const MemorialAdmin = () => {
   const [isEmpty, setIsEmpty] = useState(true);
   const [biographyModalOpen, setBiographyModalOpen] = useState(false);
   const [chapterModalOpen, setChapterModalOpen] = useState(false);
+  const [pinModalOpen, setPinModalOpen] = useState(false);
   const [publicMemories, setPublicMemories] = useState<Memory[]>(memories);
   const [intimateMemories, setIntimateMemories] = useState<Memory[]>([]);
   const [heroEditOpen, setHeroEditOpen] = useState(false);
