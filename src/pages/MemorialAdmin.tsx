@@ -19,6 +19,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
+import AdminSidebar from "@/components/AdminSidebar";
 import portraitImg from "@/assets/jean-claude-portrait-new.jpg";
 import couplePhoto from "@/assets/jc-couple-70s.jpg";
 import jcGardening from "@/assets/jc-gardening.jpg";
