@@ -213,11 +213,11 @@ const MemoryDetailModal = ({ memory, open, onOpenChange }: {memory: Memory | nul
   if (!memory) return null;
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg bg-[#FAF9F6] border-stone-200 rounded-2xl p-0 overflow-hidden">
+      <DialogContent className="max-w-2xl bg-[#FAF9F6] border-stone-200 rounded-2xl p-0 overflow-hidden">
         <DialogTitle className="sr-only">{memory.title || memory.author}</DialogTitle>
         {(memory.type === "photo" || memory.type === "video") && memory.image &&
         <div className="relative">
-            <img src={memory.image} alt={memory.title || memory.text || ""} className="w-full max-h-72 object-cover" />
+            <img src={memory.image} alt={memory.title || memory.text || ""} className="w-full max-h-[28rem] object-cover" />
             {memory.type === "video" &&
           <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                 <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-lg">
@@ -225,6 +225,19 @@ const MemoryDetailModal = ({ memory, open, onOpenChange }: {memory: Memory | nul
                 </div>
               </div>
           }
+            {memory.type === "photo" && <>
+              <button className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center hover:bg-white/90 transition-colors shadow-sm" aria-label="Photo précédente">
+                <ChevronLeft size={16} className="text-stone-700" />
+              </button>
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center hover:bg-white/90 transition-colors shadow-sm" aria-label="Photo suivante">
+                <ChevronRight size={16} className="text-stone-700" />
+              </button>
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
+                {[0, 1, 2, 3].map((i) => (
+                  <span key={i} className={`w-2 h-2 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'}`} />
+                ))}
+              </div>
+            </>}
           </div>
         }
         <div className="p-8 space-y-4">
