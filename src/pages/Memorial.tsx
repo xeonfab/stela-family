@@ -788,7 +788,7 @@ const Memorial = () => {
 
       {/* ─── Share Modal ─── */}
       <Dialog open={shareModalOpen} onOpenChange={(v) => { setShareModalOpen(v); if (!v) { setCopied(false); setPreviewOpen(false); } }}>
-        <DialogContent className="sm:max-w-lg max-sm:h-screen max-sm:max-h-screen max-sm:w-screen max-sm:max-w-none max-sm:rounded-none max-sm:border-none max-sm:flex max-sm:flex-col max-sm:justify-center bg-background border-border rounded-2xl p-0 gap-0 overflow-hidden [&>button]:z-20 [&>button]:bg-background/80 [&>button]:backdrop-blur-sm [&>button]:shadow-md">
+        <DialogContent className="sm:max-w-lg max-sm:h-screen max-sm:max-h-screen max-sm:w-screen max-sm:max-w-none max-sm:rounded-none max-sm:border-none max-sm:flex max-sm:flex-col max-sm:justify-center bg-background border-border rounded-2xl p-0 gap-0 overflow-hidden [&>button]:hidden">
           <DialogTitle className="sr-only">Partager ce mémorial</DialogTitle>
           
           {/* Modern header — blurred photo bg + glass overlay */}
@@ -798,6 +798,14 @@ const Memorial = () => {
               <img src={portraitImg} alt="" className="w-full h-full object-cover scale-110 blur-2xl opacity-30" />
               <div className="absolute inset-0 bg-background/60 backdrop-blur-sm" />
             </div>
+            {/* Custom close button */}
+            <button
+              onClick={() => setShareModalOpen(false)}
+              className="absolute top-3 right-3 z-30 flex h-8 w-8 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm text-muted-foreground shadow-md hover:bg-background hover:text-foreground transition-colors"
+            >
+              <X className="h-5 w-5" />
+              <span className="sr-only">Fermer</span>
+            </button>
             
             <div className="relative flex flex-col items-center pt-7 pb-6 px-6">
               <div className="w-[68px] h-[68px] rounded-full overflow-hidden ring-2 ring-primary/20 ring-offset-2 ring-offset-background shadow-md">
