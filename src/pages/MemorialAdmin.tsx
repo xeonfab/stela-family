@@ -1168,7 +1168,8 @@ const MemorialAdmin = () => {
                   onDelete={() => {
                     setPublicMemories((prev) => prev.filter((_, i) => i !== idx));
                     toast(`Le souvenir de ${memory.author} a été supprimé.`, { style: { background: "#FAF9F6", border: "1px solid rgba(140,69,19,0.15)", color: "#8B4513", fontFamily: "Inter, sans-serif", fontSize: "0.875rem" } });
-                  }} />
+                    }}
+                    onPin={() => setPinModalOpen(true)} />
 
                 )}
                 </div>
