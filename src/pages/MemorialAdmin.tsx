@@ -476,9 +476,8 @@ const AdminCardMenu = ({ author, onHide, onDelete, onPin }: {author: string;onHi
     <DropdownMenuTrigger asChild>
       <button
       onClick={(e) => e.stopPropagation()}
-      className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm border border-stone-100 flex items-center justify-center hover:bg-white transition-colors">
-      
-        <MoreHorizontal size={15} className="text-stone-400" />
+      className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center hover:bg-black/30 transition-colors">
+        <MoreHorizontal size={20} className="text-white drop-shadow-sm" />
       </button>
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" className="min-w-[180px] bg-white/95 backdrop-blur-sm border border-stone-100 rounded-xl shadow-lg p-1">
