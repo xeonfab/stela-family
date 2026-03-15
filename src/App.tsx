@@ -23,6 +23,7 @@ import DashboardB2B from "./pages/DashboardB2B";
 import InvitationVIP from "./pages/InvitationVIP";
 import Connexion from "./pages/Connexion";
 import MesSanctuaires from "./pages/MesSanctuaires";
+import CapaciteHeritage from "./pages/CapaciteHeritage";
 
 const queryClient = new QueryClient();
 
