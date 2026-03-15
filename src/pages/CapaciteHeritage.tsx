@@ -156,6 +156,38 @@ const CapaciteHeritage = () => {
           </Button>
         </section>
 
+        {/* ─── 5. Archive Numérique ─── */}
+        <Separator className="bg-stone-200/60" />
+
+        <section className="space-y-4 text-center pb-4">
+          <h2 className="font-serif text-lg text-stone-700 tracking-tight">
+            Votre mémoire vous appartient
+          </h2>
+          <p className="text-sm text-stone-400 leading-relaxed max-w-md mx-auto">
+            Parce que cet héritage est le vôtre, vous avez la possibilité de récupérer à tout moment
+            l'intégralité des témoignages, photos et vidéos déposés sur ce sanctuaire.
+            Nous préparerons un dossier complet pour vous.
+          </p>
+
+          {archiveRequested ? (
+            <div className="flex items-center justify-center gap-2 pt-2">
+              <CheckCircle size={16} strokeWidth={1.5} className="text-teal-400" />
+              <span className="text-sm text-teal-500">
+                Archive en préparation. Un lien sécurisé vous sera envoyé par e-mail d'ici quelques minutes.
+              </span>
+            </div>
+          ) : (
+            <Button
+              variant="ghost"
+              onClick={() => setArchiveRequested(true)}
+              className="text-stone-500 hover:text-stone-700 hover:bg-stone-100/60 text-sm gap-2 mt-1"
+            >
+              <DownloadCloud size={16} strokeWidth={1.5} />
+              Préparer mon archive (.zip)
+            </Button>
+          )}
+        </section>
+
         <div className="h-8" />
       </main>
     </div>
