@@ -1,6 +1,8 @@
-import { Lock, Play, ArrowLeft } from "lucide-react";
+import { Lock, Play, ArrowLeft, DownloadCloud, CheckCircle } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import AdminSidebar from "@/components/AdminSidebar";
 import hikingImg from "@/assets/jc-hiking.jpg";
 import gardeningImg from "@/assets/jc-gardening.jpg";
