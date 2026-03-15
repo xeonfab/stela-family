@@ -9,6 +9,7 @@ import gardeningImg from "@/assets/jc-gardening.jpg";
 import trumpetImg from "@/assets/jc-trumpet.jpg";
 
 const CapaciteHeritage = () => {
+  const [archiveRequested, setArchiveRequested] = useState(false);
   const used = 54;
   const total = 60;
   const percent = (used / total) * 100;
