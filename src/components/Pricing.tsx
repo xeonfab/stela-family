@@ -1,54 +1,48 @@
 import { Button } from "@/components/ui/button";
-import { Check, Lock, Shield } from "lucide-react";
+import { Lock } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 const plans = [
   {
     name: "L'Essentiel",
     price: "79€",
-    subtitle: "Le sanctuaire 100% numérique.",
+    subtitle: "L'espace de recueillement intime, 100% accessible.",
     features: [
-      { text: "Paiement unique (Aucun abonnement)", muted: false },
-      { text: "Accès permanent à l'espace de recueillement", muted: false },
-      { text: "Dépôt de photos, vidéos et anecdotes", muted: false },
-      { text: "Affiches et QR Codes pour la cérémonie (Prêt-à-imprimer)", muted: false },
-      { text: "Stèle physique non incluse", muted: true },
+      "Un lieu de mémoire personnel et partagé à vie.",
+      "Dépôt illimité de photos, vidéos et instants précieux.",
+      "Affiches de cérémonie et livret d'accueil élégants.",
+      "Un sanctuaire numérique complet, sans stèle physique.",
     ],
-    cta: "Créer le sanctuaire numérique",
+    cta: "Ouvrir ce sanctuaire",
     featured: false,
   },
   {
     name: "L'Édition Frêne",
     price: "199€",
-    subtitle: "Le sanctuaire numérique + La stèle en bois massif.",
+    subtitle: "La douceur du bois clair, le lien préservé.",
     features: [
-      { text: "Toutes les fonctions du sanctuaire numérique", muted: false },
-      { text: "Stèle minimaliste en Frêne clair (15×10 cm)", muted: false },
-      { text: "Puce NFC invisible intégrée", muted: false },
-      { text: "Gravure laser sur mesure (Nom, Prénom, Dates)", muted: false },
-      { text: "Livraison sécurisée à domicile", muted: false },
+      "Lien invisible : effleurez le bois pour ouvrir l'espace de recueillement.",
+      "Stèle minimaliste en Frêne clair massif (17 × 10 cm).",
+      "Gravure artisanale sur-mesure (Nom, Prénom, Dates).",
+      "Livré dans son coffret de remise premium.",
+      "Accès à vie à toutes les fonctions du sanctuaire.",
     ],
-    cta: "Commander l'Édition Frêne",
+    cta: "Personnaliser la stèle",
     featured: true,
   },
   {
     name: "L'Édition Signature",
     price: "249€",
-    subtitle: "Le sanctuaire numérique + La stèle en noyer.",
+    subtitle: "L'élégance absolue et la profondeur du Noyer.",
     features: [
-      { text: "Toutes les fonctions du sanctuaire numérique", muted: false },
-      { text: "Stèle minimaliste en Noyer massif (Finition huilée premium)", muted: false },
-      { text: "Puce NFC invisible intégrée", muted: false },
-      { text: "Gravure laser sur mesure", muted: false },
-      { text: "Livraison sécurisée à domicile", muted: false },
+      "Lien invisible : effleurez le bois pour ouvrir l'espace de recueillement.",
+      "Stèle minimaliste en Noyer massif sombre (17 × 10 cm).",
+      "Finition huilée premium.",
+      "Gravure artisanale sur-mesure.",
+      "Livré dans son coffret de remise premium.",
+      "Accès à vie à toutes les fonctions du sanctuaire.",
     ],
-    cta: "Commander l'Édition Noyer",
+    cta: "Personnaliser la stèle",
     featured: false,
   },
 ];
@@ -57,17 +51,17 @@ const Pricing = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section ref={ref} className="py-24 lg:py-32 bg-[hsl(40,33%,97%)]">
+    <section ref={ref} className="py-24 lg:py-32" style={{ background: '#F0EBE3' }}>
       <div
         className={`container mx-auto px-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       >
         {/* Header */}
         <div className="text-center mb-16 space-y-4">
-          <p className="text-muted-foreground font-sans-body uppercase tracking-widest text-sm">
+          <p className="font-sans-body uppercase tracking-[0.3em] text-sm" style={{ color: '#8A7D72' }}>
             Nos offres
           </p>
-          <h2 className="font-serif-display text-3xl md:text-4xl font-bold text-foreground">
-            Choisissez votre sanctuaire
+          <h2 className="font-serif-display text-3xl md:text-4xl lg:text-5xl font-bold" style={{ color: '#2C2C2C' }}>
+            Choisissez votre sanctuaire de mémoire
           </h2>
         </div>
 
@@ -76,37 +70,47 @@ const Pricing = () => {
           {plans.map((plan, i) => (
             <div
               key={i}
-              className={`relative rounded-3xl bg-card p-8 lg:p-10 text-center space-y-6 transition-all duration-300 ${
+              className={`relative rounded-2xl p-8 lg:p-10 text-center space-y-6 transition-all duration-300 ${
                 plan.featured
-                  ? "border border-primary/50 shadow-golden-glow md:-mt-4 md:pb-12 md:pt-10 z-10"
-                  : "border-[0.5px] border-border/60 shadow-sm"
+                  ? "md:-mt-4 md:pb-12 md:pt-10 z-10"
+                  : ""
               }`}
+              style={{
+                background: plan.featured ? '#FFFDF9' : '#FAF8F5',
+                border: plan.featured ? '1px solid #C5A66B' : '0.5px solid #D9D0C5',
+                boxShadow: plan.featured
+                  ? '0 8px 40px -8px rgba(197, 166, 107, 0.18), 0 2px 12px -2px rgba(0,0,0,0.04)'
+                  : '0 2px 8px -2px rgba(0,0,0,0.04)',
+              }}
             >
               {plan.featured && (
-                <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-semibold tracking-wider uppercase px-4 py-1 rounded-full">
+                <span
+                  className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-xs font-sans-body font-semibold tracking-[0.2em] uppercase px-5 py-1.5 rounded-full"
+                  style={{ background: '#C5A66B', color: '#FFFDF9' }}
+                >
                   Populaire
                 </span>
               )}
 
-              <h3 className="font-serif-display text-xl font-semibold text-foreground">
+              <h3 className="font-serif-display text-xl font-semibold" style={{ color: '#2C2C2C' }}>
                 {plan.name}
               </h3>
 
               <div>
-                <span className="font-serif-display text-5xl font-bold text-gradient-gold">
+                <span className="font-serif-display text-5xl font-bold" style={{ color: '#C5A66B' }}>
                   {plan.price}
                 </span>
               </div>
 
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="font-sans-body text-sm leading-relaxed italic" style={{ color: '#6B6159' }}>
                 {plan.subtitle}
               </p>
 
               <ul className="space-y-3 text-left mx-auto max-w-xs">
                 {plan.features.map((f, j) => (
-                  <li key={j} className={`flex items-start gap-3 text-sm ${f.muted ? "text-muted-foreground italic text-xs" : "text-foreground"}`}>
-                    <Check size={16} className={`shrink-0 mt-0.5 ${f.muted ? "text-muted-foreground/50" : "text-primary"}`} />
-                    <span>{f.text}</span>
+                  <li key={j} className="flex items-start gap-3 text-sm font-sans-body" style={{ color: '#3D3832' }}>
+                    <span className="shrink-0 mt-0.5" style={{ color: '#B8A88A' }}>—</span>
+                    <span>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -122,29 +126,9 @@ const Pricing = () => {
         </div>
 
         {/* Reassurance */}
-        <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm mt-12">
-          <Lock size={16} className="text-primary" />
-          <span>Paiements sécurisés. Données hébergées et protégées en France.</span>
-        </div>
-
-        {/* FAQ */}
-        <div className="max-w-2xl mx-auto mt-16">
-          <Accordion type="single" collapsible className="text-left">
-            <AccordionItem value="storage" className="border-border/40">
-              <AccordionTrigger className="font-serif-display font-medium text-foreground text-base hover:no-underline">
-                Quelle est la capacité du sanctuaire numérique ?
-              </AccordionTrigger>
-              <AccordionContent className="font-sans-body text-muted-foreground leading-relaxed text-sm">
-                Chaque espace est conçu pour accueillir généreusement les mémoires d'une vie : un nombre de textes illimité, jusqu'à 1 000 photos haute définition et 60 minutes de vidéo. Si l'élan de vos proches dépasse cette capacité, une extension vous sera proposée en douceur pour prolonger l'espace sans aucune contrainte.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-
-        {/* Guarantee */}
-        <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm mt-10">
-          <Shield size={16} />
-          <span>Prenez le temps de l'essayer. Garantie intégrale 30 jours.</span>
+        <div className="flex items-center justify-center gap-2 text-sm mt-12" style={{ color: '#8A7D72' }}>
+          <Lock size={16} style={{ color: '#C5A66B' }} />
+          <span className="font-sans-body">Paiements sécurisés. Vos souvenirs sont sanctuarisés et protégés en France.</span>
         </div>
       </div>
     </section>
