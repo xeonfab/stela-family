@@ -23,6 +23,7 @@ import DashboardB2B from "./pages/DashboardB2B";
 import InvitationVIP from "./pages/InvitationVIP";
 import Connexion from "./pages/Connexion";
 import MesSanctuaires from "./pages/MesSanctuaires";
+import CapaciteHeritage from "./pages/CapaciteHeritage";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ const App = () => (
           <Route path="/invitation" element={<InvitationVIP />} />
           <Route path="/connexion" element={<Connexion />} />
           <Route path="/mes-sanctuaires" element={<MesSanctuaires />} />
+          <Route path="/capacite" element={<CapaciteHeritage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

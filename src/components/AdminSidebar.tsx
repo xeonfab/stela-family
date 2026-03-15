@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Menu, X, BookOpen, Users, Shield, User, Plus, ChevronDown, Flower2 } from "lucide-react";
+import { Menu, X, BookOpen, Users, Shield, User, Plus, ChevronDown, Flower2, HardDrive } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -87,6 +87,10 @@ const AdminSidebar = ({ variant = "light" }: AdminSidebarProps) => {
             <Link to="/confidentialite" className="flex items-center gap-3.5 px-4 py-3 rounded-xl text-stone-700 hover:bg-stone-100/70 hover:text-stone-900 transition-colors group">
               <Shield size={18} strokeWidth={1.5} className="text-stone-500 group-hover:text-stone-700 transition-colors" />
               <span className="text-[15px] font-medium">Confidentialité</span>
+            </Link>
+            <Link to="/capacite" className="flex items-center gap-3.5 px-4 py-3 rounded-xl text-stone-700 hover:bg-stone-100/70 hover:text-stone-900 transition-colors group">
+              <HardDrive size={18} strokeWidth={1.5} className="text-stone-500 group-hover:text-stone-700 transition-colors" />
+              <span className="text-[15px] font-medium">Capacité & Héritage</span>
             </Link>
           </div>
 
