@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { LogOut } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 interface Sanctuary {
   id: string;
@@ -43,43 +41,44 @@ const mockSanctuaries: Sanctuary[] = [
   },
 ];
 
-const roleStyles: Record<Sanctuary["role"], string> = {
-  Garant: "bg-[#C5A66B]/10 text-[#C5A66B] border-[#C5A66B]/20",
-  Invité: "bg-[#8BAA91]/10 text-[#6B8F72] border-[#8BAA91]/20",
-  Officiant: "bg-[#A09484]/10 text-[#7A6E60] border-[#A09484]/20",
+const roleLabels: Record<Sanctuary["role"], string> = {
+  Garant: "Garant",
+  Invité: "Invité",
+  Officiant: "Officiant",
 };
 
 const MesSanctuaires = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    navigate("/connexion");
-  };
-
   return (
-    <div className="min-h-screen bg-[#F5F0EB]">
+    <div className="min-h-screen bg-[#FAFAFA]">
       {/* Navbar */}
-      <nav className="bg-white/80 backdrop-blur-md border-b border-[#E8E3DC] sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <span className="font-serif-display text-xl tracking-wide text-[#3A3A3A]">
-            Stela
-          </span>
+      <nav className="border-b border-stone-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+          <span className="font-serif-display text-2xl font-bold text-[#D4AF37]">S</span>
           <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 text-sm text-[#8A8478] hover:text-[#3A3A3A] transition-colors duration-300"
+            onClick={() => navigate("/connexion")}
+            className="flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-stone-400 hover:text-stone-600 transition-colors"
           >
-            <LogOut className="h-4 w-4" />
+            <LogOut className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">Déconnexion</span>
           </button>
         </div>
       </nav>
 
       {/* Content */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-        <h1 className="font-serif-display text-2xl md:text-3xl text-[#2C2C2C] mb-2">
+      <main className="max-w-4xl mx-auto px-6 py-12 md:py-16">
+        {/* Overline */}
+        <p className="text-center text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-medium mb-4">
+          Tableau de bord
+        </p>
+
+        {/* Title */}
+        <h1 className="font-serif-display text-3xl md:text-4xl text-[#2C2C2C] text-center leading-snug mb-3">
           Vos espaces de recueillement
         </h1>
-        <p className="text-[#8A8478] text-sm mb-10">
+
+        <p className="text-center text-[#666666] text-base leading-relaxed max-w-xl mx-auto mb-12">
           Retrouvez les sanctuaires auxquels vous avez accès.
         </p>
 
@@ -98,9 +97,9 @@ function SanctuaryCard({ sanctuary }: { sanctuary: Sanctuary }) {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white rounded-2xl border border-[#EBE7E0] shadow-[0_2px_16px_rgba(0,0,0,0.03)] p-8 flex flex-col items-center text-center hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-shadow duration-500">
+    <div className="border border-stone-100 shadow-sm rounded-2xl bg-white/80 p-8 flex flex-col items-center text-center hover:shadow-md transition-shadow duration-500">
       {/* Photo */}
-      <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-[#EBE7E0] mb-5">
+      <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-stone-100 mb-5">
         <img
           src={sanctuary.photo}
           alt={`${sanctuary.firstName} ${sanctuary.lastName}`}
@@ -114,26 +113,22 @@ function SanctuaryCard({ sanctuary }: { sanctuary: Sanctuary }) {
       </h2>
 
       {/* Dates */}
-      <p className="text-sm text-[#B5AD9E] mb-4">
+      <p className="text-sm text-stone-400 mb-4">
         {sanctuary.birthYear} — {sanctuary.deathYear}
       </p>
 
       {/* Role badge */}
-      <Badge
-        className={`mb-6 text-xs font-medium px-3 py-1 rounded-full border ${roleStyles[sanctuary.role]}`}
-        variant="outline"
-      >
-        {sanctuary.role}
-      </Badge>
+      <span className="inline-block text-[10px] uppercase tracking-[0.2em] text-[#D4AF37] font-medium border border-[#D4AF37]/20 rounded-full px-3 py-1 mb-6">
+        {roleLabels[sanctuary.role]}
+      </span>
 
       {/* CTA */}
-      <Button
-        variant="outline"
-        onClick={() => navigate("/memorial")}
-        className="w-full rounded-xl border-[#DDD8D0] text-[#5A5347] hover:bg-[#F5F0EB] hover:border-[#C5A66B] hover:text-[#3A3A3A] transition-all duration-300 text-sm"
+      <button
+        onClick={() => navigate("/memorial-admin")}
+        className="w-full py-2.5 rounded-full border border-stone-200 text-sm text-stone-600 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors duration-300"
       >
         Accéder au sanctuaire
-      </Button>
+      </button>
     </div>
   );
 }
