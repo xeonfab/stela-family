@@ -35,7 +35,7 @@ const KitCeremonie = () => {
         <AdminSidebar />
       </header>
 
-      <div className="max-w-xl mx-auto px-6 pb-20">
+      <div className="max-w-3xl mx-auto px-6 pb-20">
         <div className="text-center mb-12">
           <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#2C2C2C] mb-3">
             Kit de Cérémonie
@@ -49,17 +49,17 @@ const KitCeremonie = () => {
           {cards.map((card) => (
             <div
               key={card.title}
-              className="bg-white rounded-2xl border border-stone-200/60 overflow-hidden shadow-sm"
+              className="bg-white rounded-2xl border border-stone-200/60 overflow-hidden shadow-sm md:flex md:flex-row"
             >
-              <div className="aspect-[16/9] bg-stone-50 flex items-center justify-center p-6">
+              <div className="aspect-[16/9] md:aspect-auto md:w-64 md:shrink-0 bg-stone-50 flex items-center justify-center p-6">
                 <img
                   src={card.image}
                   alt={card.title}
-                  className="max-h-40 object-contain"
+                  className="max-h-40 md:max-h-full object-contain"
                   loading="lazy"
                 />
               </div>
-              <div className="p-6 space-y-4">
+              <div className="p-6 space-y-4 flex flex-col justify-center">
                 <div>
                   <h2 className="font-serif text-xl font-semibold text-[#2C2C2C] mb-1">
                     {card.title}
