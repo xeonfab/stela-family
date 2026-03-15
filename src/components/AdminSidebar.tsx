@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Menu, X, BookOpen, Users, Shield, User, Plus, ChevronDown, Flower2 } from "lucide-react";
+import { Menu, X, BookOpen, Users, Shield, User, Plus, ChevronDown, Flower2, HardDrive } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
