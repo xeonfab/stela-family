@@ -88,6 +88,10 @@ const AdminSidebar = ({ variant = "light" }: AdminSidebarProps) => {
               <Shield size={18} strokeWidth={1.5} className="text-stone-500 group-hover:text-stone-700 transition-colors" />
               <span className="text-[15px] font-medium">Confidentialité</span>
             </Link>
+            <Link to="/capacite" className="flex items-center gap-3.5 px-4 py-3 rounded-xl text-stone-700 hover:bg-stone-100/70 hover:text-stone-900 transition-colors group">
+              <HardDrive size={18} strokeWidth={1.5} className="text-stone-500 group-hover:text-stone-700 transition-colors" />
+              <span className="text-[15px] font-medium">Capacité & Héritage</span>
+            </Link>
           </div>
 
           {/* Spacer + Mon Profil at bottom */}
