@@ -21,6 +21,8 @@ import GestionAcces from "./pages/GestionAcces";
 import Confidentialite from "./pages/Confidentialite";
 import DashboardB2B from "./pages/DashboardB2B";
 import InvitationVIP from "./pages/InvitationVIP";
+import Connexion from "./pages/Connexion";
+import MesSanctuaires from "./pages/MesSanctuaires";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +50,8 @@ const App = () => (
           <Route path="/confidentialite" element={<Confidentialite />} />
           <Route path="/dashboard-b2b" element={<DashboardB2B />} />
           <Route path="/invitation" element={<InvitationVIP />} />
+          <Route path="/connexion" element={<Connexion />} />
+          <Route path="/mes-sanctuaires" element={<MesSanctuaires />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
