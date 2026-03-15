@@ -52,6 +52,71 @@ const mockFamilies = [
   { id: 4, name: "Colette Bernard", created: "28 Jan 2026", email: "lucas.bernard@email.com", status: "Actif" },
 ];
 
+/* ───────── Multi Email Input ───────── */
+function MultiEmailInput() {
+  const [emails, setEmails] = useState<string[]>([]);
+  const [currentEmail, setCurrentEmail] = useState("");
+
+  const addEmail = () => {
+    const trimmed = currentEmail.trim();
+    if (trimmed && trimmed.includes("@") && !emails.includes(trimmed)) {
+      setEmails([...emails, trimmed]);
+      setCurrentEmail("");
+    }
+  };
+
+  const removeEmail = (email: string) => {
+    setEmails(emails.filter((e) => e !== email));
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addEmail();
+    }
+  };
+
+  return (
+    <div className="mb-10">
+      <Label className="text-[#2C2C2C]/70 text-xs">Adresses e-mail des administrateurs</Label>
+
+      {/* Email chips */}
+      {emails.length > 0 && (
+        <div className="flex flex-wrap gap-2 mt-2 mb-2">
+          {emails.map((email) => (
+            <span
+              key={email}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 text-sm text-[#2C2C2C]/70 border border-stone-200/60"
+            >
+              {email}
+              <button onClick={() => removeEmail(email)} className="text-stone-400 hover:text-stone-600 transition-colors">
+                <X className="h-3 w-3" />
+              </button>
+            </span>
+          ))}
+        </div>
+      )}
+
+      <Input
+        className="mt-1 border-[#2C2C2C]/10 bg-white focus-visible:ring-[#D4AF37]/40"
+        type="email"
+        placeholder="famille@email.com"
+        value={currentEmail}
+        onChange={(e) => setCurrentEmail(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+      <button
+        type="button"
+        onClick={addEmail}
+        className="flex items-center gap-1.5 mt-2 text-xs text-[#D4AF37] hover:text-[#D4AF37]/80 transition-colors"
+      >
+        <Plus className="h-3.5 w-3.5" />
+        Ajouter une autre adresse e-mail
+      </button>
+    </div>
+  );
+}
+
 /* ───────── VIEW 1: Create ───────── */
 function ViewCreate({ onSuccess }: { onSuccess: () => void }) {
   return (
