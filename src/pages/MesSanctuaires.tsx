@@ -8,7 +8,7 @@ interface Sanctuary {
   birthYear: string;
   deathYear: string;
   photo: string;
-  role: "Garant" | "Invité" | "Officiant";
+  role: "Famille" | "Officiant";
 }
 
 const mockSanctuaries: Sanctuary[] = [
@@ -19,7 +19,7 @@ const mockSanctuaries: Sanctuary[] = [
     birthYear: "1948",
     deathYear: "2024",
     photo: "/src/assets/jean-claude-portrait-new.jpg",
-    role: "Garant",
+    role: "Famille",
   },
   {
     id: "2",
@@ -28,7 +28,7 @@ const mockSanctuaries: Sanctuary[] = [
     birthYear: "1932",
     deathYear: "2023",
     photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face",
-    role: "Invité",
+    role: "Famille",
   },
   {
     id: "3",
@@ -42,8 +42,7 @@ const mockSanctuaries: Sanctuary[] = [
 ];
 
 const roleLabels: Record<Sanctuary["role"], string> = {
-  Garant: "Garant",
-  Invité: "Invité",
+  Famille: "Famille",
   Officiant: "Officiant",
 };
 
