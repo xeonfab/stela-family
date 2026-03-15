@@ -83,11 +83,8 @@ function ViewCreate({ onSuccess }: { onSuccess: () => void }) {
       </div>
 
       {/* Section 2 */}
-      <p className="text-xs uppercase tracking-widest text-[#2C2C2C]/40 mb-4">Le Garant (Famille)</p>
-      <div className="mb-10">
-        <Label className="text-[#2C2C2C]/70 text-xs">Email du proche administrateur</Label>
-        <Input className="mt-1 border-[#2C2C2C]/10 bg-white focus-visible:ring-[#D4AF37]/40" type="email" placeholder="famille@email.com" />
-      </div>
+      <p className="text-xs uppercase tracking-widest text-[#2C2C2C]/40 mb-4">Les Administrateurs (Famille)</p>
+      <MultiEmailInput />
 
       <Button
         onClick={onSuccess}

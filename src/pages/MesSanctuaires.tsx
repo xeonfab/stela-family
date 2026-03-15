@@ -8,7 +8,7 @@ interface Sanctuary {
   birthYear: string;
   deathYear: string;
   photo: string;
-  role: "Garant" | "Invité" | "Officiant";
+  role: "Famille" | "Officiant";
 }
 
 const mockSanctuaries: Sanctuary[] = [
