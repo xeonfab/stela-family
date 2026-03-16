@@ -491,8 +491,8 @@ function ViewSanctuary({ onBack }: { onBack: () => void }) {
         </span>
       </div>
 
-      {/* Two-column grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      {/* Stacked layout */}
+      <div className="flex flex-col gap-6">
         {/* ── Left Column (3/5) ── */}
         <div className="lg:col-span-3">
           <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-8">
