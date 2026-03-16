@@ -26,8 +26,7 @@ const EmailMagicLink = () => (
       <div className="pt-2 pb-4">
         <a
           href="#"
-          className="inline-block px-10 py-3.5 rounded-lg text-sm font-medium tracking-wide text-white transition-all"
-          style={{ backgroundColor: '#5C5347' }}
+          className="inline-block px-10 py-3.5 rounded-full text-sm font-semibold tracking-[0.05em] text-primary-foreground btn-gold-jewel transition-all"
         >
           Me connecter à mon espace
         </a>
@@ -87,8 +86,7 @@ const EmailUpsellStele = () => (
       <div className="pt-2 pb-2">
         <a
           href="#"
-          className="inline-block px-9 py-3.5 rounded-lg text-sm font-medium tracking-wide border transition-all"
-          style={{ borderColor: '#A89882', color: '#6B5E50' }}
+          className="inline-block px-9 py-3.5 rounded-full text-sm font-semibold tracking-[0.05em] text-primary-foreground btn-gold-jewel transition-all"
         >
           Découvrir la Stèle Compagne
         </a>
