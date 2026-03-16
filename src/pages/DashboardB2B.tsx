@@ -526,7 +526,7 @@ function ViewSanctuary({ onBack }: { onBack: () => void }) {
         </div>
 
         {/* ── Second Section ── */}
-        <div className="flex flex-col gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Card: Suivi de la Stèle */}
           <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6">
             <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-1 font-medium">
