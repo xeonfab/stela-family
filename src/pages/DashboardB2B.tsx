@@ -58,6 +58,41 @@ const mockFamilies = [
   { id: 4, name: "Colette Bernard", created: "28 Jan 2026", email: "lucas.bernard@email.com", status: "Actif" },
 ];
 
+/* ───────── Date Picker Field ───────── */
+function DatePickerField({ label, placeholder }: { label: string; placeholder: string }) {
+  const [date, setDate] = useState<Date>();
+
+  return (
+    <div>
+      <Label className="text-[#2C2C2C]/70 text-xs">{label}</Label>
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            className={cn(
+              "w-full mt-1 justify-start text-left font-normal border-[#2C2C2C]/10 bg-white hover:bg-white focus-visible:ring-[#D4AF37]/40",
+              !date && "text-muted-foreground"
+            )}
+          >
+            <CalendarIcon className="mr-2 h-4 w-4 opacity-50" />
+            {date ? format(date, "dd/MM/yyyy") : <span>{placeholder}</span>}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
+          <Calendar
+            mode="single"
+            selected={date}
+            onSelect={setDate}
+            locale={fr}
+            initialFocus
+            className={cn("p-3 pointer-events-auto")}
+          />
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}
+
 /* ───────── Multi Email Input ───────── */
 function MultiEmailInput() {
   const [emails, setEmails] = useState<string[]>([]);
