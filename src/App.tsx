@@ -29,6 +29,7 @@ import ProCreer from "./pages/pro/ProCreer";
 import ProRegistre from "./pages/pro/ProRegistre";
 import ProSanctuaire from "./pages/pro/ProSanctuaire";
 import ProAgence from "./pages/pro/ProAgence";
+import ProLogin from "./pages/pro/ProLogin";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +60,9 @@ const App = () => (
           <Route path="/mes-sanctuaires" element={<MesSanctuaires />} />
           <Route path="/capacite" element={<CapaciteHeritage />} />
           <Route path="/email-preview" element={<EmailPreview />} />
+
+          {/* Pro login (no sidebar) */}
+          <Route path="/pro/login" element={<ProLogin />} />
 
           {/* Pro / B2B routes with shared sidebar layout */}
           <Route path="/pro" element={<ProLayout />}>
