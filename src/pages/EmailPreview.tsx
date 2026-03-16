@@ -86,8 +86,7 @@ const EmailUpsellStele = () => (
       <div className="pt-2 pb-2">
         <a
           href="#"
-          className="inline-block px-9 py-3.5 rounded-lg text-sm font-medium tracking-wide border transition-all"
-          style={{ borderColor: '#A89882', color: '#6B5E50' }}
+          className="inline-block px-9 py-3.5 rounded-full text-sm font-semibold tracking-[0.05em] text-primary-foreground btn-gold-jewel transition-all"
         >
           Découvrir la Stèle Compagne
         </a>
