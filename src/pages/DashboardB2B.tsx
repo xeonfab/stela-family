@@ -491,10 +491,10 @@ function ViewSanctuary({ onBack }: { onBack: () => void }) {
         </span>
       </div>
 
-      {/* Two-column grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      {/* Stacked layout */}
+      <div className="flex flex-col gap-6">
         {/* ── Left Column (3/5) ── */}
-        <div className="lg:col-span-3">
+        <div>
           <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-8">
             <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-8 font-medium">
               Kit de Cérémonie
@@ -525,8 +525,8 @@ function ViewSanctuary({ onBack }: { onBack: () => void }) {
           </div>
         </div>
 
-        {/* ── Right Column (2/5) ── */}
-        <div className="lg:col-span-2 flex flex-col gap-6">
+        {/* ── Second Section ── */}
+        <div className="flex flex-col gap-6">
           {/* Card: Suivi de la Stèle */}
           <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6">
             <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-1 font-medium">
