@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { PlusCircle, BookOpen, Building2, ChevronLeft } from "lucide-react";
+import { PlusCircle, BookOpen, Building2 } from "lucide-react";
 
 const sidebarItems = [
   { id: "creer", label: "Créer un sanctuaire", icon: PlusCircle, path: "/pro/creer" },
