@@ -55,6 +55,7 @@ const App = () => (
           <Route path="/connexion" element={<Connexion />} />
           <Route path="/mes-sanctuaires" element={<MesSanctuaires />} />
           <Route path="/capacite" element={<CapaciteHeritage />} />
+          <Route path="/email-preview" element={<EmailPreview />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
