@@ -698,9 +698,10 @@ export default function DashboardB2B() {
 
       {/* Content */}
       <main className="flex-1 px-6 md:px-16 py-12 md:py-16 mt-12 md:mt-0">
-        {active === "create" && <ViewCreate onSuccess={() => setShowSuccess(true)} />}
-        {active === "registry" && <ViewRegistry />}
+        {active === "create" && <ViewCreate onSuccess={() => { setShowSuccess(true); }} />}
+        {active === "registry" && <ViewRegistry onOpenSanctuary={() => setActive("sanctuary")} />}
         {active === "agency" && <ViewAgency />}
+        {active === "sanctuary" && <ViewSanctuary onBack={() => setActive("registry")} />}
       </main>
 
       <SuccessModal open={showSuccess} onClose={() => setShowSuccess(false)} />
