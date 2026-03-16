@@ -43,7 +43,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-type ActiveView = "create" | "registry" | "agency";
+type ActiveView = "create" | "registry" | "agency" | "sanctuary";
 
 const sidebarItems = [
   { id: "create" as const, label: "Créer un sanctuaire", icon: PlusCircle },
