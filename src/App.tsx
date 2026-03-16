@@ -29,6 +29,7 @@ import ProCreer from "./pages/pro/ProCreer";
 import ProRegistre from "./pages/pro/ProRegistre";
 import ProSanctuaire from "./pages/pro/ProSanctuaire";
 import ProAgence from "./pages/pro/ProAgence";
+import ProLogin from "./pages/pro/ProLogin";
 
 const queryClient = new QueryClient();
 
