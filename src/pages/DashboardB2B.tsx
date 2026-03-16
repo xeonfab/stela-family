@@ -585,18 +585,12 @@ function ViewSanctuary({ onBack }: { onBack: () => void }) {
 
             <div className="space-y-3 mb-5">
               {/* Contact 1 */}
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
                 <span className="text-sm text-[#2C2C2C]/70 truncate">marie.dubois@email.com</span>
-                <span className="shrink-0 text-[10px] uppercase tracking-wider font-medium px-2 py-0.5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/15">
-                  Référent
-                </span>
               </div>
               {/* Contact 2 */}
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
                 <span className="text-sm text-[#2C2C2C]/70 truncate">lucas.dubois@email.com</span>
-                <span className="shrink-0 text-[10px] uppercase tracking-wider font-medium px-2 py-0.5 rounded-full bg-[#2C2C2C]/[0.05] text-[#2C2C2C]/40 border border-[#2C2C2C]/[0.08]">
-                  Co-administrateur
-                </span>
               </div>
             </div>
 
