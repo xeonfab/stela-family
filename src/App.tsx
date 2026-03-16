@@ -61,6 +61,9 @@ const App = () => (
           <Route path="/capacite" element={<CapaciteHeritage />} />
           <Route path="/email-preview" element={<EmailPreview />} />
 
+          {/* Pro login (no sidebar) */}
+          <Route path="/pro/login" element={<ProLogin />} />
+
           {/* Pro / B2B routes with shared sidebar layout */}
           <Route path="/pro" element={<ProLayout />}>
             <Route path="creer" element={<ProCreer />} />
