@@ -19,12 +19,16 @@ import KitCeremonie from "./pages/KitCeremonie";
 import ProfilAdmin from "./pages/ProfilAdmin";
 import GestionAcces from "./pages/GestionAcces";
 import Confidentialite from "./pages/Confidentialite";
-import DashboardB2B from "./pages/DashboardB2B";
 import InvitationVIP from "./pages/InvitationVIP";
 import Connexion from "./pages/Connexion";
 import MesSanctuaires from "./pages/MesSanctuaires";
 import CapaciteHeritage from "./pages/CapaciteHeritage";
 import EmailPreview from "./pages/EmailPreview";
+import ProLayout from "./layouts/ProLayout";
+import ProCreer from "./pages/pro/ProCreer";
+import ProRegistre from "./pages/pro/ProRegistre";
+import ProSanctuaire from "./pages/pro/ProSanctuaire";
+import ProAgence from "./pages/pro/ProAgence";
 
 const queryClient = new QueryClient();
 
@@ -50,12 +54,20 @@ const App = () => (
           <Route path="/profil" element={<ProfilAdmin />} />
           <Route path="/acces" element={<GestionAcces />} />
           <Route path="/confidentialite" element={<Confidentialite />} />
-          <Route path="/dashboard-b2b" element={<DashboardB2B />} />
           <Route path="/invitation" element={<InvitationVIP />} />
           <Route path="/connexion" element={<Connexion />} />
           <Route path="/mes-sanctuaires" element={<MesSanctuaires />} />
           <Route path="/capacite" element={<CapaciteHeritage />} />
           <Route path="/email-preview" element={<EmailPreview />} />
+
+          {/* Pro / B2B routes with shared sidebar layout */}
+          <Route path="/pro" element={<ProLayout />}>
+            <Route path="creer" element={<ProCreer />} />
+            <Route path="registre" element={<ProRegistre />} />
+            <Route path="sanctuaire/:id" element={<ProSanctuaire />} />
+            <Route path="agence" element={<ProAgence />} />
+          </Route>
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
