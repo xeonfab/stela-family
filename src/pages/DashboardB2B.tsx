@@ -386,7 +386,7 @@ function ViewRegistry({ onOpenSanctuary }: { onOpenSanctuary: () => void }) {
           </TableHeader>
           <TableBody>
             {mockFamilies.map((f) => (
-              <TableRow key={f.id} className="border-b border-[#2C2C2C]/5 hover:bg-[#D4AF37]/[0.03]">
+              <TableRow key={f.id} className="border-b border-[#2C2C2C]/5 hover:bg-[#D4AF37]/[0.03] cursor-pointer" onClick={onOpenSanctuary}>
                 <TableCell className="font-medium text-[#2C2C2C]">{f.name}</TableCell>
                 <TableCell className="text-[#2C2C2C]/60">{f.created}</TableCell>
                 <TableCell className="text-[#2C2C2C]/60">{f.email}</TableCell>
