@@ -158,44 +158,210 @@ function MultiEmailInput() {
   );
 }
 
+/* ───────── Ecrin Selection Cards ───────── */
+const ecrins = [
+  {
+    id: "essentiel",
+    title: "L'Essentiel",
+    subtitle: "Le sanctuaire 100% numérique",
+    description: "Un espace de recueillement intime et partagé pour rassembler les souvenirs.",
+  },
+  {
+    id: "frene",
+    title: "L'Édition Frêne",
+    subtitle: "La douceur du bois clair",
+    description: "Stèle minimaliste en Frêne massif usinée en France, ouvrant le sanctuaire d'un simple effleurement.",
+  },
+  {
+    id: "signature",
+    title: "L'Édition Signature",
+    subtitle: "La profondeur du Noyer",
+    description: "Stèle d'exception en Noyer massif, finition huilée premium, pour un hommage intemporel.",
+  },
+];
+
 /* ───────── VIEW 1: Create ───────── */
 function ViewCreate({ onSuccess }: { onSuccess: () => void }) {
+  const [selectedEcrin, setSelectedEcrin] = useState("frene");
+  const [additionalEmails, setAdditionalEmails] = useState<string[]>([]);
+  const [showAdditional, setShowAdditional] = useState(false);
+  const [newEmail, setNewEmail] = useState("");
+
+  const addAdditionalEmail = () => {
+    const trimmed = newEmail.trim();
+    if (trimmed && trimmed.includes("@") && !additionalEmails.includes(trimmed)) {
+      setAdditionalEmails([...additionalEmails, trimmed]);
+      setNewEmail("");
+    }
+  };
+
+  const removeAdditionalEmail = (email: string) => {
+    setAdditionalEmails(additionalEmails.filter((e) => e !== email));
+  };
+
+  const buttonLabel = selectedEcrin === "essentiel"
+    ? "Générer le sanctuaire"
+    : "Générer le sanctuaire & Lancer la fabrication";
+
   return (
-    <div className="max-w-2xl mx-auto">
-      <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C] mb-2">Nouveau Sanctuaire</h1>
-      <p className="text-[#2C2C2C]/60 mb-10">
-        Générez un espace de recueillement et son kit de cérémonie en quelques secondes.
+    <div className="max-w-3xl mx-auto">
+      {/* Header */}
+      <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C] mb-2">Créer un nouveau sanctuaire</h1>
+      <p className="text-[#2C2C2C]/50 mb-12">
+        Générez l'espace de recueillement et commandez la stèle personnalisée.
       </p>
 
-      {/* Section 1 */}
-      <p className="text-xs uppercase tracking-widest text-[#2C2C2C]/40 mb-4">Le Défunt</p>
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        <div>
-          <Label className="text-[#2C2C2C]/70 text-xs">Prénom</Label>
-          <Input className="mt-1 border-[#2C2C2C]/10 bg-white focus-visible:ring-[#D4AF37]/40" />
+      {/* ── Section 1 : Le Défunt ── */}
+      <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-8 mb-8">
+        <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-6 font-medium">Le Défunt</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+          <div>
+            <Label className="text-[#2C2C2C]/60 text-xs">Prénom</Label>
+            <Input
+              placeholder="Jean-Claude"
+              className="mt-1.5 border-[#2C2C2C]/[0.08] bg-[#FAFAFA] focus-visible:ring-[#D4AF37]/40 h-11"
+            />
+          </div>
+          <div>
+            <Label className="text-[#2C2C2C]/60 text-xs">Nom</Label>
+            <Input
+              placeholder="Dubois"
+              className="mt-1.5 border-[#2C2C2C]/[0.08] bg-[#FAFAFA] focus-visible:ring-[#D4AF37]/40 h-11"
+            />
+          </div>
         </div>
-        <div>
-          <Label className="text-[#2C2C2C]/70 text-xs">Nom</Label>
-          <Input className="mt-1 border-[#2C2C2C]/10 bg-white focus-visible:ring-[#D4AF37]/40" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <DatePickerField label="Date de naissance" placeholder="JJ/MM/AAAA" />
+          <DatePickerField label="Date de départ" placeholder="JJ/MM/AAAA" />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4 mb-8">
-        <DatePickerField label="Date de naissance" placeholder="JJ/MM/AAAA" />
-        <DatePickerField label="Date de départ" placeholder="JJ/MM/AAAA" />
+
+      {/* ── Section 2 : La Famille ── */}
+      <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-8 mb-8">
+        <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-6 font-medium">Les Administrateurs</p>
+        <div>
+          <Label className="text-[#2C2C2C]/60 text-xs">E-mail du référent principal</Label>
+          <Input
+            type="email"
+            placeholder="marie.dubois@email.com"
+            className="mt-1.5 border-[#2C2C2C]/[0.08] bg-[#FAFAFA] focus-visible:ring-[#D4AF37]/40 h-11"
+          />
+        </div>
+
+        {/* Additional emails */}
+        {additionalEmails.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-4">
+            {additionalEmails.map((email) => (
+              <span
+                key={email}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F5F5F3] text-sm text-[#2C2C2C]/60 border border-[#2C2C2C]/[0.06]"
+              >
+                {email}
+                <button onClick={() => removeAdditionalEmail(email)} className="text-[#2C2C2C]/30 hover:text-[#2C2C2C]/60 transition-colors">
+                  <X className="h-3 w-3" />
+                </button>
+              </span>
+            ))}
+          </div>
+        )}
+
+        {showAdditional && (
+          <div className="mt-4">
+            <Label className="text-[#2C2C2C]/60 text-xs">E-mail d'un proche</Label>
+            <div className="flex gap-2 mt-1.5">
+              <Input
+                type="email"
+                placeholder="proche@email.com"
+                value={newEmail}
+                onChange={(e) => setNewEmail(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addAdditionalEmail(); } }}
+                className="border-[#2C2C2C]/[0.08] bg-[#FAFAFA] focus-visible:ring-[#D4AF37]/40 h-11"
+              />
+              <Button
+                type="button"
+                variant="outline"
+                onClick={addAdditionalEmail}
+                className="h-11 px-4 border-[#D4AF37]/30 text-[#D4AF37] hover:bg-[#D4AF37]/5 shrink-0"
+              >
+                Ajouter
+              </Button>
+            </div>
+          </div>
+        )}
+
+        <button
+          type="button"
+          onClick={() => setShowAdditional(true)}
+          className="flex items-center gap-1.5 mt-5 text-sm text-[#D4AF37] hover:text-[#D4AF37]/80 transition-colors"
+        >
+          <Plus className="h-4 w-4" />
+          Ajouter un proche pour l'aider à gérer l'espace
+        </button>
       </div>
 
-      {/* Section 2 */}
-      <p className="text-xs uppercase tracking-widest text-[#2C2C2C]/40 mb-4">Les Administrateurs (Famille)</p>
-      <MultiEmailInput />
+      {/* ── Section 3 : Le Choix de l'Écrin ── */}
+      <div className="mb-10">
+        <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-6 font-medium">
+          Sélectionnez l'écrin mémoriel
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {ecrins.map((ecrin) => {
+            const isSelected = selectedEcrin === ecrin.id;
+            return (
+              <button
+                key={ecrin.id}
+                type="button"
+                onClick={() => setSelectedEcrin(ecrin.id)}
+                className={cn(
+                  "relative text-left p-6 rounded-2xl border-2 transition-all duration-300 group",
+                  isSelected
+                    ? "border-[#D4AF37] bg-[#D4AF37]/[0.03] shadow-[0_0_0_1px_rgba(212,175,55,0.15)]"
+                    : "border-[#2C2C2C]/[0.06] bg-white hover:border-[#2C2C2C]/[0.12] hover:shadow-sm"
+                )}
+              >
+                {/* Selection indicator */}
+                <div
+                  className={cn(
+                    "absolute top-4 right-4 w-5 h-5 rounded-full border-2 transition-all duration-300 flex items-center justify-center",
+                    isSelected
+                      ? "border-[#D4AF37] bg-[#D4AF37]"
+                      : "border-[#2C2C2C]/20 bg-transparent"
+                  )}
+                >
+                  {isSelected && (
+                    <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
+                </div>
 
-      <Button
-        onClick={onSuccess}
-        className="w-full h-12 text-base font-medium rounded-xl"
-        style={{ backgroundColor: "#D4AF37", color: "#fff" }}
-      >
-        <QrCode className="mr-2 h-5 w-5" />
-        Générer le sanctuaire & le QR Code
-      </Button>
+                <h3 className={cn(
+                  "font-serif text-lg mb-1 transition-colors",
+                  isSelected ? "text-[#D4AF37]" : "text-[#2C2C2C]"
+                )}>
+                  {ecrin.title}
+                </h3>
+                <p className="text-[#2C2C2C]/50 text-xs font-medium tracking-wide mb-3">
+                  {ecrin.subtitle}
+                </p>
+                <p className="text-[#2C2C2C]/40 text-sm leading-relaxed">
+                  {ecrin.description}
+                </p>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Action ── */}
+      <div className="flex justify-end pb-8">
+        <Button
+          onClick={onSuccess}
+          className="h-13 px-10 text-base font-semibold rounded-full btn-gold-jewel text-white tracking-wide"
+        >
+          {buttonLabel}
+        </Button>
+      </div>
     </div>
   );
 }
