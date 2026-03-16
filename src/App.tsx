@@ -24,6 +24,7 @@ import InvitationVIP from "./pages/InvitationVIP";
 import Connexion from "./pages/Connexion";
 import MesSanctuaires from "./pages/MesSanctuaires";
 import CapaciteHeritage from "./pages/CapaciteHeritage";
+import EmailPreview from "./pages/EmailPreview";
 
 const queryClient = new QueryClient();
 
