@@ -24,6 +24,7 @@ import InvitationVIP from "./pages/InvitationVIP";
 import Connexion from "./pages/Connexion";
 import MesSanctuaires from "./pages/MesSanctuaires";
 import CapaciteHeritage from "./pages/CapaciteHeritage";
+import EmailPreview from "./pages/EmailPreview";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/connexion" element={<Connexion />} />
           <Route path="/mes-sanctuaires" element={<MesSanctuaires />} />
           <Route path="/capacite" element={<CapaciteHeritage />} />
+          <Route path="/email-preview" element={<EmailPreview />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
