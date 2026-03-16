@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { PlusCircle, BookOpen, Building2, ChevronLeft } from "lucide-react";
+import { PlusCircle, BookOpen, Building2 } from "lucide-react";
 
 const sidebarItems = [
   { id: "creer", label: "Créer un sanctuaire", icon: PlusCircle, path: "/pro/creer" },
@@ -16,10 +16,6 @@ export default function ProLayout() {
     <div className="flex min-h-screen" style={{ backgroundColor: "#FAFAFA" }}>
       {/* Sidebar */}
       <aside className="hidden md:flex flex-col w-64 border-r border-[#2C2C2C]/8 bg-[#F5F5F3] px-4 py-8">
-        <Link to="/" className="flex items-center gap-2 text-[#2C2C2C]/40 text-sm mb-10 hover:text-[#2C2C2C]/60 transition-colors">
-          <ChevronLeft className="h-4 w-4" />
-          Retour au site
-        </Link>
         <p className="font-serif text-lg text-[#2C2C2C] mb-8">Espace Pro</p>
         <nav className="flex flex-col gap-1">
           {sidebarItems.map((item) => (
