@@ -145,14 +145,8 @@ function ViewCreate({ onSuccess }: { onSuccess: () => void }) {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4 mb-8">
-        <div>
-          <Label className="text-[#2C2C2C]/70 text-xs">Année de naissance</Label>
-          <Input className="mt-1 border-[#2C2C2C]/10 bg-white focus-visible:ring-[#D4AF37]/40" placeholder="1942" />
-        </div>
-        <div>
-          <Label className="text-[#2C2C2C]/70 text-xs">Année de départ</Label>
-          <Input className="mt-1 border-[#2C2C2C]/10 bg-white focus-visible:ring-[#D4AF37]/40" placeholder="2026" />
-        </div>
+        <DatePickerField label="Date de naissance" placeholder="JJ/MM/AAAA" />
+        <DatePickerField label="Date de départ" placeholder="JJ/MM/AAAA" />
       </div>
 
       {/* Section 2 */}
