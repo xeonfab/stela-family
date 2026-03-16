@@ -481,7 +481,7 @@ function ViewSanctuary({ onBack }: { onBack: () => void }) {
       <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-10">
         <div className="flex-1">
           <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C]">
-            Sanctuaire de Jean-Claude Dubois
+            Jean-Claude Dubois
           </h1>
           <p className="text-[#2C2C2C]/40 text-sm mt-1">1948 – 2026</p>
         </div>
