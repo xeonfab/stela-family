@@ -367,7 +367,7 @@ function ViewCreate({ onSuccess }: { onSuccess: () => void }) {
 }
 
 /* ───────── VIEW 2: Registry ───────── */
-function ViewRegistry() {
+function ViewRegistry({ onOpenSanctuary }: { onOpenSanctuary: () => void }) {
   return (
     <div>
       <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C] mb-2">Registre des Sanctuaires</h1>
