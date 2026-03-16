@@ -704,7 +704,7 @@ export default function DashboardB2B() {
         {active === "sanctuary" && <ViewSanctuary onBack={() => setActive("registry")} />}
       </main>
 
-      <SuccessModal open={showSuccess} onClose={() => setShowSuccess(false)} />
+      <SuccessModal open={showSuccess} onClose={() => { setShowSuccess(false); setActive("sanctuary"); }} />
     </div>
   );
 }
