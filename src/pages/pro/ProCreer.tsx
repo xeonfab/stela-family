@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { CalendarIcon, Plus, X, Download, Mail, QrCode } from "lucide-react";
@@ -141,9 +141,12 @@ export default function ProCreer() {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C] mb-2">Créer un nouveau sanctuaire</h1>
-        <p className="text-[#2C2C2C]/50 mb-12">
+        <p className="text-[#2C2C2C]/50 mb-3">
           Générez l'espace de recueillement et commandez la stèle personnalisée.
         </p>
+        <Link to="/memorial" className="inline-flex items-center gap-1.5 text-[13px] text-[#C5A66B] hover:text-[#b8954f] transition-colors mb-12">
+          Voir un exemple de sanctuaire →
+        </Link>
 
         {/* ── Section 1 : Le Défunt ── */}
         <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-8 mb-8">
