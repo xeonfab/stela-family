@@ -58,19 +58,16 @@ const ecrins = [
     id: "essentiel",
     title: "L'Essentiel",
     subtitle: "Le sanctuaire 100% numérique",
-    description: "Un espace de recueillement intime et partagé pour rassembler les souvenirs.",
   },
   {
     id: "frene",
     title: "L'Édition Frêne",
     subtitle: "La douceur du bois clair",
-    description: "Stèle minimaliste en Frêne massif usinée en France, ouvrant le sanctuaire d'un simple effleurement.",
   },
   {
     id: "signature",
     title: "L'Édition Signature",
     subtitle: "La profondeur du Noyer",
-    description: "Stèle d'exception en Noyer massif, finition huilée premium, pour un hommage intemporel.",
   },
 ];
 
