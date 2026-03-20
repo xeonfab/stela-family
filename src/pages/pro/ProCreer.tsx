@@ -240,7 +240,7 @@ export default function ProCreer() {
                   </div>
                   <h3 className={cn("font-serif text-lg mb-1 transition-colors", isSelected ? "text-[#D4AF37]" : "text-[#2C2C2C]")}>{ecrin.title}</h3>
                   <p className="text-[#2C2C2C]/50 text-xs font-medium tracking-wide mb-3">{ecrin.subtitle}</p>
-                  <p className="text-[#2C2C2C]/40 text-sm leading-relaxed">{ecrin.description}</p>
+                  
                 </button>
               );
             })}
