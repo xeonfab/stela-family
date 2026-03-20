@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
-import { CalendarIcon, Plus, X, Download, Mail, QrCode } from "lucide-react";
+import { CalendarIcon, Plus, X, Download, Mail, QrCode, Building2, Truck } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
@@ -108,13 +108,33 @@ function SuccessModal({ open, onClose }: { open: boolean; onClose: () => void })
   );
 }
 
+/* ───────── Delivery Options ───────── */
+const deliveryOptions = [
+  {
+    id: "agence",
+    title: "Livraison en agence",
+    subtitle: "Inclus. Réceptionnez le colis pour une remise en main propre à la famille.",
+    price: "Gratuit",
+    icon: Building2,
+  },
+  {
+    id: "domicile",
+    title: "Livraison directe à la famille",
+    subtitle: "Expédition sécurisée au domicile. Zéro gestion pour vous.",
+    price: "+ 5,00 €",
+    icon: Truck,
+  },
+];
+
 /* ───────── PAGE ───────── */
 export default function ProCreer() {
   const [selectedEcrin, setSelectedEcrin] = useState("frene");
+  const [selectedDelivery, setSelectedDelivery] = useState("agence");
   const [additionalEmails, setAdditionalEmails] = useState<string[]>([]);
   const [showAdditional, setShowAdditional] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
+  const [address, setAddress] = useState({ street: "", zip: "", city: "", country: "France" });
   const navigate = useNavigate();
 
   const addAdditionalEmail = () => {
@@ -129,9 +149,16 @@ export default function ProCreer() {
     setAdditionalEmails(additionalEmails.filter((e) => e !== email));
   };
 
-  const buttonLabel = selectedEcrin === "essentiel"
+  const isEssentiel = selectedEcrin === "essentiel";
+  const showDelivery = !isEssentiel;
+  const isDomicile = selectedDelivery === "domicile";
+  const addressComplete = !isDomicile || (address.street && address.zip && address.city);
+
+  const buttonLabel = isEssentiel
     ? "Générer le sanctuaire"
     : "Générer le sanctuaire & Lancer la fabrication";
+
+  const deliveryFee = showDelivery && isDomicile ? "5,00 €" : "0,00 €";
 
   return (
     <>
@@ -240,16 +267,141 @@ export default function ProCreer() {
                   </div>
                   <h3 className={cn("font-serif text-lg mb-1 transition-colors", isSelected ? "text-[#D4AF37]" : "text-[#2C2C2C]")}>{ecrin.title}</h3>
                   <p className="text-[#2C2C2C]/50 text-xs font-medium tracking-wide mb-3">{ecrin.subtitle}</p>
-                  
                 </button>
               );
             })}
           </div>
         </div>
 
+        {/* ── Section 4 : Mode de livraison (seulement si stèle physique) ── */}
+        {showDelivery && (
+          <div className="mb-10">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-6 font-medium">Mode de livraison</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {deliveryOptions.map((option) => {
+                const isSelected = selectedDelivery === option.id;
+                const Icon = option.icon;
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    onClick={() => setSelectedDelivery(option.id)}
+                    className={cn(
+                      "relative text-left p-6 rounded-2xl border-2 transition-all duration-300",
+                      isSelected
+                        ? "border-[#D4AF37] bg-[#D4AF37]/[0.03] shadow-[0_0_0_1px_rgba(212,175,55,0.15)]"
+                        : "border-[#2C2C2C]/[0.06] bg-white hover:border-[#2C2C2C]/[0.12] hover:shadow-sm"
+                    )}
+                  >
+                    <div className={cn(
+                      "absolute top-4 right-4 w-5 h-5 rounded-full border-2 transition-all duration-300 flex items-center justify-center",
+                      isSelected ? "border-[#D4AF37] bg-[#D4AF37]" : "border-[#2C2C2C]/20 bg-transparent"
+                    )}>
+                      {isSelected && (
+                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className={cn(
+                        "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors",
+                        isSelected ? "bg-[#D4AF37]/10" : "bg-[#2C2C2C]/[0.04]"
+                      )}>
+                        <Icon className={cn("h-5 w-5 transition-colors", isSelected ? "text-[#D4AF37]" : "text-[#2C2C2C]/40")} />
+                      </div>
+                      <div className="pr-6">
+                        <h3 className={cn("font-medium text-[15px] mb-1 transition-colors", isSelected ? "text-[#D4AF37]" : "text-[#2C2C2C]")}>{option.title}</h3>
+                        <p className="text-[#2C2C2C]/45 text-xs leading-relaxed mb-2">{option.subtitle}</p>
+                        <span className={cn(
+                          "text-xs font-semibold tracking-wide",
+                          isSelected ? "text-[#D4AF37]" : "text-[#2C2C2C]/50"
+                        )}>{option.price}</span>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* ── Adresse de livraison (conditionnel) ── */}
+            {isDomicile && (
+              <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-8 mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-6 font-medium">Adresse de livraison</p>
+                <div className="space-y-5">
+                  <div>
+                    <Label className="text-[#2C2C2C]/60 text-xs">Adresse (Numéro et voie)</Label>
+                    <Input
+                      placeholder="12 rue de la Paix"
+                      value={address.street}
+                      onChange={(e) => setAddress({ ...address, street: e.target.value })}
+                      className="mt-1.5 border-[#2C2C2C]/[0.08] bg-[#FAFAFA] focus-visible:ring-[#D4AF37]/40 h-11"
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <Label className="text-[#2C2C2C]/60 text-xs">Code Postal</Label>
+                      <Input
+                        placeholder="75002"
+                        value={address.zip}
+                        onChange={(e) => setAddress({ ...address, zip: e.target.value })}
+                        className="mt-1.5 border-[#2C2C2C]/[0.08] bg-[#FAFAFA] focus-visible:ring-[#D4AF37]/40 h-11"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-[#2C2C2C]/60 text-xs">Ville</Label>
+                      <Input
+                        placeholder="Paris"
+                        value={address.city}
+                        onChange={(e) => setAddress({ ...address, city: e.target.value })}
+                        className="mt-1.5 border-[#2C2C2C]/[0.08] bg-[#FAFAFA] focus-visible:ring-[#D4AF37]/40 h-11"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label className="text-[#2C2C2C]/60 text-xs">Pays</Label>
+                    <Input
+                      value={address.country}
+                      onChange={(e) => setAddress({ ...address, country: e.target.value })}
+                      className="mt-1.5 border-[#2C2C2C]/[0.08] bg-[#FAFAFA] focus-visible:ring-[#D4AF37]/40 h-11"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── Récapitulatif ── */}
+        {showDelivery && (
+          <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6 mb-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-4 font-medium">Récapitulatif</p>
+            <div className="flex items-center justify-between py-2">
+              <span className="text-sm text-[#2C2C2C]/60">Écrin sélectionné</span>
+              <span className="text-sm font-medium text-[#2C2C2C]">
+                {ecrins.find((e) => e.id === selectedEcrin)?.title}
+              </span>
+            </div>
+            <div className="border-t border-[#2C2C2C]/[0.04] my-1" />
+            <div className="flex items-center justify-between py-2">
+              <span className="text-sm text-[#2C2C2C]/60">Frais de livraison</span>
+              <span className={cn(
+                "text-sm font-medium",
+                isDomicile ? "text-[#2C2C2C]" : "text-[#2C2C2C]/40"
+              )}>
+                {deliveryFee}
+              </span>
+            </div>
+          </div>
+        )}
+
         {/* ── Action ── */}
         <div className="flex justify-end pb-8">
-          <Button onClick={() => setShowSuccess(true)} className="h-13 px-10 text-base font-semibold rounded-full btn-gold-jewel text-white tracking-wide">
+          <Button
+            onClick={() => setShowSuccess(true)}
+            disabled={showDelivery && isDomicile && !addressComplete}
+            className="h-13 px-10 text-base font-semibold rounded-full btn-gold-jewel text-white tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
+          >
             {buttonLabel}
           </Button>
         </div>
