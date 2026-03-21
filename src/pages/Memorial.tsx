@@ -651,6 +651,7 @@ const MemoryCard = ({ memory, onClick }: {memory: Memory;onClick: () => void;}) 
 
 const Memorial = () => {
   const [activeTab, setActiveTab] = useState("souvenirs");
+  const [personalEditionOpen, setPersonalEditionOpen] = useState(false);
   const [memoryModalOpen, setMemoryModalOpen] = useState(false);
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
   const [memoryDetailOpen, setMemoryDetailOpen] = useState(false);
