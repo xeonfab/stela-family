@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Download, MoreHorizontal, Search, CalendarIcon } from "lucide-react";
+import { Download, MoreHorizontal, Search, CalendarIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import { format, parse } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
@@ -25,6 +25,8 @@ export default function ProRegistre() {
   const [search, setSearch] = useState("");
   const [dateFrom, setDateFrom] = useState<Date | undefined>();
   const [dateTo, setDateTo] = useState<Date | undefined>();
+  const [page, setPage] = useState(1);
+  const perPage = 50;
 
   const filtered = mockFamilies.filter((f) => {
     if (!f.name.toLowerCase().includes(search.toLowerCase())) return false;
@@ -118,7 +120,7 @@ export default function ProRegistre() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filtered.map((f) => (
+            {filtered.slice((page - 1) * perPage, page * perPage).map((f) => (
               <TableRow
                 key={f.id}
                 className="border-b border-[#2C2C2C]/5 hover:bg-[#D4AF37]/[0.03] cursor-pointer"
@@ -162,6 +164,29 @@ export default function ProRegistre() {
             ))}
           </TableBody>
         </Table>
+        <div className="flex items-center justify-between px-4 py-3 border-t border-[#2C2C2C]/[0.06]">
+          <span className="text-xs text-[#2C2C2C]/40">
+            {filtered.length === 0
+              ? "Aucun résultat"
+              : `${(page - 1) * perPage + 1}–${Math.min(page * perPage, filtered.length)} sur ${filtered.length}`}
+          </span>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="w-8 h-8 flex items-center justify-center rounded-full text-[#2C2C2C]/40 hover:text-[#2C2C2C]/70 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => setPage((p) => p + 1)}
+              disabled={page * perPage >= filtered.length}
+              className="w-8 h-8 flex items-center justify-center rounded-full text-[#2C2C2C]/40 hover:text-[#2C2C2C]/70 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
