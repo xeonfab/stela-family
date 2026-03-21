@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Pencil, Plus, Upload, CalendarDays, Copy, Check, ChevronLeft, ChevronRight, MapPin, Flower, Scroll, Eye, Mail, Smartphone, Link as LinkIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import CompanionSteleCard from "@/components/CompanionSteleCard";
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/jean-claude-portrait-new.jpg";
 import couplePhoto from "@/assets/jc-couple-70s.jpg";
@@ -758,9 +759,12 @@ const Memorial = () => {
         <TabsContent value="souvenirs" className="mt-0">
           <div className="max-w-5xl mx-auto px-6 py-12">
             <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-              {memories.map((memory, idx) =>
-              <MemoryCard key={idx} memory={memory} onClick={() => openMemoryDetail(memory)} />
-              )}
+              {memories.map((memory, idx) => (
+                <React.Fragment key={idx}>
+                  <MemoryCard memory={memory} onClick={() => openMemoryDetail(memory)} />
+                  {idx === 2 && <CompanionSteleCard />}
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </TabsContent>
