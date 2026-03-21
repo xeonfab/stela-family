@@ -405,6 +405,7 @@ export default function ProCreer() {
             Valider et créer le sanctuaire
           </Button>
         </div>
+      </div>
     </>
   );
 }
