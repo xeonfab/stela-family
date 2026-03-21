@@ -10,7 +10,7 @@ const invoices = [
 ];
 
 const tarifs = [
-  { label: "Offre Essentiel (Numérique)", price: "49 € HT" },
+  { label: "Offre Essentiel (Numérique)", price: "39 € HT" },
   { label: "Édition Frêne", price: "119 € HT" },
   { label: "Édition Signature (Noyer)", price: "149 € HT" },
 ];
