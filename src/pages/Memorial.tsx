@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Pencil, Plus, Upload, CalendarDays, Copy, Check, ChevronLeft, ChevronRight, MapPin, Flower, Scroll, Eye, Mail, Smartphone, Link as LinkIcon } from "lucide-react";
+import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Pencil, Plus, Upload, CalendarDays, Copy, Check, ChevronLeft, ChevronRight, MapPin, Flower, Scroll, Eye, Mail, Smartphone, Link as LinkIcon, Home } from "lucide-react";
+import PersonalEditionSheet from "@/components/PersonalEditionSheet";
 import { Separator } from "@/components/ui/separator";
 import AudioPlayer from "@/components/AudioPlayer";
 
@@ -651,6 +652,7 @@ const MemoryCard = ({ memory, onClick }: {memory: Memory;onClick: () => void;}) 
 
 const Memorial = () => {
   const [activeTab, setActiveTab] = useState("souvenirs");
+  const [personalEditionOpen, setPersonalEditionOpen] = useState(false);
   const [memoryModalOpen, setMemoryModalOpen] = useState(false);
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
   const [memoryDetailOpen, setMemoryDetailOpen] = useState(false);
@@ -722,10 +724,13 @@ const Memorial = () => {
         <header className="relative z-10 py-4 px-6 flex items-center justify-between">
           <button
             onClick={() => setShareModalOpen(true)}
-            className="flex items-center gap-1.5 text-sm text-[#FBF9F6]/60 hover:text-[#D4AF37] transition-colors">
-            
-            <Share2 size={16} />
-            <span className="font-sans-body">Partager</span>
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-sm text-white/90 hover:bg-black/40 transition-colors">
+            <Share2 size={20} />
+          </button>
+          <button
+            onClick={() => setPersonalEditionOpen(true)}
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-sm text-white/90 hover:bg-black/40 transition-colors">
+            <Home size={20} />
           </button>
         </header>
 
@@ -892,6 +897,7 @@ const Memorial = () => {
       {/* Bottom spacer for FAB */}
       <div className="h-24" />
 
+      <PersonalEditionSheet open={personalEditionOpen} onClose={() => setPersonalEditionOpen(false)} />
     </div>);
 
 };
