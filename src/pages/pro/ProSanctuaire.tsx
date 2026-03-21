@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft, Download, RefreshCw, Send, Plus, Trash2 } from "lucide-react";
+import { ChevronLeft, Download, RefreshCw, Send, Plus, Trash2, PauseCircle } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
