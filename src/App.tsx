@@ -64,6 +64,7 @@ const App = () => (
 
           {/* Pro login (no sidebar) */}
           <Route path="/pro/login" element={<ProLogin />} />
+          <Route path="/pro/reset-password" element={<ProResetPassword />} />
 
           {/* Pro / B2B routes with shared sidebar layout */}
           <Route path="/pro" element={<ProLayout />}>
