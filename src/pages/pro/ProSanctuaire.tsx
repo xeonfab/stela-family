@@ -71,7 +71,10 @@ export default function ProSanctuaire() {
         Retour aux sanctuaires
       </button>
 
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-10">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-10">
+        <div className="w-16 h-16 rounded-full bg-[#2C2C2C]/[0.06] border border-[#2C2C2C]/[0.08] flex items-center justify-center overflow-hidden shrink-0">
+          <span className="text-[#2C2C2C]/20 text-xs font-medium">Photo</span>
+        </div>
         <div className="flex-1">
           <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C]">Jean-Claude Dubois</h1>
           <p className="text-[#2C2C2C]/40 text-sm mt-1">1948 – 2026</p>
