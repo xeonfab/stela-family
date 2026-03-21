@@ -43,7 +43,16 @@ export default function ProRegistre() {
               >
                 <TableCell className="font-medium text-[#2C2C2C]">{f.name}</TableCell>
                 <TableCell className="text-[#2C2C2C]/60">{f.created}</TableCell>
-                <TableCell className="text-[#2C2C2C]/60">{f.email}</TableCell>
+                <TableCell className="text-[#2C2C2C]/60">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="truncate max-w-[180px]">{f.emails[0]}</span>
+                    {f.emails.length > 1 && (
+                      <span className="inline-flex items-center px-1.5 py-0.5 rounded-full bg-[#2C2C2C]/[0.06] text-[#2C2C2C]/40 text-[11px] font-medium shrink-0">
+                        +{f.emails.length - 1}
+                      </span>
+                    )}
+                  </div>
+                </TableCell>
                 <TableCell>
                   <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${
                     f.status === "Actif" ? "bg-[#D4AF37]/10 text-[#D4AF37]" : "bg-[#2C2C2C]/5 text-[#2C2C2C]/40"
