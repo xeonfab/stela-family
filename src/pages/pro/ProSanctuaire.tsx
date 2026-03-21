@@ -118,7 +118,7 @@ export default function ProSanctuaire() {
                 </div>
               ))}
             </div>
-            <button className="flex items-center gap-1.5 text-sm text-[#D4AF37] hover:text-[#D4AF37]/80 transition-colors mb-3">
+            <button className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-transparent border border-[#2C2C2C]/[0.12] text-[#2C2C2C]/60 text-sm font-medium rounded-full hover:border-[#2C2C2C]/[0.2] hover:text-[#2C2C2C]/80 transition-colors">
               <Plus className="h-4 w-4" />
               Ajouter un accès
             </button>
