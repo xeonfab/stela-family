@@ -98,37 +98,37 @@ export default function ProSanctuaire() {
           </div>
         </div>
 
-        {/* Accès Famille — Renvoi */}
-        <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-5 font-medium">Accès Famille</p>
-          <div className="space-y-3 mb-5">
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-[#2C2C2C]/70 truncate">marie.dubois@email.com</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-[#2C2C2C]/70 truncate">lucas.dubois@email.com</span>
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3 mb-3">
-            <button className="flex items-center gap-1.5 text-sm text-[#D4AF37] hover:text-[#D4AF37]/80 transition-colors">
-              <Plus className="h-4 w-4" />
-              Ajouter un accès
-            </button>
-            <Button variant="outline" className="h-9 rounded-full border-[#2C2C2C]/[0.1] text-[#2C2C2C]/60 hover:bg-[#2C2C2C]/[0.02] hover:border-[#2C2C2C]/[0.15] text-sm">
-              <Mail className="mr-1.5 h-3.5 w-3.5" />
-              Renvoyer les accès
-            </Button>
-          </div>
-          <p className="text-[11px] text-[#2C2C2C]/30 italic">
-            Les accès initiaux ont été envoyés automatiquement à la création.
-          </p>
-        </div>
-
-        {/* Second Section */}
+        {/* Accès Famille + Suivi Commande — côte à côte */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Suivi de la Stèle */}
+          {/* Accès Famille */}
           <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-1 font-medium">Suivi de la Stèle</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-5 font-medium">Accès Famille</p>
+            <div className="space-y-3 mb-5">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-[#2C2C2C]/70 truncate">marie.dubois@email.com</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-[#2C2C2C]/70 truncate">lucas.dubois@email.com</span>
+              </div>
+            </div>
+            <div className="flex flex-col gap-3 mb-3">
+              <button className="flex items-center gap-1.5 text-sm text-[#D4AF37] hover:text-[#D4AF37]/80 transition-colors">
+                <Plus className="h-4 w-4" />
+                Ajouter un accès
+              </button>
+              <Button variant="outline" className="h-9 rounded-full border-[#2C2C2C]/[0.1] text-[#2C2C2C]/60 hover:bg-[#2C2C2C]/[0.02] hover:border-[#2C2C2C]/[0.15] text-sm w-fit">
+                <Mail className="mr-1.5 h-3.5 w-3.5" />
+                Renvoyer les accès
+              </Button>
+            </div>
+            <p className="text-[11px] text-[#2C2C2C]/30 italic">
+              Les accès initiaux ont été envoyés automatiquement à la création.
+            </p>
+          </div>
+
+          {/* Suivi de la Commande */}
+          <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-1 font-medium">Suivi de la Commande</p>
             <p className="font-serif text-lg text-[#2C2C2C] mb-6">Édition Frêne</p>
             <div className="relative pl-6 space-y-5 mb-5">
               {timelineSteps.map((step, i) => (
