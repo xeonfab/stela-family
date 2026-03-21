@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Download, MoreHorizontal } from "lucide-react";
+import { Download, MoreHorizontal, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Table, TableHeader, TableBody, TableHead, TableRow, TableCell,
@@ -17,11 +18,27 @@ const mockFamilies = [
 
 export default function ProRegistre() {
   const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+
+  const filtered = mockFamilies.filter((f) =>
+    f.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div>
       <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C] mb-2">Registre des Sanctuaires</h1>
-      <p className="text-[#2C2C2C]/60 mb-8">L'ensemble des espaces générés pour vos familles.</p>
+      <p className="text-[#2C2C2C]/60 mb-6">L'ensemble des espaces générés pour vos familles.</p>
+
+      <div className="relative mb-4">
+        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#2C2C2C]/30" />
+        <input
+          type="text"
+          placeholder="Rechercher un défunt…"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full sm:w-80 h-10 pl-10 pr-4 rounded-full border border-[#2C2C2C]/[0.1] bg-white text-sm text-[#2C2C2C] placeholder:text-[#2C2C2C]/30 focus:outline-none focus:border-[#2C2C2C]/20 transition-colors"
+        />
+      </div>
 
       <div className="border border-[#2C2C2C]/8 rounded-xl overflow-hidden bg-white">
         <Table>
@@ -35,7 +52,7 @@ export default function ProRegistre() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {mockFamilies.map((f) => (
+            {filtered.map((f) => (
               <TableRow
                 key={f.id}
                 className="border-b border-[#2C2C2C]/5 hover:bg-[#D4AF37]/[0.03] cursor-pointer"
