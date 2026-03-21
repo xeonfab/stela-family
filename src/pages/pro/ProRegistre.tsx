@@ -25,6 +25,8 @@ export default function ProRegistre() {
   const [search, setSearch] = useState("");
   const [dateFrom, setDateFrom] = useState<Date | undefined>();
   const [dateTo, setDateTo] = useState<Date | undefined>();
+  const [page, setPage] = useState(1);
+  const perPage = 50;
 
   const filtered = mockFamilies.filter((f) => {
     if (!f.name.toLowerCase().includes(search.toLowerCase())) return false;
