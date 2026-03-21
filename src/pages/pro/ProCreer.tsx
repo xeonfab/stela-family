@@ -93,7 +93,6 @@ export default function ProCreer() {
   const [additionalEmails, setAdditionalEmails] = useState<string[]>([]);
   const [showAdditional, setShowAdditional] = useState(false);
   const [newEmail, setNewEmail] = useState("");
-  const [showSuccess, setShowSuccess] = useState(false);
   const [address, setAddress] = useState({ street: "", zip: "", city: "", country: "France" });
   const navigate = useNavigate();
 
