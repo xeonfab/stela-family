@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Download, MoreHorizontal, Search, CalendarIcon } from "lucide-react";
+import { Download, MoreHorizontal, Search, CalendarIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import { format, parse } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
