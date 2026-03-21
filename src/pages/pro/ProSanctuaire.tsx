@@ -112,7 +112,7 @@ export default function ProSanctuaire() {
                 {sanctuaryActive ? "Suspendre le sanctuaire" : "Activer le sanctuaire"}
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => toast.info("Fonctionnalité à venir")}
+                onClick={() => setShowEditModal(true)}
                 className="gap-2 cursor-pointer"
               >
                 <Pencil className="h-4 w-4" />
