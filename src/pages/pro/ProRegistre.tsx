@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Download, MoreHorizontal, Search } from "lucide-react";
+import { Download, MoreHorizontal, Search, CalendarIcon } from "lucide-react";
+import { format, parse } from "date-fns";
+import { fr } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
 import {
   Table, TableHeader, TableBody, TableHead, TableRow, TableCell,
@@ -8,36 +10,100 @@ import {
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 
 const mockFamilies = [
-  { id: 1, name: "Jean-Claude Dubois", created: "15 Fév 2026", emails: ["marie.dubois@email.com", "lucas.dubois@email.com"], status: "Actif" },
-  { id: 2, name: "Marguerite Lefèvre", created: "10 Fév 2026", emails: ["paul.lefevre@email.com"], status: "Actif" },
-  { id: 3, name: "Henri Martin", created: "02 Fév 2026", emails: ["sophie.martin@email.com", "jean.martin@email.com", "anne.martin@email.com"], status: "Suspendu" },
-  { id: 4, name: "Colette Bernard", created: "28 Jan 2026", emails: ["lucas.bernard@email.com"], status: "Actif" },
+  { id: 1, name: "Jean-Claude Dubois", created: "15 Fév 2026", createdDate: new Date(2026, 1, 15), emails: ["marie.dubois@email.com", "lucas.dubois@email.com"], status: "Actif" },
+  { id: 2, name: "Marguerite Lefèvre", created: "10 Fév 2026", createdDate: new Date(2026, 1, 10), emails: ["paul.lefevre@email.com"], status: "Actif" },
+  { id: 3, name: "Henri Martin", created: "02 Fév 2026", createdDate: new Date(2026, 1, 2), emails: ["sophie.martin@email.com", "jean.martin@email.com", "anne.martin@email.com"], status: "Suspendu" },
+  { id: 4, name: "Colette Bernard", created: "28 Jan 2026", createdDate: new Date(2026, 0, 28), emails: ["lucas.bernard@email.com"], status: "Actif" },
 ];
 
 export default function ProRegistre() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const [dateFrom, setDateFrom] = useState<Date | undefined>();
+  const [dateTo, setDateTo] = useState<Date | undefined>();
 
-  const filtered = mockFamilies.filter((f) =>
-    f.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const filtered = mockFamilies.filter((f) => {
+    if (!f.name.toLowerCase().includes(search.toLowerCase())) return false;
+    if (dateFrom && f.createdDate < dateFrom) return false;
+    if (dateTo) {
+      const endOfDay = new Date(dateTo);
+      endOfDay.setHours(23, 59, 59, 999);
+      if (f.createdDate > endOfDay) return false;
+    }
+    return true;
+  });
 
   return (
     <div>
       <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C] mb-2">Registre des Sanctuaires</h1>
       <p className="text-[#2C2C2C]/60 mb-6">L'ensemble des espaces générés pour vos familles.</p>
 
-      <div className="relative mb-4">
-        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#2C2C2C]/30" />
-        <input
-          type="text"
-          placeholder="Rechercher un défunt…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full sm:w-80 h-10 pl-10 pr-4 rounded-full border border-[#2C2C2C]/[0.1] bg-white text-sm text-[#2C2C2C] placeholder:text-[#2C2C2C]/30 focus:outline-none focus:border-[#2C2C2C]/20 transition-colors"
-        />
+      <div className="flex flex-wrap items-center gap-3 mb-4">
+        <div className="relative">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#2C2C2C]/30" />
+          <input
+            type="text"
+            placeholder="Rechercher un défunt…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full sm:w-72 h-10 pl-10 pr-4 rounded-full border border-[#2C2C2C]/[0.1] bg-white text-sm text-[#2C2C2C] placeholder:text-[#2C2C2C]/30 focus:outline-none focus:border-[#2C2C2C]/20 transition-colors"
+          />
+        </div>
+
+        <Popover>
+          <PopoverTrigger asChild>
+            <button className="h-10 px-4 rounded-full border border-[#2C2C2C]/[0.1] bg-white text-sm text-[#2C2C2C]/60 hover:border-[#2C2C2C]/20 transition-colors flex items-center gap-2">
+              <CalendarIcon className="h-3.5 w-3.5 text-[#2C2C2C]/30" />
+              {dateFrom ? format(dateFrom, "dd/MM/yyyy") : "Du"}
+            </button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0" align="start">
+            <Calendar
+              mode="single"
+              selected={dateFrom}
+              onSelect={setDateFrom}
+              locale={fr}
+              captionLayout="dropdown-buttons"
+              fromYear={2024}
+              toYear={2027}
+              className="p-3 pointer-events-auto"
+            />
+          </PopoverContent>
+        </Popover>
+
+        <Popover>
+          <PopoverTrigger asChild>
+            <button className="h-10 px-4 rounded-full border border-[#2C2C2C]/[0.1] bg-white text-sm text-[#2C2C2C]/60 hover:border-[#2C2C2C]/20 transition-colors flex items-center gap-2">
+              <CalendarIcon className="h-3.5 w-3.5 text-[#2C2C2C]/30" />
+              {dateTo ? format(dateTo, "dd/MM/yyyy") : "Au"}
+            </button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0" align="start">
+            <Calendar
+              mode="single"
+              selected={dateTo}
+              onSelect={setDateTo}
+              locale={fr}
+              captionLayout="dropdown-buttons"
+              fromYear={2024}
+              toYear={2027}
+              className="p-3 pointer-events-auto"
+            />
+          </PopoverContent>
+        </Popover>
+
+        {(dateFrom || dateTo) && (
+          <button
+            onClick={() => { setDateFrom(undefined); setDateTo(undefined); }}
+            className="text-xs text-[#2C2C2C]/40 hover:text-[#2C2C2C]/70 transition-colors"
+          >
+            Réinitialiser
+          </button>
+        )}
       </div>
 
       <div className="border border-[#2C2C2C]/8 rounded-xl overflow-hidden bg-white">
