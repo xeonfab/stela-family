@@ -172,21 +172,11 @@ export default function ProSanctuaire() {
           {/* Suivi de la Commande */}
           <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6">
             <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-1 font-medium">Suivi de la Commande</p>
-            <p className="font-serif text-lg text-[#2C2C2C] mb-6">Édition Frêne</p>
-            <div className="relative pl-6 space-y-5 mb-5">
-              {timelineSteps.map((step, i) => (
-                <div key={i} className="relative flex items-start gap-3">
-                  {i < timelineSteps.length - 1 && (
-                    <span className={cn("absolute left-[-16px] top-5 w-[1.5px] h-8", step.done ? "bg-[#D4AF37]/40" : "bg-[#2C2C2C]/[0.08]")} />
-                  )}
-                  <span className={cn("absolute left-[-20px] top-[3px] w-[9px] h-[9px] rounded-full border-2 shrink-0", step.done ? "border-[#D4AF37] bg-[#D4AF37]" : "border-[#2C2C2C]/20 bg-white")} />
-                  <span className={cn("text-sm", step.active ? "text-[#D4AF37] font-medium" : step.done ? "text-[#2C2C2C]/70" : "text-[#2C2C2C]/30")}>
-                    {step.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <p className="text-xs text-[#2C2C2C]/35 italic">Usinage en cours dans nos ateliers français.</p>
+            <p className="font-serif text-lg text-[#2C2C2C] mb-4">Édition Frêne</p>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-medium border border-amber-100">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+              En fabrication
+            </span>
           </div>
         </div>
       </div>
