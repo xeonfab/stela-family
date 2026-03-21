@@ -31,6 +31,13 @@ import ProSanctuaire from "./pages/pro/ProSanctuaire";
 import ProAgence from "./pages/pro/ProAgence";
 import ProLogin from "./pages/pro/ProLogin";
 import ProResetPassword from "./pages/pro/ProResetPassword";
+import SuperAdminLogin from "./pages/stela-hq/SuperAdminLogin";
+import SuperAdminLayout from "./layouts/SuperAdminLayout";
+import SuperAdminDashboard from "./pages/stela-hq/SuperAdminDashboard";
+import SuperAdminAgencies from "./pages/stela-hq/SuperAdminAgencies";
+import SuperAdminWorkshop from "./pages/stela-hq/SuperAdminWorkshop";
+import SuperAdminNFC from "./pages/stela-hq/SuperAdminNFC";
+import SuperAdminSanctuaries from "./pages/stela-hq/SuperAdminSanctuaries";
 
 const queryClient = new QueryClient();
 
