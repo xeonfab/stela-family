@@ -2,6 +2,7 @@ import { Download, Pencil } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 const invoices = [
   { month: "Février 2026", amount: "418,00 € HT", status: "Payée" },
@@ -16,6 +17,7 @@ const tarifs = [
 ];
 
 export default function ProAgence() {
+  const { toast } = useToast();
   return (
     <div className="max-w-5xl">
       <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C] mb-2">
@@ -70,9 +72,15 @@ export default function ProAgence() {
                       >
                         {inv.status}
                       </Badge>
-                      <button className="text-[#2C2C2C]/30 hover:text-[#C5A66B] transition-colors">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-[#2C2C2C]/30 hover:text-[#C5A66B]"
+                        title="Télécharger la facture"
+                        onClick={() => toast({ title: "Téléchargement en cours" })}
+                      >
                         <Download className="h-4 w-4" />
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 ))}
