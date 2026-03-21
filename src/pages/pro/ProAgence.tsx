@@ -75,7 +75,7 @@ export default function ProAgence() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8 text-[#2C2C2C]/30 hover:text-[#C5A66B]"
+                        className="h-8 w-8 text-[#2C2C2C]/60 hover:bg-[#2C2C2C] hover:text-white transition-colors"
                         title="Télécharger la facture"
                         onClick={() => toast({ title: "Téléchargement en cours" })}
                       >
