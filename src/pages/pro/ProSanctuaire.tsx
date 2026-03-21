@@ -1,7 +1,24 @@
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft, QrCode, Download, Mail, Plus } from "lucide-react";
+import { ChevronLeft, Download, RefreshCw, Mail, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import chevaletImg from "@/assets/ceremony-chevalet.png";
+import lettreImg from "@/assets/ceremony-lettre.png";
+
+const pdfCards = [
+  {
+    title: "Présentoir A4",
+    description:
+      "Un chevalet élégant à imprimer et disposer lors de la cérémonie pour inviter les proches à rejoindre l'espace.",
+    image: chevaletImg,
+  },
+  {
+    title: "Cartes de Livret",
+    description:
+      "De petites cartes à glisser dans le livret de cérémonie avec le QR code d'accès au sanctuaire.",
+    image: lettreImg,
+  },
+];
 
 export default function ProSanctuaire() {
   const navigate = useNavigate();
@@ -36,27 +53,75 @@ export default function ProSanctuaire() {
 
       {/* Stacked layout */}
       <div className="flex flex-col gap-6">
-        {/* Kit de Cérémonie */}
+        {/* Kit de Cérémonie — Cards */}
         <div>
-          <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-8">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-8 font-medium">Kit de Cérémonie</p>
-            <div className="mx-auto w-48 h-48 border-2 border-dashed border-[#D4AF37]/25 rounded-2xl flex items-center justify-center bg-[#D4AF37]/[0.02] mb-8">
-              <QrCode className="h-24 w-24 text-[#D4AF37]/50" />
+          <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-4 font-medium">Kit de Cérémonie</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {pdfCards.map((card) => (
+              <div
+                key={card.title}
+                className="bg-white rounded-3xl border border-[#2C2C2C]/[0.06] shadow-sm overflow-hidden"
+              >
+                <div className="aspect-[4/3] w-full bg-stone-50">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6">
+                  <h2 className="font-serif text-lg font-semibold text-[#2C2C2C] mb-1">
+                    {card.title}
+                  </h2>
+                  <p className="text-sm text-[#2C2C2C]/50 leading-relaxed">
+                    {card.description}
+                  </p>
+                </div>
+                <div className="border-t border-[#2C2C2C]/[0.06] bg-[#2C2C2C]/[0.015] p-6">
+                  <div className="flex flex-col gap-3">
+                    <button className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#D4AF37] text-white text-sm font-medium rounded-full hover:bg-[#c9a432] transition-colors btn-gold-jewel">
+                      <Download size={15} />
+                      Télécharger le PDF
+                    </button>
+                    <button className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-transparent border border-[#2C2C2C]/[0.12] text-[#2C2C2C]/60 text-sm font-medium rounded-full hover:border-[#2C2C2C]/[0.2] hover:text-[#2C2C2C]/80 transition-colors">
+                      <RefreshCw size={14} />
+                      Régénérer le PDF
+                    </button>
+                  </div>
+                  <p className="text-center text-[11px] text-[#2C2C2C]/30 mt-3">
+                    Régénérez le fichier si vous avez modifié la photo ou le nom du mémorial.
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Accès Famille — Renvoi */}
+        <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-5 font-medium">Accès Famille</p>
+          <div className="space-y-3 mb-5">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-[#2C2C2C]/70 truncate">marie.dubois@email.com</span>
             </div>
-            <div className="flex flex-col gap-3 max-w-sm mx-auto">
-              <Button className="w-full h-12 rounded-full btn-gold-jewel text-white font-semibold tracking-wide">
-                <Download className="mr-2 h-4 w-4" />
-                Télécharger le présentoir A4 (PDF)
-              </Button>
-              <Button variant="outline" className="w-full h-12 rounded-full border-[#2C2C2C]/[0.1] text-[#2C2C2C]/60 hover:bg-[#2C2C2C]/[0.02] hover:border-[#2C2C2C]/[0.15]">
-                <Mail className="mr-2 h-4 w-4" />
-                Renvoyer les accès à la famille
-              </Button>
-              <p className="text-center text-[11px] text-[#2C2C2C]/30 italic mt-1">
-                Les accès initiaux ont été envoyés automatiquement à la création.
-              </p>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-[#2C2C2C]/70 truncate">lucas.dubois@email.com</span>
             </div>
           </div>
+          <div className="flex flex-col sm:flex-row gap-3 mb-3">
+            <button className="flex items-center gap-1.5 text-sm text-[#D4AF37] hover:text-[#D4AF37]/80 transition-colors">
+              <Plus className="h-4 w-4" />
+              Ajouter un accès
+            </button>
+            <Button variant="outline" className="h-9 rounded-full border-[#2C2C2C]/[0.1] text-[#2C2C2C]/60 hover:bg-[#2C2C2C]/[0.02] hover:border-[#2C2C2C]/[0.15] text-sm">
+              <Mail className="mr-1.5 h-3.5 w-3.5" />
+              Renvoyer les accès
+            </Button>
+          </div>
+          <p className="text-[11px] text-[#2C2C2C]/30 italic">
+            Les accès initiaux ont été envoyés automatiquement à la création.
+          </p>
         </div>
 
         {/* Second Section */}
@@ -79,23 +144,6 @@ export default function ProSanctuaire() {
               ))}
             </div>
             <p className="text-xs text-[#2C2C2C]/35 italic">Usinage en cours dans nos ateliers français.</p>
-          </div>
-
-          {/* Accès Famille */}
-          <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-5 font-medium">Accès Famille</p>
-            <div className="space-y-3 mb-5">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-[#2C2C2C]/70 truncate">marie.dubois@email.com</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-[#2C2C2C]/70 truncate">lucas.dubois@email.com</span>
-              </div>
-            </div>
-            <button className="flex items-center gap-1.5 text-sm text-[#D4AF37] hover:text-[#D4AF37]/80 transition-colors">
-              <Plus className="h-4 w-4" />
-              Ajouter un accès
-            </button>
           </div>
         </div>
       </div>
