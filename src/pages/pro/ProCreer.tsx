@@ -398,16 +398,13 @@ export default function ProCreer() {
         {/* ── Action ── */}
         <div className="flex justify-end pb-8">
           <Button
-            onClick={() => setShowSuccess(true)}
+            onClick={() => navigate("/pro/sanctuaire/1")}
             disabled={showDelivery && isDomicile && !addressComplete}
             className="h-13 px-10 text-base font-semibold rounded-full btn-gold-jewel text-white tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {buttonLabel}
+            Valider et créer le sanctuaire
           </Button>
         </div>
-      </div>
-
-      <SuccessModal open={showSuccess} onClose={() => { setShowSuccess(false); navigate("/pro/sanctuaire/1"); }} />
     </>
   );
 }
