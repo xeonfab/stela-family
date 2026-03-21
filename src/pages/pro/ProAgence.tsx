@@ -71,9 +71,15 @@ export default function ProAgence() {
                       >
                         {inv.status}
                       </Badge>
-                      <button className="text-[#2C2C2C]/30 hover:text-[#C5A66B] transition-colors">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-[#2C2C2C]/30 hover:text-[#C5A66B]"
+                        title="Télécharger la facture"
+                        onClick={() => toast({ title: "Téléchargement en cours" })}
+                      >
                         <Download className="h-4 w-4" />
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 ))}
