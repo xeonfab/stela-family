@@ -2,6 +2,7 @@ import { Download, Pencil } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 const invoices = [
   { month: "Février 2026", amount: "418,00 € HT", status: "Payée" },
