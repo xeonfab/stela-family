@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft, Download, RefreshCw, Send, Plus, Trash2, PauseCircle } from "lucide-react";
+import { ChevronLeft, Download, RefreshCw, Send, Plus, Trash2, MoreHorizontal, Pause, Play, Pencil } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import chevaletImg from "@/assets/ceremony-chevalet.png";
 import lettreImg from "@/assets/ceremony-lettre.png";
@@ -81,16 +82,32 @@ export default function ProSanctuaire() {
           }`}>
             {sanctuaryActive ? "Actif" : "Suspendu"}
           </span>
-          <button
-            onClick={() => {
-              setSanctuaryActive((prev) => !prev);
-              toast.success(sanctuaryActive ? "Sanctuaire suspendu." : "Sanctuaire réactivé.");
-            }}
-            className="w-9 h-9 flex items-center justify-center rounded-full border border-[#2C2C2C]/[0.12] text-[#2C2C2C]/40 hover:text-amber-600 hover:border-amber-200 hover:bg-amber-50 transition-colors"
-            title={sanctuaryActive ? "Suspendre le sanctuaire" : "Réactiver le sanctuaire"}
-          >
-            <PauseCircle className="h-4 w-4" />
-          </button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="w-9 h-9 flex items-center justify-center rounded-full border border-[#2C2C2C]/[0.12] text-[#2C2C2C]/40 hover:text-[#2C2C2C]/70 hover:border-[#2C2C2C]/[0.2] transition-colors">
+                <MoreHorizontal className="h-4 w-4" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="min-w-[200px]">
+              <DropdownMenuItem
+                onClick={() => {
+                  setSanctuaryActive((prev) => !prev);
+                  toast.success(sanctuaryActive ? "Sanctuaire suspendu." : "Sanctuaire réactivé.");
+                }}
+                className="gap-2 cursor-pointer"
+              >
+                {sanctuaryActive ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                {sanctuaryActive ? "Suspendre le sanctuaire" : "Activer le sanctuaire"}
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => toast.info("Fonctionnalité à venir")}
+                className="gap-2 cursor-pointer"
+              >
+                <Pencil className="h-4 w-4" />
+                Modifier
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
