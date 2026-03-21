@@ -40,7 +40,7 @@ const PersonalEditionSheet = ({ open, onClose }: Props) => {
         <>
           {/* Overlay */}
           <motion.div
-            className="fixed inset-0 z-50 bg-black/60"
+            className="fixed inset-0 z-[60] bg-black/60"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -49,7 +49,7 @@ const PersonalEditionSheet = ({ open, onClose }: Props) => {
 
           {/* Sheet */}
           <motion.div
-            className="fixed inset-x-0 bottom-0 z-50 flex flex-col bg-[#FAFAFA] rounded-t-3xl max-h-[90vh] overflow-hidden"
+            className="fixed inset-x-0 bottom-0 z-[60] flex flex-col bg-[#FAFAFA] rounded-t-3xl max-h-[90vh] overflow-hidden"
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
