@@ -81,6 +81,16 @@ const App = () => (
             <Route path="agence" element={<ProAgence />} />
           </Route>
 
+          {/* Super Admin (Stela HQ) */}
+          <Route path="/stela-hq/login" element={<SuperAdminLogin />} />
+          <Route path="/stela-hq" element={<SuperAdminLayout />}>
+            <Route index element={<SuperAdminDashboard />} />
+            <Route path="agences" element={<SuperAdminAgencies />} />
+            <Route path="atelier" element={<SuperAdminWorkshop />} />
+            <Route path="nfc" element={<SuperAdminNFC />} />
+            <Route path="sanctuaires" element={<SuperAdminSanctuaries />} />
+          </Route>
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
