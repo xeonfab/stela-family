@@ -17,6 +17,7 @@ const tarifs = [
 ];
 
 export default function ProAgence() {
+  const { toast } = useToast();
   return (
     <div className="max-w-5xl">
       <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C] mb-2">
