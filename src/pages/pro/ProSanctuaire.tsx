@@ -298,6 +298,89 @@ export default function ProSanctuaire() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Modale Modifier le profil */}
+      <Dialog open={showEditModal} onOpenChange={setShowEditModal}>
+        <DialogContent className="max-w-md max-sm:h-screen max-sm:max-h-screen max-sm:w-screen max-sm:max-w-none max-sm:rounded-none max-sm:border-none bg-[#FAF9F6] border-stone-200 rounded-2xl">
+          <DialogTitle className="font-serif text-xl text-stone-800">Modifier le profil</DialogTitle>
+          <div className="space-y-5 pt-2">
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-stone-200 bg-[#2C2C2C]/[0.06] flex items-center justify-center">
+                <span className="text-[#2C2C2C]/20 text-xs font-medium">Photo</span>
+              </div>
+              <button className="text-xs text-[#D4AF37] hover:text-[#B8960C] transition-colors font-medium flex items-center gap-1.5">
+                <Camera size={13} />
+                Changer la photo
+              </button>
+            </div>
+            <div className="space-y-1.5">
+              <Label className="text-xs text-stone-500 uppercase tracking-wider">Nom complet</Label>
+              <Input value={editName} onChange={(e) => setEditName(e.target.value)} className="bg-white border-stone-200 font-serif text-lg" />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <Label className="text-xs text-stone-500 uppercase tracking-wider">Date de naissance</Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button className="w-full flex items-center gap-2 px-3 py-2 rounded-md border border-stone-200 bg-white text-sm text-left hover:border-stone-300 transition-colors">
+                      <CalendarIcon size={14} className="text-stone-400 shrink-0" />
+                      <span className={editBirthDate ? "text-stone-800" : "text-stone-400"}>
+                        {editBirthDate ? format(editBirthDate, "dd/MM/yyyy") : "JJ/MM/AAAA"}
+                      </span>
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={editBirthDate}
+                      onSelect={setEditBirthDate}
+                      locale={fr}
+                      captionLayout="dropdown-buttons"
+                      fromYear={1900}
+                      toYear={new Date().getFullYear()}
+                      className="p-3 pointer-events-auto"
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-xs text-stone-500 uppercase tracking-wider">Date du décès</Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button className="w-full flex items-center gap-2 px-3 py-2 rounded-md border border-stone-200 bg-white text-sm text-left hover:border-stone-300 transition-colors">
+                      <CalendarIcon size={14} className="text-stone-400 shrink-0" />
+                      <span className={editDeathDate ? "text-stone-800" : "text-stone-400"}>
+                        {editDeathDate ? format(editDeathDate, "dd/MM/yyyy") : "JJ/MM/AAAA"}
+                      </span>
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={editDeathDate}
+                      onSelect={setEditDeathDate}
+                      locale={fr}
+                      captionLayout="dropdown-buttons"
+                      fromYear={1900}
+                      toYear={new Date().getFullYear()}
+                      className="p-3 pointer-events-auto"
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                setShowEditModal(false);
+                toast.success("Profil mis à jour.");
+              }}
+              className="w-full py-3 rounded-full bg-[#2C221B] text-[#FBF9F6] text-sm font-medium hover:bg-[#3a2e24] transition-colors"
+            >
+              Enregistrer
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
