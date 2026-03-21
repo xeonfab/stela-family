@@ -30,6 +30,7 @@ import ProRegistre from "./pages/pro/ProRegistre";
 import ProSanctuaire from "./pages/pro/ProSanctuaire";
 import ProAgence from "./pages/pro/ProAgence";
 import ProLogin from "./pages/pro/ProLogin";
+import ProResetPassword from "./pages/pro/ProResetPassword";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +64,7 @@ const App = () => (
 
           {/* Pro login (no sidebar) */}
           <Route path="/pro/login" element={<ProLogin />} />
+          <Route path="/pro/reset-password" element={<ProResetPassword />} />
 
           {/* Pro / B2B routes with shared sidebar layout */}
           <Route path="/pro" element={<ProLayout />}>
