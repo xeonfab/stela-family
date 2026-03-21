@@ -222,6 +222,37 @@ export default function ProSanctuaire() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Modale Suppression d'accès */}
+      <Dialog open={!!emailToDelete} onOpenChange={(open) => !open && setEmailToDelete(null)}>
+        <DialogContent className="sm:max-w-md bg-[#FAF9F7] border-[#2C2C2C]/[0.06]">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-xl text-[#2C2C2C]">Supprimer cet accès ?</DialogTitle>
+            <p className="text-sm text-[#2C2C2C]/50 mt-1">
+              L'adresse <span className="font-medium text-[#2C2C2C]/70">{emailToDelete}</span> n'aura plus accès à ce sanctuaire.
+            </p>
+          </DialogHeader>
+          <div className="flex gap-3 mt-4">
+            <Button
+              variant="outline"
+              onClick={() => setEmailToDelete(null)}
+              className="flex-1 h-12 rounded-full border-[#2C2C2C]/[0.12] text-[#2C2C2C]/60"
+            >
+              Annuler
+            </Button>
+            <Button
+              onClick={() => {
+                setEmails((prev) => prev.filter((e) => e !== emailToDelete));
+                toast.success(`Accès supprimé pour ${emailToDelete}`);
+                setEmailToDelete(null);
+              }}
+              className="flex-1 h-12 rounded-full bg-[#2C2C2C] hover:bg-[#2C2C2C]/90 text-white font-medium"
+            >
+              Confirmer
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
