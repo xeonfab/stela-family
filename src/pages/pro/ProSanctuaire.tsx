@@ -74,13 +74,23 @@ export default function ProSanctuaire() {
           <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C]">Jean-Claude Dubois</h1>
           <p className="text-[#2C2C2C]/40 text-sm mt-1">1948 – 2026</p>
         </div>
-        <button
-          onClick={() => toast.success("Sanctuaire suspendu. Le lien est temporairement désactivé.")}
-          className="w-9 h-9 flex items-center justify-center rounded-full border border-[#2C2C2C]/[0.12] text-[#2C2C2C]/40 hover:text-amber-600 hover:border-amber-200 hover:bg-amber-50 transition-colors self-start"
-          title="Suspendre le sanctuaire"
-        >
-          <PauseCircle className="h-4 w-4" />
-        </button>
+        <div className="flex items-center gap-2 self-start">
+          <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${
+            sanctuaryActive ? "bg-[#D4AF37]/10 text-[#D4AF37]" : "bg-[#2C2C2C]/5 text-[#2C2C2C]/40"
+          }`}>
+            {sanctuaryActive ? "Actif" : "Suspendu"}
+          </span>
+          <button
+            onClick={() => {
+              setSanctuaryActive((prev) => !prev);
+              toast.success(sanctuaryActive ? "Sanctuaire suspendu." : "Sanctuaire réactivé.");
+            }}
+            className="w-9 h-9 flex items-center justify-center rounded-full border border-[#2C2C2C]/[0.12] text-[#2C2C2C]/40 hover:text-amber-600 hover:border-amber-200 hover:bg-amber-50 transition-colors"
+            title={sanctuaryActive ? "Suspendre le sanctuaire" : "Réactiver le sanctuaire"}
+          >
+            <PauseCircle className="h-4 w-4" />
+          </button>
+        </div>
       </div>
 
       {/* Stacked layout */}
