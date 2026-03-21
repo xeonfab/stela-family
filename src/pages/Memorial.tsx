@@ -897,6 +897,7 @@ const Memorial = () => {
       {/* Bottom spacer for FAB */}
       <div className="h-24" />
 
+      <PersonalEditionSheet open={personalEditionOpen} onClose={() => setPersonalEditionOpen(false)} />
     </div>);
 
 };
