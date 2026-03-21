@@ -105,23 +105,23 @@ export default function ProSanctuaire() {
           <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6">
             <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-5 font-medium">Accès Famille</p>
             <div className="space-y-3 mb-5">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-[#2C2C2C]/70 truncate">marie.dubois@email.com</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-[#2C2C2C]/70 truncate">lucas.dubois@email.com</span>
-              </div>
+              {["marie.dubois@email.com", "lucas.dubois@email.com"].map((email) => (
+                <div key={email} className="flex items-center justify-between gap-2">
+                  <span className="text-sm text-[#2C2C2C]/70 truncate">{email}</span>
+                  <button
+                    onClick={() => toast.success(`Accès renvoyés à ${email}`)}
+                    className="shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-[#2C2C2C]/40 hover:text-[#D4AF37] hover:bg-[#D4AF37]/[0.06] transition-colors"
+                    title="Renvoyer les accès"
+                  >
+                    <Send className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              ))}
             </div>
-            <div className="flex flex-col gap-3 mb-3">
-              <button className="flex items-center gap-1.5 text-sm text-[#D4AF37] hover:text-[#D4AF37]/80 transition-colors">
-                <Plus className="h-4 w-4" />
-                Ajouter un accès
-              </button>
-              <Button variant="outline" className="h-9 rounded-full border-[#2C2C2C]/[0.1] text-[#2C2C2C]/60 hover:bg-[#2C2C2C]/[0.02] hover:border-[#2C2C2C]/[0.15] text-sm w-fit">
-                <Mail className="mr-1.5 h-3.5 w-3.5" />
-                Renvoyer les accès
-              </Button>
-            </div>
+            <button className="flex items-center gap-1.5 text-sm text-[#D4AF37] hover:text-[#D4AF37]/80 transition-colors mb-3">
+              <Plus className="h-4 w-4" />
+              Ajouter un accès
+            </button>
             <p className="text-[11px] text-[#2C2C2C]/30 italic">
               Les accès initiaux ont été envoyés automatiquement à la création.
             </p>
