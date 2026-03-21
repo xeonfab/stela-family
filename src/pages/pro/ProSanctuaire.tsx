@@ -208,6 +208,10 @@ export default function ProSanctuaire() {
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
               En fabrication
             </span>
+            <div className="mb-4">
+              <p className="text-xs uppercase tracking-[0.15em] text-[#2C2C2C]/30 mb-1 font-medium">Livraison en agence</p>
+              <p className="text-sm text-[#2C2C2C]/60 leading-relaxed">Pompes Funèbres Dubois<br />12 rue de la Paix, 75002 Paris</p>
+            </div>
             <button
               onClick={() => toast.success("Téléchargement de la facture en cours")}
               className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-transparent border border-[#2C2C2C]/[0.12] text-[#2C2C2C]/60 text-sm font-medium rounded-full hover:border-[#2C2C2C]/[0.2] hover:text-[#2C2C2C]/80 transition-colors">
