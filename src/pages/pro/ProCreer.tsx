@@ -71,42 +71,7 @@ const ecrins = [
   },
 ];
 
-/* ───────── SUCCESS MODAL ───────── */
-function SuccessModal({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const navigate = useNavigate();
-
-  return (
-    <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="bg-white border-[#2C2C2C]/10 sm:rounded-2xl max-w-md text-center">
-        <DialogHeader className="items-center">
-          <div className="mx-auto w-40 h-40 border-2 border-dashed border-[#D4AF37]/30 rounded-2xl flex items-center justify-center mb-4 bg-[#D4AF37]/[0.03]">
-            <QrCode className="h-20 w-20 text-[#D4AF37]/60" />
-          </div>
-          <DialogTitle className="font-serif text-2xl text-[#2C2C2C]">Sanctuaire créé</DialogTitle>
-          <DialogDescription className="text-[#2C2C2C]/50">
-            Le QR Code et l'espace de recueillement sont prêts.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="flex flex-col gap-3 mt-4">
-          <Button
-            className="w-full h-11 rounded-xl font-medium"
-            style={{ backgroundColor: "#D4AF37", color: "#fff" }}
-          >
-            <Download className="mr-2 h-4 w-4" />
-            Télécharger le présentoir A4 (PDF)
-          </Button>
-          <Button
-            variant="outline"
-            className="w-full h-11 rounded-xl border-[#2C2C2C]/10 text-[#2C2C2C]/70"
-          >
-            <Mail className="mr-2 h-4 w-4" />
-            Envoyer l'accès à la famille
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
+/* ───────── Delivery Options ───────── */
 
 /* ───────── Delivery Options ───────── */
 const deliveryOptions = [
