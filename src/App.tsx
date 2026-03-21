@@ -31,6 +31,13 @@ import ProSanctuaire from "./pages/pro/ProSanctuaire";
 import ProAgence from "./pages/pro/ProAgence";
 import ProLogin from "./pages/pro/ProLogin";
 import ProResetPassword from "./pages/pro/ProResetPassword";
+import SuperAdminLogin from "./pages/stela-hq/SuperAdminLogin";
+import SuperAdminLayout from "./layouts/SuperAdminLayout";
+import SuperAdminDashboard from "./pages/stela-hq/SuperAdminDashboard";
+import SuperAdminAgencies from "./pages/stela-hq/SuperAdminAgencies";
+import SuperAdminWorkshop from "./pages/stela-hq/SuperAdminWorkshop";
+import SuperAdminNFC from "./pages/stela-hq/SuperAdminNFC";
+import SuperAdminSanctuaries from "./pages/stela-hq/SuperAdminSanctuaries";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +79,16 @@ const App = () => (
             <Route path="registre" element={<ProRegistre />} />
             <Route path="sanctuaire/:id" element={<ProSanctuaire />} />
             <Route path="agence" element={<ProAgence />} />
+          </Route>
+
+          {/* Super Admin (Stela HQ) */}
+          <Route path="/stela-hq/login" element={<SuperAdminLogin />} />
+          <Route path="/stela-hq" element={<SuperAdminLayout />}>
+            <Route index element={<SuperAdminDashboard />} />
+            <Route path="agences" element={<SuperAdminAgencies />} />
+            <Route path="atelier" element={<SuperAdminWorkshop />} />
+            <Route path="nfc" element={<SuperAdminNFC />} />
+            <Route path="sanctuaires" element={<SuperAdminSanctuaries />} />
           </Route>
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
