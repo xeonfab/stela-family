@@ -74,10 +74,19 @@ export default function ProSanctuaire() {
           <h1 className="font-serif text-3xl md:text-4xl text-[#2C2C2C]">Jean-Claude Dubois</h1>
           <p className="text-[#2C2C2C]/40 text-sm mt-1">1948 – 2026</p>
         </div>
-        <span className="inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 text-xs font-medium border border-emerald-100">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-          Sanctuaire Actif
-        </span>
+        <div className="flex items-center gap-2 self-start">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 text-xs font-medium border border-emerald-100">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            Sanctuaire Actif
+          </span>
+          <button
+            onClick={() => toast.success("Sanctuaire suspendu. Le lien est temporairement désactivé.")}
+            className="w-9 h-9 flex items-center justify-center rounded-full border border-[#2C2C2C]/[0.12] text-[#2C2C2C]/40 hover:text-amber-600 hover:border-amber-200 hover:bg-amber-50 transition-colors"
+            title="Suspendre le sanctuaire"
+          >
+            <PauseCircle className="h-4 w-4" />
+          </button>
+        </div>
       </div>
 
       {/* Stacked layout */}
