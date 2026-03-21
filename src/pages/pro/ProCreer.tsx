@@ -2,20 +2,13 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
-import { CalendarIcon, Plus, X, Download, Mail, QrCode, Building2, Truck } from "lucide-react";
+import { CalendarIcon, Plus, X, Building2, Truck } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 
 /* ───────── Date Picker Field ───────── */
 function DatePickerField({ label, placeholder }: { label: string; placeholder: string }) {
@@ -71,42 +64,7 @@ const ecrins = [
   },
 ];
 
-/* ───────── SUCCESS MODAL ───────── */
-function SuccessModal({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const navigate = useNavigate();
-
-  return (
-    <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="bg-white border-[#2C2C2C]/10 sm:rounded-2xl max-w-md text-center">
-        <DialogHeader className="items-center">
-          <div className="mx-auto w-40 h-40 border-2 border-dashed border-[#D4AF37]/30 rounded-2xl flex items-center justify-center mb-4 bg-[#D4AF37]/[0.03]">
-            <QrCode className="h-20 w-20 text-[#D4AF37]/60" />
-          </div>
-          <DialogTitle className="font-serif text-2xl text-[#2C2C2C]">Sanctuaire créé</DialogTitle>
-          <DialogDescription className="text-[#2C2C2C]/50">
-            Le QR Code et l'espace de recueillement sont prêts.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="flex flex-col gap-3 mt-4">
-          <Button
-            className="w-full h-11 rounded-xl font-medium"
-            style={{ backgroundColor: "#D4AF37", color: "#fff" }}
-          >
-            <Download className="mr-2 h-4 w-4" />
-            Télécharger le présentoir A4 (PDF)
-          </Button>
-          <Button
-            variant="outline"
-            className="w-full h-11 rounded-xl border-[#2C2C2C]/10 text-[#2C2C2C]/70"
-          >
-            <Mail className="mr-2 h-4 w-4" />
-            Envoyer l'accès à la famille
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
+/* ───────── Delivery Options ───────── */
 
 /* ───────── Delivery Options ───────── */
 const deliveryOptions = [
@@ -133,7 +91,6 @@ export default function ProCreer() {
   const [additionalEmails, setAdditionalEmails] = useState<string[]>([]);
   const [showAdditional, setShowAdditional] = useState(false);
   const [newEmail, setNewEmail] = useState("");
-  const [showSuccess, setShowSuccess] = useState(false);
   const [address, setAddress] = useState({ street: "", zip: "", city: "", country: "France" });
   const navigate = useNavigate();
 
@@ -398,16 +355,14 @@ export default function ProCreer() {
         {/* ── Action ── */}
         <div className="flex justify-end pb-8">
           <Button
-            onClick={() => setShowSuccess(true)}
+            onClick={() => navigate("/pro/sanctuaire/1")}
             disabled={showDelivery && isDomicile && !addressComplete}
             className="h-13 px-10 text-base font-semibold rounded-full btn-gold-jewel text-white tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            {buttonLabel}
+            Valider et créer le sanctuaire
           </Button>
         </div>
       </div>
-
-      <SuccessModal open={showSuccess} onClose={() => { setShowSuccess(false); navigate("/pro/sanctuaire/1"); }} />
     </>
   );
 }
