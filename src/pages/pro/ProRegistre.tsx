@@ -9,10 +9,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const mockFamilies = [
-  { id: 1, name: "Jean-Claude Dubois", created: "15 Fév 2026", email: "marie.dubois@email.com", status: "Actif" },
-  { id: 2, name: "Marguerite Lefèvre", created: "10 Fév 2026", email: "paul.lefevre@email.com", status: "Actif" },
-  { id: 3, name: "Henri Martin", created: "02 Fév 2026", email: "sophie.martin@email.com", status: "Suspendu" },
-  { id: 4, name: "Colette Bernard", created: "28 Jan 2026", email: "lucas.bernard@email.com", status: "Actif" },
+  { id: 1, name: "Jean-Claude Dubois", created: "15 Fév 2026", emails: ["marie.dubois@email.com", "lucas.dubois@email.com"], status: "Actif" },
+  { id: 2, name: "Marguerite Lefèvre", created: "10 Fév 2026", emails: ["paul.lefevre@email.com"], status: "Actif" },
+  { id: 3, name: "Henri Martin", created: "02 Fév 2026", emails: ["sophie.martin@email.com", "jean.martin@email.com", "anne.martin@email.com"], status: "Suspendu" },
+  { id: 4, name: "Colette Bernard", created: "28 Jan 2026", emails: ["lucas.bernard@email.com"], status: "Actif" },
 ];
 
 export default function ProRegistre() {
@@ -43,7 +43,16 @@ export default function ProRegistre() {
               >
                 <TableCell className="font-medium text-[#2C2C2C]">{f.name}</TableCell>
                 <TableCell className="text-[#2C2C2C]/60">{f.created}</TableCell>
-                <TableCell className="text-[#2C2C2C]/60">{f.email}</TableCell>
+                <TableCell className="text-[#2C2C2C]/60">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="truncate max-w-[180px]">{f.emails[0]}</span>
+                    {f.emails.length > 1 && (
+                      <span className="inline-flex items-center px-1.5 py-0.5 rounded-full bg-[#2C2C2C]/[0.06] text-[#2C2C2C]/40 text-[11px] font-medium shrink-0">
+                        +{f.emails.length - 1}
+                      </span>
+                    )}
+                  </div>
+                </TableCell>
                 <TableCell>
                   <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${
                     f.status === "Actif" ? "bg-[#D4AF37]/10 text-[#D4AF37]" : "bg-[#2C2C2C]/5 text-[#2C2C2C]/40"
