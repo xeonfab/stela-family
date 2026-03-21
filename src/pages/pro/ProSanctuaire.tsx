@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft, Download, RefreshCw, Send, Plus, Trash2, MoreHorizontal, Pause, Play, Pencil } from "lucide-react";
+import { ChevronLeft, Download, RefreshCw, Send, Plus, Trash2, MoreHorizontal, Pause, Play, Pencil, Camera, CalendarIcon } from "lucide-react";
 import { toast } from "sonner";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import chevaletImg from "@/assets/ceremony-chevalet.png";
 import lettreImg from "@/assets/ceremony-lettre.png";
 
