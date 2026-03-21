@@ -173,10 +173,16 @@ export default function ProSanctuaire() {
           <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6">
             <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-1 font-medium">Suivi de la Commande</p>
             <p className="font-serif text-lg text-[#2C2C2C] mb-4">Édition Frêne</p>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-medium border border-amber-100">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-medium border border-amber-100 mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
               En fabrication
             </span>
+            <button
+              onClick={() => toast.success("Téléchargement de la facture en cours")}
+              className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-transparent border border-[#2C2C2C]/[0.12] text-[#2C2C2C]/60 text-sm font-medium rounded-full hover:border-[#2C2C2C]/[0.2] hover:text-[#2C2C2C]/80 transition-colors">
+              <Download size={14} />
+              Télécharger la facture
+            </button>
           </div>
         </div>
       </div>
