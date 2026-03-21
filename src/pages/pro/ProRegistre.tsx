@@ -154,8 +154,8 @@ export default function ProRegistre() {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="bg-white border-[#2C2C2C]/10">
-                        <DropdownMenuItem className="text-[#2C2C2C]/70 cursor-pointer">Suspendre le lien</DropdownMenuItem>
-                        <DropdownMenuItem className="text-[#2C2C2C]/70 cursor-pointer">Modifier l'email</DropdownMenuItem>
+                        <DropdownMenuItem className="text-[#2C2C2C]/70 cursor-pointer">Suspendre le sanctuaire</DropdownMenuItem>
+                        <DropdownMenuItem className="text-[#2C2C2C]/70 cursor-pointer">Modifier les informations</DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
