@@ -136,13 +136,22 @@ export default function ProSanctuaire() {
               {emails.map((email) => (
                 <div key={email} className="flex items-center justify-between gap-2">
                   <span className="text-sm text-[#2C2C2C]/70 truncate">{email}</span>
-                  <button
-                    onClick={() => toast.success(`Accès renvoyés à ${email}`)}
-                    className="shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-[#2C2C2C]/40 hover:text-[#D4AF37] hover:bg-[#D4AF37]/[0.06] transition-colors"
-                    title="Renvoyer les accès"
-                  >
-                    <Send className="h-3.5 w-3.5" />
-                  </button>
+                  <div className="flex items-center gap-1 shrink-0">
+                    <button
+                      onClick={() => toast.success(`Accès renvoyés à ${email}`)}
+                      className="w-8 h-8 flex items-center justify-center rounded-full text-[#2C2C2C]/40 hover:text-[#D4AF37] hover:bg-[#D4AF37]/[0.06] transition-colors"
+                      title="Renvoyer les accès"
+                    >
+                      <Send className="h-3.5 w-3.5" />
+                    </button>
+                    <button
+                      onClick={() => setEmailToDelete(email)}
+                      className="w-8 h-8 flex items-center justify-center rounded-full text-[#2C2C2C]/30 hover:text-red-500/70 hover:bg-red-50 transition-colors"
+                      title="Supprimer l'accès"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
