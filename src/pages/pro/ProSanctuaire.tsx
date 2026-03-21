@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, Download, RefreshCw, Send, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import chevaletImg from "@/assets/ceremony-chevalet.png";
 import lettreImg from "@/assets/ceremony-lettre.png";
 
@@ -23,12 +26,36 @@ const pdfCards = [
 
 export default function ProSanctuaire() {
   const navigate = useNavigate();
+  const [emails, setEmails] = useState(["marie.dubois@email.com", "lucas.dubois@email.com"]);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [newEmail, setNewEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const timelineSteps = [
     { label: "Commande validée", done: true },
     { label: "En fabrication", done: true, active: true },
     { label: "Expédiée vers l'agence", done: false },
   ];
+
+  const isValidEmail = (email: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+  const handleAddEmail = () => {
+    const trimmed = newEmail.trim();
+    if (!isValidEmail(trimmed)) {
+      setEmailError("Veuillez entrer une adresse e-mail valide.");
+      return;
+    }
+    if (emails.includes(trimmed)) {
+      setEmailError("Cette adresse est déjà dans la liste.");
+      return;
+    }
+    setEmails((prev) => [...prev, trimmed]);
+    setNewEmail("");
+    setEmailError("");
+    setShowAddModal(false);
+    toast.success(`Accès envoyé à ${trimmed}`);
+  };
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -105,7 +132,7 @@ export default function ProSanctuaire() {
           <div className="bg-white border border-[#2C2C2C]/[0.06] rounded-2xl p-6">
             <p className="text-xs uppercase tracking-[0.2em] text-[#2C2C2C]/40 mb-5 font-medium">Accès Famille</p>
             <div className="space-y-3 mb-5">
-              {["marie.dubois@email.com", "lucas.dubois@email.com"].map((email) => (
+              {emails.map((email) => (
                 <div key={email} className="flex items-center justify-between gap-2">
                   <span className="text-sm text-[#2C2C2C]/70 truncate">{email}</span>
                   <button
@@ -118,11 +145,14 @@ export default function ProSanctuaire() {
                 </div>
               ))}
             </div>
-            <button className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-transparent border border-[#2C2C2C]/[0.12] text-[#2C2C2C]/60 text-sm font-medium rounded-full hover:border-[#2C2C2C]/[0.2] hover:text-[#2C2C2C]/80 transition-colors">
+            <button
+              onClick={() => { setShowAddModal(true); setNewEmail(""); setEmailError(""); }}
+              className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-transparent border border-[#2C2C2C]/[0.12] text-[#2C2C2C]/60 text-sm font-medium rounded-full hover:border-[#2C2C2C]/[0.2] hover:text-[#2C2C2C]/80 transition-colors"
+            >
               <Plus className="h-4 w-4" />
               Ajouter un accès
             </button>
-            <p className="text-[11px] text-[#2C2C2C]/30 italic">
+            <p className="text-[11px] text-[#2C2C2C]/30 italic mt-3">
               Les accès initiaux ont été envoyés automatiquement à la création.
             </p>
           </div>
@@ -148,6 +178,40 @@ export default function ProSanctuaire() {
           </div>
         </div>
       </div>
+
+      {/* Modale Ajouter un accès */}
+      <Dialog open={showAddModal} onOpenChange={setShowAddModal}>
+        <DialogContent className="sm:max-w-md bg-[#FAF9F7] border-[#2C2C2C]/[0.06]">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-xl text-[#2C2C2C]">Ajouter un accès</DialogTitle>
+            <p className="text-sm text-[#2C2C2C]/50 mt-1">
+              Entrez l'adresse e-mail du proche à inviter.
+            </p>
+          </DialogHeader>
+          <div className="mt-4 space-y-4">
+            <div>
+              <Input
+                type="email"
+                placeholder="exemple@email.com"
+                value={newEmail}
+                onChange={(e) => { setNewEmail(e.target.value); setEmailError(""); }}
+                onKeyDown={(e) => e.key === "Enter" && handleAddEmail()}
+                className="h-12 rounded-xl border-[#2C2C2C]/[0.1] bg-white text-[#2C2C2C] placeholder:text-[#2C2C2C]/30 focus-visible:ring-[#D4AF37]/30"
+              />
+              {emailError && (
+                <p className="text-xs text-red-500/80 mt-1.5">{emailError}</p>
+              )}
+            </div>
+            <Button
+              onClick={handleAddEmail}
+              disabled={!newEmail.trim()}
+              className="w-full h-12 rounded-full bg-[#D4AF37] hover:bg-[#c9a432] text-white font-medium btn-gold-jewel"
+            >
+              Envoyer l'invitation
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
