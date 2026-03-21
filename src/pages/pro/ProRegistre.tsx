@@ -52,10 +52,7 @@ export default function ProRegistre() {
                   </span>
                 </TableCell>
                 <TableCell className="text-right">
-                  <div className="flex items-center justify-end gap-1" onClick={(e) => e.stopPropagation()}>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 text-[#2C2C2C]/40 hover:text-[#D4AF37]">
-                      <Download className="h-4 w-4" />
-                    </Button>
+                   <div className="flex items-center justify-end" onClick={(e) => e.stopPropagation()}>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon" className="h-8 w-8 text-[#2C2C2C]/40 hover:text-[#2C2C2C]">
@@ -63,6 +60,10 @@ export default function ProRegistre() {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="bg-white border-[#2C2C2C]/10">
+                        <DropdownMenuItem className="text-[#2C2C2C]/70 cursor-pointer gap-2">
+                          <Download className="h-4 w-4" />
+                          Télécharger la facture
+                        </DropdownMenuItem>
                         <DropdownMenuItem className="text-[#2C2C2C]/70 cursor-pointer">Suspendre le lien</DropdownMenuItem>
                         <DropdownMenuItem className="text-[#2C2C2C]/70 cursor-pointer">Modifier l'email</DropdownMenuItem>
                       </DropdownMenuContent>
