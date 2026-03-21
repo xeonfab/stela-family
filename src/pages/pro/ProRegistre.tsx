@@ -9,10 +9,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const mockFamilies = [
-  { id: 1, name: "Jean-Claude Dubois", created: "15 Fév 2026", email: "marie.dubois@email.com", status: "Actif" },
-  { id: 2, name: "Marguerite Lefèvre", created: "10 Fév 2026", email: "paul.lefevre@email.com", status: "Actif" },
-  { id: 3, name: "Henri Martin", created: "02 Fév 2026", email: "sophie.martin@email.com", status: "Suspendu" },
-  { id: 4, name: "Colette Bernard", created: "28 Jan 2026", email: "lucas.bernard@email.com", status: "Actif" },
+  { id: 1, name: "Jean-Claude Dubois", created: "15 Fév 2026", emails: ["marie.dubois@email.com", "lucas.dubois@email.com"], status: "Actif" },
+  { id: 2, name: "Marguerite Lefèvre", created: "10 Fév 2026", emails: ["paul.lefevre@email.com"], status: "Actif" },
+  { id: 3, name: "Henri Martin", created: "02 Fév 2026", emails: ["sophie.martin@email.com", "jean.martin@email.com", "anne.martin@email.com"], status: "Suspendu" },
+  { id: 4, name: "Colette Bernard", created: "28 Jan 2026", emails: ["lucas.bernard@email.com"], status: "Actif" },
 ];
 
 export default function ProRegistre() {
