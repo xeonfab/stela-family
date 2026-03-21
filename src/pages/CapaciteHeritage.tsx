@@ -72,7 +72,7 @@ const CapaciteHeritage = () => {
         </section>
 
         {/* ─── 2. Encart ─── */}
-        <section className="rounded-md bg-stone-50 px-6 py-5 space-y-3">
+        <section className="rounded-xl border border-stone-200/50 bg-white px-6 py-5 space-y-3 shadow-sm">
           <h2 className="font-serif text-lg text-stone-700 tracking-tight">
             L'hommage s'agrandit.
           </h2>
