@@ -69,10 +69,6 @@ export default function ProRegistre() {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="bg-white border-[#2C2C2C]/10">
-                        <DropdownMenuItem className="text-[#2C2C2C]/70 cursor-pointer gap-2">
-                          <Download className="h-4 w-4" />
-                          Télécharger la facture
-                        </DropdownMenuItem>
                         <DropdownMenuItem className="text-[#2C2C2C]/70 cursor-pointer">Suspendre le lien</DropdownMenuItem>
                         <DropdownMenuItem className="text-[#2C2C2C]/70 cursor-pointer">Modifier l'email</DropdownMenuItem>
                       </DropdownMenuContent>
