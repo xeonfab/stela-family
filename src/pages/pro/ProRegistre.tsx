@@ -120,7 +120,7 @@ export default function ProRegistre() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filtered.map((f) => (
+            {filtered.slice((page - 1) * perPage, page * perPage).map((f) => (
               <TableRow
                 key={f.id}
                 className="border-b border-[#2C2C2C]/5 hover:bg-[#D4AF37]/[0.03] cursor-pointer"
