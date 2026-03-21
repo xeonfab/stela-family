@@ -38,6 +38,10 @@ export default function ProSanctuaire() {
   const [emailError, setEmailError] = useState("");
   const [emailToDelete, setEmailToDelete] = useState<string | null>(null);
   const [sanctuaryActive, setSanctuaryActive] = useState(true);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editName, setEditName] = useState("Jean-Claude Dubois");
+  const [editBirthDate, setEditBirthDate] = useState<Date | undefined>(new Date(1948, 0, 1));
+  const [editDeathDate, setEditDeathDate] = useState<Date | undefined>(new Date(2026, 0, 1));
 
   const timelineSteps = [
     { label: "Commande validée", done: true },
