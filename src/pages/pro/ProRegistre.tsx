@@ -114,7 +114,7 @@ export default function ProRegistre() {
             <TableRow className="border-b border-[#2C2C2C]/8 hover:bg-transparent">
               <TableHead className="text-[#2C2C2C]/50 text-xs uppercase tracking-wider font-normal">Défunt</TableHead>
               <TableHead className="text-[#2C2C2C]/50 text-xs uppercase tracking-wider font-normal">Créé le</TableHead>
-              <TableHead className="text-[#2C2C2C]/50 text-xs uppercase tracking-wider font-normal">Garant</TableHead>
+              <TableHead className="text-[#2C2C2C]/50 text-xs uppercase tracking-wider font-normal">Garant(s) famille</TableHead>
               <TableHead className="text-[#2C2C2C]/50 text-xs uppercase tracking-wider font-normal">Statut</TableHead>
               <TableHead className="text-[#2C2C2C]/50 text-xs uppercase tracking-wider font-normal text-right">Actions</TableHead>
             </TableRow>
