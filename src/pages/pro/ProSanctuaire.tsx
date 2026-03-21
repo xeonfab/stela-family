@@ -30,6 +30,7 @@ export default function ProSanctuaire() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [emailToDelete, setEmailToDelete] = useState<string | null>(null);
 
   const timelineSteps = [
     { label: "Commande validée", done: true },
