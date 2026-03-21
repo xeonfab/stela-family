@@ -723,10 +723,13 @@ const Memorial = () => {
         <header className="relative z-10 py-4 px-6 flex items-center justify-between">
           <button
             onClick={() => setShareModalOpen(true)}
-            className="flex items-center gap-1.5 text-sm text-[#FBF9F6]/60 hover:text-[#D4AF37] transition-colors">
-            
-            <Share2 size={16} />
-            <span className="font-sans-body">Partager</span>
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-sm text-white/90 hover:bg-black/40 transition-colors">
+            <Share2 size={20} />
+          </button>
+          <button
+            onClick={() => setPersonalEditionOpen(true)}
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-sm text-white/90 hover:bg-black/40 transition-colors">
+            <Home size={20} />
           </button>
         </header>
 
