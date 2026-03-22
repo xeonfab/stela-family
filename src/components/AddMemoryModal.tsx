@@ -874,17 +874,31 @@ const AddMemoryModal = ({ open, onOpenChange, isAdmin = false }: AddMemoryModalP
                   </button>
                 </div>
               ) : (
-                <div className="flex items-center justify-between">
-                  <button
-                    onClick={() => setStep(1)}
-                    className="flex items-center gap-1.5 text-sm text-[#757575] hover:text-stone-600 font-medium transition-colors"
-                  >
-                    <ArrowLeft size={15} strokeWidth={1.5} />
-                    Retour
-                  </button>
-                  <button className="btn-gold-jewel flex items-center gap-2 px-6 py-3 rounded-xl text-white font-medium text-sm tracking-[0.05em]">
-                    Déposer le souvenir
-                  </button>
+                <div className="flex flex-col gap-3">
+                  <p className="text-[11px] text-muted-foreground leading-relaxed text-center">
+                    En publiant ce souvenir, j'accepte les{" "}
+                    <a
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline underline-offset-2 hover:text-primary/80"
+                    >
+                      Conditions d'Utilisation
+                    </a>{" "}
+                    de Stela et j'autorise le Garant du Sanctuaire à gérer ce contenu.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <button
+                      onClick={() => setStep(1)}
+                      className="flex items-center gap-1.5 text-sm text-[#757575] hover:text-stone-600 font-medium transition-colors"
+                    >
+                      <ArrowLeft size={15} strokeWidth={1.5} />
+                      Retour
+                    </button>
+                    <button className="btn-gold-jewel flex items-center gap-2 px-6 py-3 rounded-xl text-white font-medium text-sm tracking-[0.05em]">
+                      Déposer le souvenir
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
