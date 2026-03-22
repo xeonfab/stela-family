@@ -921,6 +921,13 @@ const Memorial = () => {
       <div className="h-24" />
 
       <PersonalEditionSheet open={personalEditionOpen} onClose={() => setPersonalEditionOpen(false)} />
+
+      <LockedVideoModal
+        video={selectedLockedVideo}
+        open={lockedVideoModalOpen}
+        onOpenChange={setLockedVideoModalOpen}
+        isGarant={false}
+      />
     </div>);
 
 };
