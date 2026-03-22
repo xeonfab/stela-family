@@ -668,6 +668,13 @@ const Memorial = () => {
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [lockedVideoModalOpen, setLockedVideoModalOpen] = useState(false);
+  const [selectedLockedVideo, setSelectedLockedVideo] = useState<LockedVideo | null>(null);
+
+  const openLockedVideo = (video: LockedVideo) => {
+    setSelectedLockedVideo(video);
+    setLockedVideoModalOpen(true);
+  };
 
   const shareUrl = "stela.family/hommage/jean-claude-dubois";
   const shareMessage = `Un espace privé et éternel pour honorer la mémoire de Jean-Claude Dubois sur Stela.family.\n\nIci, nous rassemblons nos pensées, photos et témoignages pour créer son plus bel héritage. Vous pouvez aussi y allumer une bougie.\n\n👉 stela.family/hommage/jean-claude-dubois\n\nN'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`;
