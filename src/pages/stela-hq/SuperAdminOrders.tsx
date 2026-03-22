@@ -225,10 +225,23 @@ function OrderDetailsDrawer({ order, onClose }: { order: Order; onClose: () => v
 export default function SuperAdminOrders() {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [activeTab, setActiveTab] = useState("all");
+  const [search, setSearch] = useState("");
+  const [filterBuyer, setFilterBuyer] = useState("all");
+  const [filterPayment, setFilterPayment] = useState("all");
+  const [filterType, setFilterType] = useState("all");
+  const [filterStatus, setFilterStatus] = useState("all");
+
+  const uniqueBuyers = [...new Set(MOCK_ORDERS.map((o) => o.buyer))];
+  const uniqueTypes = [...new Set(MOCK_ORDERS.map((o) => o.typeLabel))];
 
   const filtered = MOCK_ORDERS.filter((o) => {
-    if (activeTab === "to-ship") return o.status === "to-ship";
-    if (activeTab === "done") return o.status === "shipped" || o.status === "digital-active";
+    if (activeTab === "to-ship" && o.status !== "to-ship") return false;
+    if (activeTab === "done" && o.status !== "shipped" && o.status !== "digital-active") return false;
+    if (search && !o.sanctuary.toLowerCase().includes(search.toLowerCase())) return false;
+    if (filterBuyer !== "all" && o.buyer !== filterBuyer) return false;
+    if (filterPayment !== "all" && o.payment !== filterPayment) return false;
+    if (filterType !== "all" && o.typeLabel !== filterType) return false;
+    if (filterStatus !== "all" && o.status !== filterStatus) return false;
     return true;
   });
 
