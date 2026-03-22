@@ -19,6 +19,15 @@ import jcHiking from "@/assets/jc-hiking.jpg";
 import AddMemoryModal from "@/components/AddMemoryModal";
 import LivingCandle from "@/components/LivingCandle";
 import LivingHeart from "@/components/LivingHeart";
+import LockedVideoCard from "@/components/LockedVideoCard";
+import type { LockedVideo } from "@/components/LockedVideoCard";
+import LockedVideoModal from "@/components/LockedVideoModal";
+
+/* ─── Locked Videos Data ─── */
+const lockedVideos: LockedVideo[] = [
+  { thumbnail: jcTrumpet, title: "Noël 2018 — Son solo de saxo", duration: "12:34", author: "Famille Dubois" },
+  { thumbnail: couplePhoto, title: "Anniversaire surprise 2022", duration: "3:48", author: "Marie" },
+];
 
 /* ─── Memory Card Data ─── */
 type Memory = {
@@ -659,6 +668,13 @@ const Memorial = () => {
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [lockedVideoModalOpen, setLockedVideoModalOpen] = useState(false);
+  const [selectedLockedVideo, setSelectedLockedVideo] = useState<LockedVideo | null>(null);
+
+  const openLockedVideo = (video: LockedVideo) => {
+    setSelectedLockedVideo(video);
+    setLockedVideoModalOpen(true);
+  };
 
   const shareUrl = "stela.family/hommage/jean-claude-dubois";
   const shareMessage = `Un espace privé et éternel pour honorer la mémoire de Jean-Claude Dubois sur Stela.family.\n\nIci, nous rassemblons nos pensées, photos et témoignages pour créer son plus bel héritage. Vous pouvez aussi y allumer une bougie.\n\n👉 stela.family/hommage/jean-claude-dubois\n\nN'hésitez pas à transmettre ce geste de recueillement à ceux qui l'aimaient.`;
@@ -768,6 +784,13 @@ const Memorial = () => {
                 <React.Fragment key={idx}>
                   <MemoryCard memory={memory} onClick={() => openMemoryDetail(memory)} />
                   {idx === 2 && <CompanionSteleCard />}
+                  {/* Insert locked video cards after certain positions */}
+                  {idx === 4 && lockedVideos[0] && (
+                    <LockedVideoCard video={lockedVideos[0]} onClick={() => openLockedVideo(lockedVideos[0])} />
+                  )}
+                  {idx === 9 && lockedVideos[1] && (
+                    <LockedVideoCard video={lockedVideos[1]} onClick={() => openLockedVideo(lockedVideos[1])} />
+                  )}
                 </React.Fragment>
               ))}
             </div>
@@ -898,6 +921,13 @@ const Memorial = () => {
       <div className="h-24" />
 
       <PersonalEditionSheet open={personalEditionOpen} onClose={() => setPersonalEditionOpen(false)} />
+
+      <LockedVideoModal
+        video={selectedLockedVideo}
+        open={lockedVideoModalOpen}
+        onOpenChange={setLockedVideoModalOpen}
+        isGarant={false}
+      />
     </div>);
 
 };
