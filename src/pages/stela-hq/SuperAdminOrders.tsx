@@ -278,17 +278,34 @@ export default function SuperAdminOrders() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <Select value={filterBuyer} onValueChange={setFilterBuyer}>
-              <SelectTrigger className="h-8 w-auto min-w-[130px] text-xs">
-                <SelectValue placeholder="Acheteur" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Tous les acheteurs</SelectItem>
-                {uniqueBuyers.map((b) => (
-                  <SelectItem key={b} value={b}>{b}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline" size="sm" className="h-8 min-w-[130px] justify-between text-xs font-normal">
+                  {filterBuyer === "all" ? "Acheteur" : filterBuyer}
+                  <ChevronsUpDown size={13} className="ml-2 shrink-0 opacity-50" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-[220px] p-0" align="start">
+                <Command>
+                  <CommandInput placeholder="Rechercher un acheteur…" className="h-9 text-xs" />
+                  <CommandList>
+                    <CommandEmpty className="py-3 text-center text-xs text-muted-foreground">Aucun résultat.</CommandEmpty>
+                    <CommandGroup>
+                      <CommandItem value="all" onSelect={() => setFilterBuyer("all")} className="text-xs">
+                        <Check size={13} className={cn("mr-2", filterBuyer === "all" ? "opacity-100" : "opacity-0")} />
+                        Tous les acheteurs
+                      </CommandItem>
+                      {uniqueBuyers.map((b) => (
+                        <CommandItem key={b} value={b} onSelect={() => setFilterBuyer(b)} className="text-xs">
+                          <Check size={13} className={cn("mr-2", filterBuyer === b ? "opacity-100" : "opacity-0")} />
+                          {b}
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
 
             <Select value={filterType} onValueChange={setFilterType}>
               <SelectTrigger className="h-8 w-auto min-w-[130px] text-xs">
