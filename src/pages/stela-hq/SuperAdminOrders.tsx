@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Table, TableHeader, TableHead, TableRow, TableBody, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, TreePine, Cloud, ExternalLink, X, Package } from "lucide-react";
+import { Briefcase, TreePine, Cloud, ExternalLink, X, Package, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AnimatePresence, motion } from "framer-motion";
 
 type OrderType = "b2b-stele" | "b2c-noyer" | "b2c-frene" | "b2c-heritage";
@@ -224,10 +225,23 @@ function OrderDetailsDrawer({ order, onClose }: { order: Order; onClose: () => v
 export default function SuperAdminOrders() {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [activeTab, setActiveTab] = useState("all");
+  const [search, setSearch] = useState("");
+  const [filterBuyer, setFilterBuyer] = useState("all");
+  const [filterPayment, setFilterPayment] = useState("all");
+  const [filterType, setFilterType] = useState("all");
+  const [filterStatus, setFilterStatus] = useState("all");
+
+  const uniqueBuyers = [...new Set(MOCK_ORDERS.map((o) => o.buyer))];
+  const uniqueTypes = [...new Set(MOCK_ORDERS.map((o) => o.typeLabel))];
 
   const filtered = MOCK_ORDERS.filter((o) => {
-    if (activeTab === "to-ship") return o.status === "to-ship";
-    if (activeTab === "done") return o.status === "shipped" || o.status === "digital-active";
+    if (activeTab === "to-ship" && o.status !== "to-ship") return false;
+    if (activeTab === "done" && o.status !== "shipped" && o.status !== "digital-active") return false;
+    if (search && !o.sanctuary.toLowerCase().includes(search.toLowerCase())) return false;
+    if (filterBuyer !== "all" && o.buyer !== filterBuyer) return false;
+    if (filterPayment !== "all" && o.payment !== filterPayment) return false;
+    if (filterType !== "all" && o.typeLabel !== filterType) return false;
+    if (filterStatus !== "all" && o.status !== filterStatus) return false;
     return true;
   });
 
@@ -241,11 +255,74 @@ export default function SuperAdminOrders() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList>
-          <TabsTrigger value="all">Toutes les commandes</TabsTrigger>
-          <TabsTrigger value="to-ship">🔴 À expédier</TabsTrigger>
-          <TabsTrigger value="done">🟢 Terminées</TabsTrigger>
-        </TabsList>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <TabsList>
+              <TabsTrigger value="all">Toutes les commandes</TabsTrigger>
+              <TabsTrigger value="to-ship">🔴 À expédier</TabsTrigger>
+              <TabsTrigger value="done">🟢 Terminées</TabsTrigger>
+            </TabsList>
+
+            <div className="relative ml-auto">
+              <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                placeholder="Rechercher un défunt…"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="h-9 w-56 pl-9 text-sm"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <Select value={filterBuyer} onValueChange={setFilterBuyer}>
+              <SelectTrigger className="h-8 w-auto min-w-[130px] text-xs">
+                <SelectValue placeholder="Acheteur" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Tous les acheteurs</SelectItem>
+                {uniqueBuyers.map((b) => (
+                  <SelectItem key={b} value={b}>{b}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Select value={filterType} onValueChange={setFilterType}>
+              <SelectTrigger className="h-8 w-auto min-w-[130px] text-xs">
+                <SelectValue placeholder="Type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Tous les types</SelectItem>
+                {uniqueTypes.map((t) => (
+                  <SelectItem key={t} value={t}>{t}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Select value={filterPayment} onValueChange={setFilterPayment}>
+              <SelectTrigger className="h-8 w-auto min-w-[130px] text-xs">
+                <SelectValue placeholder="Paiement" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Tous les paiements</SelectItem>
+                <SelectItem value="paid">Payé (Stripe)</SelectItem>
+                <SelectItem value="to-invoice">À facturer</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select value={filterStatus} onValueChange={setFilterStatus}>
+              <SelectTrigger className="h-8 w-auto min-w-[130px] text-xs">
+                <SelectValue placeholder="Statut" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Tous les statuts</SelectItem>
+                <SelectItem value="to-ship">À expédier</SelectItem>
+                <SelectItem value="shipped">Expédié</SelectItem>
+                <SelectItem value="digital-active">Activé (Numérique)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
 
         <TabsContent value={activeTab} className="mt-4">
           <div className="rounded-xl border border-gray-100 bg-background overflow-hidden">
