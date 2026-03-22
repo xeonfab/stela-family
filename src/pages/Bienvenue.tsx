@@ -70,7 +70,7 @@ const Bienvenue = () => {
         <button
           disabled={!accepted}
           onClick={() => navigate("/memorial")}
-          className="w-full py-4 rounded-full bg-foreground text-background font-medium text-base transition-opacity disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90"
+          className="w-full py-4 btn-gold-jewel rounded-full text-white font-semibold tracking-[0.05em] text-base disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Activer mon Sanctuaire et y accéder
         </button>
