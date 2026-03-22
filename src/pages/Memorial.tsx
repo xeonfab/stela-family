@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Flag } from "lucide-react";
+import ReportContentDialog from "@/components/ReportContentDialog";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Play, Feather, Quote, Music, Camera, BookOpen, Clock, Share2, MessageCircle, X, Pencil, Plus, Upload, CalendarDays, Copy, Check, ChevronLeft, ChevronRight, MapPin, Flower, Scroll, Eye, Mail, Smartphone, Link as LinkIcon, Home } from "lucide-react";
 import PersonalEditionSheet from "@/components/PersonalEditionSheet";
