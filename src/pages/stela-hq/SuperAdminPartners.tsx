@@ -1,8 +1,8 @@
-export default function SuperAdminAgencies() {
+export default function SuperAdminPartners() {
   return (
-    <div className="rounded-xl bg-white p-8 shadow-sm">
-      <h1 className="text-2xl font-semibold text-slate-900">Agences Partenaires</h1>
-      <p className="text-slate-500 mt-2">Gestion des agences funéraires partenaires.</p>
+    <div className="rounded-xl bg-background p-8 shadow-sm">
+      <h1 className="text-2xl font-semibold text-foreground">Partenaires</h1>
+      <p className="text-muted-foreground mt-2">Gestion des partenaires (agences funéraires, officiants…).</p>
     </div>
   );
 }

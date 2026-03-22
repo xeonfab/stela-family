@@ -85,8 +85,8 @@ const App = () => (
           <Route path="/stela-hq/login" element={<SuperAdminLogin />} />
           <Route path="/stela-hq" element={<SuperAdminLayout />}>
             <Route index element={<SuperAdminDashboard />} />
-            <Route path="agences" element={<SuperAdminAgencies />} />
-            <Route path="atelier" element={<SuperAdminWorkshop />} />
+            <Route path="partenaires" element={<SuperAdminPartners />} />
+            <Route path="commandes" element={<SuperAdminOrders />} />
             <Route path="nfc" element={<SuperAdminNFC />} />
             <Route path="sanctuaires" element={<SuperAdminSanctuaries />} />
           </Route>
