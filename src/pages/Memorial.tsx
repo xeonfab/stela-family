@@ -253,8 +253,10 @@ const TimelineDetailModal = ({ event, open, onOpenChange }: {event: TimelineEntr
 
 /* ─── Memory Wall "Theater Mode" Detail ─── */
 const MemoryDetailModal = ({ memory, open, onOpenChange }: {memory: Memory | null;open: boolean;onOpenChange: (v: boolean) => void;}) => {
+  const [reportOpen, setReportOpen] = useState(false);
   if (!memory) return null;
   return (
+    <>
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl bg-[#FAF9F6] border-stone-200 rounded-2xl p-0 overflow-hidden">
         <DialogTitle className="sr-only">{memory.title || memory.author}</DialogTitle>
@@ -297,12 +299,21 @@ const MemoryDetailModal = ({ memory, open, onOpenChange }: {memory: Memory | nul
           <div className="flex items-center justify-between pt-2 border-t border-stone-100">
             <span className="text-sm text-stone-400">— {memory.author}</span>
             <div className="flex items-center gap-3">
+              <button
+                onClick={() => setReportOpen(true)}
+                className="flex items-center gap-1 text-[11px] text-stone-400 hover:text-stone-600 hover:underline transition-colors"
+              >
+                <Flag size={11} />
+                Signaler ce contenu
+              </button>
               <LivingHeart count={Math.floor(memory.hearts * 0.6)} size={16} />
             </div>
           </div>
         </div>
       </DialogContent>
-    </Dialog>);
+    </Dialog>
+    <ReportContentDialog open={reportOpen} onOpenChange={setReportOpen} />
+    </>);
 
 };
 
