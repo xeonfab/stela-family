@@ -233,7 +233,8 @@ export default function SuperAdminOrders() {
   const [filterPayment, setFilterPayment] = useState("all");
   const [filterType, setFilterType] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
-
+  const [page, setPage] = useState(1);
+  const perPage = 50;
   const uniqueBuyers = [...new Set(MOCK_ORDERS.map((o) => o.buyer))];
   const uniqueTypes = [...new Set(MOCK_ORDERS.map((o) => o.typeLabel))];
 
