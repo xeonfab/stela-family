@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Cpu, QrCode, CheckCircle2, ChevronLeft } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Cpu, QrCode, CheckCircle2, ChevronLeft, Search, ChevronDown, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const MOCK_SANCTUARIES = [
@@ -14,6 +14,25 @@ export default function SuperAdminNFC() {
   const [qrCode, setQrCode] = useState("");
   const [nfcScanning, setNfcScanning] = useState(false);
   const [qrScanning, setQrScanning] = useState(false);
+  const [sanctuaryOpen, setSanctuaryOpen] = useState(false);
+  const [sanctuarySearch, setSanctuarySearch] = useState("");
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const filteredSanctuaries = MOCK_SANCTUARIES.filter((s) =>
+    s.name.toLowerCase().includes(sanctuarySearch.toLowerCase())
+  );
+
+  const selectedName = MOCK_SANCTUARIES.find((s) => s.id === selectedSanctuary)?.name;
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setSanctuaryOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const handleScanNFC = () => {
     setNfcScanning(true);
