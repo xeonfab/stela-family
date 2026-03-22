@@ -1,8 +1,8 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
-  Building2,
-  Package,
+  Handshake,
+  ShoppingCart,
   Cpu,
   Database,
   LogOut,
@@ -11,8 +11,8 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Vue d'ensemble", path: "/stela-hq", icon: LayoutDashboard },
-  { label: "Agences Partenaires", path: "/stela-hq/agences", icon: Building2 },
-  { label: "Atelier & Expéditions", path: "/stela-hq/atelier", icon: Package },
+  { label: "Partenaires", path: "/stela-hq/partenaires", icon: Handshake },
+  { label: "Commandes", path: "/stela-hq/commandes", icon: ShoppingCart },
   { label: "Appairage NFC", path: "/stela-hq/nfc", icon: Cpu },
   { label: "Sanctuaires & Données", path: "/stela-hq/sanctuaires", icon: Database },
 ];

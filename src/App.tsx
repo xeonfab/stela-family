@@ -34,8 +34,8 @@ import ProResetPassword from "./pages/pro/ProResetPassword";
 import SuperAdminLogin from "./pages/stela-hq/SuperAdminLogin";
 import SuperAdminLayout from "./layouts/SuperAdminLayout";
 import SuperAdminDashboard from "./pages/stela-hq/SuperAdminDashboard";
-import SuperAdminAgencies from "./pages/stela-hq/SuperAdminAgencies";
-import SuperAdminWorkshop from "./pages/stela-hq/SuperAdminWorkshop";
+import SuperAdminPartners from "./pages/stela-hq/SuperAdminPartners";
+import SuperAdminOrders from "./pages/stela-hq/SuperAdminOrders";
 import SuperAdminNFC from "./pages/stela-hq/SuperAdminNFC";
 import SuperAdminSanctuaries from "./pages/stela-hq/SuperAdminSanctuaries";
 
@@ -85,8 +85,8 @@ const App = () => (
           <Route path="/stela-hq/login" element={<SuperAdminLogin />} />
           <Route path="/stela-hq" element={<SuperAdminLayout />}>
             <Route index element={<SuperAdminDashboard />} />
-            <Route path="agences" element={<SuperAdminAgencies />} />
-            <Route path="atelier" element={<SuperAdminWorkshop />} />
+            <Route path="partenaires" element={<SuperAdminPartners />} />
+            <Route path="commandes" element={<SuperAdminOrders />} />
             <Route path="nfc" element={<SuperAdminNFC />} />
             <Route path="sanctuaires" element={<SuperAdminSanctuaries />} />
           </Route>
