@@ -87,7 +87,7 @@ const App = () => (
             <Route index element={<SuperAdminDashboard />} />
             <Route path="partenaires" element={<SuperAdminPartners />} />
             <Route path="commandes" element={<SuperAdminOrders />} />
-            <Route path="nfc" element={<SuperAdminNFC />} />
+            <Route path="appairage" element={<SuperAdminNFC />} />
             <Route path="sanctuaires" element={<SuperAdminSanctuaries />} />
           </Route>
 
