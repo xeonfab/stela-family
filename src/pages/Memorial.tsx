@@ -19,6 +19,15 @@ import jcHiking from "@/assets/jc-hiking.jpg";
 import AddMemoryModal from "@/components/AddMemoryModal";
 import LivingCandle from "@/components/LivingCandle";
 import LivingHeart from "@/components/LivingHeart";
+import LockedVideoCard from "@/components/LockedVideoCard";
+import type { LockedVideo } from "@/components/LockedVideoCard";
+import LockedVideoModal from "@/components/LockedVideoModal";
+
+/* ─── Locked Videos Data ─── */
+const lockedVideos: LockedVideo[] = [
+  { thumbnail: jcTrumpet, title: "Noël 2018 — Son solo de saxo", duration: "12:34", author: "Famille Dubois" },
+  { thumbnail: couplePhoto, title: "Anniversaire surprise 2022", duration: "3:48", author: "Marie" },
+];
 
 /* ─── Memory Card Data ─── */
 type Memory = {
