@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Table, TableHeader, TableHead, TableRow, TableBody, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, TreePine, Cloud, ExternalLink, X, Package, Search, ChevronsUpDown, Check } from "lucide-react";
+import { Briefcase, TreePine, Cloud, ExternalLink, X, Package, Search, ChevronsUpDown, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -233,7 +233,8 @@ export default function SuperAdminOrders() {
   const [filterPayment, setFilterPayment] = useState("all");
   const [filterType, setFilterType] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
-
+  const [page, setPage] = useState(1);
+  const perPage = 50;
   const uniqueBuyers = [...new Set(MOCK_ORDERS.map((o) => o.buyer))];
   const uniqueTypes = [...new Set(MOCK_ORDERS.map((o) => o.typeLabel))];
 
@@ -358,7 +359,7 @@ export default function SuperAdminOrders() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filtered.map((order) => (
+                {filtered.slice((page - 1) * perPage, page * perPage).map((order) => (
                   <TableRow
                     key={order.id}
                     className="cursor-pointer hover:bg-muted/50 transition-colors"
@@ -385,6 +386,29 @@ export default function SuperAdminOrders() {
                 )}
               </TableBody>
             </Table>
+            <div className="flex items-center justify-between px-4 py-3 border-t">
+              <span className="text-xs text-muted-foreground">
+                {filtered.length === 0
+                  ? "Aucun résultat"
+                  : `${(page - 1) * perPage + 1}–${Math.min(page * perPage, filtered.length)} sur ${filtered.length}`}
+              </span>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => setPage((p) => Math.max(1, p - 1))}
+                  disabled={page === 1}
+                  className="w-8 h-8 flex items-center justify-center rounded-full text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => setPage((p) => p + 1)}
+                  disabled={page * perPage >= filtered.length}
+                  className="w-8 h-8 flex items-center justify-center rounded-full text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
           </div>
         </TabsContent>
       </Tabs>
