@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Table, TableHeader, TableHead, TableRow, TableBody, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, TreePine, Cloud, ExternalLink, X, Package } from "lucide-react";
+import { Briefcase, TreePine, Cloud, ExternalLink, X, Package, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AnimatePresence, motion } from "framer-motion";
 
 type OrderType = "b2b-stele" | "b2c-noyer" | "b2c-frene" | "b2c-heritage";
