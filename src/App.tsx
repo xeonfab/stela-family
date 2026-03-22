@@ -69,6 +69,7 @@ const App = () => (
           <Route path="/mes-sanctuaires" element={<MesSanctuaires />} />
           <Route path="/capacite" element={<CapaciteHeritage />} />
           <Route path="/email-preview" element={<EmailPreview />} />
+          <Route path="/bienvenue" element={<Bienvenue />} />
 
           {/* Pro login (no sidebar) */}
           <Route path="/pro/login" element={<ProLogin />} />
