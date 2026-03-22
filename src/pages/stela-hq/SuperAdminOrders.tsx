@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Table, TableHeader, TableHead, TableRow, TableBody, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, TreePine, Cloud, ExternalLink, X, Package, Search, ChevronsUpDown, Check } from "lucide-react";
+import { Briefcase, TreePine, Cloud, ExternalLink, X, Package, Search, ChevronsUpDown, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
