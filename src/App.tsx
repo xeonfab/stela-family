@@ -34,8 +34,8 @@ import ProResetPassword from "./pages/pro/ProResetPassword";
 import SuperAdminLogin from "./pages/stela-hq/SuperAdminLogin";
 import SuperAdminLayout from "./layouts/SuperAdminLayout";
 import SuperAdminDashboard from "./pages/stela-hq/SuperAdminDashboard";
-import SuperAdminAgencies from "./pages/stela-hq/SuperAdminAgencies";
-import SuperAdminWorkshop from "./pages/stela-hq/SuperAdminWorkshop";
+import SuperAdminPartners from "./pages/stela-hq/SuperAdminPartners";
+import SuperAdminOrders from "./pages/stela-hq/SuperAdminOrders";
 import SuperAdminNFC from "./pages/stela-hq/SuperAdminNFC";
 import SuperAdminSanctuaries from "./pages/stela-hq/SuperAdminSanctuaries";
 
