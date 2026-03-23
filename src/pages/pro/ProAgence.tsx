@@ -2,7 +2,14 @@ import { Download, Pencil } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
+
+const billingHistory = [
+  { month: "Novembre 2026", sanctuaries: 5, ht: "545,00 €", ttc: "654,00 €", status: "Payée" as const },
+  { month: "Octobre 2026", sanctuaries: 3, ht: "357,00 €", ttc: "428,40 €", status: "Payée" as const },
+  { month: "Septembre 2026", sanctuaries: 4, ht: "476,00 €", ttc: "571,20 €", status: "En attente" as const },
+];
 
 const invoices = [
   { month: "Février 2026", amount: "418,00 € HT", status: "Payée" },
