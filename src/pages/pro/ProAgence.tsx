@@ -11,11 +11,6 @@ const billingHistory = [
   { month: "Septembre 2026", sanctuaries: 4, ht: "476,00 €", ttc: "571,20 €", status: "En attente" as const },
 ];
 
-const invoices = [
-  { month: "Février 2026", amount: "418,00 € HT", status: "Payée" },
-  { month: "Janvier 2026", amount: "297,00 € HT", status: "Payée" },
-  { month: "Décembre 2025", amount: "363,00 € HT", status: "Payée" },
-];
 
 const tarifs = [
   { label: "Offre Essentiel (Numérique)", price: "39 € HT" },
@@ -56,44 +51,6 @@ export default function ProAgence() {
             </CardContent>
           </Card>
 
-          {/* Historique */}
-          <Card className="border-[#2C2C2C]/[0.06] shadow-sm">
-            <CardContent className="p-8">
-              <p className="text-xs uppercase tracking-widest text-[#2C2C2C]/40 mb-6">
-                Dernières factures
-              </p>
-              <div className="flex flex-col divide-y divide-[#2C2C2C]/[0.06]">
-                {invoices.map((inv) => (
-                  <div
-                    key={inv.month}
-                    className="flex items-center justify-between py-3.5 first:pt-0 last:pb-0"
-                  >
-                    <span className="text-sm text-[#2C2C2C]/70">{inv.month}</span>
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm font-medium text-[#2C2C2C]/80">
-                        {inv.amount}
-                      </span>
-                      <Badge
-                        variant="secondary"
-                        className="bg-emerald-50 text-emerald-600 border-0 text-[11px] font-medium px-2 py-0.5"
-                      >
-                        {inv.status}
-                      </Badge>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-[#2C2C2C]/60 hover:bg-[#2C2C2C] hover:text-white transition-colors"
-                        title="Télécharger la facture"
-                        onClick={() => toast({ title: "Téléchargement en cours" })}
-                      >
-                        <Download className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
         </div>
 
         {/* ── Right Column ── */}
