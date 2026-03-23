@@ -11,11 +11,6 @@ const billingHistory = [
   { month: "Septembre 2026", sanctuaries: 4, ht: "476,00 €", ttc: "571,20 €", status: "En attente" as const },
 ];
 
-const invoices = [
-  { month: "Février 2026", amount: "418,00 € HT", status: "Payée" },
-  { month: "Janvier 2026", amount: "297,00 € HT", status: "Payée" },
-  { month: "Décembre 2025", amount: "363,00 € HT", status: "Payée" },
-];
 
 const tarifs = [
   { label: "Offre Essentiel (Numérique)", price: "39 € HT" },
