@@ -160,6 +160,60 @@ export default function ProAgence() {
           </Card>
         </div>
       </div>
+
+      {/* ── Historique de facturation ── */}
+      <Card className="border-[#2C2C2C]/[0.06] shadow-sm mt-8">
+        <CardContent className="p-8">
+          <h2 className="font-serif text-xl text-[#2C2C2C] mb-6">
+            Historique des factures
+          </h2>
+          <Table>
+            <TableHeader>
+              <TableRow className="border-[#2C2C2C]/[0.06] hover:bg-transparent">
+                <TableHead className="text-[11px] uppercase tracking-wider text-[#2C2C2C]/40 font-medium">Mois facturé</TableHead>
+                <TableHead className="text-[11px] uppercase tracking-wider text-[#2C2C2C]/40 font-medium text-center">Sanctuaires créés</TableHead>
+                <TableHead className="text-[11px] uppercase tracking-wider text-[#2C2C2C]/40 font-medium text-right">Montant HT</TableHead>
+                <TableHead className="text-[11px] uppercase tracking-wider text-[#2C2C2C]/40 font-medium text-right">Montant TTC</TableHead>
+                <TableHead className="text-[11px] uppercase tracking-wider text-[#2C2C2C]/40 font-medium text-center">Statut</TableHead>
+                <TableHead className="text-[11px] uppercase tracking-wider text-[#2C2C2C]/40 font-medium text-center">Action</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {billingHistory.map((row) => (
+                <TableRow key={row.month} className="border-[#2C2C2C]/[0.06]">
+                  <TableCell className="text-sm text-[#2C2C2C]/80 font-medium">{row.month}</TableCell>
+                  <TableCell className="text-sm text-[#2C2C2C]/60 text-center">{row.sanctuaries}</TableCell>
+                  <TableCell className="text-sm text-[#2C2C2C]/80 text-right font-serif">{row.ht}</TableCell>
+                  <TableCell className="text-sm text-[#2C2C2C]/80 text-right font-serif">{row.ttc}</TableCell>
+                  <TableCell className="text-center">
+                    <Badge
+                      variant="secondary"
+                      className={
+                        row.status === "Payée"
+                          ? "bg-emerald-50 text-emerald-600 border-0 text-[11px] font-medium px-2 py-0.5"
+                          : "bg-amber-50 text-amber-600 border-0 text-[11px] font-medium px-2 py-0.5"
+                      }
+                    >
+                      {row.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-center">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-[#2C2C2C]/60 hover:bg-[#2C2C2C] hover:text-white transition-colors"
+                      title="Télécharger la facture"
+                      onClick={() => toast({ title: "Téléchargement en cours" })}
+                    >
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
     </div>
   );
 }
