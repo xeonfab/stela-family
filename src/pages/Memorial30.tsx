@@ -177,7 +177,7 @@ const Memorial30 = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="min-h-screen bg-[hsl(var(--background))] flex flex-col"
+          className="min-h-screen bg-[#F7F7F5] flex flex-col"
         >
           {/* Header */}
           <header className="pt-12 pb-6 text-center">
@@ -195,19 +195,19 @@ const Memorial30 = () => {
               <TabsList className="bg-transparent border-b border-border/30 rounded-none h-auto p-0 gap-8">
                 <TabsTrigger
                   value="empreinte"
-                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b data-[state=active]:border-foreground/30"
+                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-stone-400 data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-foreground/40"
                 >
                   L'Empreinte
                 </TabsTrigger>
                 <TabsTrigger
                   value="instants"
-                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b data-[state=active]:border-foreground/30"
+                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-stone-400 data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-foreground/40"
                 >
                   Les Instants
                 </TabsTrigger>
                 <TabsTrigger
                   value="echo"
-                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b data-[state=active]:border-foreground/30"
+                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-stone-400 data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-foreground/40"
                 >
                   L'Écho
                 </TabsTrigger>
