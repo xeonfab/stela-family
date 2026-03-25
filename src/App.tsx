@@ -25,6 +25,7 @@ import MesSanctuaires from "./pages/MesSanctuaires";
 import CapaciteHeritage from "./pages/CapaciteHeritage";
 import EmailPreview from "./pages/EmailPreview";
 import Bienvenue from "./pages/Bienvenue";
+import Memorial30 from "./pages/Memorial30";
 import ProLayout from "./layouts/ProLayout";
 import ProCreer from "./pages/pro/ProCreer";
 import ProRegistre from "./pages/pro/ProRegistre";
@@ -70,6 +71,7 @@ const App = () => (
           <Route path="/capacite" element={<CapaciteHeritage />} />
           <Route path="/email-preview" element={<EmailPreview />} />
           <Route path="/bienvenue" element={<Bienvenue />} />
+          <Route path="/memorial30" element={<Memorial30 />} />
 
           {/* Pro login (no sidebar) */}
           <Route path="/pro/login" element={<ProLogin />} />
