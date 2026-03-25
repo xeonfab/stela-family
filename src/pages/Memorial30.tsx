@@ -55,7 +55,7 @@ const EntryVestibule = ({ onEnter }: { onEnter: () => void }) => (
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
     transition={{ duration: 0.8 }}
-    className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[hsl(var(--background))]"
+    className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F7F7F5]"
   >
     <div className="text-center space-y-6 px-6">
       <h1 className="font-serif text-4xl md:text-5xl tracking-tight text-foreground/90">
@@ -135,26 +135,26 @@ const EchoTab = () => (
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: i * 0.1, duration: 0.5 }}
-        className="flex items-center gap-4 p-5 rounded-xl border border-border/50 bg-card hover:shadow-sm transition-shadow duration-300 cursor-pointer group"
+        className="flex items-center gap-4 p-5 rounded-xl border border-stone-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition-all duration-300 cursor-pointer group"
         role="button"
         tabIndex={0}
         aria-label={`Lancer ${m.title}`}
       >
-        <div className="w-11 h-11 rounded-full bg-foreground/5 flex items-center justify-center shrink-0 group-hover:bg-foreground/10 transition-colors duration-300">
+        <div className="w-11 h-11 rounded-full bg-stone-100 flex items-center justify-center shrink-0 group-hover:bg-stone-200 transition-colors duration-300">
           {m.type === "audio" ? (
-            <Mic size={16} className="text-foreground/50" />
+            <Mic size={16} className="text-foreground/60" />
           ) : (
-            <Video size={16} className="text-foreground/50" />
+            <Video size={16} className="text-foreground/60" />
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-foreground/85 truncate">{m.title}</p>
+          <p className="text-sm font-medium text-foreground/90 truncate">{m.title}</p>
           <p className="text-xs text-muted-foreground mt-0.5">{m.author}</p>
         </div>
         <div className="flex items-center gap-3 shrink-0">
           <span className="text-xs font-mono text-muted-foreground">{m.duration}</span>
-          <div className="w-8 h-8 rounded-full bg-foreground/5 flex items-center justify-center group-hover:bg-foreground/10 transition-colors duration-300">
-            <Play size={12} className="text-foreground/60 ml-0.5" />
+          <div className="w-9 h-9 rounded-full bg-stone-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <Play size={14} className="text-white ml-0.5" fill="white" />
           </div>
         </div>
       </motion.div>
@@ -177,7 +177,7 @@ const Memorial30 = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="min-h-screen bg-[hsl(var(--background))] flex flex-col"
+          className="min-h-screen bg-[#F7F7F5] flex flex-col"
         >
           {/* Header */}
           <header className="pt-12 pb-6 text-center">
@@ -195,19 +195,19 @@ const Memorial30 = () => {
               <TabsList className="bg-transparent border-b border-border/30 rounded-none h-auto p-0 gap-8">
                 <TabsTrigger
                   value="empreinte"
-                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b data-[state=active]:border-foreground/30"
+                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-stone-400 data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-foreground/40"
                 >
                   L'Empreinte
                 </TabsTrigger>
                 <TabsTrigger
                   value="instants"
-                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b data-[state=active]:border-foreground/30"
+                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-stone-400 data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-foreground/40"
                 >
                   Les Instants
                 </TabsTrigger>
                 <TabsTrigger
                   value="echo"
-                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-muted-foreground data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b data-[state=active]:border-foreground/30"
+                  className="rounded-none bg-transparent px-0 pb-3 text-xs tracking-[0.15em] uppercase text-stone-400 data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-foreground/40"
                 >
                   L'Écho
                 </TabsTrigger>
