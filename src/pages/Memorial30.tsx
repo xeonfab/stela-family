@@ -55,7 +55,7 @@ const EntryVestibule = ({ onEnter }: { onEnter: () => void }) => (
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
     transition={{ duration: 0.8 }}
-    className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[hsl(var(--background))]"
+    className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F7F7F5]"
   >
     <div className="text-center space-y-6 px-6">
       <h1 className="font-serif text-4xl md:text-5xl tracking-tight text-foreground/90">
