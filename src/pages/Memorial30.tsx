@@ -135,26 +135,26 @@ const EchoTab = () => (
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: i * 0.1, duration: 0.5 }}
-        className="flex items-center gap-4 p-5 rounded-xl border border-border/50 bg-card hover:shadow-sm transition-shadow duration-300 cursor-pointer group"
+        className="flex items-center gap-4 p-5 rounded-xl border border-stone-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition-all duration-300 cursor-pointer group"
         role="button"
         tabIndex={0}
         aria-label={`Lancer ${m.title}`}
       >
-        <div className="w-11 h-11 rounded-full bg-foreground/5 flex items-center justify-center shrink-0 group-hover:bg-foreground/10 transition-colors duration-300">
+        <div className="w-11 h-11 rounded-full bg-stone-100 flex items-center justify-center shrink-0 group-hover:bg-stone-200 transition-colors duration-300">
           {m.type === "audio" ? (
-            <Mic size={16} className="text-foreground/50" />
+            <Mic size={16} className="text-foreground/60" />
           ) : (
-            <Video size={16} className="text-foreground/50" />
+            <Video size={16} className="text-foreground/60" />
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-foreground/85 truncate">{m.title}</p>
+          <p className="text-sm font-medium text-foreground/90 truncate">{m.title}</p>
           <p className="text-xs text-muted-foreground mt-0.5">{m.author}</p>
         </div>
         <div className="flex items-center gap-3 shrink-0">
           <span className="text-xs font-mono text-muted-foreground">{m.duration}</span>
-          <div className="w-8 h-8 rounded-full bg-foreground/5 flex items-center justify-center group-hover:bg-foreground/10 transition-colors duration-300">
-            <Play size={12} className="text-foreground/60 ml-0.5" />
+          <div className="w-9 h-9 rounded-full bg-stone-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <Play size={14} className="text-white ml-0.5" fill="white" />
           </div>
         </div>
       </motion.div>
