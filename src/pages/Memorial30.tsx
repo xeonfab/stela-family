@@ -185,6 +185,9 @@ const Memorial30 = () => {
         >
           {/* Header */}
           <header className="pt-12 pb-6 text-center">
+            <div className="mx-auto w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border border-foreground/10 shadow-sm mb-4">
+              <img src={portraitImg} alt={`${deceased.firstName} ${deceased.lastName}`} className="w-full h-full object-cover" />
+            </div>
             <h1 className="font-serif text-2xl md:text-3xl tracking-tight text-foreground/90">
               {deceased.firstName} {deceased.lastName}
             </h1>
