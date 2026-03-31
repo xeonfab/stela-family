@@ -59,6 +59,9 @@ const EntryVestibule = ({ onEnter }: { onEnter: () => void }) => (
     className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F7F7F5]"
   >
     <div className="text-center space-y-6 px-6">
+      <div className="mx-auto w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-2 border-foreground/10 shadow-[0_0_40px_-10px_rgba(0,0,0,0.08)] mb-2">
+        <img src={portraitImg} alt={`${deceased.firstName} ${deceased.lastName}`} className="w-full h-full object-cover" />
+      </div>
       <h1 className="font-serif text-4xl md:text-5xl tracking-tight text-foreground/90">
         {deceased.firstName} {deceased.lastName}
       </h1>
