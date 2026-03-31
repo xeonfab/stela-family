@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Play, Lock, Mic, Video } from "lucide-react";
+import portraitImg from "@/assets/jean-claude-portrait-new.jpg";
 
 /* ─── Mock Data ─── */
 const deceased = {
@@ -58,6 +59,9 @@ const EntryVestibule = ({ onEnter }: { onEnter: () => void }) => (
     className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F7F7F5]"
   >
     <div className="text-center space-y-6 px-6">
+      <div className="mx-auto w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-2 border-foreground/10 shadow-[0_0_40px_-10px_rgba(0,0,0,0.08)] mb-2">
+        <img src={portraitImg} alt={`${deceased.firstName} ${deceased.lastName}`} className="w-full h-full object-cover" />
+      </div>
       <h1 className="font-serif text-4xl md:text-5xl tracking-tight text-foreground/90">
         {deceased.firstName} {deceased.lastName}
       </h1>
@@ -181,6 +185,9 @@ const Memorial30 = () => {
         >
           {/* Header */}
           <header className="pt-12 pb-6 text-center">
+            <div className="mx-auto w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border border-foreground/10 shadow-sm mb-4">
+              <img src={portraitImg} alt={`${deceased.firstName} ${deceased.lastName}`} className="w-full h-full object-cover" />
+            </div>
             <h1 className="font-serif text-2xl md:text-3xl tracking-tight text-foreground/90">
               {deceased.firstName} {deceased.lastName}
             </h1>
