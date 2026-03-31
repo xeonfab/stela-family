@@ -43,9 +43,11 @@ const photos = [
 ];
 
 const mediaItems = [
-  { type: "audio" as const, title: "Message vocal à Marie", author: "Jean-Claude", duration: "1:42" },
-  { type: "video" as const, title: "Anniversaire des 70 ans", author: "Thomas", duration: "3:18" },
-  { type: "audio" as const, title: "Il raconte son enfance", author: "Hélène", duration: "4:05" },
+  { type: "audio" as const, title: "Message vocal à Marie", author: "Jean-Claude", duration: "1:42", cover: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80", height: "h-40" },
+  { type: "video" as const, title: "Le discours de mariage", author: "Thomas", duration: "3:18", cover: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80", height: "h-52" },
+  { type: "audio" as const, title: "Son rire", author: "Hélène", duration: "0:38", cover: "https://images.unsplash.com/photo-1506869640319-fe1a24fd76cb?w=600&q=80", height: "h-44" },
+  { type: "video" as const, title: "Anniversaire des 70 ans", author: "Marie", duration: "4:05", cover: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=600&q=80", height: "h-48" },
+  { type: "audio" as const, title: "Il raconte son enfance", author: "Julie", duration: "2:51", cover: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80", height: "h-36" },
 ];
 
 /* ─── Entry Vestibule ─── */
