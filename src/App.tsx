@@ -26,6 +26,7 @@ import CapaciteHeritage from "./pages/CapaciteHeritage";
 import EmailPreview from "./pages/EmailPreview";
 import Bienvenue from "./pages/Bienvenue";
 import Memorial30 from "./pages/Memorial30";
+import MemorialPublic from "./pages/MemorialPublic";
 import ProLayout from "./layouts/ProLayout";
 import ProCreer from "./pages/pro/ProCreer";
 import ProRegistre from "./pages/pro/ProRegistre";
