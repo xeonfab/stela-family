@@ -73,6 +73,7 @@ const App = () => (
           <Route path="/email-preview" element={<EmailPreview />} />
           <Route path="/bienvenue" element={<Bienvenue />} />
           <Route path="/memorial30" element={<Memorial30 />} />
+          <Route path="/memorial-public" element={<MemorialPublic />} />
 
           {/* Pro login (no sidebar) */}
           <Route path="/pro/login" element={<ProLogin />} />
