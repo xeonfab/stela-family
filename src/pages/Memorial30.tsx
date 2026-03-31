@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Play, Lock, Mic, Video } from "lucide-react";
+import { Play, Lock, Mic } from "lucide-react";
 import portraitImg from "@/assets/jean-claude-portrait-new.jpg";
 
 /* ─── Mock Data ─── */
