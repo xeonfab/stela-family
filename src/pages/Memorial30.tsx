@@ -133,40 +133,65 @@ const InstantsTab = () => (
 );
 
 /* ─── Tab: L'Écho ─── */
-const EchoTab = () => (
-  <div className="max-w-2xl mx-auto space-y-6 py-12 px-6">
-    {mediaItems.map((m, i) => (
-      <motion.div
-        key={i}
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: i * 0.1, duration: 0.5 }}
-        className="flex items-center gap-4 p-5 rounded-xl border border-stone-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition-all duration-300 cursor-pointer group"
-        role="button"
-        tabIndex={0}
-        aria-label={`Lancer ${m.title}`}
-      >
-        <div className="w-11 h-11 rounded-full bg-stone-100 flex items-center justify-center shrink-0 group-hover:bg-stone-200 transition-colors duration-300">
-          {m.type === "audio" ? (
-            <Mic size={16} className="text-foreground/60" />
-          ) : (
-            <Video size={16} className="text-foreground/60" />
-          )}
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-foreground/90 truncate">{m.title}</p>
-          <p className="text-xs text-muted-foreground mt-0.5">{m.author}</p>
-        </div>
-        <div className="flex items-center gap-3 shrink-0">
-          <span className="text-xs font-mono text-muted-foreground">{m.duration}</span>
-          <div className="w-9 h-9 rounded-full bg-stone-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <Play size={14} className="text-white ml-0.5" fill="white" />
+const EchoTab = () => {
+  const col1 = mediaItems.filter((_, i) => i % 2 === 0);
+  const col2 = mediaItems.filter((_, i) => i % 2 === 1);
+
+  const MediaCard = ({ m, i }: { m: typeof mediaItems[0]; i: number }) => (
+    <motion.div
+      key={i}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: i * 0.1, duration: 0.6 }}
+      className="rounded-lg overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_24px_rgba(0,0,0,0.08)] transition-all duration-500 cursor-pointer group bg-white"
+      role="button"
+      tabIndex={0}
+      aria-label={`Lancer ${m.title}`}
+    >
+      {/* Blurred cover */}
+      <div className={`relative w-full ${m.height} overflow-hidden`}>
+        <img
+          src={m.cover}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover scale-110 blur-[20px]"
+          loading="lazy"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+            {m.type === "video" ? (
+              <Play size={20} className="text-white ml-0.5" fill="white" />
+            ) : (
+              <Mic size={20} className="text-white" />
+            )}
           </div>
         </div>
-      </motion.div>
-    ))}
-  </div>
-);
+      </div>
+      {/* Text content */}
+      <div className="p-4 bg-[#FAFAF8]">
+        <p className="font-serif text-sm md:text-base text-foreground/90 leading-snug line-clamp-2">
+          {m.title}
+        </p>
+        <p className="mt-2 text-[10px] tracking-[0.12em] uppercase text-muted-foreground">
+          Par {m.author} · {m.duration}
+        </p>
+      </div>
+    </motion.div>
+  );
+
+  return (
+    <div className="max-w-2xl mx-auto py-12 px-6">
+      <div className="columns-2 gap-4 space-y-4">
+        {mediaItems.map((m, i) => (
+          <div key={i} className="break-inside-avoid">
+            <MediaCard m={m} i={i} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 /* ─── Main Page ─── */
 const Memorial30 = () => {
