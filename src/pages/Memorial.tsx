@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import CompanionSteleCard from "@/components/CompanionSteleCard";
+
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/jean-claude-portrait-new.jpg";
 import couplePhoto from "@/assets/jc-couple-70s.jpg";
