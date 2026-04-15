@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import CompanionSteleCard from "@/components/CompanionSteleCard";
+
 import { Link } from "react-router-dom";
 import portraitImg from "@/assets/jean-claude-portrait-new.jpg";
 import couplePhoto from "@/assets/jc-couple-70s.jpg";
@@ -795,7 +795,7 @@ const Memorial = () => {
               {memories.map((memory, idx) => (
                 <React.Fragment key={idx}>
                   <MemoryCard memory={memory} onClick={() => openMemoryDetail(memory)} />
-                  {idx === 2 && <CompanionSteleCard />}
+                  
                   {/* Insert locked video cards after certain positions */}
                   {idx === 4 && lockedVideos[0] && (
                     <LockedVideoCard video={lockedVideos[0]} onClick={() => openLockedVideo(lockedVideos[0])} />
