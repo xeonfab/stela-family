@@ -795,7 +795,7 @@ const Memorial = () => {
               {memories.map((memory, idx) => (
                 <React.Fragment key={idx}>
                   <MemoryCard memory={memory} onClick={() => openMemoryDetail(memory)} />
-                  {idx === 2 && <CompanionSteleCard />}
+                  
                   {/* Insert locked video cards after certain positions */}
                   {idx === 4 && lockedVideos[0] && (
                     <LockedVideoCard video={lockedVideos[0]} onClick={() => openLockedVideo(lockedVideos[0])} />
