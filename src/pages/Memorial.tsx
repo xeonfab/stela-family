@@ -784,9 +784,6 @@ const Memorial = () => {
               {idx === 4 && lockedVideos[0] && (
                 <LockedVideoCard video={lockedVideos[0]} onClick={() => openLockedVideo(lockedVideos[0])} />
               )}
-              {idx === 9 && lockedVideos[1] && (
-                <LockedVideoCard video={lockedVideos[1]} onClick={() => openLockedVideo(lockedVideos[1])} />
-              )}
             </React.Fragment>
           ))}
         </div>
