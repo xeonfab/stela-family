@@ -774,44 +774,23 @@ const Memorial = () => {
         </section>
       </div>
 
-      {/* ─── Sticky Tabs ─── */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <div className="sticky top-0 z-40 bg-[#FAF9F6]/80 backdrop-blur-xl py-3">
-          <div className="flex justify-center">
-            <TabsList className="inline-flex w-auto bg-[#F5F5F0] rounded-full p-1 gap-1 h-auto">
-              <TabsTrigger value="souvenirs" className={segmentedTriggerClass}>Souvenirs</TabsTrigger>
-              <TabsTrigger value="histoire" className={segmentedTriggerClass}>Son Histoire</TabsTrigger>
-            </TabsList>
-          </div>
+      {/* ─── Memory Wall ─── */}
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+          {memories.map((memory, idx) => (
+            <React.Fragment key={idx}>
+              <MemoryCard memory={memory} onClick={() => openMemoryDetail(memory)} />
+              
+              {idx === 4 && lockedVideos[0] && (
+                <LockedVideoCard video={lockedVideos[0]} onClick={() => openLockedVideo(lockedVideos[0])} />
+              )}
+              {idx === 9 && lockedVideos[1] && (
+                <LockedVideoCard video={lockedVideos[1]} onClick={() => openLockedVideo(lockedVideos[1])} />
+              )}
+            </React.Fragment>
+          ))}
         </div>
-
-        {/* ─── TAB 1: Memory Wall ─── */}
-        <TabsContent value="souvenirs" className="mt-0">
-          <div className="max-w-5xl mx-auto px-6 py-12">
-            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-              {memories.map((memory, idx) => (
-                <React.Fragment key={idx}>
-                  <MemoryCard memory={memory} onClick={() => openMemoryDetail(memory)} />
-                  
-                  {/* Insert locked video cards after certain positions */}
-                  {idx === 4 && lockedVideos[0] && (
-                    <LockedVideoCard video={lockedVideos[0]} onClick={() => openLockedVideo(lockedVideos[0])} />
-                  )}
-                  {idx === 9 && lockedVideos[1] && (
-                    <LockedVideoCard video={lockedVideos[1]} onClick={() => openLockedVideo(lockedVideos[1])} />
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-        </TabsContent>
-
-        {/* ─── TAB 2: Son Histoire (Biography + Timeline) ─── */}
-        <TabsContent value="histoire" className="mt-0">
-          <SonHistoireTab isAdmin={false} />
-        </TabsContent>
-
-      </Tabs>
+      </div>
 
       {/* ─── Floating CTA ─── */}
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
