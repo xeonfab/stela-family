@@ -769,7 +769,7 @@ const Memorial = () => {
           </div>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#FBF9F6] mb-3">Jean-Claude Dubois</h1>
           <p className="text-sm tracking-[0.3em] uppercase text-[#FBF9F6]/50 mb-4">1948 — 2026</p>
-          <LogisticsLink />
+          
           <FlameRitual />
         </section>
       </div>
