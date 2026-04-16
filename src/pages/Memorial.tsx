@@ -778,13 +778,7 @@ const Memorial = () => {
       <div className="max-w-5xl mx-auto px-6 py-12">
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
           {memories.map((memory, idx) => (
-            <React.Fragment key={idx}>
-              <MemoryCard memory={memory} onClick={() => openMemoryDetail(memory)} />
-              
-              {idx === 4 && lockedVideos[0] && (
-                <LockedVideoCard video={lockedVideos[0]} onClick={() => openLockedVideo(lockedVideos[0])} />
-              )}
-            </React.Fragment>
+            <MemoryCard key={idx} memory={memory} onClick={() => openMemoryDetail(memory)} />
           ))}
         </div>
       </div>
