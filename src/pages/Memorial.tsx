@@ -770,9 +770,6 @@ const Memorial = () => {
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#FBF9F6] mb-3">Jean-Claude Dubois</h1>
           <p className="text-sm tracking-[0.3em] uppercase text-[#FBF9F6]/50 mb-4">1948 — 2026</p>
           <LogisticsLink />
-          <p className="font-serif italic text-lg md:text-xl text-[#FBF9F6]/70 max-w-xl mx-auto leading-relaxed mt-5">
-            « Il cultivait son jardin comme il cultivait ses amitiés&nbsp;: avec patience, lumière et amour. »
-          </p>
           <FlameRitual />
         </section>
       </div>
