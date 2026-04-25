@@ -27,6 +27,7 @@ import EmailPreview from "./pages/EmailPreview";
 import Bienvenue from "./pages/Bienvenue";
 import Memorial30 from "./pages/Memorial30";
 import MemorialPublic from "./pages/MemorialPublic";
+import DesignSystem from "./pages/DesignSystem";
 import ProLayout from "./layouts/ProLayout";
 import ProCreer from "./pages/pro/ProCreer";
 import ProRegistre from "./pages/pro/ProRegistre";
@@ -74,6 +75,7 @@ const App = () => (
           <Route path="/bienvenue" element={<Bienvenue />} />
           <Route path="/memorial30" element={<Memorial30 />} />
           <Route path="/memorial-public" element={<MemorialPublic />} />
+          <Route path="/design-system" element={<DesignSystem />} />
 
           {/* Pro login (no sidebar) */}
           <Route path="/pro/login" element={<ProLogin />} />
