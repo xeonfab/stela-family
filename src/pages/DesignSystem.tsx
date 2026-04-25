@@ -36,9 +36,6 @@ import {
 } from "@/components/ui/select";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
-import LivingCandle from "@/components/LivingCandle";
-import LivingHeart from "@/components/LivingHeart";
-import JewelCandle from "@/components/JewelCandle";
 import { ArrowRight, Sparkles, Shield, Heart, CircleHelp } from "lucide-react";
 
 // ── Design tokens (visual reference only) ──
@@ -110,7 +107,6 @@ const navItems = [
   { id: "cartes", label: "Cartes & Surfaces" },
   { id: "feedback", label: "Feedback" },
   { id: "navigation", label: "Navigation" },
-  { id: "rituels", label: "Rituels signature" },
   { id: "ombres", label: "Ombres & Effets" },
 ];
 
