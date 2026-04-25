@@ -516,42 +516,6 @@ const DesignSystem = () => {
         </Section>
 
         {/* Rituels signature */}
-        <Section
-          id="rituels"
-          title="Rituels signature"
-          subtitle="Composants emblématiques de Stela : interactions lentes, animations apaisantes."
-        >
-          <div className="grid md:grid-cols-3 gap-4">
-            <Block label="Living Candle">
-              <div className="flex flex-col items-center py-6">
-                <LivingCandle size={48} count={12} />
-                <p className="text-xs text-muted-foreground mt-4 text-center">
-                  Allumer une bougie<br />
-                  <span className="font-mono">animation gentleFlicker 4s</span>
-                </p>
-              </div>
-            </Block>
-            <Block label="Living Heart">
-              <div className="flex flex-col items-center py-6">
-                <LivingHeart size={48} count={8} />
-                <p className="text-xs text-muted-foreground mt-4 text-center">
-                  Soutenir un souvenir<br />
-                  <span className="font-mono">animation gentleHeartbeat 4s</span>
-                </p>
-              </div>
-            </Block>
-            <Block label="Jewel Candle">
-              <div className="flex flex-col items-center py-6">
-                <JewelCandle size={64} lit />
-                <p className="text-xs text-muted-foreground mt-4 text-center">
-                  Variante figurative<br />
-                  <span className="font-mono">candleFlicker 3s</span>
-                </p>
-              </div>
-            </Block>
-          </div>
-        </Section>
-
         {/* Ombres & effets */}
         <Section
           id="ombres"
