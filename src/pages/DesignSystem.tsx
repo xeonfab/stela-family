@@ -528,7 +528,7 @@ const DesignSystem = () => {
           <div className="grid md:grid-cols-3 gap-4">
             <Block label="Living Candle">
               <div className="flex flex-col items-center py-6">
-                <LivingCandle size={64} lit />
+                <LivingCandle size={48} count={12} />
                 <p className="text-xs text-muted-foreground mt-4 text-center">
                   Allumer une bougie<br />
                   <span className="font-mono">animation gentleFlicker 4s</span>
@@ -537,7 +537,7 @@ const DesignSystem = () => {
             </Block>
             <Block label="Living Heart">
               <div className="flex flex-col items-center py-6">
-                <LivingHeart size={64} active />
+                <LivingHeart size={48} count={8} />
                 <p className="text-xs text-muted-foreground mt-4 text-center">
                   Soutenir un souvenir<br />
                   <span className="font-mono">animation gentleHeartbeat 4s</span>
