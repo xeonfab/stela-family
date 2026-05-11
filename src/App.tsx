@@ -28,6 +28,7 @@ import Bienvenue from "./pages/Bienvenue";
 import Memorial30 from "./pages/Memorial30";
 import MemorialPublic from "./pages/MemorialPublic";
 import DesignSystem from "./pages/DesignSystem";
+import Components from "./pages/Components";
 import Sanctuaire from "./pages/Sanctuaire";
 import ProLayout from "./layouts/ProLayout";
 import ProCreer from "./pages/pro/ProCreer";
@@ -77,6 +78,7 @@ const App = () => (
           <Route path="/memorial30" element={<Memorial30 />} />
           <Route path="/memorial-public" element={<MemorialPublic />} />
           <Route path="/design-system" element={<DesignSystem />} />
+          <Route path="/components" element={<Components />} />
           <Route path="/sanctuaire" element={<Sanctuaire />} />
 
           {/* Pro login (no sidebar) */}
