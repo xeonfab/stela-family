@@ -229,8 +229,9 @@ const entries: Entry[] = [
         {(open, setOpen) => (
           <LockedVideoModal
             open={open}
-            onClose={() => setOpen(false)}
+            onOpenChange={setOpen}
             video={sampleVideo}
+            isGarant={false}
           />
         )}
       </ModalLauncher>
