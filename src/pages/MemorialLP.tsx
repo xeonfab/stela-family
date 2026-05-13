@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import AudioPlayer from "@/components/AudioPlayer";
+import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
+import jcGardening from "@/assets/jc-gardening.jpg";
+import { Heart } from "lucide-react";
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
@@ -187,7 +191,7 @@ const MemorialLP = () => {
       <Navbar />
 
       {/* 1 — HERO */}
-      <section className="relative bg-[#2C221B] text-[#FAFAFA] overflow-hidden">
+      <section className="relative bg-[#2C221B] text-[#FAFAFA] overflow-hidden min-h-screen flex items-center">
         <div
           className="absolute inset-0 opacity-60"
           style={{
@@ -195,25 +199,89 @@ const MemorialLP = () => {
               "radial-gradient(ellipse at center, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
           }}
         />
-        <div className="relative container mx-auto px-6 py-32 lg:py-44 text-center max-w-4xl">
-          <p className="text-xs tracking-[0.4em] uppercase text-primary mb-10">Stela — Après un départ</p>
-          <h1 className="font-serif-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05]">
-            Lui faire
-            <br />
-            une <em className="text-primary not-italic font-serif-display italic">place.</em>
-          </h1>
-          <div className="mt-10 space-y-2 font-serif-display italic text-xl lg:text-2xl text-white/75">
-            <p>Pour que sa mémoire ait un endroit.</p>
-            <p>Pour que sa voix ne s'efface pas.</p>
-          </div>
-          <div className="mt-12 flex flex-col items-center gap-4">
-            <Button variant="gold" className="px-10 py-7 text-base" asChild>
-              <a href="#pricing">Créer son Sanctuaire — gratuitement</a>
-            </Button>
-            <p className="text-xs text-white/50 tracking-wide">
-              30 jours gratuits · Sans carte bancaire · Puis à partir de 89€
+        <div className="relative container mx-auto px-6 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+          {/* LEFT — text 60% */}
+          <div className="lg:col-span-3">
+            <p className="text-[10px] tracking-[0.25em] uppercase text-primary mb-8 font-sans">
+              Stela — Après un départ
             </p>
+            <h1
+              className="font-serif-display font-normal leading-[1.05] text-white/95"
+              style={{ fontSize: "clamp(44px, 6vw, 72px)" }}
+            >
+              Lui faire
+              <br />
+              une <em className="text-primary not-italic font-serif-display italic">place.</em>
+            </h1>
+            <div className="mt-8 space-y-1 font-serif-display italic text-[18px] lg:text-[22px]" style={{ color: "rgba(255,255,255,0.5)" }}>
+              <p>Pour que sa mémoire ait un endroit.</p>
+              <p>Pour que sa voix ne s'efface pas.</p>
+            </div>
+            <div className="mt-12 flex flex-col items-start gap-3 max-w-[320px]">
+              <Button variant="gold" className="w-full py-6 text-base" asChild>
+                <a href="#pricing">Créer son Sanctuaire — gratuitement</a>
+              </Button>
+              <p className="text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.3)" }}>
+                30 jours gratuits · Sans carte bancaire · Puis à partir de 89€
+              </p>
+            </div>
           </div>
+
+          {/* RIGHT — visual collage 40% */}
+          <div className="lg:col-span-2 flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-[420px]">
+              {/* Main portrait */}
+              <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] mx-auto max-h-[300px] lg:max-h-none">
+                <img
+                  src={jeanClaudePortrait}
+                  alt="Portrait — Jean-Claude Dubois"
+                  className="w-full aspect-[3/4] object-cover"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Name & quote card below portrait */}
+              <div className="mt-5 mx-auto max-w-[340px] rounded-2xl border-[0.5px] border-white/10 bg-[#FAFAFA]/5 backdrop-blur-md px-5 py-4 text-center">
+                <p className="font-serif-display text-lg text-white/90">Jean-Claude Dubois</p>
+                <p className="text-[10px] tracking-[0.25em] text-primary/80 mt-1">1948 — 2024</p>
+                <p className="mt-3 font-serif-display italic text-[13px] leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+                  « Il cultivait son jardin comme ses amitiés. »
+                </p>
+              </div>
+
+              {/* Audio — "Sa voix" */}
+              <div className="mt-5 mx-auto max-w-[340px] rounded-2xl border-[0.5px] border-primary/30 bg-primary/5 backdrop-blur-md px-5 py-4">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-3">Sa voix</p>
+                <AudioPlayer duration="1:24" current="0:00" size="sm" />
+              </div>
+
+              {/* Floating memory card — bottom-left, doesn't crop portrait */}
+              <div
+                className="hidden md:block absolute -left-6 lg:-left-10 bottom-24 w-40 rounded-xl overflow-hidden border-[0.5px] border-white/10 bg-[#FAFAFA]/8 backdrop-blur-md shadow-golden-glow animate-float"
+                style={{ transform: "rotate(-3deg)" }}
+              >
+                <img src={jcGardening} alt="Souvenir partagé" className="w-full h-20 object-cover" loading="lazy" />
+                <div className="p-2.5">
+                  <p className="text-[8px] text-white/70 line-clamp-2 leading-snug">
+                    Chaque rose plantée ici porte ton souvenir...
+                  </p>
+                  <div className="flex items-center justify-between mt-1.5">
+                    <span className="text-[8px] font-medium text-white/85">Marie</span>
+                    <div className="flex items-center gap-0.5 text-primary">
+                      <Heart size={8} className="fill-primary" />
+                      <span className="text-[8px]">34</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
+          <span className="text-[9px] tracking-[0.3em] uppercase">Découvrir</span>
+          <span className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent" />
         </div>
       </section>
 
