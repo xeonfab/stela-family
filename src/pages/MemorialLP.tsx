@@ -64,53 +64,11 @@ const Step = ({
   </div>
 );
 
-const ChamberCard = ({
-  bgFrom,
-  bgTo,
-  icon,
-  order,
-  name,
-  desc,
-  tag,
-  waveform = false,
-}: {
-  bgFrom: string;
-  bgTo: string;
-  icon: string;
-  order: string;
-  name: string;
-  desc: string;
-  tag: string;
-  waveform?: boolean;
-}) => (
-  <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
-    <div
-      className="h-[140px] flex flex-col items-center justify-center text-white relative"
-      style={{ background: `linear-gradient(135deg, ${bgFrom}, ${bgTo})` }}
-    >
-      {waveform ? (
-        <div className="flex items-end gap-[3px] h-10">
-          {[0.4, 0.7, 0.5, 0.9, 0.6, 0.8, 0.45, 0.95, 0.55, 0.75, 0.4, 0.65].map((h, i) => (
-            <span
-              key={i}
-              className="w-[3px] bg-primary/80 rounded-full animate-pulse"
-              style={{ height: `${h * 100}%`, animationDelay: `${i * 0.12}s`, animationDuration: "1.6s" }}
-            />
-          ))}
-        </div>
-      ) : (
-        <span className="text-3xl text-primary/90">{icon}</span>
-      )}
-      <p className="mt-4 text-[10px] tracking-[0.3em] uppercase text-white/60">{order}</p>
-    </div>
-    <div className="p-8 flex-1 flex flex-col">
-      <h3 className="font-serif-display text-2xl font-bold mb-3">{name}</h3>
-      <p className="text-muted-foreground leading-relaxed text-[15px] flex-1">{desc}</p>
-      <p className="mt-6 pt-4 border-t border-border/40 text-xs tracking-[0.2em] uppercase text-primary">
-        {tag}
-      </p>
-    </div>
-  </Card>
+const InvitationBox = ({ question }: { question: string }) => (
+  <div className="bg-amber-50/80 border-l-2 border-primary rounded-md p-3 mb-3">
+    <p className="text-[7px] uppercase tracking-[0.16em] text-primary/70 mb-1">Invitation</p>
+    <p className="font-serif-display text-sm italic text-foreground leading-snug">{question}</p>
+  </div>
 );
 
 const SteleSpec = ({ title, text }: { title: string; text: string }) => (
