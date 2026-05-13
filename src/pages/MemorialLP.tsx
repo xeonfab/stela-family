@@ -336,12 +336,16 @@ const MemorialLP = () => {
                   <span className="text-[28px] text-primary/90">✦</span>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
-                  <InvitationBox question="Quelle phrase disait-il que vous n'entendrez plus nulle part ?" />
-                  <h3 className="font-serif-display text-lg font-medium text-foreground mt-auto">Les Mots</h3>
+                  <MessageBox
+                    eyebrow="INVITATION"
+                    text="Quelle phrase disait-il que vous n'entendrez plus nulle part ?"
+                    subMessage="Stela vous pose la question. Vous répondez à votre rythme."
+                  />
+                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Mots</h3>
                 </div>
               </Card>
 
-              {/* CHAMBRE 2 — LES PHOTOS */}
+              {/* CHAMBRE 2 — LES PHOTOS & VIDÉOS */}
               <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
                 <div
                   className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
@@ -350,12 +354,16 @@ const MemorialLP = () => {
                   <span className="text-[28px] text-primary/90">◻</span>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
-                  <InvitationBox question="Quelle photo de lui vous fait encore sourire malgré tout ?" />
-                  <h3 className="font-serif-display text-lg font-medium text-foreground mt-auto">Les Photos</h3>
+                  <MessageBox
+                    eyebrow="RASSEMBLEZ"
+                    text="Vos souvenirs sont éparpillés sur dix téléphones différents. Stela les réunit en un seul endroit."
+                    subMessage="Chaque proche partage depuis le sien. Rien ne se perd. Et la chronologie de sa vie prend forme."
+                  />
+                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Photos & Vidéos</h3>
                 </div>
               </Card>
 
-              {/* CHAMBRE 3 — LES VOIX & VIDÉOS */}
+              {/* CHAMBRE 3 — LES VOIX */}
               <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
                 <div
                   className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
@@ -366,8 +374,12 @@ const MemorialLP = () => {
                   </div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
-                  <InvitationBox question="Y a-t-il une vidéo de lui sur votre téléphone — même floue, même courte ?" />
-                  <h3 className="font-serif-display text-lg font-medium text-foreground mt-auto">Les Voix & Vidéos</h3>
+                  <MessageBox
+                    eyebrow="URGENT"
+                    text="Y a-t-il un message vocal ou une vidéo de lui sur votre téléphone ?"
+                    subMessage="La voix s'efface en quelques semaines. C'est la trace la plus fragile — et la plus précieuse."
+                  />
+                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Voix</h3>
                 </div>
               </Card>
             </div>
