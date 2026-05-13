@@ -199,9 +199,9 @@ const MemorialLP = () => {
               "radial-gradient(ellipse at center, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
           }}
         />
-        <div className="relative container mx-auto px-6 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
-          {/* LEFT — text 60% */}
-          <div className="lg:col-span-3">
+        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* LEFT — text */}
+          <div className="lg:col-span-7">
             <p className="text-[10px] tracking-[0.25em] uppercase text-primary mb-8 font-sans">
               Stela — Après un départ
             </p>
@@ -213,25 +213,28 @@ const MemorialLP = () => {
               <br />
               une <em className="text-primary not-italic font-serif-display italic">place.</em>
             </h1>
-            <div className="mt-8 space-y-1 font-serif-display italic text-[18px] lg:text-[22px]" style={{ color: "rgba(255,255,255,0.5)" }}>
+            <div
+              className="mt-8 space-y-1 font-serif-display italic text-[18px] lg:text-[22px]"
+              style={{ color: "rgba(255,255,255,0.55)" }}
+            >
               <p>Pour que sa mémoire ait un endroit.</p>
               <p>Pour que sa voix ne s'efface pas.</p>
             </div>
-            <div className="mt-12 flex flex-col items-start gap-3 max-w-[320px]">
-              <Button variant="gold" className="w-full py-6 text-base" asChild>
+            <div className="mt-12 flex flex-col items-start gap-3">
+              <Button variant="gold" className="px-8 py-6 text-base whitespace-nowrap" asChild>
                 <a href="#pricing">Créer son Sanctuaire — gratuitement</a>
               </Button>
-              <p className="text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.3)" }}>
+              <p className="text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>
                 30 jours gratuits · Sans carte bancaire · Puis à partir de 89€
               </p>
             </div>
           </div>
 
-          {/* RIGHT — visual collage 40% */}
-          <div className="lg:col-span-2 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[420px]">
+          {/* RIGHT — visual collage */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-[380px]">
               {/* Main portrait */}
-              <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] mx-auto max-h-[300px] lg:max-h-none">
+              <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
                 <img
                   src={jeanClaudePortrait}
                   alt="Portrait — Jean-Claude Dubois"
@@ -240,27 +243,35 @@ const MemorialLP = () => {
                 />
               </div>
 
-              {/* Name & quote card below portrait */}
-              <div className="mt-5 mx-auto max-w-[340px] rounded-2xl border-[0.5px] border-white/10 bg-[#FAFAFA]/5 backdrop-blur-md px-5 py-4 text-center">
+              {/* Name & quote card */}
+              <div className="mt-5 rounded-2xl border-[0.5px] border-white/10 bg-white/5 backdrop-blur-md px-5 py-4 text-center">
                 <p className="font-serif-display text-lg text-white/90">Jean-Claude Dubois</p>
                 <p className="text-[10px] tracking-[0.25em] text-primary/80 mt-1">1948 — 2024</p>
-                <p className="mt-3 font-serif-display italic text-[13px] leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+                <p
+                  className="mt-3 font-serif-display italic text-[13px] leading-relaxed"
+                  style={{ color: "rgba(255,255,255,0.5)" }}
+                >
                   « Il cultivait son jardin comme ses amitiés. »
                 </p>
               </div>
 
               {/* Audio — "Sa voix" */}
-              <div className="mt-5 mx-auto max-w-[340px] rounded-2xl border-[0.5px] border-primary/30 bg-primary/5 backdrop-blur-md px-5 py-4">
+              <div className="mt-4 rounded-2xl border-[0.5px] border-primary/30 bg-primary/5 backdrop-blur-md px-5 py-4">
                 <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-3">Sa voix</p>
                 <AudioPlayer duration="1:24" current="0:00" size="sm" />
               </div>
 
-              {/* Floating memory card — bottom-left, doesn't crop portrait */}
+              {/* Floating memory card — bottom-right offset */}
               <div
-                className="hidden md:block absolute -left-6 lg:-left-10 bottom-24 w-40 rounded-xl overflow-hidden border-[0.5px] border-white/10 bg-[#FAFAFA]/8 backdrop-blur-md shadow-golden-glow animate-float"
-                style={{ transform: "rotate(-3deg)" }}
+                className="hidden md:block absolute -right-8 lg:-right-12 top-32 w-36 rounded-xl overflow-hidden border-[0.5px] border-white/10 bg-white/[0.08] backdrop-blur-md shadow-golden-glow animate-float"
+                style={{ transform: "rotate(3deg)" }}
               >
-                <img src={jcGardening} alt="Souvenir partagé" className="w-full h-20 object-cover" loading="lazy" />
+                <img
+                  src={jcGardening}
+                  alt="Souvenir partagé"
+                  className="w-full h-20 object-cover"
+                  loading="lazy"
+                />
                 <div className="p-2.5">
                   <p className="text-[8px] text-white/70 line-clamp-2 leading-snug">
                     Chaque rose plantée ici porte ton souvenir...
