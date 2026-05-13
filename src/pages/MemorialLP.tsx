@@ -319,71 +319,44 @@ const MemorialLP = () => {
               {/* CHAMBRE 1 — LES MOTS */}
               <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
                 <div
-                  className="h-[160px] flex flex-col items-center justify-center text-white relative"
+                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
                   style={{ background: "linear-gradient(135deg, #2C221B, #3A2D22)" }}
                 >
-                  <span className="text-3xl text-primary/90">✦</span>
-                  <p className="mt-4 text-[10px] tracking-[0.3em] uppercase text-white/60">Première chambre</p>
+                  <span className="text-[28px] text-primary/90">✦</span>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <InvitationBox question="Quelle phrase disait-il que vous n'entendrez plus nulle part ?" />
-                  <div className="bg-background border border-border/60 rounded-md p-3">
-                    <p className="font-serif-display text-[13px] italic text-foreground leading-relaxed">
-                      « Il disait toujours 'on verra bien' — pour tout, même le pire. »
-                    </p>
-                    <p className="text-[9px] text-muted-foreground mt-1">— Déposé par Marie</p>
-                  </div>
-                  <h3 className="font-serif-display text-lg font-medium text-foreground mt-4 mb-1">Les Mots</h3>
-                  <p className="text-[11px] italic text-muted-foreground">Des mots que personne d'autre ne peut écrire à votre place.</p>
+                  <h3 className="font-serif-display text-lg font-medium text-foreground mt-auto">Les Mots</h3>
                 </div>
               </Card>
 
               {/* CHAMBRE 2 — LES PHOTOS */}
               <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
                 <div
-                  className="h-[160px] flex flex-col items-center justify-center text-white relative"
+                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
                   style={{ background: "linear-gradient(135deg, #1A2330, #253345)" }}
                 >
-                  <span className="text-3xl text-primary/90">◻</span>
-                  <p className="mt-4 text-[10px] tracking-[0.3em] uppercase text-white/60">Deuxième chambre</p>
+                  <span className="text-[28px] text-primary/90">◻</span>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <InvitationBox question="Quelle photo de lui vous fait encore sourire malgré tout ?" />
-                  <div className="aspect-video rounded-md overflow-hidden relative" style={{ background: "linear-gradient(135deg, #D4C4A0, #A89070)" }}>
-                    <div className="absolute bottom-0 left-0 right-0 p-1.5 bg-gradient-to-t from-black/40 to-transparent">
-                      <p className="text-[8px] italic text-white/80">Son jardin, été 2019</p>
-                    </div>
-                  </div>
-                  <p className="text-[9px] text-muted-foreground mt-1">— Photo ajoutée par Thomas</p>
-                  <h3 className="font-serif-display text-lg font-medium text-foreground mt-3 mb-1">Les Photos</h3>
-                  <p className="text-[11px] italic text-muted-foreground">Chaque photo légendée de votre main — un contexte que personne d'autre ne connaît.</p>
+                  <h3 className="font-serif-display text-lg font-medium text-foreground mt-auto">Les Photos</h3>
                 </div>
               </Card>
 
-              {/* CHAMBRE 3 — LES VIDÉOS */}
+              {/* CHAMBRE 3 — LES VOIX & VIDÉOS */}
               <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
                 <div
-                  className="h-[160px] flex flex-col items-center justify-center text-white relative"
+                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
                   style={{ background: "linear-gradient(135deg, #1E2820, #2A3A2C)" }}
                 >
                   <div className="w-8 h-8 rounded-full border border-primary/50 flex items-center justify-center">
-                    <Play size={12} className="text-primary/90 ml-0.5" />
+                    <Play size={14} className="text-primary/90 ml-0.5" />
                   </div>
-                  <p className="mt-4 text-[10px] tracking-[0.3em] uppercase text-white/60">Troisième chambre</p>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <InvitationBox question="Y a-t-il une vidéo de lui sur votre téléphone — même floue, même courte ?" />
-                  <div className="aspect-video rounded-md overflow-hidden relative" style={{ background: "linear-gradient(135deg, #2A3540, #1A2530)" }}>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-9 h-9 rounded-full bg-primary/90 flex items-center justify-center">
-                        <Play size={14} className="text-white ml-0.5" />
-                      </div>
-                    </div>
-                    <p className="absolute bottom-2 left-2 text-[8px] italic text-white/60">Son jardin, août 2023</p>
-                    <p className="absolute bottom-2 right-2 text-[9px] text-white/70">0:23</p>
-                  </div>
-                  <h3 className="font-serif-display text-lg font-medium text-foreground mt-3 mb-1">Les Voix & Vidéos</h3>
-                  <p className="text-[11px] italic text-muted-foreground">La vidéo la plus banale est souvent la plus précieuse. Sa façon de bouger, de rire, d'appeler les gens.</p>
+                  <h3 className="font-serif-display text-lg font-medium text-foreground mt-auto">Les Voix & Vidéos</h3>
                 </div>
               </Card>
             </div>
