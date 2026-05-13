@@ -65,9 +65,9 @@ const Step = ({
 );
 
 const InvitationBox = ({ question }: { question: string }) => (
-  <div className="bg-amber-50/80 border-l-2 border-primary rounded-md p-3 mb-3">
-    <p className="text-[7px] uppercase tracking-[0.16em] text-primary/70 mb-1">Invitation</p>
-    <p className="font-serif-display text-sm italic text-foreground leading-snug">{question}</p>
+  <div className="bg-amber-50 border-l-2 border-primary rounded-md p-3 mb-4">
+    <p className="text-[7px] uppercase tracking-wider text-primary/70 mb-1">Invitation</p>
+    <p className="font-serif-display text-[14px] italic text-foreground leading-snug">{question}</p>
   </div>
 );
 
