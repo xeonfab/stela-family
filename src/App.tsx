@@ -31,6 +31,7 @@ import DesignSystem from "./pages/DesignSystem";
 import Components from "./pages/Components";
 import Sanctuaire from "./pages/Sanctuaire";
 import CopyHome from "./pages/CopyHome";
+import MemorialLP from "./pages/MemorialLP";
 import ProLayout from "./layouts/ProLayout";
 import ProCreer from "./pages/pro/ProCreer";
 import ProRegistre from "./pages/pro/ProRegistre";
@@ -82,6 +83,7 @@ const App = () => (
           <Route path="/components" element={<Components />} />
           <Route path="/sanctuaire" element={<Sanctuaire />} />
           <Route path="/copy-home" element={<CopyHome />} />
+          <Route path="/memoriallp" element={<MemorialLP />} />
 
           {/* Pro login (no sidebar) */}
           <Route path="/pro/login" element={<ProLogin />} />
