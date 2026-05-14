@@ -2,8 +2,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Play, ShieldCheck } from "lucide-react";
+import { Check, Play, ShieldCheck, Users, Quote } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useState } from "react";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -147,6 +148,262 @@ const PricingCard = ({
 };
 
 const MemorialLP = () => {
+  return _MemorialLPInner();
+};
+
+const PILLARS = [
+  {
+    id: "mots",
+    label: "Les Mots",
+    eyebrow: "Une anecdote partagée",
+  },
+  {
+    id: "photos",
+    label: "Les Photos & Vidéos",
+    eyebrow: "Une galerie curatée",
+  },
+  {
+    id: "voix",
+    label: "Les Voix",
+    eyebrow: "Sa voix, préservée",
+  },
+] as const;
+
+type PillarId = typeof PILLARS[number]["id"];
+
+const PillarVisual = ({ active }: { active: PillarId }) => {
+  if (active === "mots") {
+    return (
+      <div className="h-full flex flex-col justify-center px-10 py-14 lg:px-14">
+        <Quote size={32} className="text-primary/70 mb-8" />
+        <p className="font-serif-display italic text-2xl lg:text-3xl text-[#FAFAFA] leading-snug">
+          « Il avait toujours cette phrase, quand on doutait : <span className="text-primary">"On verra demain, mais on n'oublie pas aujourd'hui."</span> »
+        </p>
+        <div className="mt-10 flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/40" />
+          <div>
+            <p className="text-[13px] text-[#FAFAFA] font-medium">Claire, sa fille</p>
+            <p className="text-[11px] tracking-[0.2em] uppercase text-white/40">Déposé un mardi</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  if (active === "photos") {
+    return (
+      <div className="h-full flex flex-col justify-center px-8 py-12 lg:px-12">
+        <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Été 1987 — Bretagne</p>
+        <div className="grid grid-cols-3 gap-3">
+          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#8A7258]/60 to-[#3A2A1A]/80 col-span-2 row-span-2" />
+          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#5a3a22]/70 to-[#2a1a0e]/90" />
+          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#6b4a32]/60 to-[#1a1208]/80" />
+          <div className="aspect-[2/1] rounded-xl bg-gradient-to-br from-[#3A2D22]/80 to-[#1a1208]/90 col-span-3 flex items-center justify-center">
+            <Play size={18} className="text-primary/80 ml-0.5" />
+          </div>
+        </div>
+        <p className="mt-6 text-[12px] text-white/50 italic">12 souvenirs · partagés par 4 proches</p>
+      </div>
+    );
+  }
+  return (
+    <div className="h-full flex flex-col justify-center px-10 py-14 lg:px-14">
+      <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Message vocal</p>
+      <p className="font-serif-display italic text-xl text-[#FAFAFA] mb-8">
+        « Joyeux anniversaire ma chérie… »
+      </p>
+      <div className="flex items-center gap-4">
+        <button className="w-12 h-12 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center flex-shrink-0">
+          <Play size={16} className="text-primary ml-0.5" />
+        </button>
+        <div className="flex-1 flex items-end gap-[3px] h-10">
+          {Array.from({ length: 38 }).map((_, i) => (
+            <span
+              key={i}
+              className="flex-1 bg-primary/60 rounded-full"
+              style={{ height: `${20 + Math.abs(Math.sin(i * 0.7)) * 80}%` }}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="mt-8 flex items-center justify-between text-[11px] text-white/50">
+        <span>0:00</span>
+        <span>Déposé par Pierre, son frère</span>
+        <span>0:42</span>
+      </div>
+    </div>
+  );
+};
+
+const SanctuaireSection = () => {
+  const [active, setActive] = useState<PillarId>("mots");
+  return (
+    <>
+      {/* NIVEAU 1 — EXPLORATION */}
+      <section className="py-24 lg:py-32 bg-background">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <Reveal>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Le Sanctuaire</p>
+              <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight">
+                Trois traces.
+                <br />
+                <em className="text-primary not-italic font-serif-display italic">Une seule mémoire.</em>
+              </h2>
+              <p className="mt-6 text-[15px] text-muted-foreground max-w-[520px] mx-auto">
+                Explorez ce qu'un Sanctuaire conserve, pour toujours, à l'abri du temps.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="grid lg:grid-cols-[280px_1fr] gap-10 lg:gap-16 items-stretch">
+              {/* Navigation */}
+              <nav className="flex flex-col">
+                {PILLARS.map((p, i) => {
+                  const isActive = p.id === active;
+                  return (
+                    <button
+                      key={p.id}
+                      onClick={() => setActive(p.id)}
+                      className={`text-left py-6 border-t-[0.5px] border-border/60 transition-colors group ${
+                        i === PILLARS.length - 1 ? "border-b-[0.5px]" : ""
+                      }`}
+                    >
+                      <div className="flex items-baseline gap-4">
+                        <span
+                          className={`text-[10px] tracking-[0.3em] tabular-nums transition-colors ${
+                            isActive ? "text-primary" : "text-muted-foreground/60"
+                          }`}
+                        >
+                          0{i + 1}
+                        </span>
+                        <span
+                          className={`font-serif-display text-2xl lg:text-3xl transition-colors ${
+                            isActive ? "text-foreground" : "text-muted-foreground/50 group-hover:text-foreground/70"
+                          }`}
+                        >
+                          {p.label}
+                        </span>
+                      </div>
+                      {isActive && (
+                        <p className="mt-2 ml-8 text-[12px] text-muted-foreground italic">{p.eyebrow}</p>
+                      )}
+                    </button>
+                  );
+                })}
+              </nav>
+
+              {/* Visualisation */}
+              <div
+                className="rounded-3xl overflow-hidden min-h-[420px] lg:min-h-[480px] relative shadow-2xl"
+                style={{ background: "linear-gradient(135deg, #2C221B 0%, #1a1208 100%)" }}
+              >
+                <div className="absolute inset-0 opacity-40" style={{ background: "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.15) 0%, transparent 60%)" }} />
+                <div key={active} className="relative h-full animate-in fade-in duration-500">
+                  <PillarVisual active={active} />
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* NIVEAU 2 — COLLABORATION */}
+      <section className="py-20 lg:py-24 bg-muted">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <Reveal>
+            <div className="text-center">
+              <Users size={24} className="text-primary mx-auto mb-6" strokeWidth={1.25} />
+              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Un Hommage Partagé</p>
+              <h2 className="font-serif-display text-3xl lg:text-4xl font-bold leading-tight">
+                Construisez son sanctuaire <em className="text-primary not-italic italic">ensemble.</em>
+              </h2>
+              <p className="mt-6 text-[15px] text-muted-foreground leading-relaxed max-w-[560px] mx-auto">
+                Vous n'êtes pas seul à vous souvenir. Invitez vos proches en un clic. Chacun partage ses photos, ses vidéos et ses anecdotes depuis son propre téléphone, pour construire ensemble la chronologie de sa vie.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* NIVEAU 3 — ONBOARDING GUIDÉ */}
+      <section className="py-24 lg:py-32 bg-background">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <Reveal>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">L'Accompagnement</p>
+              <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight">
+                Stela vous guide.
+                <br />
+                <em className="text-primary not-italic font-serif-display italic">Vous n'avez qu'à répondre.</em>
+              </h2>
+              <p className="mt-6 text-[15px] text-muted-foreground max-w-[520px] mx-auto">
+                Chaque semaine, une invitation. Une question simple sur lui — un souvenir que vous seul pouvez donner.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+              <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
+                <div
+                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
+                  style={{ background: "linear-gradient(135deg, #2C221B, #3A2D22)" }}
+                >
+                  <span className="text-[28px] text-primary/90">✦</span>
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <MessageBox
+                    eyebrow="INVITATION"
+                    text="Quelle phrase disait-il que vous n'entendrez plus nulle part ?"
+                    subMessage="Stela vous pose la question. Vous répondez à votre rythme."
+                  />
+                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Mots</h3>
+                </div>
+              </Card>
+
+              <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
+                <div
+                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
+                  style={{ background: "linear-gradient(135deg, #1A2330, #253345)" }}
+                >
+                  <span className="text-[28px] text-primary/90">◻</span>
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <MessageBox
+                    eyebrow="RASSEMBLEZ"
+                    text="Vos souvenirs sont éparpillés sur dix téléphones différents. Stela les réunit en un seul endroit."
+                    subMessage="Chaque proche partage depuis le sien. Rien ne se perd. Et la chronologie de sa vie prend forme."
+                  />
+                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Photos & Vidéos</h3>
+                </div>
+              </Card>
+
+              <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
+                <div
+                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
+                  style={{ background: "linear-gradient(135deg, #1E2820, #2A3A2C)" }}
+                >
+                  <div className="w-8 h-8 rounded-full border border-primary/50 flex items-center justify-center">
+                    <Play size={14} className="text-primary/90 ml-0.5" />
+                  </div>
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <MessageBox
+                    eyebrow="À SAUVEGARDER"
+                    text="Y a-t-il un message vocal ou une vidéo de lui sur votre téléphone ?"
+                    subMessage="La voix s'efface en quelques semaines. C'est la trace la plus fragile — et la plus précieuse."
+                  />
+                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Voix</h3>
+                </div>
+              </Card>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </>
+  );
+};
+
+const _MemorialLPInner = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -267,83 +524,8 @@ const MemorialLP = () => {
         </div>
       </section>
 
-      {/* 3 — LES TROIS CHAMBRES */}
-      <section className="py-24 lg:py-32 bg-background">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <Reveal>
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Le Sanctuaire</p>
-              <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight">
-                Stela vous guide.
-                <br />
-                <em className="text-primary not-italic font-serif-display italic">Vous n'avez qu'à répondre.</em>
-              </h2>
-              <p className="mt-6 text-[15px] text-muted-foreground max-w-[520px] mx-auto">
-                Chaque semaine, une invitation. Une question simple sur lui — un souvenir que vous seul pouvez donner.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal>
-            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-              {/* CHAMBRE 1 — LES MOTS */}
-              <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
-                <div
-                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
-                  style={{ background: "linear-gradient(135deg, #2C221B, #3A2D22)" }}
-                >
-                  <span className="text-[28px] text-primary/90">✦</span>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <MessageBox
-                    eyebrow="INVITATION"
-                    text="Quelle phrase disait-il que vous n'entendrez plus nulle part ?"
-                    subMessage="Stela vous pose la question. Vous répondez à votre rythme."
-                  />
-                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Mots</h3>
-                </div>
-              </Card>
-
-              {/* CHAMBRE 2 — LES PHOTOS & VIDÉOS */}
-              <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
-                <div
-                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
-                  style={{ background: "linear-gradient(135deg, #1A2330, #253345)" }}
-                >
-                  <span className="text-[28px] text-primary/90">◻</span>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <MessageBox
-                    eyebrow="RASSEMBLEZ"
-                    text="Vos souvenirs sont éparpillés sur dix téléphones différents. Stela les réunit en un seul endroit."
-                    subMessage="Chaque proche partage depuis le sien. Rien ne se perd. Et la chronologie de sa vie prend forme."
-                  />
-                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Photos & Vidéos</h3>
-                </div>
-              </Card>
-
-              {/* CHAMBRE 3 — LES VOIX */}
-              <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
-                <div
-                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
-                  style={{ background: "linear-gradient(135deg, #1E2820, #2A3A2C)" }}
-                >
-                  <div className="w-8 h-8 rounded-full border border-primary/50 flex items-center justify-center">
-                    <Play size={14} className="text-primary/90 ml-0.5" />
-                  </div>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <MessageBox
-                    eyebrow="URGENT"
-                    text="Y a-t-il un message vocal ou une vidéo de lui sur votre téléphone ?"
-                    subMessage="La voix s'efface en quelques semaines. C'est la trace la plus fragile — et la plus précieuse."
-                  />
-                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Voix</h3>
-                </div>
-              </Card>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* 3 — LE SANCTUAIRE : EXPLORATION + COLLABORATION + ONBOARDING */}
+      <SanctuaireSection />
 
       {/* 4 — LA STÈLE */}
       <section className="bg-muted">
