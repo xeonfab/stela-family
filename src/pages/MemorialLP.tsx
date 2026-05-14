@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Play } from "lucide-react";
+import { Check, Play, ShieldCheck } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 
@@ -407,20 +407,29 @@ const MemorialLP = () => {
         </div>
       </section>
 
-      {/* 5 — FONDATEUR */}
-      <section className="py-24 lg:py-32 bg-background">
-        <div className="container mx-auto px-6 max-w-[620px] text-center">
+      {/* 5 — FONDATEUR & GARANTIE */}
+      <section className="py-24 lg:py-32 bg-[hsl(0,0%,98%)]">
+        <div className="container mx-auto px-6 max-w-3xl text-center">
           <Reveal>
-            <div className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-muted to-border flex items-center justify-center font-serif-display text-2xl text-muted-foreground mb-6">
+            <div className="mx-auto w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-muted to-border shadow-soft mb-8 overflow-hidden flex items-center justify-center font-serif-display text-2xl text-muted-foreground">
               F
             </div>
-            <p className="font-serif-display text-[22px] font-medium">Fabien</p>
-            <p className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1 mb-8">
-              Fondateur de Stela
+            <p className="font-serif-display text-2xl md:text-4xl text-[#2C221B] leading-relaxed">
+              <em className="italic">« Stela est né d'un manque personnel — celui d'un endroit intime où revenir après avoir perdu quelqu'un.</em>{" "}
+              Ce que vous déposez ici n'appartient à aucun réseau. Cela appartient à votre famille pour une génération. J'en suis personnellement le garant. »
             </p>
-            <p className="font-serif-display text-[20px] lg:text-[22px] italic text-foreground leading-[1.65]">
-              « Stela est né d'un manque personnel — celui d'un endroit où revenir après avoir perdu quelqu'un. »
-            </p>
+            <div className="mt-8">
+              <p className="font-sans text-lg font-semibold text-[#2C221B]">Fabien</p>
+              <p className="font-sans text-xs tracking-[0.2em] uppercase text-muted-foreground mt-1">
+                Fondateur de Stela
+              </p>
+            </div>
+            <div className="mt-16 max-w-xl mx-auto bg-[hsl(40,33%,97%)] border border-[hsl(30,10%,88%)] rounded-2xl p-5 flex items-start gap-4">
+              <ShieldCheck className="w-5 h-5 shrink-0 text-[#D4AF37] mt-0.5" />
+              <p className="font-sans text-sm text-left text-muted-foreground leading-relaxed">
+                <span className="font-medium text-[#2C221B]">Fonds de pérennité 25 ans :</span> Le prix de votre Sanctuaire inclut le provisionnement immédiat de son hébergement pour une génération sur un compte tiers dédié.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -561,21 +570,6 @@ const MemorialLP = () => {
         </div>
       </section>
 
-      {/* 9 — PROMESSE */}
-      <section className="py-[100px] px-6 bg-background">
-        <div className="container mx-auto max-w-[640px] text-center">
-          <Reveal>
-            <div className="mx-auto w-11 h-px bg-primary/40 mb-10" />
-            <p className="font-serif-display italic text-2xl lg:text-3xl text-foreground leading-[1.5]">
-              « Ce que vous déposez ici appartient à votre famille pour une génération. Nous en sommes les
-              gardiens. »
-            </p>
-            <p className="mt-10 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-              Stela · Mémorial d'intimité · Depuis 2026
-            </p>
-          </Reveal>
-        </div>
-      </section>
 
       {/* FOOTER */}
       <footer className="py-10 border-t-[0.5px] border-border">
