@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, Play } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import AudioPlayer from "@/components/AudioPlayer";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 import jcGardening from "@/assets/jc-gardening.jpg";
 import { Heart } from "lucide-react";
