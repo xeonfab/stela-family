@@ -163,9 +163,7 @@ const MemorialLP = () => {
         <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* LEFT — text */}
           <div className="lg:col-span-7">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-primary mb-8 font-sans">
-              Stela — Après un départ
-            </p>
+            <p className="text-[10px] tracking-[0.25em] uppercase text-primary mb-8 font-sans">Après un départ</p>
             <h1
               className="font-serif-display font-normal leading-[1.05] text-white/95"
               style={{ fontSize: "clamp(44px, 6vw, 72px)" }}
