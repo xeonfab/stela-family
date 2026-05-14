@@ -224,11 +224,6 @@ const MemorialLP = () => {
                 </p>
               </div>
 
-              {/* Audio — "Sa voix" */}
-              <div className="mt-4 rounded-2xl border-[0.5px] border-primary/30 bg-primary/5 backdrop-blur-md px-5 py-4">
-                <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-3">Sa voix</p>
-                <AudioPlayer duration="1:24" current="0:00" size="sm" />
-              </div>
 
               {/* Floating memory card — bottom-right offset */}
               <div
