@@ -432,25 +432,55 @@ const MemorialLP = () => {
         </div>
       </section>
 
-      {/* 6 — TÉMOIGNAGE */}
+      {/* 6 — TÉMOIGNAGES */}
       <section className="py-24 lg:py-32 bg-muted">
-        <div className="container mx-auto px-6 max-w-[860px]">
-          <Reveal>
-            <Card className="relative p-10 lg:p-14 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
-              <p className="font-serif-display text-xl lg:text-2xl italic leading-relaxed text-white/90">
-                « Mon père a utilisé Stela pendant deux ans avant de partir. Ce qu'il y a laissé, c'est
-                plus que tout ce qu'on aurait pu lui demander. On pose le téléphone sur la stèle et sa
-                voix est là. C'est lui. »
-              </p>
-              <div className="mt-10 pt-6 border-t border-white/15">
-                <p className="font-medium">Marie, 46 ans</p>
-                <p className="text-sm text-white/60 mt-1">
-                  Sa fille — le Sanctuaire est ouvert depuis novembre 2024
+        <div className="container mx-auto px-6 max-w-[1200px]">
+          <div className="grid md:grid-cols-3 gap-6">
+            <Reveal>
+              <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
+                <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
+                  « Ma mère avait préparé son Sanctuaire en secret. Après son départ, nous avons découvert des lettres qu'elle nous avait écrites, des photos de son enfance. C'est devenu notre refuge. »
                 </p>
-              </div>
-            </Card>
-          </Reveal>
+                <div className="mt-8 pt-5 border-t border-white/15">
+                  <p className="font-medium">Sophie, 38 ans</p>
+                  <p className="text-sm text-white/60 mt-1">
+                    Sa fille — Sanctuaire ouvert depuis janvier 2025
+                  </p>
+                </div>
+              </Card>
+            </Reveal>
+
+            <Reveal>
+              <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
+                <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
+                  « Mon frère et moi avons créé le Sanctuaire de notre père ensemble. Chaque année, nous y ajoutons un souvenir. C'est notre façon de le garder vivant, ensemble. »
+                </p>
+                <div className="mt-8 pt-5 border-t border-white/15">
+                  <p className="font-medium">Thomas, 52 ans</p>
+                  <p className="text-sm text-white/60 mt-1">
+                    Son fils — Sanctuaire ouvert depuis septembre 2024
+                  </p>
+                </div>
+              </Card>
+            </Reveal>
+
+            <Reveal>
+              <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
+                <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
+                  « Mon père a utilisé Stela pendant deux ans avant de partir. Ce qu'il y a laissé, c'est plus que tout ce qu'on aurait pu lui demander. On pose le téléphone sur la stèle et sa voix est là. C'est lui. »
+                </p>
+                <div className="mt-8 pt-5 border-t border-white/15">
+                  <p className="font-medium">Marie, 46 ans</p>
+                  <p className="text-sm text-white/60 mt-1">
+                    Sa fille — le Sanctuaire est ouvert depuis novembre 2024
+                  </p>
+                </div>
+              </Card>
+            </Reveal>
+          </div>
         </div>
       </section>
 
