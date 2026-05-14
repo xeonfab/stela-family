@@ -415,7 +415,7 @@ const MemorialLP = () => {
               F
             </div>
             <p className="font-serif-display text-2xl md:text-4xl text-[#2C221B] leading-relaxed">
-              <em className="italic">« Stela est né d'un manque personnel — celui d'un endroit intime où revenir après avoir perdu quelqu'un.</em>{" "}
+              <em className="italic">« Stela est né d'un manque personnel, celui d'un endroit intime où revenir après avoir perdu quelqu'un.</em>{" "}
               Ce que vous déposez ici n'appartient à aucun réseau. Cela appartient à votre famille pour une génération. J'en suis personnellement le garant. »
             </p>
             <div className="mt-8">
