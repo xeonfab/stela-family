@@ -40,21 +40,16 @@ const SectionHeader = ({
 
 const Step = ({
   n,
-  icon,
   title,
   text,
 }: {
   n: string;
-  icon: string;
   title: string;
   text: string;
 }) => (
   <div className="text-center relative">
     <div className="relative mx-auto w-[52px] h-[52px] rounded-full border-[0.5px] border-border bg-card flex items-center justify-center mb-6 z-10">
-      <span className="text-2xl">{icon}</span>
-      <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-primary text-primary-foreground text-[11px] font-medium flex items-center justify-center font-serif-display">
-        {n}
-      </span>
+      <span className="font-serif-display text-xl text-foreground">{n}</span>
     </div>
     <h3 className="font-serif-display text-xl font-medium mb-3">{title}</h3>
     <p className="text-[13px] text-muted-foreground leading-relaxed max-w-xs mx-auto">{text}</p>
