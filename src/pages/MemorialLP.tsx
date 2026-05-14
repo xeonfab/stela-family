@@ -455,7 +455,7 @@ const MemorialLP = () => {
               title={
                 <>
                   Commencez{" "}
-                  <em className="text-primary not-italic font-serif-display italic">gratuitement.</em>
+                  <em className="text-primary not-italic font-serif-display italic">premiers souvenirs</em>
                 </>
               }
               subtitle="Activez le Sanctuaire maintenant, sans carte bancaire. Prenez le temps de ressentir."
