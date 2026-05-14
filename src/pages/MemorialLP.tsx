@@ -398,7 +398,7 @@ const MemorialLP = () => {
                   />
                   <SteleSpec
                     title="Zéro friction"
-                    text="Aucun mot de passe. Aucune application. Toute la famille y accède — même les moins à l'aise avec la technologie."
+                    text="Aucun mot de passe. Aucune application. Toute la famille y accède en toute facilité"
                   />
                 </div>
               </div>
