@@ -251,19 +251,16 @@ const MemorialLP = () => {
               />
               <Step
                 n="1"
-                icon="📖"
                 title="Ouvrez le Sanctuaire"
                 text="En quelques minutes, créez un espace privé dédié à son histoire, ses passions et son visage."
               />
               <Step
                 n="2"
-                icon="🤝"
                 title="Réunissez ceux qui l'aimaient"
                 text="Invitez le cercle familial. Un lien privé suffit pour rassembler les cœurs autour de sa mémoire."
               />
               <Step
                 n="3"
-                icon="✦"
                 title="Enrichissez sa mémoire"
                 text="Chacun dépose une photo oubliée, une anecdote, un message vocal. Son souvenir s'enrichit jour après jour."
               />
