@@ -65,8 +65,8 @@ const MessageBox = ({
   text: string;
   subMessage?: string;
 }) => (
-  <div className="bg-amber-50 border-l-2 border-primary rounded-md p-3 mb-3">
-    <p className="text-[7px] uppercase tracking-wider text-primary/70 mb-1">{eyebrow}</p>
+  <div className="p-3 mb-3">
+    <p className="text-[7px] uppercase tracking-wider text-muted-foreground mb-1">{eyebrow}</p>
     <p className="font-serif-display text-[14px] italic text-foreground leading-snug">{text}</p>
     {subMessage && (
       <p className="text-[12px] text-muted-foreground italic mt-2 leading-relaxed">{subMessage}</p>
