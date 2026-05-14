@@ -394,7 +394,7 @@ const MemorialLP = () => {
                   />
                   <SteleSpec
                     title="La magie du sans contact"
-                    text="Une puce NFC dissimulée sous le bois. Un simple effleurement avec votre téléphone — le Sanctuaire s'ouvre."
+                    text="Un simple effleurement avec votre téléphone — le Sanctuaire s'ouvre."
                   />
                   <SteleSpec
                     title="Zéro friction"
