@@ -186,7 +186,7 @@ const MemorialLP = () => {
                 <a href="#pricing">Créer son Sanctuaire — gratuitement</a>
               </Button>
               <p className="text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>
-                30 jours gratuits · Puis à partir de 89€ pour 25 ans
+                30 jours d'essai libre · Puis 89€, garanti pour une génération (25 ans)
               </p>
             </div>
           </div>
