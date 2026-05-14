@@ -233,7 +233,7 @@ const MemorialLP = () => {
         <div className="container mx-auto px-6 max-w-6xl">
           <Reveal>
             <SectionHeader
-              eyebrow="Un geste simple"
+              eyebrow="Un héritage familial"
               title={
                 <>
                   Honorer sa mémoire,{" "}
