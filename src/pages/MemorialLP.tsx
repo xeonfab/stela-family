@@ -5,8 +5,6 @@ import { Card } from "@/components/ui/card";
 import { Check, Play } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
-import jcGardening from "@/assets/jc-gardening.jpg";
-import { Heart } from "lucide-react";
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
