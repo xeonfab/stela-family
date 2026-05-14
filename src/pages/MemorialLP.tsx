@@ -451,7 +451,7 @@ const MemorialLP = () => {
         <div className="container mx-auto px-6 max-w-[820px]">
           <Reveal>
             <SectionHeader
-              eyebrow="Nos offres"
+              eyebrow="Nos offres garanties 25 ans"
               title={
                 <>
                   Commencez{" "}
