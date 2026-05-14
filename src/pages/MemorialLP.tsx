@@ -390,7 +390,7 @@ const MemorialLP = () => {
                 <div className="space-y-6">
                   <SteleSpec
                     title="La noblesse du Noyer"
-                    text="Un bloc massif façonné et gravé sur-mesure. Une présence discrète et élégante — ni urne, ni tombe, ni gadget."
+                    text="Un bloc massif façonné et gravé sur-mesure. Une présence discrète et élégante."
                   />
                   <SteleSpec
                     title="La magie du sans contact"
