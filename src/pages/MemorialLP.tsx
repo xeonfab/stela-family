@@ -2,8 +2,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Play, ShieldCheck } from "lucide-react";
+import { Check, Play, ShieldCheck, Users, Quote } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useState } from "react";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
