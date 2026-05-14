@@ -434,23 +434,24 @@ const MemorialLP = () => {
         </div>
       </section>
 
-      {/* 6 — CITATION */}
-      <section className="bg-[#2C221B] py-[60px] px-6">
-        <div className="container mx-auto max-w-3xl text-center">
+      {/* 6 — TÉMOIGNAGE */}
+      <section className="py-24 lg:py-32 bg-muted">
+        <div className="container mx-auto px-6 max-w-[860px]">
           <Reveal>
-            <p
-              className="font-serif-display italic text-xl lg:text-2xl leading-relaxed"
-              style={{ color: "rgba(250,250,250,0.55)" }}
-            >
-              « La voix est la première chose que le cerveau oublie. Quelques semaines après un départ, on
-              commence à perdre le son exact des mots. »
-            </p>
-            <p
-              className="mt-8 text-[10px] uppercase tracking-wider"
-              style={{ color: "hsl(var(--primary) / 0.6)" }}
-            >
-              Stela — zéro simulation · zéro réseau social · zéro publicité
-            </p>
+            <Card className="relative p-10 lg:p-14 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
+              <p className="font-serif-display text-xl lg:text-2xl italic leading-relaxed text-white/90">
+                « Mon père a utilisé Stela pendant deux ans avant de partir. Ce qu'il y a laissé, c'est
+                plus que tout ce qu'on aurait pu lui demander. On pose le téléphone sur la stèle et sa
+                voix est là. C'est lui. »
+              </p>
+              <div className="mt-10 pt-6 border-t border-white/15">
+                <p className="font-medium">Marie, 46 ans</p>
+                <p className="text-sm text-white/60 mt-1">
+                  Sa fille — le Sanctuaire est ouvert depuis novembre 2024
+                </p>
+              </div>
+            </Card>
           </Reveal>
         </div>
       </section>
@@ -544,28 +545,6 @@ const MemorialLP = () => {
               La garantie 25 ans démarre à la date du décès. Vos données vous appartiennent et sont
               exportables à tout moment.
             </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 8 — TÉMOIGNAGE */}
-      <section className="py-24 lg:py-32 bg-muted">
-        <div className="container mx-auto px-6 max-w-[860px]">
-          <Reveal>
-            <Card className="relative p-10 lg:p-14 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
-              <p className="font-serif-display text-xl lg:text-2xl italic leading-relaxed text-white/90">
-                « Mon père a utilisé Stela pendant deux ans avant de partir. Ce qu'il y a laissé, c'est
-                plus que tout ce qu'on aurait pu lui demander. On pose le téléphone sur la stèle et sa
-                voix est là. C'est lui. »
-              </p>
-              <div className="mt-10 pt-6 border-t border-white/15">
-                <p className="font-medium">Marie, 46 ans</p>
-                <p className="text-sm text-white/60 mt-1">
-                  Sa fille — le Sanctuaire est ouvert depuis novembre 2024
-                </p>
-              </div>
-            </Card>
           </Reveal>
         </div>
       </section>
