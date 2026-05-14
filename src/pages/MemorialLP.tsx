@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, Play } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import AudioPlayer from "@/components/AudioPlayer";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 import jcGardening from "@/assets/jc-gardening.jpg";
 import { Heart } from "lucide-react";
@@ -224,11 +223,6 @@ const MemorialLP = () => {
                 </p>
               </div>
 
-              {/* Audio — "Sa voix" */}
-              <div className="mt-4 rounded-2xl border-[0.5px] border-primary/30 bg-primary/5 backdrop-blur-md px-5 py-4">
-                <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-3">Sa voix</p>
-                <AudioPlayer duration="1:24" current="0:00" size="sm" />
-              </div>
 
               {/* Floating memory card — bottom-right offset */}
               <div
