@@ -363,9 +363,9 @@ const _MemorialLPInner = () => {
               <p>Pour que sa voix ne s'efface pas.</p>
             </div>
             <div className="mt-12 flex flex-col items-start gap-3">
-              <Button variant="gold" className="px-8 py-6 text-base whitespace-nowrap" asChild>
-                <a href="#pricing">Créer son Sanctuaire — gratuitement</a>
-              </Button>
+               <Button variant="gold" className="px-8 py-6 text-base whitespace-nowrap" asChild>
+                 <a href="#pricing">Créer son Sanctuaire</a>
+               </Button>
               <p className="text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>
                 30 jours d'essai libre · Puis 89€, garanti pour une génération (25 ans)
               </p>
