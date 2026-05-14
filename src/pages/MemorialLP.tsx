@@ -594,7 +594,7 @@ const _MemorialLPInner = () => {
 
       {/* 7 — PRICING */}
       <section id="pricing" className="py-24 lg:py-32 bg-background">
-        <div className="container mx-auto px-6 max-w-[820px]">
+        <div className="container mx-auto px-6 max-w-[960px]">
           <Reveal>
             <SectionHeader
               eyebrow="Nos offres garanties 25 ans"
