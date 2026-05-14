@@ -268,83 +268,8 @@ const MemorialLP = () => {
         </div>
       </section>
 
-      {/* 3 — LES TROIS CHAMBRES */}
-      <section className="py-24 lg:py-32 bg-background">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <Reveal>
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Le Sanctuaire</p>
-              <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight">
-                Stela vous guide.
-                <br />
-                <em className="text-primary not-italic font-serif-display italic">Vous n'avez qu'à répondre.</em>
-              </h2>
-              <p className="mt-6 text-[15px] text-muted-foreground max-w-[520px] mx-auto">
-                Chaque semaine, une invitation. Une question simple sur lui — un souvenir que vous seul pouvez donner.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal>
-            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-              {/* CHAMBRE 1 — LES MOTS */}
-              <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
-                <div
-                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
-                  style={{ background: "linear-gradient(135deg, #2C221B, #3A2D22)" }}
-                >
-                  <span className="text-[28px] text-primary/90">✦</span>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <MessageBox
-                    eyebrow="INVITATION"
-                    text="Quelle phrase disait-il que vous n'entendrez plus nulle part ?"
-                    subMessage="Stela vous pose la question. Vous répondez à votre rythme."
-                  />
-                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Mots</h3>
-                </div>
-              </Card>
-
-              {/* CHAMBRE 2 — LES PHOTOS & VIDÉOS */}
-              <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
-                <div
-                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
-                  style={{ background: "linear-gradient(135deg, #1A2330, #253345)" }}
-                >
-                  <span className="text-[28px] text-primary/90">◻</span>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <MessageBox
-                    eyebrow="RASSEMBLEZ"
-                    text="Vos souvenirs sont éparpillés sur dix téléphones différents. Stela les réunit en un seul endroit."
-                    subMessage="Chaque proche partage depuis le sien. Rien ne se perd. Et la chronologie de sa vie prend forme."
-                  />
-                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Photos & Vidéos</h3>
-                </div>
-              </Card>
-
-              {/* CHAMBRE 3 — LES VOIX */}
-              <Card className="overflow-hidden rounded-3xl border-[0.5px] border-border/60 bg-card flex flex-col hover:shadow-golden-glow transition-shadow">
-                <div
-                  className="h-[100px] md:h-[120px] flex items-center justify-center text-white relative"
-                  style={{ background: "linear-gradient(135deg, #1E2820, #2A3A2C)" }}
-                >
-                  <div className="w-8 h-8 rounded-full border border-primary/50 flex items-center justify-center">
-                    <Play size={14} className="text-primary/90 ml-0.5" />
-                  </div>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <MessageBox
-                    eyebrow="URGENT"
-                    text="Y a-t-il un message vocal ou une vidéo de lui sur votre téléphone ?"
-                    subMessage="La voix s'efface en quelques semaines. C'est la trace la plus fragile — et la plus précieuse."
-                  />
-                  <h3 className="font-serif-display text-[18px] font-medium text-foreground mt-3">Les Voix</h3>
-                </div>
-              </Card>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* 3 — LE SANCTUAIRE : EXPLORATION + COLLABORATION + ONBOARDING */}
+      <SanctuaireSection />
 
       {/* 4 — LA STÈLE */}
       <section className="bg-muted">
