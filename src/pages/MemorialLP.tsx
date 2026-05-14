@@ -224,30 +224,6 @@ const MemorialLP = () => {
               </div>
 
 
-              {/* Floating memory card — bottom-right offset */}
-              <div
-                className="hidden md:block absolute -right-8 lg:-right-12 top-32 w-36 rounded-xl overflow-hidden border-[0.5px] border-white/10 bg-white/[0.08] backdrop-blur-md shadow-golden-glow animate-float"
-                style={{ transform: "rotate(3deg)" }}
-              >
-                <img
-                  src={jcGardening}
-                  alt="Souvenir partagé"
-                  className="w-full h-20 object-cover"
-                  loading="lazy"
-                />
-                <div className="p-2.5">
-                  <p className="text-[8px] text-white/70 line-clamp-2 leading-snug">
-                    Chaque rose plantée ici porte ton souvenir...
-                  </p>
-                  <div className="flex items-center justify-between mt-1.5">
-                    <span className="text-[8px] font-medium text-white/85">Marie</span>
-                    <div className="flex items-center gap-0.5 text-primary">
-                      <Heart size={8} className="fill-primary" />
-                      <span className="text-[8px]">34</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
