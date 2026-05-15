@@ -2,11 +2,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Play, ShieldCheck, Users, Quote } from "lucide-react";
+import { Check, Play, ShieldCheck, Users, Quote, Ruler, Hand, Leaf, Feather } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 import steleObjet from "@/assets/stela-objet.png";
+import steleNoyer from "@/assets/stele-noyer-nfc.png";
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
