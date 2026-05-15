@@ -450,8 +450,7 @@ const _MemorialLPInner = () => {
                   <em className="text-primary not-italic font-serif-display italic">Retrouvez sa voix.</em>
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-10">
-                  Fini le granit froid des cimetières. Stela réinvente le recueillement à travers un objet d'artisanat
-                  chaleureux, conçu pour vivre au cœur de votre maison.
+                  Le recueillement s'invite chez vous. Stela donne une présence physique aux souvenirs à travers un objet d'artisanat chaleureux, conçu pour vivre au cœur de votre foyer.
                 </p>
                 <div className="space-y-6">
                   <SteleSpec
