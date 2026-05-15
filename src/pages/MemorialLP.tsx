@@ -33,21 +33,11 @@ const SectionHeader = ({
   <div className="text-center max-w-3xl mx-auto mb-16">
     <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">{eyebrow}</p>
     <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight">{title}</h2>
-    {subtitle && (
-      <p className={`mt-6 text-lg ${dark ? "text-white/70" : "text-muted-foreground"}`}>{subtitle}</p>
-    )}
+    {subtitle && <p className={`mt-6 text-lg ${dark ? "text-white/70" : "text-muted-foreground"}`}>{subtitle}</p>}
   </div>
 );
 
-const Step = ({
-  n,
-  title,
-  text,
-}: {
-  n: string;
-  title: string;
-  text: string;
-}) => (
+const Step = ({ n, title, text }: { n: string; title: string; text: string }) => (
   <div className="text-center relative">
     <div className="relative mx-auto w-[52px] h-[52px] rounded-full border-[0.5px] border-border bg-card flex items-center justify-center mb-6 z-10">
       <span className="font-serif-display text-xl text-foreground">{n}</span>
@@ -57,21 +47,11 @@ const Step = ({
   </div>
 );
 
-const MessageBox = ({
-  eyebrow,
-  text,
-  subMessage,
-}: {
-  eyebrow: string;
-  text: string;
-  subMessage?: string;
-}) => (
+const MessageBox = ({ eyebrow, text, subMessage }: { eyebrow: string; text: string; subMessage?: string }) => (
   <div className="p-3 mb-3">
     <p className="text-[7px] uppercase tracking-wider text-muted-foreground mb-1">{eyebrow}</p>
     <p className="font-serif-display text-[14px] italic text-foreground leading-snug">{text}</p>
-    {subMessage && (
-      <p className="text-[12px] text-muted-foreground italic mt-2 leading-relaxed">{subMessage}</p>
-    )}
+    {subMessage && <p className="text-[12px] text-muted-foreground italic mt-2 leading-relaxed">{subMessage}</p>}
   </div>
 );
 
@@ -120,14 +100,10 @@ const PricingCard = ({
         </div>
       )}
       <div className="p-8 lg:p-10 flex flex-col flex-1">
-        <p className={`text-xs tracking-[0.25em] uppercase mb-3 ${isDark ? "text-primary" : "text-primary"}`}>
-          {tier}
-        </p>
+        <p className={`text-xs tracking-[0.25em] uppercase mb-3 ${isDark ? "text-primary" : "text-primary"}`}>{tier}</p>
         <p className="font-serif-display text-5xl font-bold mt-2">{price}</p>
         <p className={`text-xs mt-2 mb-6 ${isDark ? "text-white/60" : "text-muted-foreground"}`}>{period}</p>
-        <p className={`text-sm leading-relaxed mb-6 ${isDark ? "text-white/75" : "text-muted-foreground"}`}>
-          {desc}
-        </p>
+        <p className={`text-sm leading-relaxed mb-6 ${isDark ? "text-white/75" : "text-muted-foreground"}`}>{desc}</p>
         <ul className="space-y-3 mb-8 flex-1">
           {features.map((f, i) => (
             <li key={i} className="flex items-start gap-3 text-sm">
@@ -169,7 +145,7 @@ const PILLARS = [
   },
 ] as const;
 
-type PillarId = typeof PILLARS[number]["id"];
+type PillarId = (typeof PILLARS)[number]["id"];
 
 const PillarVisual = ({ active }: { active: PillarId }) => {
   if (active === "mots") {
@@ -177,7 +153,8 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
       <div className="h-full flex flex-col justify-center px-10 py-14 lg:px-14">
         <Quote size={32} className="text-primary/70 mb-8" />
         <p className="font-serif-display italic text-2xl lg:text-3xl text-[#FAFAFA] leading-snug">
-          « Il avait toujours cette phrase, quand on doutait : <span className="text-primary">"On verra demain, mais on n'oublie pas aujourd'hui."</span> »
+          « Il avait toujours cette phrase, quand on doutait :{" "}
+          <span className="text-primary">"On verra demain, mais on n'oublie pas aujourd'hui."</span> »
         </p>
         <div className="mt-10 flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/40" />
@@ -208,9 +185,7 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
   return (
     <div className="h-full flex flex-col justify-center px-10 py-14 lg:px-14">
       <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Message vocal</p>
-      <p className="font-serif-display italic text-xl text-[#FAFAFA] mb-8">
-        « Joyeux anniversaire ma chérie… »
-      </p>
+      <p className="font-serif-display italic text-xl text-[#FAFAFA] mb-8">« Joyeux anniversaire ma chérie… »</p>
       <div className="flex items-center gap-4">
         <button className="w-12 h-12 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center flex-shrink-0">
           <Play size={16} className="text-primary ml-0.5" />
@@ -284,9 +259,7 @@ const SanctuaireSection = () => {
                           {p.label}
                         </span>
                       </div>
-                      {isActive && (
-                        <p className="mt-2 ml-8 text-[12px] text-muted-foreground italic">{p.eyebrow}</p>
-                      )}
+                      {isActive && <p className="mt-2 ml-8 text-[12px] text-muted-foreground italic">{p.eyebrow}</p>}
                     </button>
                   );
                 })}
@@ -297,7 +270,12 @@ const SanctuaireSection = () => {
                 className="rounded-3xl overflow-hidden min-h-[420px] lg:min-h-[480px] relative shadow-2xl"
                 style={{ background: "linear-gradient(135deg, #2C221B 0%, #1a1208 100%)" }}
               >
-                <div className="absolute inset-0 opacity-40" style={{ background: "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.15) 0%, transparent 60%)" }} />
+                <div
+                  className="absolute inset-0 opacity-40"
+                  style={{
+                    background: "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
+                  }}
+                />
                 <div key={active} className="relative h-full animate-in fade-in duration-500">
                   <PillarVisual active={active} />
                 </div>
@@ -318,13 +296,13 @@ const SanctuaireSection = () => {
                 Construisez son sanctuaire <em className="text-primary not-italic italic">ensemble.</em>
               </h2>
               <p className="mt-6 text-[15px] text-muted-foreground leading-relaxed max-w-[560px] mx-auto">
-                Vous n'êtes pas seul à vous souvenir. Invitez vos proches en un clic. Chacun partage ses photos, ses vidéos et ses anecdotes depuis son propre téléphone, pour construire ensemble la chronologie de sa vie.
+                Vous n'êtes pas seul à vous souvenir. Invitez vos proches en un clic. Chacun partage ses photos, ses
+                vidéos et ses anecdotes depuis son propre téléphone, pour construire ensemble la chronologie de sa vie.
               </p>
             </div>
           </Reveal>
         </div>
       </section>
-
     </>
   );
 };
@@ -339,8 +317,7 @@ const _MemorialLPInner = () => {
         <div
           className="absolute inset-0 opacity-60"
           style={{
-            background:
-              "radial-gradient(ellipse at center, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
+            background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
           }}
         />
         <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -363,9 +340,9 @@ const _MemorialLPInner = () => {
               <p>Pour que sa voix ne s'efface pas.</p>
             </div>
             <div className="mt-12 flex flex-col items-start gap-3">
-               <Button variant="gold" className="px-8 py-6 text-base whitespace-nowrap" asChild>
-                 <a href="#pricing">Créer son Sanctuaire</a>
-               </Button>
+              <Button variant="gold" className="px-8 py-6 text-base whitespace-nowrap" asChild>
+                <a href="#pricing">Créer son Sanctuaire</a>
+              </Button>
               <p className="text-[11px] tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>
                 30 jours d'essai libre · Puis 89€, garanti pour une génération (25 ans)
               </p>
@@ -396,8 +373,6 @@ const _MemorialLPInner = () => {
                   « Il cultivait son jardin comme ses amitiés. »
                 </p>
               </div>
-
-
             </div>
           </div>
         </div>
@@ -417,8 +392,7 @@ const _MemorialLPInner = () => {
               eyebrow="Un héritage familial"
               title={
                 <>
-                  Honorer sa mémoire,{" "}
-                  <em className="text-primary not-italic font-serif-display italic">ensemble.</em>
+                  Honorer sa mémoire, <em className="text-primary not-italic font-serif-display italic">ensemble.</em>
                 </>
               }
             />
@@ -485,13 +459,11 @@ const _MemorialLPInner = () => {
                 <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight mb-6">
                   Touchez le bois.
                   <br />
-                  <em className="text-primary not-italic font-serif-display italic">
-                    Retrouvez leur voix.
-                  </em>
+                  <em className="text-primary not-italic font-serif-display italic">Retrouvez leur voix.</em>
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-10">
-                  Fini le granit froid des cimetières. Stela réinvente le recueillement à travers un objet
-                  d'artisanat chaleureux, conçu pour vivre au cœur de votre maison.
+                  Fini le granit froid des cimetières. Stela réinvente le recueillement à travers un objet d'artisanat
+                  chaleureux, conçu pour vivre au cœur de votre maison.
                 </p>
                 <div className="space-y-6">
                   <SteleSpec
@@ -521,8 +493,10 @@ const _MemorialLPInner = () => {
               F
             </div>
             <p className="font-serif-display text-2xl md:text-4xl text-[#2C221B] leading-relaxed">
-              <em className="italic">« Stela est né d'un manque personnel, celui d'un endroit intime où revenir après avoir perdu quelqu'un.</em>{" "}
-              Ce que vous déposez ici n'appartient à aucun réseau. Cela appartient à votre famille pour une génération. J'en suis personnellement le garant. »
+              <em className="italic">
+                « Stela est né d'un manque personnel, celui d'un endroit intime où revenir après avoir perdu quelqu'un.
+              </em>{" "}
+              Il appartient à votre famille pour une génération. J'en suis personnellement le garant. »
             </p>
             <div className="mt-8">
               <p className="font-sans text-lg font-semibold text-[#2C221B]">Fabien</p>
@@ -533,7 +507,9 @@ const _MemorialLPInner = () => {
             <div className="mt-16 max-w-xl mx-auto bg-[hsl(40,33%,97%)] border border-[hsl(30,10%,88%)] rounded-2xl p-5 flex items-start gap-4">
               <ShieldCheck className="w-5 h-5 shrink-0 text-[#D4AF37] mt-0.5" />
               <p className="font-sans text-sm text-left text-muted-foreground leading-relaxed">
-                <span className="font-medium text-[#2C221B]">Fonds de pérennité 25 ans :</span> Le prix de votre Sanctuaire inclut le provisionnement immédiat de son hébergement pour une génération sur un compte tiers dédié.
+                <span className="font-medium text-[#2C221B]">Fonds de pérennité 25 ans :</span> Le prix de votre
+                Sanctuaire inclut le provisionnement immédiat de son hébergement pour une génération sur un compte tiers
+                dédié.
               </p>
             </div>
           </Reveal>
@@ -548,13 +524,12 @@ const _MemorialLPInner = () => {
               <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
                 <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
-                  « Ma mère avait préparé son Sanctuaire en secret. Après son départ, nous avons découvert des lettres qu'elle nous avait écrites, des photos de son enfance. C'est devenu notre refuge. »
+                  « Ma mère avait préparé son Sanctuaire en secret. Après son départ, nous avons découvert des lettres
+                  qu'elle nous avait écrites, des photos de son enfance. C'est devenu notre refuge. »
                 </p>
                 <div className="mt-8 pt-5 border-t border-white/15">
                   <p className="font-medium">Sophie, 38 ans</p>
-                  <p className="text-sm text-white/60 mt-1">
-                    Sa fille — Sanctuaire ouvert depuis janvier 2025
-                  </p>
+                  <p className="text-sm text-white/60 mt-1">Sa fille — Sanctuaire ouvert depuis janvier 2025</p>
                 </div>
               </Card>
             </Reveal>
@@ -563,13 +538,12 @@ const _MemorialLPInner = () => {
               <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
                 <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
-                  « Mon frère et moi avons créé le Sanctuaire de notre père ensemble. Chaque année, nous y ajoutons un souvenir. C'est notre façon de le garder vivant, ensemble. »
+                  « Mon frère et moi avons créé le Sanctuaire de notre père ensemble. Chaque année, nous y ajoutons un
+                  souvenir. C'est notre façon de le garder vivant, ensemble. »
                 </p>
                 <div className="mt-8 pt-5 border-t border-white/15">
                   <p className="font-medium">Thomas, 52 ans</p>
-                  <p className="text-sm text-white/60 mt-1">
-                    Son fils — Sanctuaire ouvert depuis septembre 2024
-                  </p>
+                  <p className="text-sm text-white/60 mt-1">Son fils — Sanctuaire ouvert depuis septembre 2024</p>
                 </div>
               </Card>
             </Reveal>
@@ -578,13 +552,12 @@ const _MemorialLPInner = () => {
               <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
                 <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
-                  « Mon père a utilisé Stela pendant deux ans avant de partir. Ce qu'il y a laissé, c'est plus que tout ce qu'on aurait pu lui demander. On pose le téléphone sur la stèle et sa voix est là. C'est lui. »
+                  « Mon père a utilisé Stela pendant deux ans avant de partir. Ce qu'il y a laissé, c'est plus que tout
+                  ce qu'on aurait pu lui demander. On pose le téléphone sur la stèle et sa voix est là. C'est lui. »
                 </p>
                 <div className="mt-8 pt-5 border-t border-white/15">
                   <p className="font-medium">Marie, 46 ans</p>
-                  <p className="text-sm text-white/60 mt-1">
-                    Sa fille — le Sanctuaire est ouvert depuis novembre 2024
-                  </p>
+                  <p className="text-sm text-white/60 mt-1">Sa fille — le Sanctuaire est ouvert depuis novembre 2024</p>
                 </div>
               </Card>
             </Reveal>
@@ -600,8 +573,7 @@ const _MemorialLPInner = () => {
               eyebrow="Nos offres garanties 25 ans"
               title={
                 <>
-                  Commencez{" "}
-                  <em className="text-primary not-italic font-serif-display italic">premiers souvenirs</em>
+                  Commencez <em className="text-primary not-italic font-serif-display italic">premiers souvenirs</em>
                 </>
               }
               subtitle="Activez le Sanctuaire maintenant, sans carte bancaire. Prenez le temps de ressentir."
@@ -660,12 +632,8 @@ const _MemorialLPInner = () => {
           <Reveal>
             <div className="mt-10 rounded-3xl bg-muted border-[0.5px] border-border p-8 flex flex-col md:flex-row md:items-center gap-6 md:justify-between">
               <div>
-                <p className="text-xs tracking-[0.25em] uppercase text-primary mb-2">
-                  Stèles additionnelles
-                </p>
-                <h4 className="font-serif-display text-xl font-medium mb-1">
-                  Une stèle pour chaque foyer
-                </h4>
+                <p className="text-xs tracking-[0.25em] uppercase text-primary mb-2">Stèles additionnelles</p>
+                <h4 className="font-serif-display text-xl font-medium mb-1">Une stèle pour chaque foyer</h4>
                 <p className="text-sm text-muted-foreground">
                   Noyer massif · Gravure identique · NFC relié au même Sanctuaire
                 </p>
@@ -678,21 +646,18 @@ const _MemorialLPInner = () => {
               </div>
             </div>
             <p className="text-xs text-muted-foreground text-center mt-8 max-w-2xl mx-auto">
-              La garantie 25 ans démarre à la date du décès. Vos données vous appartiennent et sont
-              exportables à tout moment.
+              La garantie 25 ans démarre à la date du décès. Vos données vous appartiennent et sont exportables à tout
+              moment.
             </p>
           </Reveal>
         </div>
       </section>
 
-
       {/* FOOTER */}
       <footer className="py-10 border-t-[0.5px] border-border">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
           <span className="font-serif-display text-lg font-bold text-foreground">Stela</span>
-          <span className="italic text-muted-foreground">
-            Mémorial d'intimité · Garanti 25 ans
-          </span>
+          <span className="italic text-muted-foreground">Mémorial d'intimité · Garanti 25 ans</span>
           <div className="flex items-center gap-6 text-muted-foreground">
             <a href="#" className="hover:text-foreground transition-colors">
               Mentions légales
