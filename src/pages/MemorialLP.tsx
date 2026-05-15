@@ -327,9 +327,9 @@ const _MemorialLPInner = () => {
               className="font-serif-display font-normal leading-[1.05] text-white/95"
               style={{ fontSize: "clamp(44px, 6vw, 72px)" }}
             >
-              Lui faire
+              Gardez sa mémoire
               <br />
-              une <em className="text-primary not-italic font-serif-display italic">place.</em>
+              <em className="text-primary not-italic font-serif-display italic">vivante</em>
             </h1>
             <div
               className="mt-8 space-y-1 font-serif-display italic text-[18px] lg:text-[22px]"
