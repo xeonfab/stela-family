@@ -2,11 +2,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Play, ShieldCheck, Users, Quote } from "lucide-react";
+import { Check, Play, ShieldCheck, Users, Quote, Ruler, Hand, Leaf, Feather } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 import steleObjet from "@/assets/stela-objet.png";
+import steleNoyer from "@/assets/stele-noyer-nfc.png";
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
@@ -427,48 +428,77 @@ const _MemorialLPInner = () => {
       <SanctuaireSection />
 
       {/* 4 — LA STÈLE */}
-      <section className="bg-muted">
-        <div className="grid lg:grid-cols-2 items-stretch">
-          {/* Visual */}
-          <div className="relative min-h-[420px] lg:min-h-0">
-            <img
-              src={steleObjet}
-              alt="Stèle Jean-Claude Dubois en noyer massif avec téléphone NFC"
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
+      <section className="bg-muted py-24 lg:py-32">
+        <div className="container mx-auto px-6">
+          {/* Header */}
+          <Reveal>
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Le geste & la matière</p>
+              <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight mb-6">
+                Touchez le bois.{" "}
+                <em className="text-primary not-italic font-serif-display italic">Retrouvez sa voix.</em>
+              </h2>
+              <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+                Le recueillement s'invite chez vous. Stela donne une présence physique aux souvenirs à travers un objet d'artisanat chaleureux, conçu pour vivre au cœur de votre foyer.
+              </p>
+            </div>
+          </Reveal>
 
-          {/* Text */}
-          <div className="py-20 lg:py-32 px-6 lg:px-14">
-            <Reveal>
-              <div className="max-w-xl">
-                <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Le geste & la matière</p>
-                <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight mb-6">
-                  Touchez le bois.
-                  <br />
-                  <em className="text-primary not-italic font-serif-display italic">Retrouvez sa voix.</em>
-                </h2>
-                <p className="text-muted-foreground leading-relaxed mb-10">
-                  Le recueillement s'invite chez vous. Stela donne une présence physique aux souvenirs à travers un objet d'artisanat chaleureux, conçu pour vivre au cœur de votre foyer.
-                </p>
-                <div className="space-y-6">
-                  <SteleSpec
-                    title="La noblesse du Noyer"
-                    text="Un bloc massif façonné et gravé sur-mesure. Une présence discrète et élégante."
-                  />
-                  <SteleSpec
-                   title="Un geste naturel"
-                   text="Un simple effleurement avec votre téléphone suffit. Le bois s'éveille et le Sanctuaire s'ouvre."
-                  />
-                  <SteleSpec
-                    title="Zéro friction"
-                   text="Aucun mot de passe à retenir, aucune application à installer. Toute la famille y accède instantanément, des plus jeunes aux grands-parents."
-                  />
-                </div>
+          {/* Gallery */}
+          <Reveal>
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-10 mt-16 lg:mt-24">
+              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-background">
+                <img
+                  src={steleObjet}
+                  alt="Stèle en noyer massif gravée avec téléphone NFC en approche"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
-            </Reveal>
-          </div>
+              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-background">
+                <img
+                  src={steleNoyer}
+                  alt="Verso minimaliste de la Stela montrant la texture du bois"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Specs grid */}
+          <Reveal>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mt-20 lg:mt-28">
+              {[
+                {
+                  Icon: Ruler,
+                  title: "Une présence rassurante",
+                  text: "Avec ses 15 cm de hauteur et sa belle épaisseur (4,5 cm), la Stela possède un ancrage parfait. Conçue pour tenir debout avec une stabilité absolue.",
+                },
+                {
+                  Icon: Hand,
+                  title: "Conçu pour être touché",
+                  text: "La mémoire passe aussi par les mains. Chaque arête est méticuleusement adoucie par un délicat biseau pour offrir une prise en main douce et réconfortante.",
+                },
+                {
+                  Icon: Leaf,
+                  title: "Matières nobles et vivantes",
+                  text: "Façonnée dans un bois massif de Noyer ou de Frêne, sans vernis froid. Une simple huile naturelle mate nourrit la matière et préserve sa chaleur authentique.",
+                },
+                {
+                  Icon: Feather,
+                  title: "Une empreinte inaltérable",
+                  text: "Le nom de votre proche est finement creusé dans la matière. Une typographie intemporelle et élégante, pour une trace qui traverse le temps.",
+                },
+              ].map(({ Icon, title, text }) => (
+                <div key={title} className="flex flex-col">
+                  <Icon className="w-6 h-6 text-primary mb-5" strokeWidth={1.25} />
+                  <h4 className="font-serif-display text-lg font-semibold mb-3 text-foreground">{title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
