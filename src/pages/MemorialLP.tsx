@@ -447,7 +447,7 @@ const _MemorialLPInner = () => {
                 <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight mb-6">
                   Touchez le bois.
                   <br />
-                  <em className="text-primary not-italic font-serif-display italic">Retrouvez leur voix.</em>
+                  <em className="text-primary not-italic font-serif-display italic">Retrouvez sa voix.</em>
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-10">
                   Fini le granit froid des cimetières. Stela réinvente le recueillement à travers un objet d'artisanat
