@@ -464,7 +464,7 @@ const _MemorialLPInner = () => {
                   />
                   <SteleSpec
                     title="Zéro friction"
-                    text="Aucun mot de passe. Aucune application. Toute la famille y accède en toute facilité"
+                   text="Aucun mot de passe à retenir, aucune application à installer. Toute la famille y accède instantanément, des plus jeunes aux grands-parents."
                   />
                 </div>
               </div>
