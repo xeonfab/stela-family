@@ -496,7 +496,7 @@ const _MemorialLPInner = () => {
               <em className="italic">
                 « Stela est né d'un manque personnel, celui d'un endroit intime où revenir après avoir perdu quelqu'un.
               </em>{" "}
-              Il appartient à votre famille pour une génération. J'en suis personnellement le garant. »
+              Cet endroit appartient à votre famille pour une génération. J'en suis personnellement le garant. »
             </p>
             <div className="mt-8">
               <p className="font-sans text-lg font-semibold text-[#2C221B]">Fabien</p>
