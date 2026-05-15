@@ -215,7 +215,7 @@ const SanctuaireSection = () => {
   return (
     <>
       {/* NIVEAU 1 — EXPLORATION */}
-      <section className="py-24 lg:py-32 bg-background">
+      <section className="py-24 bg-background lg:py-[64px]">
         <div className="container mx-auto px-6 max-w-6xl">
           <Reveal>
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -384,7 +384,7 @@ const _MemorialLPInner = () => {
       </section>
 
       {/* 2 — HONORER SA MÉMOIRE */}
-      <section className="py-24 lg:py-32 bg-background">
+      <section className="py-24 bg-background lg:py-[64px]">
         <div className="container mx-auto px-6 max-w-6xl">
           <Reveal>
             <SectionHeader
