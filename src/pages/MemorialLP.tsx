@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Play, ShieldCheck, Users, Quote, Ruler, Hand, Leaf, Feather } from "lucide-react";
+import { Check, Play, ShieldCheck, Users, Quote, Leaf, Feather, Smartphone, Unlock } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
@@ -471,24 +471,24 @@ const _MemorialLPInner = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mt-20 lg:mt-28">
               {[
                 {
-                  Icon: Ruler,
-                  title: "Une présence rassurante",
-                  text: "Avec ses 15 cm de hauteur et sa belle épaisseur (4,5 cm), la Stela possède un ancrage parfait. Conçue pour tenir debout avec une stabilité absolue.",
-                },
-                {
-                  Icon: Hand,
-                  title: "Conçu pour être touché",
-                  text: "La mémoire passe aussi par les mains. Chaque arête est méticuleusement adoucie par un délicat biseau pour offrir une prise en main douce et réconfortante.",
-                },
-                {
                   Icon: Leaf,
-                  title: "Matières nobles et vivantes",
-                  text: "Façonnée dans un bois massif de Noyer ou de Frêne, sans vernis froid. Une simple huile naturelle mate nourrit la matière et préserve sa chaleur authentique.",
+                  title: "La noblesse du massif",
+                  text: "Façonnée en Noyer ou Frêne, la Stela refuse les vernis froids. Ses arêtes adoucies et sa finition à l'huile naturelle offrent une chaleur authentique au toucher.",
                 },
                 {
                   Icon: Feather,
                   title: "Une empreinte inaltérable",
-                  text: "Le nom de votre proche est finement creusé dans la matière. Une typographie intemporelle et élégante, pour une trace qui traverse le temps.",
+                  text: "Une présence rassurante aux proportions parfaites. Le nom de votre proche y est finement gravé pour une trace élégante qui traverse le temps.",
+                },
+                {
+                  Icon: Smartphone,
+                  title: "Un geste naturel",
+                  text: "Un simple effleurement avec votre téléphone suffit. Grâce à la technologie sans contact, le bois s'éveille et le Sanctuaire s'ouvre instantanément.",
+                },
+                {
+                  Icon: Unlock,
+                  title: "Une simplicité absolue",
+                  text: "Pensé pour toute la famille. Aucun mot de passe à retenir, aucune application à installer. Des plus jeunes aux grands-parents, l'accès est immédiat.",
                 },
               ].map(({ Icon, title, text }) => (
                 <div key={title} className="flex flex-col">
