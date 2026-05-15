@@ -572,7 +572,7 @@ const _MemorialLPInner = () => {
               eyebrow="Nos offres garanties 25 ans"
               title={
                 <>
-                  Commencez <em className="text-primary not-italic font-serif-display italic">premiers souvenirs</em>
+                  Créez vos <em className="text-primary not-italic font-serif-display italic">premiers souvenirs</em>
                 </>
               }
               subtitle="Activez le Sanctuaire maintenant, sans carte bancaire. Prenez le temps de ressentir."
