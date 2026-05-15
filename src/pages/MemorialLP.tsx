@@ -6,6 +6,7 @@ import { Check, Play, ShieldCheck, Users, Quote } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
+import steleObjet from "@/assets/stela-objet.png";
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
@@ -429,24 +430,13 @@ const _MemorialLPInner = () => {
       <section className="bg-muted">
         <div className="grid lg:grid-cols-2 items-stretch">
           {/* Visual */}
-          <div
-            className="flex flex-col items-center justify-center py-20 lg:py-32 px-6"
-            style={{ background: "linear-gradient(160deg, #8A7258 0%, #3A2A1A 100%)" }}
-          >
-            {/* Slot for product photo */}
-            <div className="relative w-[140px] h-[240px] rounded-2xl bg-gradient-to-b from-[#5a3a22] via-[#3d2614] to-[#2a1a0e] shadow-2xl flex flex-col items-center justify-center text-center p-5">
-              <p className="font-serif-display text-sm text-[#FAFAFA] font-bold leading-tight">
-                Jean-Claude
-                <br />
-                Dubois
-              </p>
-              <div className="my-3 w-8 h-px bg-primary" />
-              <p className="text-[9px] tracking-[0.3em] text-primary">1948 — 2024</p>
-            </div>
-            <p className="mt-8 text-sm italic text-white/60 font-serif-display">Posez votre téléphone</p>
-            <p className="mt-12 text-[10px] tracking-[0.3em] uppercase text-white/40 text-center">
-              Noyer massif · Gravure laser · NFC intégré
-            </p>
+          <div className="relative min-h-[420px] lg:min-h-0">
+            <img
+              src={steleObjet}
+              alt="Stèle Jean-Claude Dubois en noyer massif avec téléphone NFC"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+            />
           </div>
 
           {/* Text */}
