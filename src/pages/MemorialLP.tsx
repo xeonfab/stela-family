@@ -473,7 +473,7 @@ const _MemorialLPInner = () => {
                 {
                   Icon: Leaf,
                   title: "La noblesse du massif",
-                  text: "Façonnée en Noyer ou Frêne, la Stela refuse les vernis froids. Ses arêtes adoucies et sa finition à l'huile naturelle offrent une chaleur authentique au toucher.",
+                   text: "Façonnée en Noyer massif, ses arêtes adoucies et sa finition à l'huile naturelle offrent une chaleur authentique au toucher.",
                 },
                 {
                   Icon: Feather,
