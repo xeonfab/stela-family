@@ -460,7 +460,7 @@ const _MemorialLPInner = () => {
                   />
                   <SteleSpec
                    title="Un geste naturel"
-                    text="Un simple effleurement avec votre téléphone — le Sanctuaire s'ouvre."
+                   text="Un simple effleurement avec votre téléphone suffit. Le bois s'éveille et le Sanctuaire s'ouvre."
                   />
                   <SteleSpec
                     title="Zéro friction"
