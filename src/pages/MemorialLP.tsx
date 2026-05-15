@@ -6,6 +6,7 @@ import { Check, Play, ShieldCheck, Users, Quote } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
+import steleObjet from "@/assets/stela-objet.png";
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
