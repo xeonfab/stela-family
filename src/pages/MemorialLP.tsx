@@ -459,7 +459,7 @@ const _MemorialLPInner = () => {
                     text="Un bloc massif façonné et gravé sur-mesure. Une présence discrète et élégante."
                   />
                   <SteleSpec
-                    title="La magie du sans contact"
+                   title="Un geste naturel"
                     text="Un simple effleurement avec votre téléphone — le Sanctuaire s'ouvre."
                   />
                   <SteleSpec
