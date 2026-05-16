@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, Play, ShieldCheck, Users, Quote, Leaf, Feather, Smartphone, Unlock } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 import steleObjet from "@/assets/stela-objet.png";
 import steleNoyer from "@/assets/stele-noyer-nfc.png";
@@ -213,6 +213,15 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
 
 const SanctuaireSection = () => {
   const [active, setActive] = useState<PillarId>("mots");
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActive((curr) => {
+        const idx = PILLARS.findIndex((p) => p.id === curr);
+        return PILLARS[(idx + 1) % PILLARS.length].id;
+      });
+    }, 3000);
+    return () => clearInterval(id);
+  }, [active]);
   return (
     <>
       {/* NIVEAU 1 — EXPLORATION */}
