@@ -663,8 +663,8 @@ const _MemorialLPInner = () => {
               </div>
             </div>
             <p className="text-xs text-muted-foreground text-center mt-8 max-w-2xl mx-auto">
-              La garantie 25 ans démarre à la date du décès. Vos données vous appartiennent et sont exportables à tout
-              moment.
+              La garantie 25 ans démarre à la date du décès. Vos données vous appartiennent et sont exportables à tout moment.
+              {"\n"}Le prix de votre Sanctuaire inclut le provisionnement immédiat de son hébergement pour une génération sur un compte tiers dédié pendant 25 ans.
             </p>
           </Reveal>
         </div>
