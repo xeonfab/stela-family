@@ -306,7 +306,7 @@ const SanctuaireSection = () => {
                 Construisez son sanctuaire <em className="text-primary not-italic italic">ensemble.</em>
               </h2>
                <p className="mt-6 text-[15px] text-muted-foreground leading-relaxed max-w-[560px] mx-auto">
-                 Un espace intime et privé pour réunir ceux qui l'ont connu. Invitez ses proches en un clic : Stela les guide pas à pas avec des questions douces pour les aider à trouver les mots, raviver les souvenirs et partager leurs photos depuis leur téléphone.
+                 Un espace intime et privé pour réunir ceux qui l'ont connu. Invitez ses proches en un clic : Stela les guide pas à pas avec des questions douces pour les aider à trouver les mots, raviver les souvenirs et partager leurs photos simplement.
                </p>
             </div>
           </Reveal>
