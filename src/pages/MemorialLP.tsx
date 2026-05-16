@@ -521,14 +521,6 @@ const _MemorialLPInner = () => {
                 Fondateur de Stela
               </p>
             </div>
-            <div className="mt-16 max-w-xl mx-auto bg-[hsl(40,33%,97%)] border border-[hsl(30,10%,88%)] rounded-2xl p-5 flex items-start gap-4">
-              <ShieldCheck className="w-5 h-5 shrink-0 text-[#D4AF37] mt-0.5" />
-              <p className="font-sans text-sm text-left text-muted-foreground leading-relaxed">
-                <span className="font-medium text-[#2C221B]">Fonds de pérennité 25 ans :</span> Le prix de votre
-                Sanctuaire inclut le provisionnement immédiat de son hébergement pour une génération sur un compte tiers
-                dédié.
-              </p>
-            </div>
           </Reveal>
         </div>
       </section>
