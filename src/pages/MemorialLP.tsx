@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 import steleObjet from "@/assets/stela-objet.png";
 import steleNoyer from "@/assets/stele-noyer-nfc.png";
+import heroStelaScene from "@/assets/hero-stela-scene.png";
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
@@ -359,27 +360,14 @@ const _MemorialLPInner = () => {
 
           {/* RIGHT — visual collage */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-[380px]">
-              {/* Main portrait */}
+            <div className="relative w-full max-w-[480px]">
               <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
                 <img
-                  src={jeanClaudePortrait}
-                  alt="Portrait — Jean-Claude Dubois"
-                  className="w-full aspect-[3/4] object-cover"
+                  src={heroStelaScene}
+                  alt="Scène d'intérieur — Stela en noyer aux côtés du portrait de Jean-Claude Dubois"
+                  className="w-full h-auto object-cover"
                   loading="lazy"
                 />
-              </div>
-
-              {/* Name & quote card */}
-              <div className="mt-5 rounded-2xl border-[0.5px] border-white/10 bg-white/5 backdrop-blur-md px-5 py-4 text-center">
-                <p className="font-serif-display text-lg text-white/90">Jean-Claude Dubois</p>
-                <p className="text-[10px] tracking-[0.25em] text-primary/80 mt-1">1948 — 2024</p>
-                <p
-                  className="mt-3 font-serif-display italic text-[13px] leading-relaxed"
-                  style={{ color: "rgba(255,255,255,0.5)" }}
-                >
-                  « Il cultivait son jardin comme ses amitiés. »
-                </p>
               </div>
             </div>
           </div>
