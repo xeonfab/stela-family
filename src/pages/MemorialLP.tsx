@@ -173,10 +173,9 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
       <div className="h-full flex flex-col justify-center px-8 py-12 lg:px-12">
         <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Été 1987 — Bretagne</p>
         <div className="grid grid-cols-3 gap-3">
-          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#8A7258]/60 to-[#3A2A1A]/80 col-span-2 row-span-2" />
+          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#8A7258]/60 to-[#3A2A1A]/80" />
           <div className="aspect-square rounded-xl bg-gradient-to-br from-[#5a3a22]/70 to-[#2a1a0e]/90" />
-          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#6b4a32]/60 to-[#1a1208]/80" />
-          <div className="aspect-[2/1] rounded-xl bg-gradient-to-br from-[#3A2D22]/80 to-[#1a1208]/90 col-span-3 flex items-center justify-center">
+          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#3A2D22]/80 to-[#1a1208]/90 flex items-center justify-center">
             <Play size={18} className="text-primary/80 ml-0.5" />
           </div>
         </div>
