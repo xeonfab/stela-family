@@ -211,24 +211,95 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
   );
 };
 
+const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: React.ReactNode; body: string }> = {
+  mots: {
+    index: "01",
+    eyebrow: "Les Mots",
+    title: (
+      <>
+        Les phrases qu'il <em className="text-primary not-italic font-serif-display italic">répétait</em>, conservées.
+      </>
+    ),
+    body: "Anecdotes, citations, lettres, messages déposés par celles et ceux qui l'ont aimé. Chaque mot vient enrichir un récit collectif, à l'abri du temps.",
+  },
+  photos: {
+    index: "02",
+    eyebrow: "Les Photos & Vidéos",
+    title: (
+      <>
+        Les instants partagés, <em className="text-primary not-italic font-serif-display italic">retrouvés</em>.
+      </>
+    ),
+    body: "Une galerie curatée, organisée par moments et par proches. Les souvenirs visuels reprennent leur place, classés avec soin, prêts à être revus en famille.",
+  },
+  voix: {
+    index: "03",
+    eyebrow: "Les Voix",
+    title: (
+      <>
+        Le timbre de sa voix, <em className="text-primary not-italic font-serif-display italic">préservé</em>.
+      </>
+    ),
+    body: "Messages vocaux, enregistrements, anecdotes racontées par ses proches. Ce que l'écrit ne peut transmettre — la respiration, le rire, l'intonation — trouve ici son refuge.",
+  },
+};
+
+const PillarSection = ({ pillarId, reverse }: { pillarId: PillarId; reverse?: boolean }) => {
+  const { index, eyebrow, title, body } = PILLAR_CONTENT[pillarId];
+  return (
+    <section className="py-20 lg:py-28 bg-background">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <Reveal>
+          <div
+            className={`grid lg:grid-cols-5 gap-10 lg:gap-16 items-center ${
+              reverse ? "lg:[&>*:first-child]:order-2" : ""
+            }`}
+          >
+            {/* Texte — 2 colonnes */}
+            <div className="lg:col-span-2">
+              <div className="flex items-baseline gap-4 mb-6">
+                <span className="text-[11px] tracking-[0.3em] tabular-nums text-primary">{index}</span>
+                <span className="text-[11px] tracking-[0.3em] uppercase text-muted-foreground">{eyebrow}</span>
+              </div>
+              <h3 className="font-serif-display text-3xl lg:text-4xl font-bold leading-[1.15] text-foreground">
+                {title}
+              </h3>
+              <p className="mt-6 text-[15px] text-muted-foreground leading-relaxed max-w-md">{body}</p>
+            </div>
+
+            {/* Visuel — 3 colonnes */}
+            <div className="lg:col-span-3">
+              <div
+                className="rounded-3xl overflow-hidden min-h-[360px] lg:min-h-[440px] relative shadow-2xl"
+                style={{ background: "linear-gradient(135deg, #2C221B 0%, #1a1208 100%)" }}
+              >
+                <div
+                  className="absolute inset-0 opacity-40"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
+                  }}
+                />
+                <div className="relative h-full">
+                  <PillarVisual active={pillarId} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+};
+
 const SanctuaireSection = () => {
-  const [active, setActive] = useState<PillarId>("mots");
-  useEffect(() => {
-    const id = setInterval(() => {
-      setActive((curr) => {
-        const idx = PILLARS.findIndex((p) => p.id === curr);
-        return PILLARS[(idx + 1) % PILLARS.length].id;
-      });
-    }, 3000);
-    return () => clearInterval(id);
-  }, [active]);
   return (
     <>
-      {/* NIVEAU 1 — EXPLORATION */}
-      <section className="py-24 bg-background lg:py-[64px]">
+      {/* Intro */}
+      <section className="pt-24 pb-8 bg-background lg:pt-[64px]">
         <div className="container mx-auto px-6 max-w-6xl">
           <Reveal>
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto">
               <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Le Sanctuaire</p>
               <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight">
                 Trois traces.
@@ -240,62 +311,13 @@ const SanctuaireSection = () => {
               </p>
             </div>
           </Reveal>
-          <Reveal>
-            <div className="grid lg:grid-cols-[280px_1fr] gap-10 lg:gap-16 items-stretch">
-              {/* Navigation */}
-              <nav className="flex flex-col">
-                {PILLARS.map((p, i) => {
-                  const isActive = p.id === active;
-                  return (
-                    <button
-                      key={p.id}
-                      onClick={() => setActive(p.id)}
-                      className={`text-left py-6 border-t-[0.5px] border-border/60 transition-colors group ${
-                        i === PILLARS.length - 1 ? "border-b-[0.5px]" : ""
-                      }`}
-                    >
-                      <div className="flex items-baseline gap-4">
-                        <span
-                          className={`text-[10px] tracking-[0.3em] tabular-nums transition-colors ${
-                            isActive ? "text-primary" : "text-muted-foreground/60"
-                          }`}
-                        >
-                          0{i + 1}
-                        </span>
-                        <span
-                          className={`font-serif-display text-2xl lg:text-3xl transition-colors ${
-                            isActive ? "text-foreground" : "text-muted-foreground/50 group-hover:text-foreground/70"
-                          }`}
-                        >
-                          {p.label}
-                        </span>
-                      </div>
-                      {isActive && <p className="mt-2 ml-8 text-[12px] text-muted-foreground italic">{p.eyebrow}</p>}
-                    </button>
-                  );
-                })}
-              </nav>
-
-              {/* Visualisation */}
-              <div
-                className="rounded-3xl overflow-hidden min-h-[420px] lg:min-h-[480px] relative shadow-2xl"
-                style={{ background: "linear-gradient(135deg, #2C221B 0%, #1a1208 100%)" }}
-              >
-                <div
-                  className="absolute inset-0 opacity-40"
-                  style={{
-                    background: "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
-                  }}
-                />
-                <div key={active} className="relative h-full animate-in fade-in duration-500">
-                  <PillarVisual active={active} />
-                </div>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 
+      {/* 3 sections distinctes en composition asymétrique alternée */}
+      <PillarSection pillarId="mots" />
+      <PillarSection pillarId="photos" reverse />
+      <PillarSection pillarId="voix" />
     </>
   );
 };
