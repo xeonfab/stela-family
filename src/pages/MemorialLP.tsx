@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 import steleObjet from "@/assets/stela-objet.png";
 import steleNoyer from "@/assets/stele-noyer-nfc.png";
-import heroStelaScene from "@/assets/hero-stela-scene.png";
+import heroStelaScene from "@/assets/hero-stela-scene.jpg";
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
@@ -330,25 +330,24 @@ const _MemorialLPInner = () => {
             background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
           }}
         />
-        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* LEFT — text */}
-          <div className="lg:col-span-7">
+        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-28 flex flex-col items-center text-center">
+          {/* TEXT */}
+          <div className="w-full max-w-4xl">
             <p className="text-[10px] tracking-[0.25em] uppercase text-primary mb-8 font-sans">Après un départ</p>
             <h1
               className="font-serif-display font-normal leading-[1.05] text-white/95"
               style={{ fontSize: "clamp(44px, 6vw, 72px)" }}
             >
-              Gardez sa mémoire
-              <br />
+              Gardez sa mémoire{" "}
               <em className="text-primary not-italic font-serif-display italic">vivante</em>
             </h1>
             <div
-              className="mt-8 font-serif-display italic text-[18px] lg:text-[22px] max-w-lg"
+              className="mt-8 font-serif-display italic text-[18px] lg:text-[22px] max-w-2xl mx-auto"
               style={{ color: "rgba(255,255,255,0.55)" }}
             >
               <p>Ne laissez aucun souvenir s'effacer. Créez un espace intime pour rassembler sa vie, ses mots et sa voix, avec ceux qui l'ont connu, pour les générations à venir.</p>
             </div>
-            <div className="mt-12 flex flex-col items-start gap-3">
+            <div className="mt-12 flex flex-col items-center gap-3">
               <Button variant="gold" className="px-8 py-6 text-base whitespace-nowrap" asChild>
                 <a href="#pricing">Créer son Sanctuaire</a>
               </Button>
@@ -358,17 +357,15 @@ const _MemorialLPInner = () => {
             </div>
           </div>
 
-          {/* RIGHT — visual collage */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-[480px]">
-              <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
-                <img
-                  src={heroStelaScene}
-                  alt="Scène d'intérieur — Stela en noyer aux côtés du portrait de Jean-Claude Dubois"
-                  className="w-full h-auto object-cover"
-                  loading="lazy"
-                />
-              </div>
+          {/* VISUAL — full width below */}
+          <div className="mt-16 w-full">
+            <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
+              <img
+                src={heroStelaScene}
+                alt="Scène d'intérieur — Stela en noyer aux côtés du portrait de Jean-Claude Dubois"
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
