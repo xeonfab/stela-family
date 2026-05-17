@@ -377,47 +377,7 @@ const _MemorialLPInner = () => {
         </div>
       </section>
 
-      {/* 2 — HONORER SA MÉMOIRE */}
-      <section className="py-24 bg-background lg:py-[64px]">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <Reveal>
-            <SectionHeader
-              eyebrow="Un héritage familial"
-              title={
-                <>
-                  Honorer sa mémoire, <em className="text-primary not-italic font-serif-display italic">ensemble.</em>
-                </>
-              }
-            />
-          </Reveal>
-          <Reveal>
-            <div className="relative grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-              {/* connector line */}
-              <div
-                className="hidden md:block absolute left-[16%] right-[16%] top-[26px] border-t-[0.5px] border-border"
-                aria-hidden
-              />
-              <Step
-                n="1"
-                title="Ouvrez le Sanctuaire"
-                text="En quelques minutes, créez un espace privé dédié à son histoire, ses passions et son visage."
-              />
-              <Step
-                n="2"
-                title="Réunissez ceux qui l'aimaient"
-                text="Invitez le cercle familial. Un lien privé suffit pour rassembler les cœurs autour de sa mémoire."
-              />
-              <Step
-                n="3"
-                title="Enrichissez sa mémoire"
-                text="Chacun dépose une photo oubliée, une anecdote, un message vocal. Son souvenir s'enrichit jour après jour."
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 3 — LE SANCTUAIRE : EXPLORATION + COLLABORATION + ONBOARDING */}
+      {/* 2 — LE SANCTUAIRE : EXPLORATION + COLLABORATION + ONBOARDING */}
       <SanctuaireSection />
 
       {/* 4 — LA STÈLE */}
