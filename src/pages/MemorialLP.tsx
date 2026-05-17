@@ -496,28 +496,7 @@ const _MemorialLPInner = () => {
         </div>
       </section>
 
-      {/* 5 — FONDATEUR & GARANTIE */}
-      <section className="py-24 lg:py-32 bg-[hsl(0,0%,98%)]">
-        <div className="container mx-auto px-6 max-w-3xl text-center">
-          <Reveal>
-            <div className="mx-auto w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-muted to-border shadow-soft mb-8 overflow-hidden flex items-center justify-center font-serif-display text-2xl text-muted-foreground">
-              F
-            </div>
-            <p className="font-serif-display text-2xl md:text-4xl text-[#2C221B] leading-relaxed">
-              <em className="italic">
-                « Stela est né d'un manque personnel, celui d'un endroit intime où revenir après avoir perdu quelqu'un.
-              </em>{" "}
-              Cet endroit appartient à votre famille pour une génération. J'en suis personnellement le garant. »
-            </p>
-            <div className="mt-8">
-              <p className="font-sans text-lg font-semibold text-[#2C221B]">Fabien</p>
-              <p className="font-sans text-xs tracking-[0.2em] uppercase text-muted-foreground mt-1">
-                Fondateur de Stela
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* 5 — FONDATEUR & GARANTIE — caché */}
 
       {/* 6 — TÉMOIGNAGES */}
       <section className="py-24 lg:py-32 bg-muted">
