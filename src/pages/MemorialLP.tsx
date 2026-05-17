@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, Play, ShieldCheck, Users, Quote, Leaf, Feather, Smartphone, Unlock } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useState, useEffect } from "react";
+
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 import steleObjet from "@/assets/stela-objet.png";
 import steleNoyer from "@/assets/stele-noyer-nfc.png";
