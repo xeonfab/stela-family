@@ -296,23 +296,6 @@ const SanctuaireSection = () => {
         </div>
       </section>
 
-      {/* NIVEAU 2 — COLLABORATION */}
-      <section className="py-20 lg:py-24 bg-muted">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <Reveal>
-            <div className="text-center">
-              <Users size={24} className="text-primary mx-auto mb-6" strokeWidth={1.25} />
-              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Un Hommage Partagé</p>
-              <h2 className="font-serif-display text-3xl lg:text-4xl font-bold leading-tight">
-                Construisez son sanctuaire <em className="text-primary not-italic italic">ensemble.</em>
-              </h2>
-               <p className="mt-6 text-[15px] text-muted-foreground leading-relaxed max-w-[560px] mx-auto">
-                 Un espace intime et privé pour réunir ceux qui l'ont connu. Invitez ses proches en un clic : Stela les guide pas à pas avec des questions douces pour les aider à trouver les mots, raviver les souvenirs et partager leurs photos simplement.
-               </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
     </>
   );
 };
