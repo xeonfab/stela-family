@@ -377,7 +377,10 @@ const _MemorialLPInner = () => {
         </div>
       </section>
 
-      {/* 2 — HONORER SA MÉMOIRE */}
+      {/* 2 — LE SANCTUAIRE : EXPLORATION + COLLABORATION + ONBOARDING */}
+      <SanctuaireSection />
+
+      {/* 3 — HONORER SA MÉMOIRE */}
       <section className="py-24 bg-background lg:py-[64px]">
         <div className="container mx-auto px-6 max-w-6xl">
           <Reveal>
@@ -416,9 +419,6 @@ const _MemorialLPInner = () => {
           </Reveal>
         </div>
       </section>
-
-      {/* 3 — LE SANCTUAIRE : EXPLORATION + COLLABORATION + ONBOARDING */}
-      <SanctuaireSection />
 
       {/* 4 — LA STÈLE */}
       <section className="bg-muted py-24 lg:py-32">
