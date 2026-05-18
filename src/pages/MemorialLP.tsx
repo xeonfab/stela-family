@@ -335,23 +335,22 @@ const _MemorialLPInner = () => {
             background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
           }}
         />
-        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-28 flex flex-col items-center text-center">
-          {/* TEXT */}
-          <div className="w-full max-w-4xl">
-            
+        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-28 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          {/* TEXT — left */}
+          <div className="w-full lg:w-1/2 text-center lg:text-left">
             <h1
               className="font-serif-display font-normal leading-[1.05] text-white/95"
-              style={{ fontSize: "clamp(44px, 6vw, 72px)" }}
+              style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
             >
               Sa mémoire mérite un endroit
             </h1>
             <div
-              className="mt-8 font-serif-display italic text-[18px] lg:text-[22px] max-w-2xl mx-auto"
+              className="mt-8 font-serif-display italic text-[18px] lg:text-[22px] max-w-xl mx-auto lg:mx-0"
               style={{ color: "rgba(255,255,255,0.55)" }}
             >
               <p>Ne laissez aucun souvenir s'effacer. Créez un espace intime pour rassembler sa vie, ses mots et sa voix, avec ceux qui l'ont connu, pour les générations à venir.</p>
             </div>
-            <div className="mt-12 flex flex-col items-center gap-3">
+            <div className="mt-12 flex flex-col items-center lg:items-start gap-3">
               <Button variant="gold" className="px-8 py-6 text-base whitespace-nowrap" asChild>
                 <a href="#pricing">Créer son Sanctuaire</a>
               </Button>
@@ -361,8 +360,8 @@ const _MemorialLPInner = () => {
             </div>
           </div>
 
-          {/* VISUAL — full width below */}
-          <div className="mt-16 w-full">
+          {/* VISUAL — right */}
+          <div className="w-full lg:w-1/2">
             <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
               <img
                 src={heroStelaScene}
