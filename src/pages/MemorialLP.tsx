@@ -10,6 +10,10 @@ import heroHandBlock from "@/assets/stela-hand-block.jpg";
 import steleObjet from "@/assets/stela-objet.png";
 import steleNoyer from "@/assets/stele-noyer-nfc.png";
 import heroStelaScene from "@/assets/hero-stela-scene.jpg";
+import steleMains from "@/assets/stele-mains.jpg";
+import steleVersoLaiton from "@/assets/stele-verso-laiton.jpg";
+import steleChanfrein from "@/assets/stele-chanfrein.jpg";
+import steleFlatlay from "@/assets/stele-flatlay.jpg";
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
@@ -443,22 +447,26 @@ const _MemorialLPInner = () => {
 
           {/* Gallery */}
           <Reveal>
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-10 mt-16 lg:mt-24">
-              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-background">
-                <img
-                  src={steleObjet}
-                  alt="Stèle en noyer massif gravée avec téléphone NFC en approche"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+            <div className="mt-16 lg:mt-24 overflow-hidden rounded-2xl bg-background">
+              <img
+                src={steleMains}
+                alt="Stèle Stela en noyer tenue à la main avec le Sanctuaire ouvert sur smartphone"
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="grid grid-cols-3 gap-0 mt-6 lg:mt-8 rounded-2xl overflow-hidden bg-background">
+              <div className="aspect-square overflow-hidden">
+                <img src={steleVersoLaiton} alt="Verso laiton gravé QR code et dates 1948 — 2024" className="w-full h-full object-cover" loading="lazy" />
               </div>
-              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-background">
-                <img
-                  src={steleNoyer}
-                  alt="Verso minimaliste de la Stela montrant la texture du bois"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+              <div className="aspect-square overflow-hidden">
+                <img src={steleChanfrein} alt="Macro du chanfrein de 3mm sur l'arête en noyer" className="w-full h-full object-cover" loading="lazy" />
+              </div>
+              <div className="aspect-square overflow-hidden">
+                <img src={steleFlatlay} alt="Vue à plat de la stèle en noyer avec gravure Jean-Claude Dubois et cotes" className="w-full h-full object-cover" loading="lazy" />
               </div>
             </div>
           </Reveal>
@@ -494,6 +502,30 @@ const _MemorialLPInner = () => {
                   <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
                 </div>
               ))}
+            </div>
+          </Reveal>
+
+          {/* Specs table */}
+          <Reveal>
+            <div className="mt-20 lg:mt-28 max-w-3xl mx-auto">
+              <dl className="divide-y divide-foreground/5">
+                {[
+                  ["Noyer massif", "170 × 100 × 40 mm"],
+                  ["Gravure laser", "Prénom, nom, ligne signature"],
+                  ["Chanfrein 3mm", "Sur les 12 arêtes"],
+                  ["Finition", "Huile naturelle"],
+                  ["Verso laiton", "QR code + dates naissance — décès"],
+                  ["NFC intégré", "Un effleurement ouvre le Sanctuaire"],
+                ].map(([k, v], i) => (
+                  <div
+                    key={k}
+                    className={`grid grid-cols-1 sm:grid-cols-[1fr_2fr] gap-2 sm:gap-8 px-5 py-4 ${i % 2 === 0 ? "bg-foreground/[0.02]" : "bg-transparent"}`}
+                  >
+                    <dt className="font-sans text-xs uppercase tracking-[0.18em] text-primary">{k}</dt>
+                    <dd className="font-sans text-sm text-foreground">{v}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </Reveal>
         </div>
