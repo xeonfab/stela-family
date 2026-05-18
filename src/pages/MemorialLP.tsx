@@ -306,8 +306,8 @@ const SanctuaireSection = () => {
                 <br />
                 <em className="text-primary not-italic font-serif-display italic">Une seule mémoire.</em>
               </h2>
-              <p className="mt-6 text-[15px] text-muted-foreground max-w-[520px] mx-auto">
-                Explorez ce qu'un Sanctuaire conserve, pour toujours, à l'abri du temps.
+              <p className="mt-6 text-[15px] text-muted-foreground max-w-[560px] mx-auto leading-relaxed">
+                Construisez son Sanctuaire <em className="text-primary not-italic italic">ensemble</em>. Invitez ses proches en un clic : Stela les guide pas à pas, avec des questions douces pour les aider à trouver les mots, raviver les souvenirs et partager leurs photos simplement.
               </p>
             </div>
           </Reveal>
