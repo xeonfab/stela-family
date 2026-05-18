@@ -364,8 +364,8 @@ const _MemorialLPInner = () => {
           <div className="w-full lg:w-1/2">
             <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
               <img
-                src={heroStelaScene}
-                alt="Scène d'intérieur — Stela en noyer aux côtés du portrait de Jean-Claude Dubois"
+                src={jeanClaudePortrait}
+                alt="Portrait de Jean-Claude Dubois"
                 className="w-full h-auto object-cover"
                 loading="lazy"
               />
