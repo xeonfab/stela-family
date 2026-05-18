@@ -338,7 +338,7 @@ const _MemorialLPInner = () => {
         <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-28 flex flex-col items-center text-center">
           {/* TEXT */}
           <div className="w-full max-w-4xl">
-            <p className="text-[10px] tracking-[0.25em] uppercase text-primary mb-8 font-sans">Après un départ</p>
+            
             <h1
               className="font-serif-display font-normal leading-[1.05] text-white/95"
               style={{ fontSize: "clamp(44px, 6vw, 72px)" }}
