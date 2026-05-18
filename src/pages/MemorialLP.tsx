@@ -343,8 +343,7 @@ const _MemorialLPInner = () => {
               className="font-serif-display font-normal leading-[1.05] text-white/95"
               style={{ fontSize: "clamp(44px, 6vw, 72px)" }}
             >
-              Gardez sa mémoire{" "}
-              <em className="text-primary not-italic font-serif-display italic">vivante</em>
+              Un espace pour lui. Garanti 25 ans.
             </h1>
             <div
               className="mt-8 font-serif-display italic text-[18px] lg:text-[22px] max-w-2xl mx-auto"
