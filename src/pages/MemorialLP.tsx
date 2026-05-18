@@ -6,6 +6,7 @@ import { Check, Play, ShieldCheck, Users, Quote, Leaf, Feather, Smartphone, Unlo
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
+import heroHandBlock from "@/assets/stela-hand-block.jpg";
 import steleObjet from "@/assets/stela-objet.png";
 import steleNoyer from "@/assets/stele-noyer-nfc.png";
 import heroStelaScene from "@/assets/hero-stela-scene.jpg";
@@ -364,8 +365,8 @@ const _MemorialLPInner = () => {
           <div className="w-full lg:w-1/2">
             <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
               <img
-                src={jeanClaudePortrait}
-                alt="Portrait de Jean-Claude Dubois"
+                src={heroHandBlock}
+                alt="Stèle Stela en noyer gravée Jean-Claude Dubois, tenue à la main avec le sanctuaire numérique sur smartphone"
                 className="w-full h-auto object-cover"
                 loading="lazy"
               />
