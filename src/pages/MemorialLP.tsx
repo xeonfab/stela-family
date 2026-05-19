@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, Play, ShieldCheck, Users, Quote, Leaf, Feather, Smartphone, Unlock } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useState } from "react";
+import WaitlistDialog from "@/components/WaitlistDialog";
 
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 import heroHandBlock from "@/assets/stela-hand-block.jpg";
@@ -82,6 +84,7 @@ const PricingCard = ({
   cta,
   variant,
   ctaVariant,
+  onCtaClick,
 }: {
   tier: string;
   price: string;
@@ -91,6 +94,7 @@ const PricingCard = ({
   cta: string;
   variant: "free" | "main" | "dark";
   ctaVariant?: "gold" | "goldOutline";
+  onCtaClick?: () => void;
 }) => {
   const isDark = variant === "dark";
   const isMain = variant === "main";
@@ -125,6 +129,7 @@ const PricingCard = ({
         </ul>
         <Button
           variant={btnVariant}
+          onClick={onCtaClick}
           className={`w-full py-6 ${isDark ? "border-primary text-primary hover:bg-primary/10" : ""}`}
         >
           {cta}
