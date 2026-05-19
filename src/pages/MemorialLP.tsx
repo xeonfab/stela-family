@@ -593,7 +593,7 @@ const _MemorialLPInner = () => {
               eyebrow="Nos offres garanties 25 ans"
               title={
                 <>
-                  Ajoutez vos <em className="text-primary not-italic font-serif-display italic">premiers souvenirs</em>
+                  Un Sanctuaire. <em className="text-primary not-italic font-serif-display italic">Toute la famille.</em>
                 </>
               }
               subtitle="Activez le Sanctuaire maintenant, sans carte bancaire. Prenez le temps de ressentir."
@@ -601,6 +601,37 @@ const _MemorialLPInner = () => {
           </Reveal>
           <Reveal>
             <div className="grid md:grid-cols-3 gap-6 items-stretch">
+              <PricingCard
+                variant="main"
+                tier="Le Sanctuaire"
+                price="€99"
+                period="Paiement unique · Sans stèle"
+                desc="Pour commencer, avant de choisir votre stèle."
+                features={[
+                  "Tout l'accès gratuit, pour toujours",
+                  "5GB de stockage · Garanti 25 ans",
+                  "Export complet des données",
+                  "Stèle commandable à tout moment",
+                ]}
+                cta="Commencer sans stèle"
+                ctaVariant="goldOutline"
+              />
+              <PricingCard
+                variant="dark"
+                tier="Le Sanctuaire + La stèle"
+                price="€249"
+                period="Paiement unique · Stèle incluse"
+                desc="Le Sanctuaire avec la stèle en noyer gravée, livrée chez vous. Rien à gérer."
+                features={[
+                  "Tout l'offre à 99€",
+                  <strong key="s" className="text-primary font-medium">
+                    Stèle en noyer massif gravée
+                  </strong>,
+                  "Livrée en 7-10 jours",
+                  "Stèles additionnelles commandables",
+                ]}
+                cta="Choisir l'offre complète"
+              />
               <PricingCard
                 variant="free"
                 tier="Accès gratuit"
@@ -614,36 +645,6 @@ const _MemorialLPInner = () => {
                   "Le Parvis — condoléances 30 jours",
                 ]}
                 cta="Activer gratuitement"
-              />
-              <PricingCard
-                variant="main"
-                tier="Le Sanctuaire"
-                price="€89"
-                period="Paiement unique · Garanti 25 ans"
-                desc="Le Sanctuaire permanent pour toute la famille. Ajoutez une stèle quand vous le souhaitez."
-                features={[
-                  "Tout l'accès gratuit, pour toujours",
-                  "5GB de stockage · Garanti 25 ans",
-                  "Export complet des données",
-                  "Stèle commandable à tout moment",
-                ]}
-                cta="Activer le Sanctuaire"
-              />
-              <PricingCard
-                variant="dark"
-                tier="Le Sanctuaire + La stèle"
-                price="€249"
-                period="Paiement unique · Stèle incluse"
-                desc="Le Sanctuaire avec la stèle en noyer gravée, livrée chez vous. Rien à gérer."
-                features={[
-                  "Tout l'offre à 89€",
-                  <strong key="s" className="text-primary font-medium">
-                    Stèle en noyer massif gravée
-                  </strong>,
-                  "Livrée en 7-10 jours",
-                  "Stèles additionnelles commandables",
-                ]}
-                cta="Commander la stèle"
               />
             </div>
           </Reveal>
@@ -659,7 +660,7 @@ const _MemorialLPInner = () => {
                 </p>
               </div>
               <div className="flex items-center gap-6">
-                <p className="font-serif-display text-3xl font-bold">€159</p>
+                <p className="font-serif-display text-3xl font-bold">€179</p>
                 <Button variant="goldOutline" className="px-6 py-5">
                   Commander
                 </Button>
