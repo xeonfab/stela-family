@@ -596,7 +596,7 @@ const _MemorialLPInner = () => {
                   Un Sanctuaire. <em className="text-primary not-italic font-serif-display italic">Toute la famille.</em>
                 </>
               }
-              subtitle="Activez le Sanctuaire maintenant, sans carte bancaire. Prenez le temps de ressentir."
+              subtitle="Le Sanctuaire de votre famille, garanti pour une génération."
             />
           </Reveal>
           <Reveal>
