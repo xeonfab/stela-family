@@ -336,6 +336,8 @@ const SanctuaireSection = () => {
 };
 
 const _MemorialLPInner = () => {
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+  const openWaitlist = () => setWaitlistOpen(true);
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -620,6 +622,7 @@ const _MemorialLPInner = () => {
                 ]}
                 cta="Commencer sans stèle"
                 ctaVariant="goldOutline"
+                onCtaClick={openWaitlist}
               />
               <PricingCard
                 variant="dark"
@@ -636,6 +639,7 @@ const _MemorialLPInner = () => {
                   "Stèles additionnelles commandables",
                 ]}
                 cta="Choisir l'offre complète"
+                onCtaClick={openWaitlist}
               />
               <PricingCard
                 variant="free"
@@ -650,6 +654,7 @@ const _MemorialLPInner = () => {
                   "Le Parvis — condoléances 30 jours",
                 ]}
                 cta="Activer gratuitement"
+                onCtaClick={openWaitlist}
               />
             </div>
           </Reveal>
@@ -697,6 +702,7 @@ const _MemorialLPInner = () => {
           </div>
         </div>
       </footer>
+      <WaitlistDialog open={waitlistOpen} onOpenChange={setWaitlistOpen} />
     </div>
   );
 };
