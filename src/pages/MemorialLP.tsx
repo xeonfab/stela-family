@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, Play, ShieldCheck, Users, Quote, Leaf, Feather, Smartphone, Unlock } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import WaitlistDialog from "@/components/WaitlistDialog";
 
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
@@ -16,6 +16,65 @@ import steleMains from "@/assets/stele-mains.jpg";
 import steleVersoLaiton from "@/assets/stele-verso-laiton.jpg";
 import steleChanfrein from "@/assets/stele-chanfrein.jpg";
 import steleFlatlay from "@/assets/stele-flatlay.jpg";
+
+const SteleGallery = () => {
+  const photos = [
+    { src: steleVersoLaiton, alt: "Verso laiton gravé QR code et dates 1948 — 2024" },
+    { src: steleChanfrein, alt: "Macro du chanfrein de 3mm sur l'arête en noyer" },
+    { src: steleFlatlay, alt: "Vue à plat de la stèle en noyer avec gravure Jean-Claude Dubois et cotes" },
+  ];
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const idx = Math.round(el.scrollLeft / (el.clientWidth * 0.85));
+      setActive(Math.min(photos.length - 1, Math.max(0, idx)));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [photos.length]);
+
+  return (
+    <div className="mt-6 lg:mt-8">
+      {/* Mobile: swipeable carousel */}
+      <div className="sm:hidden">
+        <div
+          ref={scrollerRef}
+          className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-6 -mx-6"
+        >
+          {photos.map((p) => (
+            <div
+              key={p.src}
+              className="shrink-0 w-[85vw] aspect-square overflow-hidden rounded-2xl bg-background snap-center"
+            >
+              <img src={p.src} alt={p.alt} className="w-full h-full object-cover" loading="lazy" />
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center gap-2 mt-4">
+          {photos.map((_, i) => (
+            <span
+              key={i}
+              className={`h-1.5 rounded-full transition-all ${i === active ? "w-6 bg-primary" : "w-1.5 bg-foreground/20"}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop: 3-column grid (unchanged) */}
+      <div className="hidden sm:grid grid-cols-3 gap-0 rounded-2xl overflow-hidden bg-background">
+        {photos.map((p) => (
+          <div key={p.src} className="aspect-square overflow-hidden">
+            <img src={p.src} alt={p.alt} className="w-full h-full object-cover" loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Reveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
@@ -468,17 +527,7 @@ const _MemorialLPInner = () => {
           </Reveal>
 
           <Reveal>
-            <div className="grid grid-cols-3 gap-0 mt-6 lg:mt-8 rounded-2xl overflow-hidden bg-background">
-              <div className="aspect-square overflow-hidden">
-                <img src={steleVersoLaiton} alt="Verso laiton gravé QR code et dates 1948 — 2024" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="aspect-square overflow-hidden">
-                <img src={steleChanfrein} alt="Macro du chanfrein de 3mm sur l'arête en noyer" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="aspect-square overflow-hidden">
-                <img src={steleFlatlay} alt="Vue à plat de la stèle en noyer avec gravure Jean-Claude Dubois et cotes" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-            </div>
+            <SteleGallery />
           </Reveal>
 
           {/* Specs grid */}
