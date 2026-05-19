@@ -81,6 +81,7 @@ const PricingCard = ({
   features,
   cta,
   variant,
+  ctaVariant,
 }: {
   tier: string;
   price: string;
@@ -89,9 +90,11 @@ const PricingCard = ({
   features: React.ReactNode[];
   cta: string;
   variant: "free" | "main" | "dark";
+  ctaVariant?: "gold" | "goldOutline";
 }) => {
   const isDark = variant === "dark";
   const isMain = variant === "main";
+  const btnVariant = ctaVariant ?? (isMain ? "gold" : "goldOutline");
   return (
     <div
       className={`relative rounded-3xl flex flex-col overflow-hidden ${
@@ -104,7 +107,7 @@ const PricingCard = ({
     >
       {isDark && (
         <div className="bg-primary text-primary-foreground text-[10px] tracking-[0.3em] uppercase text-center py-2 font-medium">
-          Tout compris
+          Le plus choisi
         </div>
       )}
       <div className="p-8 lg:p-10 flex flex-col flex-1">
@@ -121,7 +124,7 @@ const PricingCard = ({
           ))}
         </ul>
         <Button
-          variant={isMain ? "gold" : "goldOutline"}
+          variant={btnVariant}
           className={`w-full py-6 ${isDark ? "border-primary text-primary hover:bg-primary/10" : ""}`}
         >
           {cta}
