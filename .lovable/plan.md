@@ -1,47 +1,34 @@
+## Problème
 
-# Stela - Landing Page "Sacred Memory"
+Sur mobile (390px), la grille 3 colonnes carrées affiche chaque photo à environ 110px de large — beaucoup trop petit pour apprécier le grain du noyer, le chanfrein ou le verso laiton. Sur desktop, la disposition actuelle reste pertinente.
 
-## Design System
-- **Palette** : fond Alabaster (#FAF9F6), texte Charcoal (#1C1917), texte secondaire Stone (#78716C), accent Or (#D4AF37), section cérémonie (#F5F5F4)
-- **Typographie** : Playfair Display (titres) + Inter (corps) via Google Fonts
-- **Style** : coins arrondis (2xl/3xl), ombres diffuses, espacement généreux, glassmorphism subtil sur la navbar
-- **Animations** : fade-in au scroll pour chaque section, effet scale au hover sur les boutons
+## Proposition — Carrousel horizontal mobile, grille inchangée desktop
 
-## Sections à construire
+Sur mobile uniquement, remplacer la grille 3 colonnes par un **carrousel horizontal à défilement tactile (swipe)** :
 
-### 1. Navbar sticky glassmorphique
-- Logo "Stela" en serif bold
-- Bouton CTA "Créer un Mémorial" en or, arrondi
+- Chaque photo carrée occupe environ **85% de la largeur écran** (~330px), soit 3× plus grande qu'aujourd'hui.
+- Défilement natif `overflow-x-auto` avec `scroll-snap` pour un arrêt net sur chaque photo.
+- Petit aperçu de la photo suivante visible à droite, suggérant le swipe.
+- Trois petits **indicateurs (dots)** sous le carrousel, en or matte, mettant en évidence la photo active.
+- Scrollbar masquée (utilitaire `.scrollbar-hide` déjà présent dans `index.css`).
+- Espacement de 12px entre les photos, coins arrondis conservés.
 
-### 2. Hero 50/50
-- **Gauche** : H1 "Ne laissez pas leur lumière s'éteindre.", sous-titre, 2 CTA (or + outline), ligne de confiance avec étoiles
-- **Droite** : Mockup iPhone CSS avec grille masonry de photos Unsplash (mix N&B et couleur)
+Sur desktop (≥ `sm:` 640px), la grille 3 colonnes carrées reste **strictement identique** à aujourd'hui.
 
-### 3. Problème/Solution - 3 colonnes
-- 3 cartes avec icônes Lucide : pas de compte requis, voix & vidéos, partage universel
-- Titre : "Stela rassemble tout en un clic via un simple QR Code."
+La photo hero (`steleMains`) au-dessus n'est pas modifiée — elle est déjà bien dimensionnée sur mobile.
 
-### 4. Fonctionnalités - Bento Grid "Le Sanctuaire"
-- Carte A (grande, 2 colonnes) : Mur de Souvenirs avec placeholder galerie masonry
-- Carte B (haute, 1 colonne) : Timeline interactive avec ligne verticale et dates
-- Carte C (large, bas) : Biographie IA avec icône sparkle et texte preview
+## Détails techniques
 
-### 5. Kit Cérémonie (fond #E7E5E4)
-- Layout texte gauche + visuel droite
-- Checklist : Smart Chevalet PDF, Insert Programme, Annonce réseaux
-- Composition CSS d'un chevalet papier et carte de cérémonie
+Dans `src/pages/MemorialLP.tsx`, remplacer le bloc lignes 470–482 par un conteneur responsive :
 
-### 6. Confidentialité - 3 cercles concentriques
-- Diagramme CSS : Famille (Admin) → Proches (Mot de passe) → Public (Infos Cérémonie)
+```text
+mobile (< sm) :
+  flex overflow-x-auto snap-x snap-mandatory scrollbar-hide
+  → 3 cartes square w-[85vw] shrink-0 snap-center
+  + dots indicateurs (état actif suivi via scroll listener)
 
-### 7. Tarification - Carte unique centrée
-- Bordure or, prix 49€ en grand, "Paiement unique. 25 ans. Sans abonnement."
-- Liste de fonctionnalités incluses
-- Garantie 30 jours avec icône bouclier
+desktop (≥ sm) :
+  grid grid-cols-3 gap-0  (identique à aujourd'hui)
+```
 
-### 8. Footer
-- Centré, sobre : Copyright Stela 2024, liens Contact, CGV, Mentions Légales
-
-## Responsive
-- Sur mobile, toutes les sections en colonnes empilées (texte d'abord, visuel ensuite)
-- Navbar adaptée mobile
+Aucun nouvel asset, aucune dépendance, aucune modification du contenu ou des spécifications en dessous.

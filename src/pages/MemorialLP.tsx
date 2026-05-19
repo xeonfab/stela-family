@@ -468,17 +468,7 @@ const _MemorialLPInner = () => {
           </Reveal>
 
           <Reveal>
-            <div className="grid grid-cols-3 gap-0 mt-6 lg:mt-8 rounded-2xl overflow-hidden bg-background">
-              <div className="aspect-square overflow-hidden">
-                <img src={steleVersoLaiton} alt="Verso laiton gravé QR code et dates 1948 — 2024" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="aspect-square overflow-hidden">
-                <img src={steleChanfrein} alt="Macro du chanfrein de 3mm sur l'arête en noyer" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="aspect-square overflow-hidden">
-                <img src={steleFlatlay} alt="Vue à plat de la stèle en noyer avec gravure Jean-Claude Dubois et cotes" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-            </div>
+            <SteleGallery />
           </Reveal>
 
           {/* Specs grid */}
