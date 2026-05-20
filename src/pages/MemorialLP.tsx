@@ -412,7 +412,7 @@ const _MemorialLPInner = () => {
               className="font-serif-display font-normal leading-[1.05] text-white/95"
               style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
             >
-              Un espace pour lui. Garanti 25 ans.
+              Sa mémoire mérite un endroit.
             </h1>
             <div
               className="mt-8 font-serif-display italic text-[18px] lg:text-[22px] max-w-xl mx-auto lg:mx-0"
