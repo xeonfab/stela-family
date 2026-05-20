@@ -226,11 +226,12 @@ type PillarId = (typeof PILLARS)[number]["id"];
 const PillarVisual = ({ active }: { active: PillarId }) => {
   if (active === "mots") {
     return (
-      <div className="h-full flex flex-col justify-center items-center text-center px-8 py-16 lg:px-16">
-        <p className="font-serif-display italic text-2xl lg:text-[28px] text-foreground leading-snug max-w-md">
+      <div className="h-full flex flex-col justify-center items-center text-center px-8 py-10 lg:px-16 lg:py-12">
+        <p className="font-serif-display italic text-xl lg:text-2xl text-foreground leading-snug max-w-md">
           « Il avait toujours cette phrase, quand on doutait : "On verra demain, mais on n'oublie pas aujourd'hui." »
         </p>
-        <p className="mt-8 text-[13px] text-muted-foreground">Claire, sa fille</p>
+        <span className="mt-7 block h-px w-8 bg-primary" aria-hidden="true" />
+        <p className="mt-3 text-[12px] font-medium tracking-[0.1em] uppercase text-foreground">Claire, sa fille</p>
       </div>
     );
   }
@@ -254,10 +255,10 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
     );
   }
   return (
-    <div className="h-full flex flex-col justify-center px-8 py-14 lg:px-14">
+    <div className="h-full flex flex-col justify-center px-8 py-12 lg:px-14">
       <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-5">Message vocal</p>
       <p className="font-serif-display italic text-xl lg:text-2xl text-foreground mb-8 leading-snug">
-        « Joyeux anniversaire ma chérie… »
+        Jean-Claude, à sa fille.
       </p>
       <div className="flex items-center gap-4">
         <button className="w-11 h-11 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-sm">
@@ -274,7 +275,8 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
         </div>
         <span className="text-[11px] tabular-nums text-muted-foreground">0:42</span>
       </div>
-      <p className="mt-6 text-[12px] text-muted-foreground italic">Déposé par Pierre, son frère</p>
+      <span className="mt-6 block h-px w-8 bg-primary" aria-hidden="true" />
+      <p className="mt-3 text-[12px] text-muted-foreground">Pierre, son frère — 0:42</p>
     </div>
   );
 };
@@ -316,7 +318,7 @@ const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: 
 const PillarSection = ({ pillarId, reverse }: { pillarId: PillarId; reverse?: boolean }) => {
   const { index, eyebrow, title, body, quote } = PILLAR_CONTENT[pillarId];
   return (
-    <section className="py-20 lg:py-28" style={{ backgroundColor: "#FAF8F5" }}>
+    <section className="py-14 lg:py-20" style={{ backgroundColor: "#FAF8F5" }}>
       <div className="container mx-auto px-6 max-w-6xl">
         <Reveal>
           <div
