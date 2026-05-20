@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface WaitlistDialogProps {
   open: boolean;
@@ -15,9 +16,10 @@ const WaitlistDialog = ({ open, onOpenChange }: WaitlistDialogProps) => {
   const [email, setEmail] = useState("");
   const [foyers, setFoyers] = useState("");
   const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const trimmed = email.trim();
     if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
@@ -29,6 +31,27 @@ const WaitlistDialog = ({ open, onOpenChange }: WaitlistDialogProps) => {
       return;
     }
     setError("");
+    setSubmitting(true);
+    const { error: insertError } = await supabase
+      .from("waitlist_entries")
+      .insert({ email: trimmed.toLowerCase(), foyers, source: "home_waitlist" });
+    setSubmitting(false);
+
+    if (insertError) {
+      if (insertError.code === "23505") {
+        toast({
+          title: "Vous êtes déjà inscrit.",
+          description: "Cette adresse figure déjà sur notre liste d'attente.",
+        });
+        setEmail("");
+        setFoyers("");
+        onOpenChange(false);
+        return;
+      }
+      setError("Une erreur est survenue. Merci de réessayer dans un instant.");
+      return;
+    }
+
     toast({
       title: "Vous êtes sur la liste.",
       description: "Nous vous contacterons dès l'ouverture du Sanctuaire.",
@@ -90,8 +113,8 @@ const WaitlistDialog = ({ open, onOpenChange }: WaitlistDialogProps) => {
           {error && <p className="text-xs text-destructive">{error}</p>}
 
           <div className="space-y-2">
-            <Button type="submit" variant="gold" className="w-full py-6">
-              Rejoindre la liste d'attente
+            <Button type="submit" variant="gold" className="w-full py-6" disabled={submitting}>
+              {submitting ? "Envoi en cours…" : "Rejoindre la liste d'attente"}
             </Button>
             <p className="text-[11px] text-muted-foreground text-center">
               Sans engagement · Vos données restent privées

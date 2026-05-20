@@ -1,39 +1,50 @@
-## Objectif
+# Connecter le formulaire de la page d'accueil à une base de données
 
-Sur l'image hero pleine largeur de la section « L'objet & le geste » (`steleMains`, ligne 520 de `src/pages/MemorialLP.tsx`), recadrer visuellement sur le centre de la photo sur petits écrans pour mieux voir le détail (mains + stèle), sans toucher au rendu desktop.
+Le formulaire concerné est la **liste d'attente** (`WaitlistDialog`) ouverte depuis les CTA de la page d'accueil. Il collecte aujourd'hui un email + le nombre de foyers, mais n'enregistre rien — un simple `toast` s'affiche.
 
-## Approche
+## Ce qu'il faut faire
 
-Utiliser une hauteur fixe responsive sur le conteneur + `object-cover` + `object-center` sur l'image. Cela "crope" naturellement l'image autour de son centre sur mobile, et redevient pleine image sur desktop.
+### 1. Activer Lovable Cloud
+Aucune base n'est encore branchée au projet. Lovable Cloud fournit en un clic :
+- une base PostgreSQL
+- des règles de sécurité (RLS)
+- une API auto-générée utilisable depuis le front
 
-### Changement
+### 2. Créer une table `waitlist_entries`
+Colonnes proposées :
 
-Sur le wrapper et le `<img>` actuels :
+| Colonne     | Type        | Notes                                  |
+|-------------|-------------|----------------------------------------|
+| `id`        | uuid        | Clé primaire, défaut `gen_random_uuid()` |
+| `email`     | text        | Non null, validé (format email)        |
+| `foyers`    | text        | `'1'`, `'2'` ou `'3+'`                 |
+| `source`    | text        | Ex : `'home_waitlist'` (utile plus tard) |
+| `created_at`| timestamptz | Défaut `now()`                          |
 
-```tsx
-<div className="mt-16 lg:mt-24 overflow-hidden rounded-2xl bg-background
-                h-[420px] sm:h-[520px] md:h-auto">
-  <img
-    src={steleMains}
-    alt="..."
-    className="w-full h-full md:h-auto object-cover object-center"
-    loading="lazy"
-  />
-</div>
-```
+Contrainte d'unicité sur `email` pour éviter les doublons.
 
-### Comportement
+### 3. Sécurité (RLS)
+- **INSERT** autorisé à tout le monde (visiteurs anonymes) → un visiteur peut s'inscrire.
+- **SELECT / UPDATE / DELETE** refusés au public → seuls vous (via le back-office Lovable Cloud) verrez les inscriptions. Conforme à la philosophie "Sanctuaire" du projet.
 
-- **Mobile (< 640px)** : hauteur fixe ~420px, image recadrée au centre → on voit nettement les mains et la stèle, plus de zone vide.
-- **Tablette (sm)** : ~520px, même logique.
-- **Desktop (md+)** : `h-auto`, l'image reprend son ratio naturel pleine largeur, identique à aujourd'hui.
+### 4. Brancher le formulaire
+Dans `src/components/WaitlistDialog.tsx`, remplacer le `toast` simulé par un appel `insert` vers la table, avec :
+- validation Zod (email + foyers)
+- gestion de l'erreur "email déjà inscrit" (toast spécifique)
+- état de chargement sur le bouton (désactivé pendant l'envoi)
+- conservation du toast de succès actuel ("Vous êtes sur la liste.")
 
-### Points d'ajustement possibles
+### 5. Consulter les inscriptions
+Une fois en place, les entrées sont visibles depuis le panneau **Cloud → Tables** de Lovable. Possibilité ultérieure d'exporter en CSV ou d'envoyer un email via une edge function.
 
-- Hauteur mobile : 380 / 420 / 460 px selon le cadrage souhaité.
-- Position du crop : `object-center` par défaut ; on peut passer à `object-[50%_40%]` si le sujet est plus haut dans l'image.
+## Détails techniques
 
-## Hors scope
+- Aucun changement visuel : le design du dialogue reste identique.
+- Pas d'authentification requise pour le visiteur (insertion anonyme protégée par RLS).
+- Les autres formulaires du site (`MemorialPublic`, etc.) ne sont **pas** touchés par ce plan.
 
-- Pas de changement de l'image source.
-- Pas de modification du reste de la section (titre, specs, citation, grille 3 visuels).
+## À confirmer avant de lancer
+
+1. **Activer Lovable Cloud maintenant ?** (nécessaire — sans ça, pas de base.)
+2. **Champs à stocker** : email + foyers suffisent, ou souhaitez-vous aussi un champ `prénom` / `message` ?
+3. **Notification** : voulez-vous recevoir un email à chaque nouvelle inscription (via edge function + Resend par ex.), ou juste consulter la table manuellement ?
