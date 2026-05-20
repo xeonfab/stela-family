@@ -1,34 +1,39 @@
-## Problème
+## Objectif
 
-Sur mobile (390px), la grille 3 colonnes carrées affiche chaque photo à environ 110px de large — beaucoup trop petit pour apprécier le grain du noyer, le chanfrein ou le verso laiton. Sur desktop, la disposition actuelle reste pertinente.
+Sur l'image hero pleine largeur de la section « L'objet & le geste » (`steleMains`, ligne 520 de `src/pages/MemorialLP.tsx`), recadrer visuellement sur le centre de la photo sur petits écrans pour mieux voir le détail (mains + stèle), sans toucher au rendu desktop.
 
-## Proposition — Carrousel horizontal mobile, grille inchangée desktop
+## Approche
 
-Sur mobile uniquement, remplacer la grille 3 colonnes par un **carrousel horizontal à défilement tactile (swipe)** :
+Utiliser une hauteur fixe responsive sur le conteneur + `object-cover` + `object-center` sur l'image. Cela "crope" naturellement l'image autour de son centre sur mobile, et redevient pleine image sur desktop.
 
-- Chaque photo carrée occupe environ **85% de la largeur écran** (~330px), soit 3× plus grande qu'aujourd'hui.
-- Défilement natif `overflow-x-auto` avec `scroll-snap` pour un arrêt net sur chaque photo.
-- Petit aperçu de la photo suivante visible à droite, suggérant le swipe.
-- Trois petits **indicateurs (dots)** sous le carrousel, en or matte, mettant en évidence la photo active.
-- Scrollbar masquée (utilitaire `.scrollbar-hide` déjà présent dans `index.css`).
-- Espacement de 12px entre les photos, coins arrondis conservés.
+### Changement
 
-Sur desktop (≥ `sm:` 640px), la grille 3 colonnes carrées reste **strictement identique** à aujourd'hui.
+Sur le wrapper et le `<img>` actuels :
 
-La photo hero (`steleMains`) au-dessus n'est pas modifiée — elle est déjà bien dimensionnée sur mobile.
-
-## Détails techniques
-
-Dans `src/pages/MemorialLP.tsx`, remplacer le bloc lignes 470–482 par un conteneur responsive :
-
-```text
-mobile (< sm) :
-  flex overflow-x-auto snap-x snap-mandatory scrollbar-hide
-  → 3 cartes square w-[85vw] shrink-0 snap-center
-  + dots indicateurs (état actif suivi via scroll listener)
-
-desktop (≥ sm) :
-  grid grid-cols-3 gap-0  (identique à aujourd'hui)
+```tsx
+<div className="mt-16 lg:mt-24 overflow-hidden rounded-2xl bg-background
+                h-[420px] sm:h-[520px] md:h-auto">
+  <img
+    src={steleMains}
+    alt="..."
+    className="w-full h-full md:h-auto object-cover object-center"
+    loading="lazy"
+  />
+</div>
 ```
 
-Aucun nouvel asset, aucune dépendance, aucune modification du contenu ou des spécifications en dessous.
+### Comportement
+
+- **Mobile (< 640px)** : hauteur fixe ~420px, image recadrée au centre → on voit nettement les mains et la stèle, plus de zone vide.
+- **Tablette (sm)** : ~520px, même logique.
+- **Desktop (md+)** : `h-auto`, l'image reprend son ratio naturel pleine largeur, identique à aujourd'hui.
+
+### Points d'ajustement possibles
+
+- Hauteur mobile : 380 / 420 / 460 px selon le cadrage souhaité.
+- Position du crop : `object-center` par défaut ; on peut passer à `object-[50%_40%]` si le sujet est plus haut dans l'image.
+
+## Hors scope
+
+- Pas de changement de l'image source.
+- Pas de modification du reste de la section (titre, specs, citation, grille 3 visuels).
