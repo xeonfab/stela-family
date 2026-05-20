@@ -7,7 +7,8 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
-  const transparentMode = pathname.toLowerCase() === "/memoriallp";
+  const p = pathname.toLowerCase();
+  const transparentMode = p === "/memoriallp" || p === "/";
 
   useEffect(() => {
     if (!transparentMode) return;
