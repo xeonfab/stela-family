@@ -451,7 +451,7 @@ const _MemorialLPInner = () => {
       <SanctuaireSection />
 
       {/* 3 — HONORER SA MÉMOIRE */}
-      <section className="py-24 lg:py-[64px]" style={{ backgroundColor: "#FAF8F5" }}>
+      <section className="py-24 lg:py-[92px]" style={{ backgroundColor: "#FAF8F5" }}>
         <div className="container mx-auto px-6 max-w-6xl">
           <Reveal>
             <SectionHeader
