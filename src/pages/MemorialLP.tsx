@@ -16,6 +16,7 @@ import steleMains from "@/assets/stele-mains.jpg";
 import steleVersoLaiton from "@/assets/stele-verso-laiton.jpg";
 import steleChanfrein from "@/assets/stele-chanfrein.jpg";
 import steleFlatlay from "@/assets/stele-flatlay.jpg";
+import familleBretagne from "@/assets/famille-bretagne-1987.jpg";
 
 const SteleGallery = () => {
   const photos = [
