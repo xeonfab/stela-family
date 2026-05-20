@@ -653,6 +653,10 @@ const _MemorialLPInner = () => {
                 cta="Commencer sans stèle"
                 ctaVariant="goldOutline"
                 onCtaClick={openWaitlist}
+                ctaId="btn-pricing-99"
+                trackValue={99}
+                trackContentName="pricing_99"
+                trackContentId="sanctuary_tier"
               />
               <PricingCard
                 variant="dark"
@@ -670,6 +674,10 @@ const _MemorialLPInner = () => {
                 ]}
                 cta="Choisir l'offre complète"
                 onCtaClick={openWaitlist}
+                ctaId="btn-pricing-249"
+                trackValue={249}
+                trackContentName="pricing_249"
+                trackContentId="complete_tier"
               />
               <PricingCard
                 variant="free"
@@ -685,7 +693,12 @@ const _MemorialLPInner = () => {
                 ]}
                 cta="Activer gratuitement"
                 onCtaClick={openWaitlist}
+                ctaId="btn-pricing-free"
+                trackValue={0}
+                trackContentName="pricing_free"
+                trackContentId="free_tier"
               />
+
             </div>
           </Reveal>
 
