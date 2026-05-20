@@ -398,14 +398,14 @@ const _MemorialLPInner = () => {
       <Navbar />
 
       {/* 1 — HERO */}
-      <section className="relative bg-[#2C221B] text-[#FAFAFA] overflow-hidden min-h-screen flex items-center">
+      <section className="relative bg-[#2C221B] text-[#FAFAFA] overflow-hidden flex items-center">
         <div
           className="absolute inset-0 opacity-60"
           style={{
             background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
           }}
         />
-        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-28 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-14 lg:py-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* TEXT — left */}
           <div className="w-full lg:w-1/2 text-center lg:text-left">
             <h1
