@@ -516,11 +516,11 @@ const _MemorialLPInner = () => {
 
           {/* Gallery */}
           <Reveal>
-            <div className="mt-16 lg:mt-24 overflow-hidden rounded-2xl bg-background">
+            <div className="mt-16 lg:mt-24 overflow-hidden rounded-2xl bg-background h-[420px] sm:h-[520px] md:h-auto">
               <img
                 src={steleMains}
                 alt="Stèle Stela en noyer tenue à la main avec le Sanctuaire ouvert sur smartphone"
-                className="w-full h-auto object-cover"
+                className="w-full h-full md:h-auto object-cover object-center"
                 loading="lazy"
               />
             </div>
