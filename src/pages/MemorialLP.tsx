@@ -145,6 +145,10 @@ const PricingCard = ({
   variant,
   ctaVariant,
   onCtaClick,
+  ctaId,
+  trackValue,
+  trackContentName,
+  trackContentId,
 }: {
   tier: string;
   price: string;
@@ -155,10 +159,25 @@ const PricingCard = ({
   variant: "free" | "main" | "dark";
   ctaVariant?: "gold" | "goldOutline";
   onCtaClick?: () => void;
+  ctaId?: string;
+  trackValue?: number;
+  trackContentName?: string;
+  trackContentId?: string;
 }) => {
   const isDark = variant === "dark";
   const isMain = variant === "main";
   const btnVariant = ctaVariant ?? (isMain ? "gold" : "goldOutline");
+  const handleClick = () => {
+    if (typeof window !== "undefined" && typeof (window as any).fbq === "function" && trackContentName) {
+      (window as any).fbq("track", "InitiateCheckout", {
+        value: trackValue ?? 0,
+        currency: "EUR",
+        content_name: trackContentName,
+        content_id: trackContentId,
+      });
+    }
+    onCtaClick?.();
+  };
   return (
     <div
       className={`relative rounded-3xl flex flex-col overflow-hidden ${
@@ -188,8 +207,9 @@ const PricingCard = ({
           ))}
         </ul>
         <Button
+          id={ctaId}
           variant={btnVariant}
-          onClick={onCtaClick}
+          onClick={handleClick}
           className={`w-full py-6 ${isDark ? "border-primary text-primary hover:bg-primary/10" : ""}`}
         >
           {cta}
@@ -198,6 +218,7 @@ const PricingCard = ({
     </div>
   );
 };
+
 
 const MemorialLP = () => {
   return _MemorialLPInner();
@@ -632,6 +653,10 @@ const _MemorialLPInner = () => {
                 cta="Commencer sans stèle"
                 ctaVariant="goldOutline"
                 onCtaClick={openWaitlist}
+                ctaId="btn-pricing-99"
+                trackValue={99}
+                trackContentName="pricing_99"
+                trackContentId="sanctuary_tier"
               />
               <PricingCard
                 variant="dark"
@@ -649,6 +674,10 @@ const _MemorialLPInner = () => {
                 ]}
                 cta="Choisir l'offre complète"
                 onCtaClick={openWaitlist}
+                ctaId="btn-pricing-249"
+                trackValue={249}
+                trackContentName="pricing_249"
+                trackContentId="complete_tier"
               />
               <PricingCard
                 variant="free"
@@ -664,7 +693,12 @@ const _MemorialLPInner = () => {
                 ]}
                 cta="Activer gratuitement"
                 onCtaClick={openWaitlist}
+                ctaId="btn-pricing-free"
+                trackValue={0}
+                trackContentName="pricing_free"
+                trackContentId="free_tier"
               />
+
             </div>
           </Reveal>
 
