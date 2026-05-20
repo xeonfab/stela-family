@@ -566,12 +566,11 @@ const _MemorialLPInner = () => {
               <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
                 <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
-                  « Ma mère avait préparé son Sanctuaire en secret. Après son départ, nous avons découvert des lettres
-                  qu'elle nous avait écrites, des photos de son enfance. C'est devenu notre refuge. »
+                  « Ma mère avait enregistré sa recette de tarte aux pommes, avec sa voix, ses hésitations, ses "attends je cherche". On ne savait pas qu'elle l'avait fait. On a pleuré et ri en même temps. »
                 </p>
                 <div className="mt-8 pt-5 border-t border-white/15">
                   <p className="font-medium">Sophie, 38 ans</p>
-                  <p className="text-sm text-white/60 mt-1">Sa fille — Sanctuaire ouvert depuis janvier 2025</p>
+                  <p className="text-sm text-white/60 mt-1">Sa fille</p>
                 </div>
               </Card>
             </Reveal>
@@ -580,12 +579,11 @@ const _MemorialLPInner = () => {
               <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
                 <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
-                  « Mon frère et moi avons créé le Sanctuaire de notre père ensemble. Chaque année, nous y ajoutons un
-                  souvenir. C'est notre façon de le garder vivant, ensemble. »
+                  « Mon frère habite à Lyon, moi à Bordeaux. On s'est retrouvés dans le Sanctuaire de papa comme on se retrouvait dans sa cuisine. Chacun a déposé quelque chose. C'est le seul endroit où on est encore tous ensemble. »
                 </p>
                 <div className="mt-8 pt-5 border-t border-white/15">
                   <p className="font-medium">Thomas, 52 ans</p>
-                  <p className="text-sm text-white/60 mt-1">Son fils — Sanctuaire ouvert depuis septembre 2024</p>
+                  <p className="text-sm text-white/60 mt-1">Son fils</p>
                 </div>
               </Card>
             </Reveal>
@@ -594,12 +592,11 @@ const _MemorialLPInner = () => {
               <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
                 <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
-                  « Mon père a utilisé Stela pendant deux ans avant de partir. Ce qu'il y a laissé, c'est plus que tout
-                  ce qu'on aurait pu lui demander. On pose le téléphone sur la stèle et sa voix est là. C'est lui. »
+                  « Il avait laissé un message pour le mariage de ma fille. Elle a six ans. Il ne la verra pas grandir — mais elle l'entendra lui parler ce jour-là. »
                 </p>
                 <div className="mt-8 pt-5 border-t border-white/15">
                   <p className="font-medium">Marie, 46 ans</p>
-                  <p className="text-sm text-white/60 mt-1">Sa fille — le Sanctuaire est ouvert depuis novembre 2024</p>
+                  <p className="text-sm text-white/60 mt-1">Sa fille</p>
                 </div>
               </Card>
             </Reveal>
