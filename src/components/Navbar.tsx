@@ -44,7 +44,7 @@ const Navbar = () => {
           variant="gold"
           className="hidden md:inline-flex px-6"
         >
-          Créer un sanctuaire
+          Créer son sanctuaire
         </Button>
 
         {/* Mobile toggle */}
@@ -59,7 +59,7 @@ const Navbar = () => {
       {open && (
         <div className="md:hidden px-6 pb-4">
           <Button variant="gold" className="w-full">
-            Créer un sanctuaire
+            Créer son sanctuaire
           </Button>
         </div>
       )}
