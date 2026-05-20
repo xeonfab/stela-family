@@ -362,7 +362,7 @@ const SanctuaireSection = () => {
   return (
     <>
       {/* Intro */}
-      <section className="pt-24 pb-8 bg-background lg:pt-[64px]">
+      <section className="pt-24 pb-8 lg:pt-[64px]" style={{ backgroundColor: "#FAF8F5" }}>
         <div className="container mx-auto px-6 max-w-6xl">
           <Reveal>
             <div className="text-center max-w-3xl mx-auto">
@@ -372,8 +372,8 @@ const SanctuaireSection = () => {
                 <br />
                 <em className="text-primary not-italic font-serif-display italic">Une seule mémoire.</em>
               </h2>
-              <p className="mt-6 text-[15px] text-muted-foreground max-w-[560px] mx-auto leading-relaxed">
-                Construisez son Sanctuaire <em className="text-primary not-italic italic">ensemble</em>. Invitez ses proches en un clic : Stela les guide pas à pas, avec des questions douces pour les aider à trouver les mots, raviver les souvenirs et partager leurs photos simplement.
+              <p className="mt-6 text-[15px] text-muted-foreground max-w-[680px] mx-auto leading-relaxed">
+                Ce que la mémoire ne peut pas retenir seule — les mots exacts, le timbre de la voix, les instants photographiés — le Sanctuaire les garde, pour toute la famille, pour une génération.
               </p>
             </div>
           </Reveal>
