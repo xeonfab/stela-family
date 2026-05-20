@@ -680,9 +680,6 @@ const _MemorialLPInner = () => {
               </div>
               <div className="flex items-center gap-6">
                 <p className="font-serif-display text-3xl font-bold">€179</p>
-                <Button variant="goldOutline" className="px-6 py-5">
-                  Commander
-                </Button>
               </div>
             </div>
             <p className="text-xs text-muted-foreground text-center mt-8 max-w-2xl mx-auto">
