@@ -279,7 +279,7 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
   );
 };
 
-const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: React.ReactNode; body: string }> = {
+const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: React.ReactNode; body: string; quote?: string }> = {
   mots: {
     index: "01",
     eyebrow: "Les Mots",
@@ -298,7 +298,7 @@ const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: 
         Les instants partagés, <em className="text-primary not-italic font-serif-display italic">retrouvés</em>.
       </>
     ),
-    body: "Une galerie curatée, organisée par moments et par proches. Les souvenirs visuels reprennent leur place, classés avec soin, prêts à être revus en famille.",
+    body: "Une galerie organisée par moments et par proches. Les souvenirs visuels reprennent leur place, prêts à être revus en famille.",
   },
   voix: {
     index: "03",
@@ -308,14 +308,15 @@ const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: 
         Le timbre de sa voix, <em className="text-primary not-italic font-serif-display italic">préservé</em>.
       </>
     ),
-    body: "Messages vocaux, enregistrements, anecdotes racontées par ses proches. Ce que l'écrit ne peut transmettre — la respiration, le rire, l'intonation — trouve ici son refuge.",
+    body: "Messages vocaux, enregistrements, anecdotes racontées par ses proches. Ce que l'écrit ne peut transmettre trouve ici son refuge.",
+    quote: "Le rire qu'on commence à oublier. L'intonation exacte. Le souffle avant les mots.",
   },
 };
 
 const PillarSection = ({ pillarId, reverse }: { pillarId: PillarId; reverse?: boolean }) => {
-  const { index, eyebrow, title, body } = PILLAR_CONTENT[pillarId];
+  const { index, eyebrow, title, body, quote } = PILLAR_CONTENT[pillarId];
   return (
-    <section className="py-20 lg:py-28 bg-background">
+    <section className="py-20 lg:py-28" style={{ backgroundColor: "#FAF8F5" }}>
       <div className="container mx-auto px-6 max-w-6xl">
         <Reveal>
           <div
@@ -332,22 +333,19 @@ const PillarSection = ({ pillarId, reverse }: { pillarId: PillarId; reverse?: bo
               <h3 className="font-serif-display text-3xl lg:text-4xl font-bold leading-[1.15] text-foreground">
                 {title}
               </h3>
+              {quote && (
+                <p className="mt-6 font-serif-display italic text-lg text-muted-foreground leading-snug max-w-md">
+                  {quote}
+                </p>
+              )}
               <p className="mt-6 text-[15px] text-muted-foreground leading-relaxed max-w-md">{body}</p>
             </div>
 
             {/* Visuel — 3 colonnes */}
             <div className="lg:col-span-3">
               <div
-                className="rounded-3xl overflow-hidden min-h-[360px] lg:min-h-[440px] relative shadow-2xl"
-                style={{ background: "linear-gradient(135deg, #2C221B 0%, #1a1208 100%)" }}
+                className="rounded-3xl overflow-hidden min-h-[360px] lg:min-h-[440px] relative bg-card border-[0.5px] border-border/60 shadow-soft"
               >
-                <div
-                  className="absolute inset-0 opacity-40"
-                  style={{
-                    background:
-                      "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
-                  }}
-                />
                 <div className="relative h-full">
                   <PillarVisual active={pillarId} />
                 </div>
