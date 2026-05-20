@@ -405,9 +405,9 @@ const _MemorialLPInner = () => {
             background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
           }}
         />
-        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-0 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
           {/* TEXT — left */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left">
+          <div className="w-full lg:w-1/2 text-center lg:text-left lg:pl-0">
             <h1
               className="font-serif-display font-normal leading-[1.05] text-white/95"
               style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
@@ -429,7 +429,7 @@ const _MemorialLPInner = () => {
 
           {/* VISUAL — right */}
           <div className="w-full lg:w-1/2">
-            <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] h-[320px] sm:h-[400px] lg:h-[480px]">
+            <div className="overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] h-[320px] sm:h-[400px] lg:h-[600px] rounded-3xl lg:rounded-none">
               <img
                 src={heroHandBlock}
                 alt="Stèle Stela en noyer gravée Jean-Claude Dubois, tenue à la main avec le sanctuaire numérique sur smartphone"
