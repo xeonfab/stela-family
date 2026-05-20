@@ -1,14 +1,40 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+  const transparentMode = pathname.toLowerCase() === "/memoriallp";
+
+  useEffect(() => {
+    if (!transparentMode) return;
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.6);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [transparentMode]);
+
+  const isTransparent = transparentMode && !scrolled;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/80 border-b-[0.5px] border-border/20">
+    <nav
+      className={
+        "fixed top-0 left-0 right-0 z-50 transition-colors duration-500 " +
+        (isTransparent
+          ? "bg-transparent border-b-[0.5px] border-transparent"
+          : "backdrop-blur-xl bg-background/80 border-b-[0.5px] border-border/20")
+      }
+    >
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
-        <span className="font-serif-display text-2xl font-bold tracking-tight text-foreground">
+        <span
+          className={
+            "font-serif-display text-2xl font-bold tracking-tight transition-colors duration-500 " +
+            (isTransparent ? "text-white" : "text-foreground")
+          }
+        >
           Stela
         </span>
 
@@ -21,7 +47,10 @@ const Navbar = () => {
         </Button>
 
         {/* Mobile toggle */}
-        <button className="md:hidden" onClick={() => setOpen(!open)}>
+        <button
+          className={"md:hidden " + (isTransparent ? "text-white" : "text-foreground")}
+          onClick={() => setOpen(!open)}
+        >
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
