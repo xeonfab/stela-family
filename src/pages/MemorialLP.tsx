@@ -16,6 +16,7 @@ import steleMains from "@/assets/stele-mains.jpg";
 import steleVersoLaiton from "@/assets/stele-verso-laiton.jpg";
 import steleChanfrein from "@/assets/stele-chanfrein.jpg";
 import steleFlatlay from "@/assets/stele-flatlay.jpg";
+import familleBretagne from "@/assets/famille-bretagne-1987.jpg";
 
 const SteleGallery = () => {
   const photos = [
@@ -225,65 +226,60 @@ type PillarId = (typeof PILLARS)[number]["id"];
 const PillarVisual = ({ active }: { active: PillarId }) => {
   if (active === "mots") {
     return (
-      <div className="h-full flex flex-col justify-center px-10 py-14 lg:px-14">
-        <Quote size={32} className="text-primary/70 mb-8" />
-        <p className="font-serif-display italic text-2xl lg:text-3xl text-[#FAFAFA] leading-snug">
-          « Il avait toujours cette phrase, quand on doutait :{" "}
-          <span className="text-primary">"On verra demain, mais on n'oublie pas aujourd'hui."</span> »
+      <div className="h-full flex flex-col justify-center items-center text-center px-8 py-16 lg:px-16">
+        <p className="font-serif-display italic text-2xl lg:text-[28px] text-foreground leading-snug max-w-md">
+          « Il avait toujours cette phrase, quand on doutait : "On verra demain, mais on n'oublie pas aujourd'hui." »
         </p>
-        <div className="mt-10 flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/40" />
-          <div>
-            <p className="text-[13px] text-[#FAFAFA] font-medium">Claire, sa fille</p>
-            <p className="text-[11px] tracking-[0.2em] uppercase text-white/40">Déposé un mardi</p>
-          </div>
-        </div>
+        <p className="mt-8 text-[13px] text-muted-foreground">Claire, sa fille</p>
       </div>
     );
   }
   if (active === "photos") {
     return (
-      <div className="h-full flex flex-col justify-center px-8 py-12 lg:px-12">
-        <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Été 1987 — Bretagne</p>
-        <div className="grid grid-cols-3 gap-3">
-          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#8A7258]/60 to-[#3A2A1A]/80" />
-          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#5a3a22]/70 to-[#2a1a0e]/90" />
-          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#3A2D22]/80 to-[#1a1208]/90 flex items-center justify-center">
-            <Play size={18} className="text-primary/80 ml-0.5" />
-          </div>
+      <div className="h-full flex flex-col justify-center px-2 py-2">
+        <div className="rounded-2xl overflow-hidden">
+          <img
+            src={familleBretagne}
+            alt="Photo de famille — Été 1987, Bretagne"
+            width={1280}
+            height={960}
+            loading="lazy"
+            className="w-full h-auto object-cover"
+          />
         </div>
-        <p className="mt-6 text-[12px] text-white/50 italic">12 souvenirs · partagés par 4 proches</p>
+        <p className="mt-4 text-[12px] text-muted-foreground italic text-center">
+          Été 1987 — Bretagne · Partagé par 4 proches
+        </p>
       </div>
     );
   }
   return (
-    <div className="h-full flex flex-col justify-center px-10 py-14 lg:px-14">
-      <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Message vocal</p>
-      <p className="font-serif-display italic text-xl text-[#FAFAFA] mb-8">« Joyeux anniversaire ma chérie… »</p>
+    <div className="h-full flex flex-col justify-center px-8 py-14 lg:px-14">
+      <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-5">Message vocal</p>
+      <p className="font-serif-display italic text-xl lg:text-2xl text-foreground mb-8 leading-snug">
+        « Joyeux anniversaire ma chérie… »
+      </p>
       <div className="flex items-center gap-4">
-        <button className="w-12 h-12 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center flex-shrink-0">
-          <Play size={16} className="text-primary ml-0.5" />
+        <button className="w-11 h-11 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-sm">
+          <Play size={14} className="text-primary-foreground ml-0.5" fill="currentColor" />
         </button>
-        <div className="flex-1 flex items-end gap-[3px] h-10">
+        <div className="flex-1 flex items-end gap-[3px] h-9">
           {Array.from({ length: 38 }).map((_, i) => (
             <span
               key={i}
-              className="flex-1 bg-primary/60 rounded-full"
+              className="flex-1 bg-primary/70 rounded-full"
               style={{ height: `${20 + Math.abs(Math.sin(i * 0.7)) * 80}%` }}
             />
           ))}
         </div>
+        <span className="text-[11px] tabular-nums text-muted-foreground">0:42</span>
       </div>
-      <div className="mt-8 flex items-center justify-between text-[11px] text-white/50">
-        <span>0:00</span>
-        <span>Déposé par Pierre, son frère</span>
-        <span>0:42</span>
-      </div>
+      <p className="mt-6 text-[12px] text-muted-foreground italic">Déposé par Pierre, son frère</p>
     </div>
   );
 };
 
-const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: React.ReactNode; body: string }> = {
+const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: React.ReactNode; body: string; quote?: string }> = {
   mots: {
     index: "01",
     eyebrow: "Les Mots",
@@ -302,7 +298,7 @@ const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: 
         Les instants partagés, <em className="text-primary not-italic font-serif-display italic">retrouvés</em>.
       </>
     ),
-    body: "Une galerie curatée, organisée par moments et par proches. Les souvenirs visuels reprennent leur place, classés avec soin, prêts à être revus en famille.",
+    body: "Une galerie organisée par moments et par proches. Les souvenirs visuels reprennent leur place, prêts à être revus en famille.",
   },
   voix: {
     index: "03",
@@ -312,14 +308,15 @@ const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: 
         Le timbre de sa voix, <em className="text-primary not-italic font-serif-display italic">préservé</em>.
       </>
     ),
-    body: "Messages vocaux, enregistrements, anecdotes racontées par ses proches. Ce que l'écrit ne peut transmettre — la respiration, le rire, l'intonation — trouve ici son refuge.",
+    body: "Messages vocaux, enregistrements, anecdotes racontées par ses proches. Ce que l'écrit ne peut transmettre trouve ici son refuge.",
+    quote: "Le rire qu'on commence à oublier. L'intonation exacte. Le souffle avant les mots.",
   },
 };
 
 const PillarSection = ({ pillarId, reverse }: { pillarId: PillarId; reverse?: boolean }) => {
-  const { index, eyebrow, title, body } = PILLAR_CONTENT[pillarId];
+  const { index, eyebrow, title, body, quote } = PILLAR_CONTENT[pillarId];
   return (
-    <section className="py-20 lg:py-28 bg-background">
+    <section className="py-20 lg:py-28" style={{ backgroundColor: "#FAF8F5" }}>
       <div className="container mx-auto px-6 max-w-6xl">
         <Reveal>
           <div
@@ -336,22 +333,19 @@ const PillarSection = ({ pillarId, reverse }: { pillarId: PillarId; reverse?: bo
               <h3 className="font-serif-display text-3xl lg:text-4xl font-bold leading-[1.15] text-foreground">
                 {title}
               </h3>
+              {quote && (
+                <p className="mt-6 font-serif-display italic text-lg text-muted-foreground leading-snug max-w-md">
+                  {quote}
+                </p>
+              )}
               <p className="mt-6 text-[15px] text-muted-foreground leading-relaxed max-w-md">{body}</p>
             </div>
 
             {/* Visuel — 3 colonnes */}
             <div className="lg:col-span-3">
               <div
-                className="rounded-3xl overflow-hidden min-h-[360px] lg:min-h-[440px] relative shadow-2xl"
-                style={{ background: "linear-gradient(135deg, #2C221B 0%, #1a1208 100%)" }}
+                className="rounded-3xl overflow-hidden min-h-[360px] lg:min-h-[440px] relative bg-card border-[0.5px] border-border/60 shadow-soft"
               >
-                <div
-                  className="absolute inset-0 opacity-40"
-                  style={{
-                    background:
-                      "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
-                  }}
-                />
                 <div className="relative h-full">
                   <PillarVisual active={pillarId} />
                 </div>
@@ -368,7 +362,7 @@ const SanctuaireSection = () => {
   return (
     <>
       {/* Intro */}
-      <section className="pt-24 pb-8 bg-background lg:pt-[64px]">
+      <section className="pt-24 pb-8 lg:pt-[64px]" style={{ backgroundColor: "#FAF8F5" }}>
         <div className="container mx-auto px-6 max-w-6xl">
           <Reveal>
             <div className="text-center max-w-3xl mx-auto">
@@ -378,8 +372,8 @@ const SanctuaireSection = () => {
                 <br />
                 <em className="text-primary not-italic font-serif-display italic">Une seule mémoire.</em>
               </h2>
-              <p className="mt-6 text-[15px] text-muted-foreground max-w-[560px] mx-auto leading-relaxed">
-                Construisez son Sanctuaire <em className="text-primary not-italic italic">ensemble</em>. Invitez ses proches en un clic : Stela les guide pas à pas, avec des questions douces pour les aider à trouver les mots, raviver les souvenirs et partager leurs photos simplement.
+              <p className="mt-6 text-[15px] text-muted-foreground max-w-[680px] mx-auto leading-relaxed">
+                Ce que la mémoire ne peut pas retenir seule — les mots exacts, le timbre de la voix, les instants photographiés — le Sanctuaire les garde, pour toute la famille, pour une génération.
               </p>
             </div>
           </Reveal>
