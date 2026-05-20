@@ -505,7 +505,7 @@ const _MemorialLPInner = () => {
                 <em className="text-primary not-italic font-serif-display italic">Le Sanctuaire s'ouvre.</em>
               </h2>
               <p className="font-sans italic text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                Un bloc de noyer massif gravé à son nom. Un effleurement suffit — pas d'application, pas de mot de passe. Sa mémoire est là, pour toute la famille.
+                Un bloc de noyer massif gravé à son nom. Un effleurement suffit. Pas d'application, pas de mot de passe. Sa mémoire est là, pour toute la famille.
               </p>
             </div>
           </Reveal>
