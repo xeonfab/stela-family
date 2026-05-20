@@ -432,11 +432,11 @@ const _MemorialLPInner = () => {
 
           {/* VISUAL — right */}
           <div className="w-full lg:w-1/2">
-            <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
+            <div className="rounded-3xl overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] h-[320px] sm:h-[400px] lg:h-[480px]">
               <img
                 src={heroHandBlock}
                 alt="Stèle Stela en noyer gravée Jean-Claude Dubois, tenue à la main avec le sanctuaire numérique sur smartphone"
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover object-center"
                 loading="lazy"
               />
             </div>
