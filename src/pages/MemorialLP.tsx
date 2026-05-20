@@ -226,7 +226,7 @@ type PillarId = (typeof PILLARS)[number]["id"];
 const PillarVisual = ({ active }: { active: PillarId }) => {
   if (active === "mots") {
     return (
-      <div className="h-full flex flex-col justify-center items-center text-center px-8 py-10 lg:px-16 lg:py-12">
+      <div className="flex flex-col justify-center items-center text-center px-8 py-8 lg:px-16 lg:py-10">
         <p className="font-serif-display italic text-xl lg:text-2xl text-foreground leading-snug max-w-md">
           « Il avait toujours cette phrase, quand on doutait : "On verra demain, mais on n'oublie pas aujourd'hui." »
         </p>
@@ -255,7 +255,7 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
     );
   }
   return (
-    <div className="h-full flex flex-col justify-center px-8 py-12 lg:px-14">
+      <div className="flex flex-col justify-center px-8 py-8 lg:px-14 lg:py-10">
       <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-5">Message vocal</p>
       <p className="font-serif-display italic text-xl lg:text-2xl text-foreground mb-8 leading-snug">
         Jean-Claude, à sa fille.
@@ -346,7 +346,7 @@ const PillarSection = ({ pillarId, reverse }: { pillarId: PillarId; reverse?: bo
             {/* Visuel — 3 colonnes */}
             <div className="lg:col-span-3">
               <div
-                className="rounded-3xl overflow-hidden min-h-[260px] lg:min-h-[320px] relative bg-card border-[0.5px] border-border/60 shadow-soft"
+                className="rounded-3xl overflow-hidden relative bg-card border-[0.5px] border-border/60 shadow-soft"
               >
                 <div className="relative h-full">
                   <PillarVisual active={pillarId} />
