@@ -226,60 +226,55 @@ type PillarId = (typeof PILLARS)[number]["id"];
 const PillarVisual = ({ active }: { active: PillarId }) => {
   if (active === "mots") {
     return (
-      <div className="h-full flex flex-col justify-center px-10 py-14 lg:px-14">
-        <Quote size={32} className="text-primary/70 mb-8" />
-        <p className="font-serif-display italic text-2xl lg:text-3xl text-[#FAFAFA] leading-snug">
-          « Il avait toujours cette phrase, quand on doutait :{" "}
-          <span className="text-primary">"On verra demain, mais on n'oublie pas aujourd'hui."</span> »
+      <div className="h-full flex flex-col justify-center items-center text-center px-8 py-16 lg:px-16">
+        <p className="font-serif-display italic text-2xl lg:text-[28px] text-foreground leading-snug max-w-md">
+          « Il avait toujours cette phrase, quand on doutait : "On verra demain, mais on n'oublie pas aujourd'hui." »
         </p>
-        <div className="mt-10 flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/40" />
-          <div>
-            <p className="text-[13px] text-[#FAFAFA] font-medium">Claire, sa fille</p>
-            <p className="text-[11px] tracking-[0.2em] uppercase text-white/40">Déposé un mardi</p>
-          </div>
-        </div>
+        <p className="mt-8 text-[13px] text-muted-foreground">Claire, sa fille</p>
       </div>
     );
   }
   if (active === "photos") {
     return (
-      <div className="h-full flex flex-col justify-center px-8 py-12 lg:px-12">
-        <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Été 1987 — Bretagne</p>
-        <div className="grid grid-cols-3 gap-3">
-          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#8A7258]/60 to-[#3A2A1A]/80" />
-          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#5a3a22]/70 to-[#2a1a0e]/90" />
-          <div className="aspect-square rounded-xl bg-gradient-to-br from-[#3A2D22]/80 to-[#1a1208]/90 flex items-center justify-center">
-            <Play size={18} className="text-primary/80 ml-0.5" />
-          </div>
+      <div className="h-full flex flex-col justify-center px-2 py-2">
+        <div className="rounded-2xl overflow-hidden">
+          <img
+            src={familleBretagne}
+            alt="Photo de famille — Été 1987, Bretagne"
+            width={1280}
+            height={960}
+            loading="lazy"
+            className="w-full h-auto object-cover"
+          />
         </div>
-        <p className="mt-6 text-[12px] text-white/50 italic">12 souvenirs · partagés par 4 proches</p>
+        <p className="mt-4 text-[12px] text-muted-foreground italic text-center">
+          Été 1987 — Bretagne · Partagé par 4 proches
+        </p>
       </div>
     );
   }
   return (
-    <div className="h-full flex flex-col justify-center px-10 py-14 lg:px-14">
-      <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-6">Message vocal</p>
-      <p className="font-serif-display italic text-xl text-[#FAFAFA] mb-8">« Joyeux anniversaire ma chérie… »</p>
+    <div className="h-full flex flex-col justify-center px-8 py-14 lg:px-14">
+      <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-5">Message vocal</p>
+      <p className="font-serif-display italic text-xl lg:text-2xl text-foreground mb-8 leading-snug">
+        « Joyeux anniversaire ma chérie… »
+      </p>
       <div className="flex items-center gap-4">
-        <button className="w-12 h-12 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center flex-shrink-0">
-          <Play size={16} className="text-primary ml-0.5" />
+        <button className="w-11 h-11 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-sm">
+          <Play size={14} className="text-primary-foreground ml-0.5" fill="currentColor" />
         </button>
-        <div className="flex-1 flex items-end gap-[3px] h-10">
+        <div className="flex-1 flex items-end gap-[3px] h-9">
           {Array.from({ length: 38 }).map((_, i) => (
             <span
               key={i}
-              className="flex-1 bg-primary/60 rounded-full"
+              className="flex-1 bg-primary/70 rounded-full"
               style={{ height: `${20 + Math.abs(Math.sin(i * 0.7)) * 80}%` }}
             />
           ))}
         </div>
+        <span className="text-[11px] tabular-nums text-muted-foreground">0:42</span>
       </div>
-      <div className="mt-8 flex items-center justify-between text-[11px] text-white/50">
-        <span>0:00</span>
-        <span>Déposé par Pierre, son frère</span>
-        <span>0:42</span>
-      </div>
+      <p className="mt-6 text-[12px] text-muted-foreground italic">Déposé par Pierre, son frère</p>
     </div>
   );
 };
