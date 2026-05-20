@@ -503,13 +503,13 @@ const _MemorialLPInner = () => {
           {/* Header */}
           <Reveal>
             <div className="max-w-3xl mx-auto text-center">
-              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Le geste & la matière</p>
+              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">L'objet & le geste</p>
               <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight mb-6">
-                Touchez le bois.{" "}
-                <em className="text-primary not-italic font-serif-display italic">Retrouvez sa voix.</em>
+                Posez le téléphone.{" "}
+                <em className="text-primary not-italic font-serif-display italic">Le Sanctuaire s'ouvre.</em>
               </h2>
-              <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                Le recueillement s'invite chez vous. Stela donne une présence physique aux souvenirs à travers un objet d'artisanat chaleureux, conçu pour vivre au cœur de votre foyer.
+              <p className="font-sans italic text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+                Un bloc de noyer massif gravé à son nom. Un effleurement suffit — pas d'application, pas de mot de passe. Sa mémoire est là, pour toute la famille.
               </p>
             </div>
           </Reveal>
@@ -530,43 +530,9 @@ const _MemorialLPInner = () => {
             <SteleGallery />
           </Reveal>
 
-          {/* Specs grid */}
+          {/* Specs table + Quote */}
           <Reveal>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mt-20 lg:mt-28">
-              {[
-                {
-                  Icon: Leaf,
-                  title: "La noblesse du massif",
-                   text: "Façonnée en Noyer massif, ses arêtes adoucies et sa finition à l'huile naturelle offrent une chaleur authentique au toucher.",
-                },
-                {
-                  Icon: Feather,
-                  title: "Une empreinte inaltérable",
-                  text: "Une présence rassurante aux proportions parfaites. Le nom de votre proche y est finement gravé pour une trace élégante qui traverse le temps.",
-                },
-                {
-                  Icon: Smartphone,
-                  title: "Un geste naturel",
-                  text: "Un simple effleurement avec votre téléphone suffit. Grâce à la technologie sans contact, le bois s'éveille et le Sanctuaire s'ouvre instantanément.",
-                },
-                {
-                  Icon: Unlock,
-                  title: "Une simplicité absolue",
-                  text: "Pensé pour toute la famille. Aucun mot de passe à retenir, aucune application à installer. Des plus jeunes aux grands-parents, l'accès est immédiat.",
-                },
-              ].map(({ Icon, title, text }) => (
-                <div key={title} className="flex flex-col">
-                  <Icon className="w-6 h-6 text-primary mb-5" strokeWidth={1.25} />
-                  <h4 className="font-serif-display text-lg font-semibold mb-3 text-foreground">{title}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* Specs table */}
-          <Reveal>
-            <div className="mt-20 lg:mt-28 max-w-3xl mx-auto">
+            <div className="mt-20 lg:mt-28 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
               <dl className="divide-y divide-foreground/5">
                 {[
                   ["Noyer massif", "170 × 100 × 40 mm"],
@@ -585,6 +551,10 @@ const _MemorialLPInner = () => {
                   </div>
                 ))}
               </dl>
+
+              <blockquote className="font-serif-display italic text-xl lg:text-2xl leading-relaxed text-muted-foreground text-center lg:text-left px-4 lg:px-8">
+                « Aucun mot de passe. Aucune application à installer. Un simple effleurement avec votre téléphone — et sa voix, ses photos, ses mots sont là. Des plus jeunes aux grands-parents, l'accès est immédiat. »
+              </blockquote>
             </div>
           </Reveal>
         </div>
