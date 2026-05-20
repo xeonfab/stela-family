@@ -346,7 +346,7 @@ const PillarSection = ({ pillarId, reverse }: { pillarId: PillarId; reverse?: bo
             {/* Visuel — 3 colonnes */}
             <div className="lg:col-span-3">
               <div
-                className="rounded-3xl overflow-hidden min-h-[360px] lg:min-h-[440px] relative bg-card border-[0.5px] border-border/60 shadow-soft"
+                className="rounded-3xl overflow-hidden min-h-[260px] lg:min-h-[320px] relative bg-card border-[0.5px] border-border/60 shadow-soft"
               >
                 <div className="relative h-full">
                   <PillarVisual active={pillarId} />
