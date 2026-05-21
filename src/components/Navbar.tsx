@@ -43,6 +43,7 @@ const Navbar = () => {
         <Button
           variant="gold"
           className="hidden md:inline-flex px-6"
+          onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
         >
           Créer son sanctuaire
         </Button>
@@ -58,7 +59,14 @@ const Navbar = () => {
 
       {open && (
         <div className="md:hidden px-6 pb-4">
-          <Button variant="gold" className="w-full">
+          <Button
+            variant="gold"
+            className="w-full"
+            onClick={() => {
+              setOpen(false);
+              document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             Créer son sanctuaire
           </Button>
         </div>
