@@ -211,6 +211,15 @@ const PricingCard = ({
           variant={btnVariant}
           onClick={handleClick}
           className={`w-full py-6 ${isDark ? "border-primary text-primary hover:bg-primary/10" : ""}`}
+          data-pricing-tier={
+            trackContentId === "free_tier"
+              ? "free"
+              : trackContentId === "sanctuary_tier"
+                ? "sanctuary"
+                : trackContentId === "complete_tier"
+                  ? "complete"
+                  : undefined
+          }
         >
           {cta}
         </Button>
