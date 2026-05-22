@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Play, ShieldCheck, Users, Quote, Leaf, Feather, Smartphone, Unlock } from "lucide-react";
+import { Check, Play, ShieldCheck, Users, Quote, Leaf, Feather, Smartphone, Unlock, Lock, Home } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState, useRef, useEffect } from "react";
 import WaitlistDialog from "@/components/WaitlistDialog";
@@ -720,6 +720,27 @@ const _MemorialLPInner = () => {
                 trackContentId="free_tier"
               />
 
+            </div>
+          </Reveal>
+
+          {/* Bande de réassurance */}
+          <Reveal>
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border/60">
+              {[
+                { Icon: Lock, title: "Vos données vous appartiennent", subtitle: "Exportables à tout moment" },
+                { Icon: ShieldCheck, title: "Garanti 25 ans", subtitle: "Hébergement provisionné sur compte tiers dédié" },
+                { Icon: Home, title: "Fabriqué en France", subtitle: "Ébénisterie française, noyer massif" },
+              ].map(({ Icon, title, subtitle }) => (
+                <div key={title} className="flex flex-col items-center text-center px-6 py-6">
+                  <Icon className="w-5 h-5 text-primary mb-3" strokeWidth={1.25} />
+                  <p className="text-[12px] uppercase tracking-[0.18em] text-primary font-medium">
+                    {title}
+                  </p>
+                  <p className="text-[11px] italic text-muted-foreground mt-1.5">
+                    {subtitle}
+                  </p>
+                </div>
+              ))}
             </div>
           </Reveal>
 
