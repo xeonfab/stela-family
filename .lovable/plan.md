@@ -1,39 +1,33 @@
-## Installer le Meta Pixel (ID 36437510)
+## Contexte
+Modification de la section "L'objet & le geste" sur la landing page `/memoriallp`.
 
-### Constat
-- `index.html` ne contient pas le code d'initialisation Meta Pixel.
-- Les boutons de `/memoriallp` appellent déjà `fbq('track', 'InitiateCheckout', …)`, mais protégés par `if (window.fbq)` → aujourd'hui ils ne font rien.
-- Aucun `PageView` n'est envoyé non plus.
+## Changements
 
-### Modifications
+### 1. Ligne de provenance sous l'eyebrow
+Sous le `<p>` eyebrow "L'objet & le geste", ajouter :
+> "ÉBÉNISTERIE FRANÇAISE · NOYER MASSIF · FAIT À LA MAIN"
 
-**1. `index.html` — injecter le Pixel dans `<head>`**
+Style : petites capitales, couleur primary (doré), tracking large, texte très petit, centré.
 
-Ajouter juste avant `</head>` :
+### 2. Bloc artisanal sous le tableau de specs
+Sous le `<dl>` du tableau de specs (colonne de gauche), ajouter un bloc texte :
+> "Chaque stèle est façonnée à la main par un ébéniste français. Le noyer est sélectionné pour ses veines, huilé pour durer. Conçu pour traverser les générations."
 
-```html
-<!-- Meta Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '36437510');
-  fbq('track', 'PageView');
-</script>
-<!-- End Meta Pixel Code -->
-```
+Style :
+- Police : Cormorant Garamond italic (nouvelle police Google Fonts à importer)
+- Taille : identique à la citation existante (`text-xl lg:text-2xl`)
+- Couleur : `text-muted-foreground`
+- Alignement : gauche (`text-left`)
 
-**Note technique :** le `<noscript><img></noscript>` du fallback ne peut **pas** être placé dans `<head>` (contrainte HTML5 du projet). Il sera ajouté dans `<body>`, juste après `<div id="root"></div>`.
+### 3. Import police
+Ajouter Cormorant Garamond (italique 400/500/600) à l'import Google Fonts dans `src/index.css`.
 
-### Effet
-- `PageView` envoyé sur le chargement initial de toutes les pages (SPA → un seul PageView par session, comportement standard).
-- Les 3 boutons de `/memoriallp` (`btn-pricing-free`, `btn-pricing-99`, `btn-pricing-249`) déclencheront enfin leur `InitiateCheckout`.
+## Fichiers concernés
+- `src/index.css` — ajout de la police
+- `src/pages/MemorialLP.tsx` — insertion des deux éléments
 
-### Hors scope
-- Pas de tracking SPA des changements de route (à demander séparément si besoin de PageView par navigation).
-- Pas de modification de la logique des boutons (déjà en place).
+## Étapes techniques
+1. Mettre à jour l'import Google Fonts dans `index.css`
+2. Ajouter la ligne de provenance sous l'eyebrow (ligne ~529)
+3. Envelopper le `<dl>` des specs dans une `<div>` et ajouter le bloc texte en dessous (ligne ~576)
+4. Vérifier le rendu visuel dans l'aperçu
