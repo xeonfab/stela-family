@@ -527,6 +527,7 @@ const _MemorialLPInner = () => {
           <Reveal>
             <div className="max-w-3xl mx-auto text-center">
               <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">L'objet & le geste</p>
+              <p className="text-[10px] tracking-[0.3em] uppercase text-primary/80 mb-6">Ébénisterie française · Noyer massif · Fait à la main</p>
               <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight mb-6">
                 Posez le téléphone.{" "}
                 <em className="text-primary not-italic font-serif-display italic">Le Sanctuaire s'ouvre.</em>
@@ -556,6 +557,7 @@ const _MemorialLPInner = () => {
           {/* Specs table + Quote */}
           <Reveal>
             <div className="mt-20 lg:mt-28 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+              <div>
               <dl className="divide-y divide-foreground/5">
                 {[
                   ["Noyer massif", "170 × 100 × 40 mm"],
@@ -574,6 +576,10 @@ const _MemorialLPInner = () => {
                   </div>
                 ))}
               </dl>
+              <p className="mt-8 italic text-xl lg:text-2xl leading-relaxed text-muted-foreground text-left px-5" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                Chaque stèle est façonnée à la main par un ébéniste français. Le noyer est sélectionné pour ses veines, huilé pour durer. Conçu pour traverser les générations.
+              </p>
+              </div>
 
               <blockquote className="font-serif-display italic text-xl lg:text-2xl leading-relaxed text-muted-foreground text-center lg:text-left px-4 lg:px-8">
                 « Aucun mot de passe. Aucune application à installer. Un simple effleurement avec votre téléphone — et sa voix, ses photos, ses mots sont là. Des plus jeunes aux grands-parents, l'accès est immédiat. »
