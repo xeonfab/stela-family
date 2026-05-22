@@ -6,6 +6,7 @@ import { Check, Play, ShieldCheck, Users, Quote, Leaf, Feather, Smartphone, Unlo
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState, useRef, useEffect } from "react";
 import WaitlistDialog from "@/components/WaitlistDialog";
+import { Helmet } from "react-helmet-async";
 
 import jeanClaudePortrait from "@/assets/jean-claude-portrait-new.jpg";
 import heroHandBlock from "@/assets/stela-hand-block.jpg";
@@ -425,6 +426,11 @@ const _MemorialLPInner = () => {
   const openWaitlist = () => setWaitlistOpen(true);
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://stela.family/" />
+        <meta property="og:url" content="https://stela.family/" />
+      </Helmet>
       <Navbar />
 
       {/* 1 — HERO */}
