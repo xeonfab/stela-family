@@ -1,14 +1,31 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: *
-Allow: /
+Allow: /$
+Disallow: /pro
+Disallow: /stela-hq
+Disallow: /memorial-admin
+Disallow: /moderation
+Disallow: /onboarding
+Disallow: /profil
+Disallow: /acces
+Disallow: /code-acces
+Disallow: /connexion
+Disallow: /bienvenue
+Disallow: /email-preview
+Disallow: /design-system
+Disallow: /components
+Disallow: /copy-home
+Disallow: /memoriallp2
+Disallow: /invitation
+Disallow: /invitation-privee
+Disallow: /mes-sanctuaires
+Disallow: /capacite
+Disallow: /kit-ceremonie
+Disallow: /confidentialite
+Disallow: /sanctuaire
+Disallow: /memorial
+Disallow: /memorial30
+Disallow: /memorial-public
+Disallow: /officiants
+Disallow: /pompe-funebre
+
+Sitemap: https://stela.family/sitemap.xml
