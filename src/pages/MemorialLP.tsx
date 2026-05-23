@@ -708,7 +708,7 @@ const _MemorialLPInner = () => {
                 desc="Pour déposer les premiers souvenirs et ressentir ce que le Sanctuaire peut faire pour votre famille."
                 features={[
                   "Sanctuaire activé immédiatement",
-                  "Les trois chambres — Mots, Photos, Voix",
+                  "Les trois espaces : Mots, Photos, vidéos, Voix pour déposer vos souvenirs",
                   "Accès famille complet",
                 ]}
                 cta="Activer gratuitement"
