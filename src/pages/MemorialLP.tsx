@@ -754,7 +754,7 @@ const _MemorialLPInner = () => {
                 </p>
               </div>
               <div className="flex items-center gap-6">
-                <p className="font-serif-display text-3xl font-bold">€179</p>
+                <p className="font-serif-display text-3xl font-bold">€149</p>
               </div>
             </div>
           </Reveal>
