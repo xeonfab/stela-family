@@ -750,7 +750,7 @@ const _MemorialLPInner = () => {
                 <p className="text-xs tracking-[0.25em] uppercase text-primary mb-2">Stèles additionnelles</p>
                 <h4 className="font-serif-display text-xl font-medium mb-1">Une stèle pour chaque foyer</h4>
                 <p className="text-sm text-muted-foreground">
-                  Noyer massif · Gravure identique · NFC relié au même Sanctuaire
+                  Noyer massif · Gravure identique · Relié au même Sanctuaire
                 </p>
               </div>
               <div className="flex items-center gap-6">
