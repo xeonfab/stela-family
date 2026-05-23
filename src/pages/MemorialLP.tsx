@@ -710,7 +710,6 @@ const _MemorialLPInner = () => {
                   "Sanctuaire activé immédiatement",
                   "Les trois chambres — Mots, Photos, Voix",
                   "Accès famille complet",
-                  "Le Parvis — condoléances 30 jours",
                 ]}
                 cta="Activer gratuitement"
                 onCtaClick={openWaitlist}
