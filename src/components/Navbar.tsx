@@ -33,7 +33,7 @@ const Navbar = () => {
         <span
           className={
             "font-serif-display text-2xl font-bold tracking-tight transition-colors duration-500 " +
-            (isTransparent ? "text-white" : "text-foreground")
+            (isTransparent ? "text-slate-800" : "text-foreground")
           }
         >
           Stela
@@ -50,7 +50,7 @@ const Navbar = () => {
 
         {/* Mobile toggle */}
         <button
-          className={"md:hidden " + (isTransparent ? "text-white" : "text-foreground")}
+          className={"md:hidden " + (isTransparent ? "text-slate-800" : "text-foreground")}
           onClick={() => setOpen(!open)}
         >
           {open ? <X size={24} /> : <Menu size={24} />}
