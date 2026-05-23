@@ -29,48 +29,11 @@ const Navbar = () => {
           : "backdrop-blur-xl bg-background/80 border-b-[0.5px] border-border/20")
       }
     >
-      <div className="container mx-auto flex items-center justify-between h-16 px-6">
-        <span
-          className={
-            "font-serif-display text-2xl font-bold tracking-tight transition-colors duration-500 " +
-            (isTransparent ? "text-white" : "text-foreground")
-          }
-        >
+      <div className="container mx-auto flex items-center h-16 px-6">
+        <span className="font-serif-display text-2xl font-bold tracking-tight text-foreground">
           Stela
         </span>
-
-        {/* Desktop */}
-        <Button
-          variant="gold"
-          className="hidden md:inline-flex px-6"
-          onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
-        >
-          Créer son sanctuaire
-        </Button>
-
-        {/* Mobile toggle */}
-        <button
-          className={"md:hidden " + (isTransparent ? "text-white" : "text-foreground")}
-          onClick={() => setOpen(!open)}
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
-
-      {open && (
-        <div className="md:hidden px-6 pb-4">
-          <Button
-            variant="gold"
-            className="w-full"
-            onClick={() => {
-              setOpen(false);
-              document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Créer son sanctuaire
-          </Button>
-        </div>
-      )}
     </nav>
   );
 };
