@@ -667,7 +667,7 @@ const _MemorialLPInner = () => {
                 desc="Pour commencer, avant de choisir votre stèle."
                 features={[
                   "Tout l'accès gratuit, pour toujours",
-                  "5GB de stockage · Garanti 25 ans",
+                  "5GB de souvenirs · Garanti 25 ans",
                   "Export complet des données",
                   "Stèle commandable à tout moment",
                 ]}
