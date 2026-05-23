@@ -434,25 +434,25 @@ const _MemorialLPInner = () => {
       <Navbar />
 
       {/* 1 — HERO */}
-      <section className="relative bg-[#2C221B] text-[#FAFAFA] overflow-hidden flex items-center">
+      <section className="relative bg-[#FAFAFA] text-[#2C2C2C] overflow-hidden flex items-center">
         <div
-          className="absolute inset-0 opacity-60"
+          className="absolute inset-0 opacity-40"
           style={{
-            background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.15) 0%, transparent 60%)",
+            background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.08) 0%, transparent 60%)",
           }}
         />
         <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-0 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* TEXT — left */}
           <div className="w-full lg:w-1/2 text-center lg:text-left lg:pl-0">
             <h1
-              className="font-serif-display font-normal leading-[1.05] text-white/95"
+              className="font-serif-display font-normal leading-[1.05] text-[#2C2C2C]/95"
               style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
             >
               Sa mémoire mérite un endroit.
             </h1>
             <div
               className="mt-8 font-serif-display italic text-[18px] lg:text-[22px] max-w-xl mx-auto lg:mx-0"
-              style={{ color: "rgba(255,255,255,0.55)" }}
+              style={{ color: "rgba(44,44,44,0.55)" }}
             >
               <p>Sa voix. Ses mots. Les instants qu'on croyait perdus.<br />Réunis pour toute la famille, pour une génération.</p>
             </div>
@@ -465,7 +465,7 @@ const _MemorialLPInner = () => {
 
           {/* VISUAL — right */}
           <div className="w-full lg:w-1/2">
-            <div className="overflow-hidden border-[0.5px] border-white/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] h-[320px] sm:h-[400px] lg:h-[600px] rounded-3xl lg:rounded-none">
+            <div className="overflow-hidden border-[0.5px] border-[#2C2C2C]/10 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.15)] h-[320px] sm:h-[400px] lg:h-[600px] rounded-3xl lg:rounded-none">
               <img
                 src={heroHandBlock}
                 alt="Stèle Stela en noyer gravée Jean-Claude Dubois, tenue à la main avec le sanctuaire numérique sur smartphone"
@@ -477,9 +477,9 @@ const _MemorialLPInner = () => {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#2C2C2C]/40">
           <span className="text-[9px] tracking-[0.3em] uppercase">Découvrir</span>
-          <span className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent" />
+          <span className="w-px h-10 bg-gradient-to-b from-[#2C2C2C]/40 to-transparent" />
         </div>
       </section>
 
