@@ -299,8 +299,29 @@ const PILLAR_CONTENT = {
   },
 };
 
+type PillarId = "mots" | "photos" | "voix";
+
+const PillarVisual = ({ active }: { active: PillarId }) => {
+  const map: Record<PillarId, { src: string; alt: string }> = {
+    mots: { src: jeanClaudePortrait, alt: "Les Mots" },
+    photos: { src: familleBretagne, alt: "Les Photos, Vidéos & Voix" },
+    voix: { src: steleMains, alt: "Les Voix" },
+  };
+  const { src, alt } = map[active];
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="w-full h-full object-cover aspect-[4/3]"
+      loading="lazy"
+    />
+  );
+};
+
 const PillarSection = ({ pillarId, reverse }: { pillarId: PillarId; reverse?: boolean }) => {
-  const { index, eyebrow, title, body, quote } = PILLAR_CONTENT[pillarId];
+  const content = PILLAR_CONTENT[pillarId];
+  const { index, eyebrow, title, body } = content;
+  const quote = "quote" in content ? content.quote : undefined;
   return (
     <section className="py-14 lg:py-20" style={{ backgroundColor: "#FAF8F5" }}>
       <div className="container mx-auto px-6 max-w-6xl">
