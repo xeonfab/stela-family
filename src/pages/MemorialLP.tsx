@@ -299,6 +299,25 @@ const PILLAR_CONTENT = {
   },
 };
 
+type PillarId = "mots" | "photos" | "voix";
+
+const PillarVisual = ({ active }: { active: PillarId }) => {
+  const map: Record<PillarId, { src: string; alt: string }> = {
+    mots: { src: jeanClaudePortrait, alt: "Les Mots" },
+    photos: { src: familleBretagne, alt: "Les Photos, Vidéos & Voix" },
+    voix: { src: steleMains, alt: "Les Voix" },
+  };
+  const { src, alt } = map[active];
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="w-full h-full object-cover aspect-[4/3]"
+      loading="lazy"
+    />
+  );
+};
+
 const PillarSection = ({ pillarId, reverse }: { pillarId: PillarId; reverse?: boolean }) => {
   const { index, eyebrow, title, body, quote } = PILLAR_CONTENT[pillarId];
   return (
