@@ -331,7 +331,7 @@ const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: 
         Les instants partagés, <em className="text-primary not-italic font-serif-display italic">retrouvés</em>.
       </>
     ),
-    body: "Une galerie organisée par moments et par proches. Les souvenirs visuels reprennent leur place, prêts à être revus en famille.",
+    body: "Une galerie organisée par moments et par proches. Le rire qu'on commence à oublier. L'intonation exacte. Les souvenirs reprennent leur place, prêts à être revus en famille.",
   },
   voix: {
     index: "03",
