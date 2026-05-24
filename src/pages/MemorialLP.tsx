@@ -243,7 +243,41 @@ const PILLARS = [
   {
     id: "photos",
     label: "Les Photos, Vidéos & Voix",
-...
+    eyebrow: "Les Photos, Vidéos & Voix",
+    title: (
+      <>
+        Les instants partagés, <em className="text-primary not-italic font-serif-display italic">retrouvés</em>.
+      </>
+    ),
+    body: "Une galerie organisée par moments et par proches. Le rire qu'on commence à oublier. L'intonation exacte. Les souvenirs reprennent leur place, prêts à être revus en famille.",
+  },
+  {
+    id: "voix",
+    label: "Les Voix",
+    eyebrow: "Les Voix",
+    title: (
+      <>
+        Le timbre de sa voix, <em className="text-primary not-italic font-serif-display italic">préservé</em>.
+      </>
+    ),
+    body: "Messages vocaux, enregistrements, anecdotes racontées par ses proches. Ce que l'écrit ne peut transmettre trouve ici son refuge.",
+    quote: "Le rire qu'on commence à oublier. L'intonation exacte. Le souffle avant les mots.",
+  },
+];
+
+const PILLAR_CONTENT = {
+  mots: {
+    index: "01",
+    eyebrow: "Les Mots",
+    title: (
+      <>
+        Les phrases qu'il <em className="text-primary not-italic font-serif-display italic">répétait</em>, conservées.
+      </>
+    ),
+    body: "Anecdotes, citations, lettres, messages déposés par celles et ceux qui l'ont aimé. Chaque mot vient enrichir un récit collectif, à l'abri du temps.",
+  },
+  photos: {
+    index: "02",
     eyebrow: "Les Photos, Vidéos & Voix",
     title: (
       <>
