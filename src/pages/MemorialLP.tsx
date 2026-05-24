@@ -242,90 +242,9 @@ const PILLARS = [
   },
   {
     id: "photos",
-    label: "Les Photos & Vidéos",
-    eyebrow: "Une galerie curatée",
-  },
-  {
-    id: "voix",
-    label: "Les Voix",
-    eyebrow: "Sa voix, préservée",
-  },
-] as const;
-
-type PillarId = (typeof PILLARS)[number]["id"];
-
-const PillarVisual = ({ active }: { active: PillarId }) => {
-  if (active === "mots") {
-    return (
-      <div className="flex flex-col justify-center items-center text-center px-8 py-8 lg:px-16 lg:py-10">
-        <p className="font-serif-display italic text-xl lg:text-2xl text-foreground leading-snug max-w-md">
-          « Il avait toujours cette phrase, quand on doutait : "On verra demain, mais on n'oublie pas aujourd'hui." »
-        </p>
-        <span className="mt-7 block h-px w-8 bg-primary" aria-hidden="true" />
-        <p className="mt-3 text-[12px] font-medium tracking-[0.1em] uppercase text-foreground">Claire, sa fille</p>
-      </div>
-    );
-  }
-  if (active === "photos") {
-    return (
-      <div className="h-full flex flex-col justify-center px-2 py-2">
-        <div className="rounded-2xl overflow-hidden">
-          <img
-            src={familleBretagne}
-            alt="Photo de famille — Été 1987, Bretagne"
-            width={1280}
-            height={960}
-            loading="lazy"
-            className="w-full h-auto object-cover"
-          />
-        </div>
-        <p className="mt-4 text-[12px] text-muted-foreground italic text-center">
-          Été 1987 — Bretagne · Partagé par 4 proches
-        </p>
-      </div>
-    );
-  }
-  return (
-      <div className="flex flex-col justify-center px-8 py-8 lg:px-14 lg:py-10">
-      <p className="text-[10px] tracking-[0.3em] uppercase text-primary mb-5">Message vocal</p>
-      <p className="font-serif-display italic text-xl lg:text-2xl text-foreground mb-8 leading-snug">
-        Jean-Claude, à sa fille.
-      </p>
-      <div className="flex items-center gap-4">
-        <button className="w-11 h-11 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-sm">
-          <Play size={14} className="text-primary-foreground ml-0.5" fill="currentColor" />
-        </button>
-        <div className="flex-1 flex items-end gap-[3px] h-9">
-          {Array.from({ length: 38 }).map((_, i) => (
-            <span
-              key={i}
-              className="flex-1 bg-primary/70 rounded-full"
-              style={{ height: `${20 + Math.abs(Math.sin(i * 0.7)) * 80}%` }}
-            />
-          ))}
-        </div>
-        <span className="text-[11px] tabular-nums text-muted-foreground">0:42</span>
-      </div>
-      <span className="mt-6 block h-px w-8 bg-primary" aria-hidden="true" />
-      <p className="mt-3 text-[12px] text-muted-foreground">Pierre, son frère — 0:42</p>
-    </div>
-  );
-};
-
-const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: React.ReactNode; body: string; quote?: string }> = {
-  mots: {
-    index: "01",
-    eyebrow: "Les Mots",
-    title: (
-      <>
-        Les phrases qu'il <em className="text-primary not-italic font-serif-display italic">répétait</em>, conservées.
-      </>
-    ),
-    body: "Anecdotes, citations, lettres, messages déposés par celles et ceux qui l'ont aimé. Chaque mot vient enrichir un récit collectif, à l'abri du temps.",
-  },
-  photos: {
-    index: "02",
-    eyebrow: "Les Photos & Vidéos",
+    label: "Les Photos, Vidéos & Voix",
+...
+    eyebrow: "Les Photos, Vidéos & Voix",
     title: (
       <>
         Les instants partagés, <em className="text-primary not-italic font-serif-display italic">retrouvés</em>.
