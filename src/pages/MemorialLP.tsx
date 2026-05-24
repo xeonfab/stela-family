@@ -268,20 +268,80 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
   }
   if (active === "photos") {
     return (
-      <div className="h-full flex flex-col justify-center px-2 py-2">
-        <div className="rounded-2xl overflow-hidden">
-          <img
-            src={familleBretagne}
-            alt="Photo de famille — Été 1987, Bretagne"
-            width={1280}
-            height={960}
-            loading="lazy"
-            className="w-full h-auto object-cover"
-          />
+      <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[480px] p-4">
+        {/* Élément 1 — Photo principale */}
+        <div className="absolute top-0 left-0 w-[75%] rotate-[-1.5deg] shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+          <div className="relative rounded-xl overflow-hidden border border-white/80 h-[300px] md:h-[360px]"
+               style={{ background: "linear-gradient(135deg, #C8D4C0, #A8B898)" }}>
+            {/* <img src="..." alt="Été 1987 — Bretagne" className="w-full h-full object-cover" /> */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            <p className="absolute bottom-0 left-0 right-0 p-3 text-[10px] italic text-white/85">
+              Été 1987 — Bretagne
+            </p>
+            <span className="absolute top-0 right-0 m-2 bg-white/90 text-[9px] font-medium text-foreground rounded-full px-2 py-1">
+              Partagé par Marie
+            </span>
+          </div>
         </div>
-        <p className="mt-4 text-[12px] text-muted-foreground italic text-center">
-          Été 1987 — Bretagne · Partagé par 4 proches
-        </p>
+
+        {/* Élément 2 — Petite photo ancienne */}
+        <div className="hidden md:block absolute bottom-4 left-4 w-[38%] rotate-[2deg] shadow-[0_6px_20px_rgba(0,0,0,0.15)] z-10">
+          <div className="rounded-lg overflow-hidden border-2 border-white">
+            <div className="h-[160px]" style={{ background: "linear-gradient(135deg, #D4C4A0, #B8A888)" }}>
+              {/* <img src="..." alt="Portrait années 70" className="w-full h-full object-cover" /> */}
+            </div>
+            <p className="bg-white px-2 py-1 text-[8px] text-muted-foreground">Portrait, années 70</p>
+          </div>
+        </div>
+
+        {/* Élément 3 — Thumbnail vidéo */}
+        <div className="hidden md:block absolute top-4 right-0 w-[40%] rotate-[1deg] shadow-[0_6px_20px_rgba(0,0,0,0.12)] z-10">
+          <div className="relative rounded-xl overflow-hidden border border-white/80 h-[140px]"
+               style={{ background: "linear-gradient(135deg, #2A3540, #1A2530)" }}>
+            {/* <img src="..." alt="Son jardin août 2023" className="w-full h-full object-cover" /> */}
+            <p className="absolute top-0 left-0 p-2 text-[8px] text-white/70">Son jardin · août 2023</p>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                <Play size={10} className="text-primary-foreground ml-0.5" fill="currentColor" />
+              </div>
+            </div>
+            <span className="absolute bottom-0 right-0 p-2 text-[8px] text-white/60">0:23</span>
+            <span className="absolute bottom-2 left-2 bg-white/90 text-[9px] text-foreground rounded-full px-2 py-1">
+              Thomas
+            </span>
+          </div>
+        </div>
+
+        {/* Élément 4 — Player audio compact */}
+        <div className="absolute bottom-0 right-2 w-[52%] rotate-[-0.5deg] shadow-[0_4px_16px_rgba(0,0,0,0.1)] z-20">
+          <div className="bg-white rounded-xl p-3 border border-border">
+            <p className="text-[7px] uppercase tracking-wider text-primary/70 mb-1">Message vocal</p>
+            <p className="font-serif-display text-[13px] italic text-foreground mb-2.5">
+              Jean-Claude, à sa fille.
+            </p>
+            <div className="flex items-center gap-2">
+              <button className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                <Play size={8} className="text-primary-foreground ml-0.5" fill="currentColor" />
+              </button>
+              <div className="flex-1 h-3 flex items-center gap-[1.5px]">
+                {[5, 10, 7, 14, 9, 12, 6, 11, 14, 8, 10, 6].map((h, i) => (
+                  <span key={i} className="w-[2px] rounded-full bg-primary/60" style={{ height: `${h}px` }} />
+                ))}
+              </div>
+              <span className="text-[9px] text-muted-foreground tabular-nums">0:42</span>
+            </div>
+            <p className="text-[9px] text-muted-foreground mt-2 pt-2 border-t border-border">
+              Pierre, son frère — 0:42
+            </p>
+          </div>
+        </div>
+
+        {/* Élément 5 — Badge contributeurs */}
+        <div className="hidden md:block absolute top-[44%] left-[36%] z-30">
+          <div className="bg-primary text-primary-foreground rounded-full px-3 py-1.5 text-[10px] font-medium shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+            4 proches ont partagé
+          </div>
+        </div>
       </div>
     );
   }
