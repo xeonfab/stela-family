@@ -319,7 +319,9 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
 };
 
 const PillarSection = ({ pillarId, reverse }: { pillarId: PillarId; reverse?: boolean }) => {
-  const { index, eyebrow, title, body, quote } = PILLAR_CONTENT[pillarId];
+  const content = PILLAR_CONTENT[pillarId];
+  const { index, eyebrow, title, body } = content;
+  const quote = "quote" in content ? content.quote : undefined;
   return (
     <section className="py-14 lg:py-20" style={{ backgroundColor: "#FAF8F5" }}>
       <div className="container mx-auto px-6 max-w-6xl">
