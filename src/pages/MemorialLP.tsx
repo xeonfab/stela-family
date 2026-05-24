@@ -416,7 +416,6 @@ const SanctuaireSection = () => {
       {/* 3 sections distinctes en composition asymétrique alternée */}
       <PillarSection pillarId="mots" />
       <PillarSection pillarId="photos" reverse />
-      <PillarSection pillarId="voix" />
     </>
   );
 };
