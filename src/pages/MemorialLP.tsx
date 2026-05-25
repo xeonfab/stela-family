@@ -242,7 +242,7 @@ const PILLARS = [
   },
   {
     id: "photos",
-    label: "Les Photos & Vidéos",
+    label: "Les Photos, Vidéos & Voix",
     eyebrow: "Une galerie curatée",
   },
   {
@@ -384,7 +384,7 @@ const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: 
   },
   photos: {
     index: "02",
-    eyebrow: "Les Photos & Vidéos",
+    eyebrow: "Les Photos, Vidéos & Voix",
     title: (
       <>
         Les instants partagés, <em className="text-primary not-italic font-serif-display italic">retrouvés</em>.
