@@ -285,9 +285,9 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
         </div>
 
         {/* Élément 2 — Petite photo ancienne */}
-        <div className="hidden md:block absolute bottom-4 left-4 w-[38%] rotate-[2deg] shadow-[0_6px_20px_rgba(0,0,0,0.15)] z-10">
+        <div className="hidden md:block absolute bottom-4 left-4 w-[32%] rotate-[2deg] shadow-[0_6px_20px_rgba(0,0,0,0.15)] z-10">
           <div className="rounded-lg overflow-hidden border-2 border-white">
-            <div className="h-[160px] bg-muted">
+            <div className="h-[260px] bg-muted">
               <img src={jcEnfantBretagne} alt="Jean-Claude enfant, Bretagne, été 1971" className="w-full h-full object-cover" />
             </div>
             <p className="bg-white px-2 py-1 text-[8px] text-muted-foreground">Bretagne, été 1971</p>
