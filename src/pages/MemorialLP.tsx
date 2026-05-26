@@ -349,13 +349,6 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
             </div>
           </div>
 
-          {/* Badge contributeurs — centré, tiers inférieur */}
-          <div className="absolute top-[66%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
-            <div className="bg-primary text-primary-foreground rounded-full px-3 py-1.5 text-[10px] font-medium shadow-[0_0_20px_rgba(212,175,55,0.4)] whitespace-nowrap">
-              4 proches ont partagé
-            </div>
-          </div>
-
           {/* Gauche avant-plan — photo enfance N&B inclinée -3° */}
           <div className="absolute top-1/2 -translate-y-1/2 left-4 w-[30%] rotate-[-3deg] shadow-[0_10px_30px_rgba(0,0,0,0.25)] z-10">
             <div className="rounded-lg overflow-hidden border-2 border-white bg-muted">
