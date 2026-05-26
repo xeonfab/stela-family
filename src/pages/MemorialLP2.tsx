@@ -216,7 +216,7 @@ const Hero = () => {
                 initial={{ x: "-100%" }} whileHover={{ x: "100%" }}
                 transition={{ duration: 0.8 }}
               />
-              <span className="relative">Créer son Sanctuaire</span>
+              <span className="relative">Commencer</span>
               <motion.span
                 className="relative" animate={{ x: [0, 4, 0] }} transition={{ duration: 1.6, repeat: Infinity }}
               >
