@@ -283,10 +283,10 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
           {/* Photo famille */}
           <div className="w-full shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
             <div className="relative rounded-xl overflow-hidden border border-white/80 bg-muted">
-              <img src={familleBretagne} alt="Été 1987 — Bretagne" className="w-full h-auto object-cover" />
+              <img src={familleBretagne} alt="Été 2014 — Bretagne" className="w-full h-auto object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               <p className="absolute bottom-0 left-0 right-0 p-3 text-[10px] italic text-white/85">
-                Été 1987 — Bretagne
+                Été 2014 — Bretagne
               </p>
               <span className="absolute top-0 right-0 m-2 bg-white/90 text-[9px] font-medium text-foreground rounded-full px-2 py-1">
                 Partagé par Marie
@@ -340,10 +340,10 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
           {/* Ligne 1 — photo famille pleine largeur 420px */}
           <div className="w-full shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
             <div className="relative w-full h-[420px] rounded-xl overflow-hidden border border-white/80 bg-muted">
-              <img src={familleBretagne} alt="Été 1987 — Bretagne" className="absolute inset-0 w-full h-full object-cover" />
+              <img src={familleBretagne} alt="Été 2014 — Bretagne" className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <p className="absolute bottom-0 left-0 p-4 text-xs italic text-white">
-                Été 1987 — Bretagne
+                Été 2014 — Bretagne
               </p>
               <span className="absolute top-0 right-0 m-3 bg-white/90 text-[10px] font-medium text-foreground rounded-full px-2.5 py-1">
                 Partagé par Marie
