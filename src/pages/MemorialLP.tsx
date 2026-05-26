@@ -19,6 +19,7 @@ import steleChanfrein from "@/assets/stele-chanfrein.jpg";
 import steleFlatlay from "@/assets/stele-flatlay.jpg";
 import familleBretagne from "@/assets/famille-bretagne-1987.jpg";
 import jcEnfantBretagne from "@/assets/jc-bretagne-1971.jpg";
+import jcJardin2023 from "@/assets/jc-jardin-2023.jpg";
 
 const SteleGallery = () => {
   const photos = [
@@ -317,15 +318,16 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
           </div>
           {/* Carte vidéo */}
           <div className="w-full shadow-[0_6px_20px_rgba(0,0,0,0.12)]">
-            <div className="relative rounded-xl overflow-hidden border border-white/80 h-[180px]"
-                 style={{ background: "linear-gradient(135deg, #2A3540, #1A2530)" }}>
-              <p className="absolute top-0 left-0 p-2 text-[10px] text-white/70">Son jardin · août 2023</p>
+            <div className="relative rounded-xl overflow-hidden border border-white/80 h-[180px] bg-muted">
+              <img src={jcJardin2023} alt="Jean-Claude dans son jardin, août 2023" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/30" />
+              <p className="absolute top-0 left-0 p-2 text-[10px] text-white">Son jardin · août 2023</p>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
                   <Play size={12} className="text-primary-foreground ml-0.5" fill="currentColor" />
                 </div>
               </div>
-              <span className="absolute bottom-0 right-0 p-2 text-[10px] text-white/60">0:23</span>
+              <span className="absolute bottom-0 right-0 p-2 text-[10px] text-white/80">0:23</span>
               <span className="absolute bottom-2 left-2 bg-white/90 text-[9px] text-foreground rounded-full px-2 py-1">
                 Thomas
               </span>
@@ -365,15 +367,16 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
             <div className="flex flex-col gap-4">
               {/* Carte vidéo */}
               <div className="shadow-[0_6px_20px_rgba(0,0,0,0.18)]">
-                <div className="relative rounded-xl overflow-hidden border border-white/80 h-[200px]"
-                     style={{ background: "linear-gradient(135deg, #2A3540, #1A2530)" }}>
-                  <p className="absolute top-0 left-0 p-3 text-[11px] text-white/80">Son jardin · août 2023</p>
+                <div className="relative rounded-xl overflow-hidden border border-white/80 h-[200px] bg-muted">
+                  <img src={jcJardin2023} alt="Jean-Claude dans son jardin, août 2023" className="absolute inset-0 w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/30" />
+                  <p className="absolute top-0 left-0 p-3 text-[11px] text-white">Son jardin · août 2023</p>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
                       <Play size={12} className="text-primary-foreground ml-0.5" fill="currentColor" />
                     </div>
                   </div>
-                  <span className="absolute bottom-0 right-0 p-3 text-[11px] text-white/70">0:23</span>
+                  <span className="absolute bottom-0 right-0 p-3 text-[11px] text-white/80">0:23</span>
                   <span className="absolute bottom-3 left-3 bg-white/90 text-[10px] text-foreground rounded-full px-2.5 py-1">
                     Thomas
                   </span>
