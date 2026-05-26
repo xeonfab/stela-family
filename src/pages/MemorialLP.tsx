@@ -516,7 +516,7 @@ const _MemorialLPInner = () => {
             </div>
             <div className="mt-12 flex flex-col items-center lg:items-start gap-3">
               <Button variant="gold" className="px-8 py-6 text-base whitespace-nowrap" asChild>
-                <a href="#pricing">Commencer</a>
+                <a href="#pricing">Commencer gratuitement</a>
               </Button>
             </div>
           </div>
