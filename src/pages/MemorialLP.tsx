@@ -807,7 +807,7 @@ const _MemorialLPInner = () => {
               <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
                 <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
-                  « Ma sœur avait des photos que je n'avais jamais vues. Mon frère une vidéo de lui qui riait — on ne savait même pas qu'elle existait. Le Sanctuaire c'est ça : retrouver ce que chacun gardait pour soi. »
+                  « Ma sœur avait des photos que je n'avais jamais vues. Mon frère une vidéo de lui qui riait. On ne savait même pas qu'elle existait. Le Sanctuaire c'est ça : retrouver ce que chacun gardait pour soi. »
                 </p>
                 <div className="mt-8 pt-5 border-t border-white/15">
                   <p className="font-medium">Marie, 46 ans</p>
