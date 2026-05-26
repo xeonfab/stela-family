@@ -74,8 +74,13 @@ const Navbar = () => {
       )}
     </nav>
 
-      {/* Mobile sticky CTA — always visible while scrolling */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] bg-background/90 backdrop-blur-xl border-t-[0.5px] border-border/30">
+      {/* Mobile sticky CTA — appears after scrolling past the hero */}
+      <div
+        className={
+          "md:hidden fixed bottom-0 left-0 right-0 z-40 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] bg-background/90 backdrop-blur-xl border-t-[0.5px] border-border/30 transition-all duration-300 " +
+          (scrolled ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-full pointer-events-none")
+        }
+      >
         <Button
           variant="gold"
           className="w-full py-6"
