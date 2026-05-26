@@ -749,47 +749,13 @@ const _MemorialLPInner = () => {
                   "Garanti pendant 25 ans",
                   "Export complet des données",
                   "Stèle commandable à tout moment",
-                  "Accès famille complet",
+                  "Accès à toute la famille",
                 ]}
-                cta="Commencer sans stèle"
-                ctaVariant="goldOutline"
-                onCtaClick={openWaitlist}
-                ctaId="btn-pricing-99"
-                trackValue={99}
-                trackContentName="pricing_99"
-                trackContentId="sanctuary_tier"
-              />
-              <PricingCard
-                variant="dark"
-                tier="Le Sanctuaire + La stèle"
-                price="€249"
-                period="Paiement unique · Stèle incluse"
-                desc="Le Sanctuaire avec la stèle en noyer gravée, livrée chez vous. Rien à gérer."
-                features={[
-                  "Tout l'offre à 99€",
-                  <strong key="s" className="text-primary font-medium">
-                    Stèle en noyer massif gravée
-                  </strong>,
-                  "Livrée en 7-10 jours",
-                  "Stèles additionnelles commandables",
-                ]}
-                cta="Choisir l'offre complète"
-                onCtaClick={openWaitlist}
-                ctaId="btn-pricing-249"
-                trackValue={249}
-                trackContentName="pricing_249"
-                trackContentId="complete_tier"
-              />
-              <PricingCard
-                variant="free"
-                tier="Accès gratuit"
-                price="€0"
-                period="30 jours · Sans carte bancaire"
-                desc="Pour déposer les premiers souvenirs et ressentir ce que le Sanctuaire peut faire pour votre famille."
+...
                 features={[
                   "Sanctuaire activé immédiatement",
                   "Dépôt des premiers souvenirs : Mots, Photos, vidéos, Voix",
-                  "Accès famille complet",
+                  "Accès à toute la famille",
                 ]}
                 cta="Activer gratuitement"
                 onCtaClick={openWaitlist}
