@@ -197,7 +197,7 @@ const PricingCard = ({
         </div>
       )}
       <div className={`p-8 lg:p-10 flex flex-col flex-1 ${!isDark ? "pt-10 lg:pt-12" : ""}`}>
-        <p className={`text-xs tracking-[0.25em] uppercase mb-3 ${isDark ? "text-primary" : "text-primary"}`}>{tier}</p>
+        <p className={`text-xs tracking-[0.25em] uppercase mb-3 min-h-[2.5em] ${isDark ? "text-primary" : "text-primary"}`}>{tier}</p>
         <p className="font-serif-display text-5xl font-bold mt-2">{price}</p>
         <p className={`text-xs mt-2 mb-6 ${isDark ? "text-white/60" : "text-muted-foreground"}`}>{period}</p>
         <p className={`text-sm leading-relaxed mb-6 ${isDark ? "text-white/75" : "text-muted-foreground"}`}>{desc}</p>
