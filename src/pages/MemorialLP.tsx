@@ -387,7 +387,7 @@ const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: 
     eyebrow: "Les Photos, Vidéos & Voix",
     title: (
       <>
-        Les instants partagés, <em className="text-primary not-italic font-serif-display italic">retrouvés</em>.
+        Sa voix. Son rire. <em className="text-primary not-italic font-serif-display italic">Les photos qu'on croyait perdues.</em>
       </>
     ),
     body: "Une galerie organisée par moments et par proches. Le rire qu'on commence à oublier. L'intonation exacte. Les souvenirs reprennent leur place, prêts à être revus en famille.",
