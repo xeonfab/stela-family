@@ -746,7 +746,7 @@ const _MemorialLPInner = () => {
                 desc="Pour commencer, avant de choisir votre stèle."
                 features={[
                   "Dépôt de souvenirs : Mots, Photos, vidéos, Voix (5GB)",
-                  "5GB de souvenirs · Garanti 25 ans",
+                  "Garanti 25 ans",
                   "Export complet des données",
                   "Stèle commandable à tout moment",
                 ]}
