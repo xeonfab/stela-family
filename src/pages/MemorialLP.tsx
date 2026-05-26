@@ -21,9 +21,9 @@ import familleBretagne from "@/assets/famille-bretagne-1987.jpg";
 
 const SteleGallery = () => {
   const photos = [
-    { src: steleVersoLaiton, alt: "Verso laiton gravé QR code et dates 1948 — 2024" },
-    { src: steleChanfrein, alt: "Macro du chanfrein de 3mm sur l'arête en noyer" },
     { src: steleFlatlay, alt: "Vue à plat de la stèle en noyer avec gravure Jean-Claude Dubois et cotes" },
+    { src: steleChanfrein, alt: "Macro du chanfrein de 3mm sur l'arête en noyer" },
+    { src: steleVersoLaiton, alt: "Verso laiton gravé QR code et dates 1948 — 2024" },
   ];
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
