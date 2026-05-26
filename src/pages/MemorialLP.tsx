@@ -259,12 +259,23 @@ type PillarId = (typeof PILLARS)[number]["id"];
 const PillarVisual = ({ active }: { active: PillarId }) => {
   if (active === "mots") {
     return (
-      <div className="flex flex-col justify-center items-center text-center px-8 py-8 lg:px-16 lg:py-10">
-        <p className="font-serif-display italic text-xl lg:text-2xl text-foreground leading-snug max-w-md">
-          « Il avait toujours cette phrase, quand on doutait : "On verra demain, mais on n'oublie pas aujourd'hui." »
-        </p>
-        <span className="mt-7 block h-px w-8 bg-primary" aria-hidden="true" />
-        <p className="mt-3 text-[12px] font-medium tracking-[0.1em] uppercase text-foreground">Claire, sa fille</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 lg:p-8">
+        {/* Card 1 */}
+        <div className="flex flex-col justify-center items-center text-center px-6 py-8 lg:px-10 lg:py-10 bg-card rounded-3xl border-[0.5px] border-border/60 shadow-soft">
+          <p className="font-serif-display italic text-lg lg:text-xl text-foreground leading-snug max-w-xs">
+            « Il avait toujours cette phrase quand on doutait : "On verra demain, mais on n'oublie pas aujourd'hui." »
+          </p>
+          <span className="mt-6 block h-px w-8 bg-primary" aria-hidden="true" />
+          <p className="mt-3 text-[12px] font-medium tracking-[0.1em] uppercase text-foreground">Claire, sa fille</p>
+        </div>
+        {/* Card 2 */}
+        <div className="flex flex-col justify-center items-center text-center px-6 py-8 lg:px-10 lg:py-10 bg-card rounded-3xl border-[0.5px] border-border/60 shadow-soft">
+          <p className="font-serif-display italic text-lg lg:text-xl text-foreground leading-snug max-w-xs">
+            « Je n'ai jamais su lui dire merci pour tout ce qu'il m'a appris. Je l'ai écrit ici. »
+          </p>
+          <span className="mt-6 block h-px w-8 bg-primary" aria-hidden="true" />
+          <p className="mt-3 text-[12px] font-medium tracking-[0.1em] uppercase text-foreground">Thomas, son fils</p>
+        </div>
       </div>
     );
   }
@@ -447,7 +458,7 @@ const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: 
         Les phrases qu'il <em className="text-primary not-italic font-serif-display italic">répétait</em>, conservées.
       </>
     ),
-    body: "Anecdotes, citations, lettres, messages déposés par celles et ceux qui l'ont aimé. Chaque mot vient enrichir un récit collectif, à l'abri du temps.",
+    body: "Les mots qu'on n'a jamais eu le temps de dire. Les phrases qu'il répétait et qu'on commence à oublier. Chaque proche peut déposer les siens — ensemble, ils reconstituent quelqu'un.",
   },
   photos: {
     index: "02",
