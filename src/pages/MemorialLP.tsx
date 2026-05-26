@@ -747,9 +747,8 @@ const _MemorialLPInner = () => {
                 features={[
                   "Déposez vos souvenirs : Mots, Photos, vidéos, Voix (5GB)",
                   "Garanti pendant 25 ans",
-                  "Export complet des données",
                   "Stèle commandable à tout moment",
-                  "Accès à toute la famille",
+                  "Export complet des données",
                 ]}
                 cta="Commencer sans stèle"
                 ctaVariant="goldOutline"
