@@ -786,7 +786,7 @@ const _MemorialLPInner = () => {
                 period="30 jours · Sans carte bancaire"
                 desc=""
                 features={[
-                  "Dépôt des premiers souvenirs : Mots, Photos, vidéos, Voix",
+                  "Accès à toute la famille",
                   "Export complet des données",
                 ]}
                 cta="Activer gratuitement"
