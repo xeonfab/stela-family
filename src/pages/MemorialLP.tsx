@@ -764,7 +764,7 @@ const _MemorialLPInner = () => {
                 tier="Le Sanctuaire + La stèle"
                 price="€249"
                 period="Paiement unique · Stèle incluse"
-                desc="Le Sanctuaire avec la stèle en noyer gravée, livrée chez vous. Rien à gérer."
+                desc=""
                 features={[
                   "Tout l'offre à 99€",
                   <strong key="s" className="text-primary font-medium">
