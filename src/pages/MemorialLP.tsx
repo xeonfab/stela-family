@@ -745,7 +745,7 @@ const _MemorialLPInner = () => {
                 period="Paiement unique · Sans stèle"
                 desc="Pour commencer, avant de choisir votre stèle."
                 features={[
-                  "Tout l'accès gratuit, pour toujours",
+                  "Dépôt de souvenirs : Mots, Photos, vidéos, Voix (5GB)",
                   "5GB de souvenirs · Garanti 25 ans",
                   "Export complet des données",
                   "Stèle commandable à tout moment",
