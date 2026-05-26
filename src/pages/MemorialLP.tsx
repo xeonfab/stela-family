@@ -289,7 +289,7 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
             <div className="h-[160px]" style={{ background: "linear-gradient(135deg, #D4C4A0, #B8A888)" }}>
               {/* <img src="..." alt="Portrait années 70" className="w-full h-full object-cover" /> */}
             </div>
-            <p className="bg-white px-2 py-1 text-[8px] text-muted-foreground">Portrait, années 70</p>
+            <p className="bg-white px-2 py-1 text-[8px] text-muted-foreground">Bretagne, été 1971</p>
           </div>
         </div>
 
