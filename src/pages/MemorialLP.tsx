@@ -746,7 +746,7 @@ const _MemorialLPInner = () => {
                 desc=""
                 features={[
                   "Déposez vos souvenirs : Mots, Photos, vidéos, Voix (5GB)",
-                  "Garanti 25 ans",
+                  "Garanti pendant 25 ans",
                   "Export complet des données",
                   "Stèle commandable à tout moment",
                   "Accès famille complet",
