@@ -46,7 +46,7 @@ const Navbar = () => {
           className="hidden md:inline-flex px-6"
           onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
         >
-          Commencer
+          Commencer gratuitement
         </Button>
 
         {/* Mobile toggle */}
@@ -68,7 +68,7 @@ const Navbar = () => {
               document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            Commencer
+            Commencer gratuitement
           </Button>
         </div>
       )}
@@ -86,7 +86,7 @@ const Navbar = () => {
           className="w-full py-6"
           onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
         >
-          Commencer
+          Commencer gratuitement
         </Button>
       </div>
     </>
