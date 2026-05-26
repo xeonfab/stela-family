@@ -271,8 +271,8 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
     return (
       <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[480px] p-4">
         {/* Élément 1 — Photo principale */}
-        <div className="absolute top-0 left-0 w-[75%] rotate-[-1.5deg] shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
-          <div className="relative rounded-xl overflow-hidden border border-white/80 h-[300px] md:h-[360px] bg-muted">
+        <div className="absolute top-0 left-0 w-[85%] rotate-[-1.5deg] shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+          <div className="relative rounded-xl overflow-hidden border border-white/80 h-[340px] md:h-[400px] bg-muted">
             <img src={familleBretagne} alt="Été 1987 — Bretagne" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
             <p className="absolute bottom-0 left-0 right-0 p-3 text-[10px] italic text-white/85">
