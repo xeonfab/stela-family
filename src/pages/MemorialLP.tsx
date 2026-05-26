@@ -743,7 +743,7 @@ const _MemorialLPInner = () => {
                 tier="Le Sanctuaire"
                 price="€99"
                 period="Paiement unique · Sans stèle"
-                desc="Pour commencer, avant de choisir votre stèle."
+                desc=""
                 features={[
                   "Dépôt de souvenirs : Mots, Photos, vidéos, Voix (5GB)",
                   "Garanti 25 ans",
