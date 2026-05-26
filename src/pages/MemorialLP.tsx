@@ -776,6 +776,14 @@ const _MemorialLPInner = () => {
       {/* 6 — TÉMOIGNAGES */}
       <section className="py-24 lg:py-32 bg-muted">
         <div className="container mx-auto px-6 max-w-[1200px]">
+          <Reveal>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Témoignages</p>
+              <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight">
+                Ce que les familles <em className="text-primary not-italic font-serif-display italic">ressentent.</em>
+              </h2>
+            </div>
+          </Reveal>
           <div className="grid md:grid-cols-3 gap-6">
             <Reveal>
               <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
