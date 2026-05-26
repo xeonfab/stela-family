@@ -655,52 +655,6 @@ const _MemorialLPInner = () => {
 
       {/* 5 — FONDATEUR & GARANTIE — caché */}
 
-      {/* 6 — TÉMOIGNAGES */}
-      <section className="py-24 lg:py-32 bg-muted">
-        <div className="container mx-auto px-6 max-w-[1200px]">
-          <div className="grid md:grid-cols-3 gap-6">
-            <Reveal>
-              <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
-                <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
-                  « Ma mère avait enregistré sa recette de tarte aux pommes, avec sa voix, ses hésitations, ses "attends je cherche". On ne savait pas qu'elle l'avait fait. On a pleuré et ri en même temps. »
-                </p>
-                <div className="mt-8 pt-5 border-t border-white/15">
-                  <p className="font-medium">Sophie, 38 ans</p>
-                  <p className="text-sm text-white/60 mt-1">Sa fille</p>
-                </div>
-              </Card>
-            </Reveal>
-
-            <Reveal>
-              <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
-                <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
-                  « Mon frère habite à Lyon, moi à Bordeaux. On s'est retrouvés dans le Sanctuaire de papa comme on se retrouvait dans sa cuisine. Chacun a déposé quelque chose. C'est le seul endroit où on est encore tous ensemble. »
-                </p>
-                <div className="mt-8 pt-5 border-t border-white/15">
-                  <p className="font-medium">Thomas, 52 ans</p>
-                  <p className="text-sm text-white/60 mt-1">Son fils</p>
-                </div>
-              </Card>
-            </Reveal>
-
-            <Reveal>
-              <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
-                <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
-                  « Il avait laissé un message pour le mariage de ma fille. Elle a six ans. Il ne la verra pas grandir — mais elle l'entendra lui parler ce jour-là. »
-                </p>
-                <div className="mt-8 pt-5 border-t border-white/15">
-                  <p className="font-medium">Marie, 46 ans</p>
-                  <p className="text-sm text-white/60 mt-1">Sa fille</p>
-                </div>
-              </Card>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* 7 — PRICING */}
       <section id="pricing" className="py-24 lg:py-32 bg-background">
         <div className="container mx-auto px-6 max-w-[960px]">
