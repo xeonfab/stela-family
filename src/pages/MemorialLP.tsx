@@ -749,7 +749,7 @@ const _MemorialLPInner = () => {
                   "Garanti pendant 25 ans",
                   "Export complet des données",
                   "Stèle commandable à tout moment",
-                  "Accès famille complet",
+                  "Accès à toute la famille",
                 ]}
                 cta="Commencer sans stèle"
                 ctaVariant="goldOutline"
@@ -789,7 +789,7 @@ const _MemorialLPInner = () => {
                 features={[
                   "Sanctuaire activé immédiatement",
                   "Dépôt des premiers souvenirs : Mots, Photos, vidéos, Voix",
-                  "Accès famille complet",
+                  "Accès à toute la famille",
                 ]}
                 cta="Activer gratuitement"
                 onCtaClick={openWaitlist}
