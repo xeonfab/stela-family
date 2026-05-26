@@ -1137,7 +1137,7 @@ const FinalCTA = () => {
         >
           <Magnetic>
             <Button variant="gold" className="px-10 py-7 text-base">
-              Commencer
+              Commencer gratuitement
             </Button>
           </Magnetic>
           <Magnetic strength={0.2}>
