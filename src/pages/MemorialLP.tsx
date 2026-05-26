@@ -196,7 +196,7 @@ const PricingCard = ({
           Le plus choisi
         </div>
       )}
-      <div className={`p-8 lg:p-10 flex flex-col flex-1 ${!isDark ? "pt-10 lg:pt-12" : ""}`}>
+      <div className={`p-8 lg:p-10 flex flex-col flex-1 ${!isDark ? "pt-[68px] lg:pt-[72px]" : ""}`}>
         <p className={`text-xs tracking-[0.25em] uppercase mb-3 min-h-[2.5em] ${isDark ? "text-primary" : "text-primary"}`}>{tier}</p>
         <p className="font-serif-display text-5xl font-bold mt-2">{price}</p>
         <p className={`text-xs mt-2 mb-6 ${isDark ? "text-white/60" : "text-muted-foreground"}`}>{period}</p>
