@@ -18,6 +18,7 @@ import steleVersoLaiton from "@/assets/stele-verso-laiton.jpg";
 import steleChanfrein from "@/assets/stele-chanfrein.jpg";
 import steleFlatlay from "@/assets/stele-flatlay.jpg";
 import familleBretagne from "@/assets/famille-bretagne-1987.jpg";
+import jcEnfantBretagne from "@/assets/jc-bretagne-1971.jpg";
 
 const SteleGallery = () => {
   const photos = [
@@ -286,8 +287,8 @@ const PillarVisual = ({ active }: { active: PillarId }) => {
         {/* Élément 2 — Petite photo ancienne */}
         <div className="hidden md:block absolute bottom-4 left-4 w-[38%] rotate-[2deg] shadow-[0_6px_20px_rgba(0,0,0,0.15)] z-10">
           <div className="rounded-lg overflow-hidden border-2 border-white">
-            <div className="h-[160px]" style={{ background: "linear-gradient(135deg, #D4C4A0, #B8A888)" }}>
-              {/* <img src="..." alt="Portrait années 70" className="w-full h-full object-cover" /> */}
+            <div className="h-[160px] bg-muted">
+              <img src={jcEnfantBretagne} alt="Jean-Claude enfant, Bretagne, été 1971" className="w-full h-full object-cover" />
             </div>
             <p className="bg-white px-2 py-1 text-[8px] text-muted-foreground">Bretagne, été 1971</p>
           </div>
