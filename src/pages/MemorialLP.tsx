@@ -390,7 +390,7 @@ const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: 
         Sa voix. Son rire. <em className="text-primary not-italic font-serif-display italic">Les photos qu'on croyait perdues.</em>
       </>
     ),
-    body: "Une galerie organisée par moments et par proches. Le rire qu'on commence à oublier. L'intonation exacte. Les souvenirs reprennent leur place, prêts à être revus en famille.",
+    body: "Le rire exact. L'intonation d'un prénom. Une photo des années 70 qu'un cousin avait gardée. Dans le Sanctuaire, chaque proche dépose ce qu'il a. Ensemble, la mémoire se reconstruit.",
   },
   voix: {
     index: "03",
