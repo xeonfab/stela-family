@@ -68,7 +68,7 @@ const Navbar = () => {
               document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            Commencer gratuitement
+            Créer son sanctuaire
           </Button>
         </div>
       )}
