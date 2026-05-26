@@ -242,7 +242,7 @@ const PILLARS = [
   },
   {
     id: "photos",
-    label: "Les Photos, Vidéos & Voix",
+    label: "VOIX · PHOTOS · VIDÉOS",
     eyebrow: "Une galerie curatée",
   },
   {
