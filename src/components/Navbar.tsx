@@ -46,7 +46,7 @@ const Navbar = () => {
           className="hidden md:inline-flex px-6"
           onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
         >
-          Commencer gratuitement
+          Créer son sanctuaire
         </Button>
 
         {/* Mobile toggle */}
