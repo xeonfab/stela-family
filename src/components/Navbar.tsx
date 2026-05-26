@@ -86,7 +86,7 @@ const Navbar = () => {
           className="w-full py-6"
           onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
         >
-          Créer son sanctuaire
+          Commencer
         </Button>
       </div>
     </>
