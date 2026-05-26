@@ -21,6 +21,7 @@ const Navbar = () => {
   const isTransparent = transparentMode && !scrolled;
 
   return (
+    <>
     <nav
       className={
         "fixed top-0 left-0 right-0 z-50 transition-colors duration-500 " +
@@ -72,6 +73,18 @@ const Navbar = () => {
         </div>
       )}
     </nav>
+
+      {/* Mobile sticky CTA — always visible while scrolling */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] bg-background/90 backdrop-blur-xl border-t-[0.5px] border-border/30">
+        <Button
+          variant="gold"
+          className="w-full py-6"
+          onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
+        >
+          Commencer gratuitement
+        </Button>
+      </div>
+    </>
   );
 };
 
