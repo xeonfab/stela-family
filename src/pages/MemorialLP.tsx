@@ -384,7 +384,7 @@ const PILLAR_CONTENT: Record<PillarId, { index: string; eyebrow: string; title: 
   },
   photos: {
     index: "02",
-    eyebrow: "Les Photos, Vidéos & Voix",
+    eyebrow: "VOIX · PHOTOS · VIDÉOS",
     title: (
       <>
         Sa voix. Son rire. <em className="text-primary not-italic font-serif-display italic">Les photos qu'on croyait perdues.</em>
