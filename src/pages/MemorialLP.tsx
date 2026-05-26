@@ -788,7 +788,7 @@ const _MemorialLPInner = () => {
                 features={[
                   "Sanctuaire activé immédiatement",
                   "Dépôt des premiers souvenirs : Mots, Photos, vidéos, Voix",
-                  "Accès à toute la famille",
+                  "Export complet des données",
                 ]}
                 cta="Activer gratuitement"
                 onCtaClick={openWaitlist}
