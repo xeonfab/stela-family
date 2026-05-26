@@ -15,7 +15,7 @@ const faqItems = [
   {
     trigger: "Les invités âgés ou non-tech peuvent-ils l'utiliser ?",
     content:
-      "Absolument. Nous visons le 'Zéro Friction'. Aucune application à télécharger, aucun compte à créer pour les invités. Un simple scan du QR Code suffit pour déposer une photo ou une voix. Si ils savent prendre une photo, ils savent utiliser Stela.",
+      "Absolument. Nous visons une simplicité absolue. Aucune application à télécharger, aucun compte à créer pour les invités. Un simple scan du QR Code suffit pour déposer une photo ou une voix. Si ils savent prendre une photo, ils savent utiliser Stela.",
   },
   {
     trigger: "Le mémorial est-il visible sur Google ?",
