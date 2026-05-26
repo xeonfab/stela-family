@@ -785,7 +785,7 @@ const _MemorialLPInner = () => {
                 tier="Accès gratuit"
                 price="€0"
                 period="30 jours · Sans carte bancaire"
-                desc="Pour déposer les premiers souvenirs et ressentir ce que le Sanctuaire peut faire pour votre famille."
+                desc=""
                 features={[
                   "Sanctuaire activé immédiatement",
                   "Dépôt des premiers souvenirs : Mots, Photos, vidéos, Voix",
