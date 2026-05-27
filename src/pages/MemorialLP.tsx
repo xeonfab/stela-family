@@ -541,7 +541,7 @@ const SanctuaireSection = () => {
                 Sa mémoire, reconstituée.
               </h2>
               <p className="mt-6 text-[15px] text-muted-foreground max-w-[680px] mx-auto leading-relaxed">
-                Ce que la mémoire ne peut pas retenir seule : les mots exacts, le timbre de la voix, les instants photographiés... le Sanctuaire les garde, pour toute la famille, pour une génération.
+                Les mots exacts. Le timbre de la voix. Les instants photographiés. Le Sanctuaire les garde, pour une génération.
               </p>
             </div>
           </Reveal>
