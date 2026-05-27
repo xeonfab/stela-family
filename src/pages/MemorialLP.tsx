@@ -538,9 +538,7 @@ const SanctuaireSection = () => {
             <div className="text-center max-w-3xl mx-auto">
               <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Le Sanctuaire</p>
               <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight">
-                Trois traces.
-                <br />
-                <em className="text-primary not-italic font-serif-display italic">Une seule mémoire.</em>
+                Sa mémoire, reconstituée.
               </h2>
               <p className="mt-6 text-[15px] text-muted-foreground max-w-[680px] mx-auto leading-relaxed">
                 Ce que la mémoire ne peut pas retenir seule : les mots exacts, le timbre de la voix, les instants photographiés... le Sanctuaire les garde, pour toute la famille, pour une génération.
