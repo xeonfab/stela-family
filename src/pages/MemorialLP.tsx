@@ -760,7 +760,7 @@ const _MemorialLPInner = () => {
                   "Garanti pendant 25 ans",
                   "Export complet des données",
                   "Stèle commandable à tout moment",
-                  "Accès à toute la famille",
+                  "Accès pour toute la famille",
                 ]}
                 cta="Commencer sans stèle"
                 ctaVariant="goldOutline"
