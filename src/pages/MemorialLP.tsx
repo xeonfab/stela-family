@@ -770,7 +770,7 @@ const _MemorialLPInner = () => {
               />
               <PricingCard
                 variant="dark"
-                tier="Le Sanctuaire 25 ans + La stèle"
+                tier={"Le Sanctuaire +\nLa stèle - 25 ans"}
                 price="€249"
                 period="Paiement unique · Stèle incluse"
                 desc=""
