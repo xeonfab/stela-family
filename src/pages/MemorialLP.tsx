@@ -536,12 +536,12 @@ const SanctuaireSection = () => {
         <div className="container mx-auto px-6 max-w-6xl">
           <Reveal>
             <div className="text-center max-w-3xl mx-auto">
-              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Le Sanctuaire</p>
+              <p className="text-xs tracking-[0.3em] uppercase text-primary mb-6">Le Sanctuaire 25 ans</p>
               <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight">
                 Sa mémoire, reconstituée.
               </h2>
               <p className="mt-6 text-[15px] text-muted-foreground max-w-[680px] mx-auto leading-relaxed">
-                Les mots exacts. Le timbre de la voix. Les instants photographiés. Le Sanctuaire les garde, pour une génération.
+                Les mots exacts. Le timbre de la voix. Les instants photographiés. Le Sanctuaire 25 ans les garde, pour une génération.
               </p>
             </div>
           </Reveal>
@@ -646,7 +646,7 @@ const _MemorialLPInner = () => {
                 },
                 {
                   title: "Ensemble, jour après jour",
-                  text: "Une photo retrouvée, une anecdote, un message vocal. Le Sanctuaire s'enrichit à chaque dépôt. Sa mémoire reste vivante, pour une génération.",
+                  text: "Une photo retrouvée, une anecdote, un message vocal. Le Sanctuaire 25 ans s'enrichit à chaque dépôt. Sa mémoire reste vivante, pour une génération.",
                 },
               ].map((col) => (
                 <div key={col.title} className="text-left">
@@ -670,7 +670,7 @@ const _MemorialLPInner = () => {
               <p className="text-[10px] tracking-[0.3em] uppercase text-primary/80 mb-6">Ébénisterie française · Noyer massif · Fait à la main</p>
               <h2 className="font-serif-display text-4xl lg:text-5xl font-bold leading-tight mb-6">
                 Posez le téléphone.{" "}
-                <em className="text-primary not-italic font-serif-display italic">Le Sanctuaire s'ouvre.</em>
+                <em className="text-primary not-italic font-serif-display italic">Le Sanctuaire 25 ans s'ouvre.</em>
               </h2>
               <p className="font-sans italic text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                 Un bloc de noyer massif gravé à son nom. Un effleurement suffit. Pas d'application, pas de mot de passe. Sa mémoire est là, pour toute la famille.
@@ -742,14 +742,14 @@ const _MemorialLPInner = () => {
                   Un Sanctuaire. <em className="text-primary not-italic font-serif-display italic">Toute la famille.</em>
                 </>
               }
-              subtitle="Le Sanctuaire de votre famille, garanti pour une génération."
+              subtitle="Le Sanctuaire 25 ans de votre famille, garanti pour une génération."
             />
           </Reveal>
           <Reveal>
             <div className="grid md:grid-cols-3 gap-6 items-stretch">
               <PricingCard
                 variant="main"
-                tier="Le Sanctuaire"
+                tier="Le Sanctuaire 25 ans"
                 price="€99"
                 period="Paiement unique · Sans stèle"
                 desc=""
@@ -770,7 +770,7 @@ const _MemorialLPInner = () => {
               />
               <PricingCard
                 variant="dark"
-                tier="Le Sanctuaire + La stèle"
+                tier="Le Sanctuaire 25 ans + La stèle"
                 price="€249"
                 period="Paiement unique · Stèle incluse"
                 desc=""
@@ -893,7 +893,7 @@ const _MemorialLPInner = () => {
               <Card className="relative p-8 lg:p-10 rounded-3xl bg-[#2C221B] text-[#FAFAFA] border-0 overflow-hidden h-full flex flex-col">
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary" />
                 <p className="font-serif-display text-lg lg:text-xl italic leading-relaxed text-white/90 flex-1">
-                  « Ma sœur avait des photos que je n'avais jamais vues. Mon frère une vidéo de lui qui riait. On ne savait même pas qu'elle existait. Le Sanctuaire c'est ça : retrouver ce que chacun gardait pour soi. »
+                  « Ma sœur avait des photos que je n'avais jamais vues. Mon frère une vidéo de lui qui riait. On ne savait même pas qu'elle existait. Le Sanctuaire 25 ans c'est ça : retrouver ce que chacun gardait pour soi. »
                 </p>
                 <div className="mt-8 pt-5 border-t border-white/15">
                   <p className="font-medium">Marie, 46 ans</p>
