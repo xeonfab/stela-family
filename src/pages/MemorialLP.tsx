@@ -588,7 +588,7 @@ const _MemorialLPInner = () => {
               className="mt-8 font-serif-display italic text-[18px] lg:text-[22px] max-w-xl mx-auto lg:mx-0"
               style={{ color: "rgba(44,44,44,0.55)" }}
             >
-              <p>Sa voix. Ses mots. Les instants qu'on croyait perdus.<br />Réunis pour toute la famille, pour une génération.</p>
+              <p>Sa voix. Ses mots. Les instants qu'on croyait perdus. Réunis pour toute la famille, pour une génération.</p>
             </div>
             <div className="mt-12 flex flex-col items-center lg:items-start gap-3">
               <Button variant="gold" className="px-8 py-6 text-base whitespace-nowrap" asChild>
