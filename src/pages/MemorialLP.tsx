@@ -866,6 +866,46 @@ const _MemorialLPInner = () => {
         </div>
       </section>
 
+      {/* 3 — HONORER SA MÉMOIRE */}
+      <section className="py-24 lg:py-[92px]" style={{ backgroundColor: "#FAF8F5" }}>
+        <div className="container mx-auto px-6 max-w-6xl">
+          <Reveal>
+            <SectionHeader
+              eyebrow="Un héritage familial"
+              title={
+                <>
+                  Créez-le ensemble. Enrichissez-le <em className="not-italic font-serif-display" style={{ color: "#D4AF37" }}>pour toujours.</em>
+                </>
+              }
+            />
+          </Reveal>
+          <Reveal>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 mt-16">
+              {[
+                {
+                  title: "En quelques minutes",
+                  text: "Ouvrez le Sanctuaire à son nom. Ajoutez une première photo, un premier mot. L'espace existe.",
+                },
+                {
+                  title: "Invitez ses proches",
+                  text: "Un lien privé suffit. Chacun rejoint le Sanctuaire depuis chez soi — enfants, frères, amis proches. Aucune application à installer.",
+                },
+                {
+                  title: "Ensemble, jour après jour",
+                  text: "Une photo retrouvée, une anecdote, un message vocal. Le Sanctuaire 25 ans s'enrichit à chaque dépôt. Sa mémoire reste vivante, pour une génération.",
+                },
+              ].map((col) => (
+                <div key={col.title} className="text-left">
+                  <div className="h-px mb-6" style={{ width: "32px", backgroundColor: "#D4AF37" }} aria-hidden />
+                  <h3 className="font-serif-display font-medium text-2xl text-foreground mb-4">{col.title}</h3>
+                  <p className="font-sans text-muted-foreground" style={{ fontSize: "14px", lineHeight: 1.8 }}>{col.text}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer className="py-10 border-t-[0.5px] border-border">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
