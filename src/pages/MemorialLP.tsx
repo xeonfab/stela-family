@@ -594,6 +594,9 @@ const _MemorialLPInner = () => {
               <Button variant="gold" className="px-8 py-6 text-base whitespace-nowrap" asChild>
                 <a href="#pricing">Commencer gratuitement</a>
               </Button>
+              <p className="text-xs tracking-wide text-muted-foreground/70 mt-2">
+                30 jours d'essai · Sans carte bancaire · 2 minutes pour créer
+              </p>
             </div>
           </div>
 
